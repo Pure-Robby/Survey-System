@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress Tracker - TFG Employee Engagement Survey 2025</title>
+    
+    <!-- Bootstrap 5.3 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Boxicons -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <div class="page-header">
+        <div class="container-fluid px-4">
+
+            <div class="row align-items-center">
+                <div class="col-md-10 d-flex align-items-center gap-5">
+                    <img src="assets/logo.png" alt="Logo" style="height: 32px;">
+                    <div class="">
+                        <h1 class="page-title mb-0">2026 Culture Measurement</h1>
+                        <p class="page-subtitle mb-0">Generate customised reports with organisation and demographic filters</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-2 text-end">
+                    <span class="text-muted me-3">Hi, Pure Survey</span>
+                    <a href="#" class="text-decoration-none">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav-tabs-custom">
+        <div class="container-fluid px-4">
+            <!-- Navigation will be rendered by js/navigation.js -->
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container-fluid px-4 pb-5">
+        <!-- Tabs -->
+        <!-- <div class="content-tabs-container">
+            <div class="content-tabs">
+                <button class="content-tab active" data-tab="tracker">
+                    <i class="material-icons">trending_up</i>
+                    Progress Tracker
+                </button>
+                <button class="content-tab" data-tab="leaderboard">
+                    <i class="material-icons">leaderboard</i>
+                    Response Rate Leaderboard
+                </button>
+                
+            </div>
+        </div> -->
+
+        <!-- Tab Content -->
+        <div class="content-tab-content">
+
+        <!-- Progress Tracker Tab -->
+        <div class="content-tab-pane active" id="tracker-tab">
+            <div class="progress-tracker-container">
+                <!-- Summary Cards -->
+                <div class="progress-summary-cards">
+                    <div class="summary-card">
+                        <div class="card-icon">
+                            <i class="material-icons">groups</i>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-value" id="totalPopulation">27,686</div>
+                            <div class="card-label">Total Population</div>
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="card-icon">
+                            <i class="material-icons">check_circle</i>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-value" id="totalCompleted">23,364</div>
+                            <div class="card-label">Completed</div>
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="card-icon">
+                            <i class="material-icons">schedule</i>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-value" id="totalInProgress">166</div>
+                            <div class="card-label">In Progress</div>
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="card-icon">
+                            <i class="material-icons">radio_button_unchecked</i>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-value" id="totalNotStarted">4,156</div>
+                            <div class="card-label">Not Started</div>
+                        </div>
+                    </div>
+                    <div class="summary-card completion-card">
+                        <div class="card-icon">
+                            <i class="material-icons">analytics</i>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-value card-completion-rate" id="overallCompletionRate">84%</div>
+                            <div class="card-label">Completion Rate</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progress Table with Integrated Breadcrumb -->
+                <div class="progress-table-container">
+                    <div class="table-header">
+                        <!-- Breadcrumb Navigation -->
+                        <div class="progress-breadcrumb">
+                            <div class="breadcrumb-path">
+                                <span class="breadcrumb-item active" data-level="company">Sanlam</span>
+                            </div>
+                        </div>
+                        <div class="table-header-left">
+                            <h3 id="tableTitle">Sanlam Overview</h3>
+                            <button id="backToParent" class="back-button" style="display: none;">
+                                <i class="material-icons">arrow_back</i>
+                                Back to Parent
+                            </button>
+                        </div>
+                        <div class="table-controls">
+                            <div class="table-legend">
+                                <div class="legend-item">
+                                    <div class="legend-color excellent"></div>
+                                    <span>≥75% Excellent</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-color good"></div>
+                                    <span>60-74% Good</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-color fair"></div>
+                                    <span>45-59% Fair</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-color attention"></div>
+                                    <span>&lt;45% Needs Attention</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress-table-wrapper">
+                        <table class="progress-table" id="progressTable">
+                            <thead>
+                                <tr>
+                                    <th class="sortable" data-sort="name">
+                                        Worker Group 
+                                        <i class="material-icons sort-icon">sort</i>
+                                    </th>
+                                    <th class="sortable" data-sort="population">
+                                        Population 
+                                        <i class="material-icons sort-icon">sort</i>
+                                    </th>
+                                    <th class="sortable" data-sort="completed">
+                                        Completed 
+                                        <i class="material-icons sort-icon">sort</i>
+                                    </th>
+                                    <th class="sortable" data-sort="inprogress">
+                                        In Progress 
+                                        <i class="material-icons sort-icon">sort</i>
+                                    </th>
+                                    <th class="sortable" data-sort="notstarted">
+                                        Not Started 
+                                        <i class="material-icons sort-icon">sort</i>
+                                    </th>
+                                    <th class="sortable" data-sort="completion">
+                                        Completion Rate 
+                                        <i class="material-icons sort-icon">sort</i>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody id="progressTableBody">
+                                <!-- Table content will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+            <!-- Response Rate Leaderboard Tab -->
+            <div class="content-tab-pane" id="leaderboard-tab">
+                <div class="response-rate-leaderboard-container">
+                    <div class="response-rate-table-container mt-4">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h6 class="mb-0"><strong>84% have completed</strong> the TFG Employee Engagement Survey as of <span id="leaderboardDate"></span></h3>
+                            <button id="exportLeaderboardPDF" class="btn-custom btn-primary gap-2">
+                                <i class="material-icons">picture_as_pdf</i>
+                                Export Leaderboard PDF
+                            </button>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table table-striped response-rate-leaderboard-table">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="width: 60px;">#</th>
+                                        <th>Segment</th>
+                                        <th class="text-center">Response Rate</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center">1</td>
+                                        <td>Retail Operations</td>
+                                        <td class="text-center">
+                                            <span class="completion-rate">88%</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">2</td>
+                                        <td>Corporate</td>
+                                        <td class="text-center">
+                                            <span class="completion-rate">90%</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">3</td>
+                                        <td>Marketing & Sales</td>
+                                        <td class="text-center">
+                                            <span class="completion-rate">72%</span>
+                                        </td>
+                                    </tr>
+                                    <tr class="total-row">
+                                        <td colspan="2"><strong>Total</strong></td>
+                                        <td class="text-center">
+                                            <span class="completion-rate">84%</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="table-controls justify-content-center mt-3">
+                            <div class="table-legend">
+                                <div class="legend-item">
+                                    <div class="legend-color excellent"></div>
+                                    <span>≥75% Excellent</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-color good"></div>
+                                    <span>60-74% Good</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-color fair"></div>
+                                    <span>45-59% Fair</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-color attention"></div>
+                                    <span>&lt;45% Needs Attention</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="text-center py-3 bg-white border-top mt-5">
+        <p class="mb-0 text-muted" style="font-size: 13px;">Copyright © Pure Survey (Pty) Ltd. Rights Reserved 2025.</p>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom Scripts -->
+    <script src="js/navigation.js"></script>
+    <!-- <script src="js/dashboard.js"></script> -->
+    <script src="js/progress-tracker/config.js"></script>
+    <script src="js/progress-tracker/data.js"></script>
+    <script src="js/progress-tracker/app.js"></script>
+</body>
+</html>
+

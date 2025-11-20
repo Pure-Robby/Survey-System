@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overview - 2026 Sanlam Culture Measurement Survey</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!-- Bootstrap 5.3 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Boxicons -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <div class="page-header">
+        <div class="container-fluid px-4">
+
+            <div class="row align-items-center">
+                <div class="col-md-10 d-flex align-items-center gap-5">
+                    <img src="assets/logo.png" alt="Logo" style="height: 32px;">
+                    <div class="">
+                        <h1 class="page-title mb-0">2026 Culture Measurement</h1>
+                        <p class="page-subtitle mb-0">Generate customised reports with organisation and demographic filters</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-2 text-end">
+                    <span class="text-muted me-3">Hi, Pure Survey</span>
+                    <a href="#" class="text-decoration-none">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav-tabs-custom">
+        <div class="container-fluid px-0">
+            <!-- Navigation will be rendered by js/navigation.js -->
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container px-0 pb-5">
+        <!-- Action Bar -->
+        <div class="row mb-3">
+            <div class="col-md-12 d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center gap-4">
+                    <button class="filter-toggle" onclick="dashboardJS.showOffcanvas('filtersOffcanvas')">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 6H20M4 12H20M4 18H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+                        </svg>
+                        Filters
+                    </button>
+                    <h2 class="fs-4 mb-0 fw-bold">Overview</h2>
+                </div>
+                
+
+                <button class="btn-custom btn-primary" onclick="dashboardJS.showModal('exportModal')">
+                    <i class='bx bx-download'></i> Export PDF
+                </button>
+            </div>
+        </div>
+
+        <!-- Data Date -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <p id="dataDate" class="text-muted mb-0" style="font-size: 13px;">
+                    Data correct as of: —
+                </p>
+            </div>
+        </div>
+
+        <div class="results-summary">
+            <div class="score-card p-0">
+                <div class="card-custom text-center">
+                    <h6 class="text-start text-dark fw-semibold mb-3" style="font-size: 14px;">Current Response Rate</h6>
+                    <div class="circular-progress mx-auto" id="responseProgress"></div>
+                    <p class="mt-3 mb-0 text-muted" style="font-size: 13px;"><strong>N=21,564</strong></p>
+                </div>
+            </div>
+            <div class="score-card">
+                <h3>Culture Index</h3>
+                <div>
+                    <div class="score-value" id="overallScore">81.6%</div>
+                    <div class="score-label">Average Score</div>
+                </div>
+                <div style="height: 18px;"></div>
+            </div>
+            <div class="score-card lever" onclick="window.location.href='business-outcomes.html'" style="cursor: pointer;">
+                <h3>Business Outcomes</h3>
+                <div>
+                    <div class="score-value" id="businessScore">83.3%</div>
+                    <div class="score-label">Average Score</div> 
+                </div>
+                <span class="dimension-click-hint justify-content-center text-white">Click to view details <i class="bx bx-chevron-right"></i></span>
+            </div>
+            <div class="score-card lever" onclick="window.location.href='shared-values.html'" style="cursor: pointer;">
+                <h3>Shared Values</h3>
+                <div>
+                    <div class="score-value" id="valuesScore">66.7%</div>
+                    <div class="score-label">Average Score</div>
+                </div>
+                <span class="dimension-click-hint justify-content-center text-white">Click to view details <i class="bx bx-chevron-right"></i></span>
+            </div>
+            <div class="score-card lever" onclick="window.location.href='employee-experience.html'" style="cursor: pointer;">
+                <h3>Employee Experience</h3>
+                <div>
+                    <div class="score-value" id="experienceScore">82.1%</div>
+                    <div class="score-label">Average Score</div>
+                </div>
+                <span class="dimension-click-hint justify-content-center text-white">Click to view details <i class="bx bx-chevron-right"></i></span>
+            </div>
+            <div class="score-card lever" onclick="window.location.href='leadership-enablement.html'" style="cursor: pointer;">
+                <h3>Leadership Enablement</h3>
+                <div>
+                    <div class="score-value" id="leadershipScore">78.6%</div>
+                    <div class="score-label">Average Score</div>
+                </div>
+                <span class="dimension-click-hint justify-content-center text-white">Click to view details <i class="bx bx-chevron-right"></i></span>
+            </div>
+        </div>
+
+        <!-- Lever Details Overview Section -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <h3 class="fs-5 fw-bold mb-2">Culture Framework Overview</h3>
+                <p class="text-muted mb-0">Explore the dimensions that make up each lever of our culture framework</p>
+            </div>
+        </div>
+
+        <div class="lever-details-overview mb-5" id="leverDetailsOverview">
+            <!-- Lever detail cards will be rendered here by JavaScript -->
+        </div>
+
+        <!-- Comments & Sentiment Section -->
+        <div class="row">
+            <!-- Sentiment Distribution -->
+            <div class="col-lg-5 mb-4">
+                <div class="card-custom h-100">
+                    <h5 class="card-header-custom">Employee Engagement Comments & Sentiment</h5>
+                    <div class="d-flex justify-content-center align-items-center gap-5 ">
+                        <div class="donut-wrap position-relative">
+                            <div class="donut-chart" id="sentimentDonut"></div>
+                            <div class="donut-center-text">
+                                <p class="donut-center-label mb-1">Total Comments</p>
+                                <p class="donut-center-value">15,043</p>
+                            </div>
+                        </div>
+                        
+                            
+                        <div class="mt-3">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <div class="d-flex align-items-center">
+                                    <div style="width: 12px; height: 12px; background-color: #28a745; border-radius: 50%; margin-right: 8px;"></div>
+                                    <span>Positive:</span>
+                                </div>
+                                <span class="fw-bold">6,943 (46%)</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <div class="d-flex align-items-center">
+                                    <div style="width: 12px; height: 12px; background-color: #ffc107; border-radius: 50%; margin-right: 8px;"></div>
+                                    <span>Neutral:</span>
+                                </div>
+                                <span class="fw-bold">3,212 (21%)</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex align-items-center">
+                                    <div style="width: 12px; height: 12px; background-color: #dc3545; border-radius: 50%; margin-right: 8px;"></div>
+                                    <span>Negative:</span>
+                                </div>
+                                <span class="fw-bold">4,876 (33%)</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <!-- Sentiment Themes -->
+            <div class="col-lg-7 mb-4">
+                <div class="card-custom">
+                    <h5 class="card-header-custom">Employee Engagement Sentiment Themes</h5>
+                    
+                    <div class="row">
+                        <!-- Top 5 Positive Themes -->
+                        <div class="col-md-6">
+                            <h6 class="fw-semibold mb-3">Top 5 Positive Themes</h6>
+                            
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <span style="font-size: 13px;">Career Growth</span>
+                                    <span class="fw-bold" style="font-size: 13px;">2288 comments</span>
+                                </div>
+                                <div class="progress-bar-container" style="height: 6px;">
+                                    <div class="progress-bar" style="width: 85%; background-color: #28a745;"></div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <span style="font-size: 13px;">Team Collaboration</span>
+                                    <span class="fw-bold" style="font-size: 13px;">1464 comments</span>
+                                </div>
+                                <div class="progress-bar-container" style="height: 6px;">
+                                    <div class="progress-bar" style="width: 55%; background-color: #28a745;"></div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <span style="font-size: 13px;">Work-Life Balance</span>
+                                    <span class="fw-bold" style="font-size: 13px;">889 comments</span>
+                                </div>
+                                <div class="progress-bar-container" style="height: 6px;">
+                                    <div class="progress-bar" style="width: 33%; background-color: #28a745;"></div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <span style="font-size: 13px;">Recognition & Rewards</span>
+                                    <span class="fw-bold" style="font-size: 13px;">525 comments</span>
+                                </div>
+                                <div class="progress-bar-container" style="height: 6px;">
+                                    <div class="progress-bar" style="width: 20%; background-color: #28a745;"></div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <span style="font-size: 13px;">Leadership Support</span>
+                                    <span class="fw-bold" style="font-size: 13px;">339 comments</span>
+                                </div>
+                                <div class="progress-bar-container" style="height: 6px;">
+                                    <div class="progress-bar" style="width: 13%; background-color: #28a745;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bottom 5 Negative Themes -->
+                        <div class="col-md-6">
+                            <h6 class="fw-semibold mb-3">Bottom 5 Negative Themes</h6>
+                            
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <span style="font-size: 13px;">Workload Management</span>
+                                    <span class="fw-bold" style="font-size: 13px;">1423 comments</span>
+                                </div>
+                                <div class="progress-bar-container" style="height: 6px;">
+                                    <div class="progress-bar" style="width: 90%; background-color: #dc3545;"></div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <span style="font-size: 13px;">Leadership Support</span>
+                                    <span class="fw-bold" style="font-size: 13px;">731 comments</span>
+                                </div>
+                                <div class="progress-bar-container" style="height: 6px;">
+                                    <div class="progress-bar" style="width: 46%; background-color: #dc3545;"></div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <span style="font-size: 13px;">Work-Life Balance</span>
+                                    <span class="fw-bold" style="font-size: 13px;">589 comments</span>
+                                </div>
+                                <div class="progress-bar-container" style="height: 6px;">
+                                    <div class="progress-bar" style="width: 37%; background-color: #dc3545;"></div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <span style="font-size: 13px;">Recognition & Rewards</span>
+                                    <span class="fw-bold" style="font-size: 13px;">464 comments</span>
+                                </div>
+                                <div class="progress-bar-container" style="height: 6px;">
+                                    <div class="progress-bar" style="width: 29%; background-color: #dc3545;"></div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <span style="font-size: 13px;">Career Growth</span>
+                                    <span class="fw-bold" style="font-size: 13px;">369 comments</span>
+                                </div>
+                                <div class="progress-bar-container" style="height: 6px;">
+                                    <div class="progress-bar" style="width: 23%; background-color: #dc3545;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filters Offcanvas -->
+    <div class="offcanvas-backdrop" id="filtersOffcanvas">
+        <div class="offcanvas-content">
+            <div class="offcanvas-header">
+                <h4 class="mb-0"><i class='bx bx-filter'></i> Filters</h4>
+                <button class="btn-icon" onclick="dashboardJS.hideOffcanvas('filtersOffcanvas')" aria-label="Close">
+                    <i class='bx bx-x' style="font-size: 24px;"></i>
+                </button>
+            </div>
+            
+            <div class="offcanvas-body">
+                <!-- Primary Filters -->
+                <div class="card-custom">
+                    <h5 class="card-header-custom">Primary Filters</h5>
+                    
+                    <div class="filter-grid">
+                        <div class="filter-item">
+                            <label class="form-label" style="font-size: 14px; font-weight: 600;">Worker Group</label>
+                            <select class="form-control" id="filter-worker-group">
+                                <option>Select Worker Group</option>
+                                <option>Executive</option>
+                                <option>Management</option>
+                                <option>Staff</option>
+                            </select>
+                            <button class="btn-custom btn-primary mt-2" style="padding: 6px 12px; font-size: 13px;" onclick="document.getElementById('filter-worker-group').selectedIndex = 0">All</button>
+                        </div>
+
+                        <div class="filter-item">
+                            <label class="form-label" style="font-size: 14px; font-weight: 600;">Cluster</label>
+                            <select class="form-control" id="filter-cluster">
+                                <option>Select Cluster</option>
+                                <option>Cluster A</option>
+                                <option>Cluster B</option>
+                            </select>
+                            <button class="btn-custom btn-primary mt-2" style="padding: 6px 12px; font-size: 13px;" onclick="document.getElementById('filter-cluster').selectedIndex = 0">All</button>
+                        </div>
+
+                        <div class="filter-item">
+                            <label class="form-label" style="font-size: 14px; font-weight: 600;">Business Unit</label>
+                            <select class="form-control" id="filter-business-unit">
+                                <option>Select Business Unit</option>
+                                <option>Operations</option>
+                                <option>Sales</option>
+                                <option>Marketing</option>
+                            </select>
+                            <button class="btn-custom btn-primary mt-2" style="padding: 6px 12px; font-size: 13px;" onclick="document.getElementById('filter-business-unit').selectedIndex = 0">All</button>
+                        </div>
+
+                        <div class="filter-item">
+                            <label class="form-label" style="font-size: 14px; font-weight: 600;">Division</label>
+                            <select class="form-control" id="filter-division">
+                                <option>Select Division</option>
+                                <option>Division 1</option>
+                                <option>Division 2</option>
+                            </select>
+                            <button class="btn-custom btn-primary mt-2" style="padding: 6px 12px; font-size: 13px;" onclick="document.getElementById('filter-division').selectedIndex = 0">All</button>
+                        </div>
+
+                        <div class="filter-item">
+                            <label class="form-label" style="font-size: 14px; font-weight: 600;">Department</label>
+                            <select class="form-control" id="filter-department">
+                                <option>Select Department</option>
+                                <option>IT</option>
+                                <option>HR</option>
+                                <option>Finance</option>
+                            </select>
+                            <button class="btn-custom btn-primary mt-2" style="padding: 6px 12px; font-size: 13px;" onclick="document.getElementById('filter-department').selectedIndex = 0">All</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Secondary Filters -->
+                <div class="card-custom">
+                    <h5 class="card-header-custom">Secondary Filters</h5>
+                    
+                    <div class="filter-grid">
+                        <div class="filter-item">
+                            <label class="form-label" style="font-size: 14px; font-weight: 600;">Job Family</label>
+                            <select class="form-control" id="filter-job-family">
+                                <option>Select Job Family</option>
+                                <option>Technical</option>
+                                <option>Administrative</option>
+                            </select>
+                            <button class="btn-custom btn-primary mt-2" style="padding: 6px 12px; font-size: 13px;" onclick="document.getElementById('filter-job-family').selectedIndex = 0">All</button>
+                        </div>
+
+                        <div class="filter-item">
+                            <label class="form-label" style="font-size: 14px; font-weight: 600;">Worker's Manager</label>
+                            <select class="form-control" id="filter-manager">
+                                <option>Select Worker's Manager</option>
+                                <option>Manager A</option>
+                                <option>Manager B</option>
+                            </select>
+                            <button class="btn-custom btn-primary mt-2" style="padding: 6px 12px; font-size: 13px;" onclick="document.getElementById('filter-manager').selectedIndex = 0">All</button>
+                        </div>
+
+                        <div class="filter-item">
+                            <label class="form-label" style="font-size: 14px; font-weight: 600;">Age</label>
+                            <select class="form-control" id="filter-age">
+                                <option>Select Age</option>
+                                <option>18-25</option>
+                                <option>26-35</option>
+                                <option>36-45</option>
+                                <option>46+</option>
+                            </select>
+                            <button class="btn-custom btn-primary mt-2" style="padding: 6px 12px; font-size: 13px;" onclick="document.getElementById('filter-age').selectedIndex = 0">All</button>
+                        </div>
+
+                        <div class="filter-item">
+                            <label class="form-label" style="font-size: 14px; font-weight: 600;">Gender</label>
+                            <select class="form-control" id="filter-gender">
+                                <option>Select Gender</option>
+                                <option>Male</option>
+                                <option>Female</option>
+                                <option>Other</option>
+                            </select>
+                            <button class="btn-custom btn-primary mt-2" style="padding: 6px 12px; font-size: 13px;" onclick="document.getElementById('filter-gender').selectedIndex = 0">All</button>
+                        </div>
+
+                        <div class="filter-item">
+                            <label class="form-label" style="font-size: 14px; font-weight: 600;">Race</label>
+                            <select class="form-control" id="filter-race">
+                                <option>Select Race</option>
+                                <option>African</option>
+                                <option>Coloured</option>
+                                <option>Indian</option>
+                                <option>White</option>
+                            </select>
+                            <button class="btn-custom btn-primary mt-2" style="padding: 6px 12px; font-size: 13px;" onclick="document.getElementById('filter-race').selectedIndex = 0">All</button>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-12">
+                                <label class="form-label" style="font-size: 14px; font-weight: 600;">Management Level</label>
+                                <select class="form-control" style="max-width: 300px;">
+                                    <option>Select Management Level</option>
+                                    <option>Executive</option>
+                                    <option>Senior Management</option>
+                                    <option>Middle Management</option>
+                                    <option>Junior Management</option>
+                                </select>
+                                <button class="btn-custom btn-primary mt-2" style="padding: 6px 12px; font-size: 13px;">All</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="offcanvas-footer">
+                <button class="btn-custom btn-secondary" onclick="dashboardJS.clearFilters()">
+                    <i class='bx bx-reset'></i> Clear Filters
+                </button>
+                <button class="btn-custom btn-primary" onclick="dashboardJS.applyFilters()">
+                    <i class='bx bx-check'></i> Apply Selection
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Export Modal -->
+    <div class="modal-backdrop" id="exportModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                EXPORT PDF REPORT
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Confirm file name</label>
+                    <div class="d-flex align-items-center">
+                        <input type="text" class="form-control" id="exportFilename" value="Overall Report" maxlength="50">
+                        <span class="ms-2">.pdf</span>
+                    </div>
+                    <small class="text-muted">Max. 50 characters</small>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-custom btn-secondary" onclick="dashboardJS.hideModal('exportModal')">CANCEL</button>
+                <button class="btn-custom btn-primary" onclick="dashboardJS.exportToPDF(document.getElementById('exportFilename').value); dashboardJS.hideModal('exportModal')">GENERATE REPORT</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="text-center py-3 bg-white border-top mt-5">
+        <p class="mb-0 text-muted" style="font-size: 13px;">Copyright © 2025. All Rights Reserved.</p>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom Scripts -->
+    <script src="js/navigation.js"></script>
+    <script src="js/charts.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
+

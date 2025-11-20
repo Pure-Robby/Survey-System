@@ -1,0 +1,56 @@
+.pin {
+    position:absolute;
+    width:14px;
+    height:14px;
+    border-radius:50%;
+    background:#ff3366;
+    box-shadow:0 0 0 3px rgba(255,51,102,.25);
+    cursor:pointer;
+    z-index: 1000;
+  }
+  .pin.is-active {
+    box-shadow:0 0 0 5px rgba(255,51,102,.35);
+  }
+  .pin-pop {
+    position:absolute;
+    transform:translateY(12px);
+    background:#fff;
+    border:1px solid #e5e7eb;
+    border-radius:8px;
+    padding:8px;
+    width:260px;
+    box-shadow:0 8px 30px rgba(0,0,0,.1);
+    z-index: 1001;
+  }
+  .pin-pop textarea {
+    width:100%;
+    min-height:80px;
+    border:0;
+    outline:none;
+    resize:vertical;
+  }
+  .pin-toolbar {
+    position:fixed;
+    right:16px;
+    bottom:16px;
+    background:#111827;
+    color:#fff;
+    padding:10px 12px;
+    border-radius:10px;
+    font:14px system-ui;
+    display:flex;
+    gap:10px;
+    align-items:center;
+    z-index: 1100;
+  }
+  .pin-toolbar button {
+    all:unset;
+    background:#10b981;
+    color:#fff;
+    padding:6px 10px;
+    border-radius:8px;
+    cursor:pointer;
+  }
+  .pin-toolbar span {
+    opacity:.75;
+  }

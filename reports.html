@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports - 2026 Sanlam Culture Measurement Survey</title>
+    
+    <!-- Bootstrap 5.3 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Boxicons -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Reports Section Styles -->
+    <link rel="stylesheet" href="css/reports.css">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <div class="page-header">
+        <div class="container-fluid px-4">
+            <div class="row align-items-center">
+                <div class="col-md-10 d-flex align-items-center gap-5">
+                    <img src="assets/logo.png" alt="Logo" style="height: 32px;">
+                    <div class="">
+                        <h1 class="page-title mb-0">2026 Culture Measurement</h1>
+                        <p class="page-subtitle mb-0">Generate customised reports with organisation and demographic filters</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-2 text-end">
+                    <span class="text-muted me-3">Hi, Pure Survey</span>
+                    <a href="#" class="text-decoration-none">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav-tabs-custom">
+        <div class="container-fluid px-0">
+            <!-- Navigation will be rendered by js/navigation.js -->
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container px-0 pb-5">
+        <div class="row mb-3">
+            <div class="col-md-12 d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center gap-4">
+                    
+                    <h2 class="fs-4 mb-0 fw-bold">Reports</h2>
+                </div>
+                
+
+                <button class="btn-custom btn-primary" >
+                    <i class='bx bx-x'></i> Clear All Filters
+                </button>
+            </div>
+        </div>
+        <!-- Tabs -->
+        <!-- <div class="content-tabs-container mb-0">
+            <div class="content-tabs">
+                <button class="content-tab active" data-tab="filters">
+                    <i class="material-icons">filter_list</i>
+                    Filters
+                </button>
+                <button class="content-tab" data-tab="custom-report">
+                    <i class="material-icons">upload_file</i>
+                    Custom Report
+                </button>
+            </div>
+        </div> -->
+
+        <!-- Tab Content -->
+        <div class="content-tab-content">
+            <!-- Filters Tab -->
+            <div class="content-tab-pane active" id="filters-tab">
+                <form class="modern-report-form">
+
+                    <!-- Primary Filters -->
+                    <div class="report-filters-card">
+                        <h3>Primary Filters</h3>
+                        <div class="filters-grid">
+                            <div class="filter-row">
+                                <label>Worker Group</label>
+                                <button type="button" class="filter-modal-btn" id="openWorkerGroupModal">Select Worker Group</button>
+                                <span class="selected-summary" id="workerGroupSelectedSummary">All</span>
+                            </div>
+                            <div class="filter-row">
+                                <label>Cluster</label>
+                                <button type="button" class="filter-modal-btn" id="openClusterModal">Select Cluster</button>
+                                <span class="selected-summary" id="clusterSelectedSummary">All</span>
+                            </div>
+                            <div class="filter-row">
+                                <label>Business Unit</label>
+                                <button type="button" class="filter-modal-btn" id="openBusinessUnitModal">Select Business Unit</button>
+                                <span class="selected-summary" id="businessUnitSelectedSummary">All</span>
+                            </div>
+                            <div class="filter-row">
+                                <label>Division</label>
+                                <button type="button" class="filter-modal-btn" id="openDivisionsModal">Select Division</button>
+                                <span class="selected-summary" id="divisionsSelectedSummary">All</span>
+                            </div>
+                            <div class="filter-row">
+                                <label>Department</label>
+                                <button type="button" class="filter-modal-btn" id="openDepartmentsModal">Select Department</button>
+                                <span class="selected-summary" id="departmentsSelectedSummary">All</span>
+                            </div>
+                            <div class="filter-row">
+                                <label>Team</label>
+                                <button type="button" class="filter-modal-btn" id="openTeamsModal">Select Team</button>
+                                <span class="selected-summary" id="teamsSelectedSummary">All</span>
+                            </div>
+                            <div class="filter-row">
+                                <label>Country</label>
+                                <button type="button" class="filter-modal-btn" id="openCountryModal">Select Country</button>
+                                <span class="selected-summary" id="countrySelectedSummary">All</span>
+                            </div>
+                            <div class="filter-row">
+                                <label>Region</label>
+                                <button type="button" class="filter-modal-btn" id="openRegionModal">Select Region</button>
+                                <span class="selected-summary" id="regionSelectedSummary">All</span>
+                            </div>
+                            <div class="filter-row">
+                                <label>Company</label>
+                                <button type="button" class="filter-modal-btn" id="openCompanyModal">Select Company</button>
+                                <span class="selected-summary" id="companySelectedSummary">All</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Secondary Filters -->
+                    <div class="report-filters-card">
+                        <h3>Secondary Filters</h3>
+                        <div class="filters-grid">
+                            <div class="filter-row">
+                                <label>Supervisory Organization</label>
+                                <button type="button" class="filter-modal-btn" id="openSupervisoryOrgModal">Select Supervisory Organization</button>
+                                <span class="selected-summary" id="supervisoryOrgSelectedSummary">All</span>
+                            </div>
+                            <div class="filter-row">
+                                <label>Job Family</label>
+                                <button type="button" class="filter-modal-btn" id="openJobFamilyModal">Select Job Family</button>
+                                <span class="selected-summary" id="jobFamilySelectedSummary">All</span>
+                            </div>
+                            <div class="filter-row">
+                                <label>Worker's Manager</label>
+                                <button type="button" class="filter-modal-btn" id="openWorkersManagerModal">Select Worker's Manager</button>
+                                <span class="selected-summary" id="workersManagerSelectedSummary">All</span>
+                            </div>
+                            <div class="filter-row">
+                                <label>Age</label>
+                                <button type="button" class="filter-modal-btn" id="openAgeBandModal">Select Age</button>
+                                <span class="selected-summary" id="ageBandSelectedSummary">All</span>
+                            </div>
+                            <div class="filter-row">
+                                <label>Gender</label>
+                                <button type="button" class="filter-modal-btn" id="openGenderModal">Select Gender</button>
+                                <span class="selected-summary" id="genderSelectedSummary">All</span>
+                            </div>
+                            <div class="filter-row">
+                                <label>Race</label>
+                                <button type="button" class="filter-modal-btn" id="openRaceModal">Select Race</button>
+                                <span class="selected-summary" id="raceSelectedSummary">All</span>
+                            </div>
+                            <div class="filter-row">
+                                <label>Management Level</label>
+                                <button type="button" class="filter-modal-btn" id="openManagementLevelModal">Select Management Level</button>
+                                <span class="selected-summary" id="managementLevelSelectedSummary">All</span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Custom Report Tab -->
+            <div class="content-tab-pane" id="custom-report-tab">
+                <div class="report-filters-card">
+                    <h3>Custom Report Upload</h3>
+                    <p class="field-description mb-0">Upload your custom report file to generate insights and analysis</p>
+                    
+                    <div class="upload-section">
+                        <div class="upload-area" id="uploadArea">
+                            <div class="upload-content">
+                                <i class="material-icons upload-icon">cloud_upload</i>
+                                <h4>Upload Custom Report</h4>
+                                <p>Drag and drop your file here or click to browse</p>
+                                <p class="upload-formats">Supported formats: XLSX or CSV</p>
+                                <input type="file" id="customReportFile" accept=".xlsx,.csv" style="display: none;">
+                                <button type="button" class="button-primary" id="browseFileBtn">
+                                    <i class="material-icons">folder_open</i>
+                                    Browse Files
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="upload-preview" id="uploadPreview" style="display: none;">
+                            <div class="file-info">
+                                <i class="material-icons file-icon">description</i>
+                                <div class="file-details">
+                                    <h5 id="fileName">filename.xlsx</h5>
+                                    <p id="fileSize">2.5 MB</p>
+                                </div>
+                                <button type="button" class="btn-close" id="removeFileBtn">
+                                    <i class="material-icons">close</i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="upload-actions" id="uploadActions" style="display: none;">
+                        <button type="button" class="button-primary" id="processReportBtn">
+                            <i class="material-icons">play_arrow</i>
+                            Process Report
+                        </button>
+                        <button type="button" class="button-secondary" id="cancelUploadBtn">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Report Composition - Visible on both tabs -->
+        <div class="report-filters-card">
+            <h3>Report Composition</h3>
+            <!-- <div class="content-options-header">
+                <h4>Content Options</h4>
+            </div> -->
+            <div class="composition-one-column">
+                <div class="composition-column">
+                    <div class="composition-option">
+                        <h5>Include Demographics</h5>
+                        <p class="option-description">Choose the composition options you want to include in your report</p>
+                        <div class="checkbox-row d-flex gap-5">
+                            <div class="custom-checkbox">
+                                <input id="JobFamily" type="checkbox" name="compositionItems" value="JobFamily">
+                                <label for="JobFamily">Job Family</label>
+                            </div>
+                            <div class="custom-checkbox">
+                                <input id="WorksManager" type="checkbox" name="compositionItems" value="WorksManager">
+                                <label for="WorksManager">Worker's Manager</label>
+                            </div>
+                            <div class="custom-checkbox">
+                                <input id="Age" type="checkbox" name="compositionItems" value="Age">
+                                <label for="Age">Age</label>
+                            </div>
+                            <div class="custom-checkbox">
+                                <input id="Gender" type="checkbox" name="compositionItems" value="Gender">
+                                <label for="Gender">Gender</label>
+                            </div>
+                            <div class="custom-checkbox">
+                                <input id="Race" type="checkbox" name="compositionItems" value="Race">
+                                <label for="Race">Race</label>
+                            </div>
+                            <div class="custom-checkbox">
+                                <input id="ManagementLevel" type="checkbox" name="compositionItems" value="ManagementLevel">
+                                <label for="ManagementLevel">Management Level</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Export Report Section -->
+        <div class="report-filters-card mb-0">
+            <h3>Export Report</h3>
+            <div class="export-field-group border-bottom">
+                <div class="report-name-row">
+                    <div class="w-100">
+                        <label for="reportName" class="field-label">Report Name <span class="required">*</span></label>
+                        <p class="field-description">Give your report a descriptive name for easy identification</p>
+                        <input type="text" class="form-input" id="reportName" name="reportName" placeholder="Sanlam Culture Report" value="Sanlam Culture Report">
+                    </div>
+                    <div class="results-count-card" id="resultsCountCard">
+                        <div class="count-header">
+                            <i class="material-icons">analytics</i>
+                            <span>Sample Size</span>
+                        </div>
+                        <div class="count-display">
+                            <span id="resultsCount" class="count-number">23,364</span>
+                            <span class="count-total">of 23,364 responses</span>
+                        </div>
+                        <div id="resultsCountSpinner" class="count-spinner" style="display: none;">
+                            <div class="spinner"></div>
+                            <span class="spinner-text">Updating...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sticky Sample Size Card (appears in bottom corner) -->
+        <div id="stickyResultsCard" class="results-count-card sticky-results-card" style="display: none;">
+            <div class="count-header">
+                <i class="material-icons">analytics</i>
+                <span>Sample Size</span>
+            </div>
+            <div class="count-display">
+                <span id="stickyResultsCount" class="count-number">23,364</span>
+                <span class="count-total">of 23,364 responses</span>
+            </div>
+            <div id="stickyResultsCountSpinner" class="count-spinner" style="display: none;">
+                <div class="spinner"></div>
+                <span class="spinner-text">Updating...</span>
+            </div>
+        </div>
+
+        <!-- Generate Reports Section -->
+        <div class="dimension-section mt-3">
+            <h3 class="dimension-label">Generate Reports</h3>
+            <div class="report-actions modern-actions justify-content-center">
+                <button type="button" class="button-primary" onclick="alert('View Online Report')">
+                    <i class="material-icons">visibility</i>
+                    <span>View Online Report</span>
+                </button>
+                <button type="button" class="button-primary" onclick="alert('Download PowerPoint')">
+                    <i class="material-icons">download</i>
+                    <span>Download PowerPoint</span>
+                </button>
+                <button type="button" class="button-primary" onclick="alert('Download PDF')">
+                    <i class="material-icons">picture_as_pdf</i>
+                    <span>Download PDF</span>
+                </button>
+                <button type="button" class="button-primary" onclick="alert('Generate Infographic')">
+                    <i class="material-icons">image</i>
+                    <span>Generate Infographic (PDF)</span>
+                </button>
+                <button type="button" class="button-primary" onclick="alert('Download Comments')">
+                    <i class="material-icons">table_chart</i>
+                    <span>Download Comments (Excel)</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="text-center py-3 bg-white border-top mt-5">
+        <p class="mb-0 text-muted" style="font-size: 13px;">Copyright © Pure Survey (Pty) Ltd. Rights Reserved 2025.</p>
+    </div>
+
+    <!-- Filter Modal (Reusable) -->
+    <div id="filterModal" class="filter-modal">
+        <div class="filter-modal-overlay"></div>
+        <div class="filter-modal-content">
+            <div class="filter-modal-header">
+                <h3 id="filterModalTitle">Select Options</h3>
+            </div>
+            <div class="filter-modal-body" id="filterModalBody">
+                <!-- Checkbox list will be injected here -->
+            </div>
+            <div class="filter-modal-footer">
+                <button type="button" id="applyFilterModal" class="button-primary">Apply Selected</button>
+                <button type="button" id="cancelFilterModal" class="button-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom Scripts -->
+    <script src="js/navigation.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/reports.js"></script>
+</body>
+</html>
+
