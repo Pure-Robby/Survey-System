@@ -191,6 +191,38 @@ body {
     /* margin-bottom: var(--spacing-lg); */
 }
 
+/* Prevent sentiment distribution column from shrinking too much */
+@media (min-width: 992px) {
+    .sentiment-section-row {
+        flex-wrap: nowrap;
+    }
+    
+    .sentiment-section-row > .col-lg-4 {
+        flex: 0 1 auto;
+        min-width: 510px;
+    }
+    
+    .sentiment-section-row > .col-lg-8 {
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+}
+
+/* Hide neutral themes column on medium screens where space is tight */
+@media (min-width: 992px) and (max-width: 1299px) {
+    /* Hide the neutral themes column */
+    .card-custom .row > div:has(#neutralThemes) {
+        display: none;
+    }
+    
+    /* Adjust remaining columns to 50% width when neutral is hidden */
+    .card-custom .row > .col-md-4:has(#positiveThemes),
+    .card-custom .row > .col-md-4:has(#negativeThemes) {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
 .card-header-custom {
     font-size: var(--font-size-lg);
     font-weight: 600;
@@ -646,6 +678,11 @@ body {
     position: relative;
     width: 100%;
     padding: var(--spacing-lg);
+}
+
+.donut-wrap {
+    min-width: 250px;
+    flex-shrink: 0;
 }
 
 .donut-chart {

@@ -124,9 +124,9 @@ const sentimentThemesShared = (() => {
         // Render positive themes
         positiveContainer.innerHTML = themesData.positive.map(item => `
             <div class="mb-3">
-                <div class="d-flex justify-content-between align-items-center mb-1">
-                    <span class="fs-7">${item.theme}</span>
-                    <span class="fw-bold fs-7">${item.count.toLocaleString()} comments</span>
+                <div class="d-flex justify-content-between align-items-center mb-1 gap-2">
+                    <span class="fs-7 flex-shrink-0">${item.theme}</span>
+                    <span class="fw-semibold fs-8 text-end lh-sm">${item.count.toLocaleString()} comments</span>
                 </div>
                 <div class="progress-bar-container theme-progress-container">
                     <div class="progress-bar theme-progress-bar-positive" style="width: ${item.percentage}%;"></div>
@@ -138,9 +138,9 @@ const sentimentThemesShared = (() => {
         if (neutralContainer) {
             neutralContainer.innerHTML = themesData.neutral.map(item => `
                 <div class="mb-3">
-                    <div class="d-flex justify-content-between align-items-center mb-1">
-                        <span class="fs-7">${item.theme}</span>
-                        <span class="fw-bold fs-7">${item.count.toLocaleString()} comments</span>
+                    <div class="d-flex justify-content-between align-items-center mb-1gap-2">
+                        <span class="fs-7 flex-shrink-0">${item.theme}</span>
+                        <span class="fw-semibold fs-8 text-end lh-sm">${item.count.toLocaleString()} comments</span>
                     </div>
                     <div class="progress-bar-container theme-progress-container">
                         <div class="progress-bar theme-progress-bar-neutral" style="width: ${item.percentage}%;"></div>
@@ -152,9 +152,9 @@ const sentimentThemesShared = (() => {
         // Render negative themes
         negativeContainer.innerHTML = themesData.negative.map(item => `
             <div class="mb-3">
-                <div class="d-flex justify-content-between align-items-center mb-1">
-                    <span class="fs-7">${item.theme}</span>
-                    <span class="fw-bold fs-7">${item.count.toLocaleString()} comments</span>
+                <div class="d-flex justify-content-between align-items-center mb-1 gap-2">
+                    <span class="fs-7 flex-shrink-0">${item.theme}</span>
+                    <span class="fw-semibold fs-8 text-end lh-sm">${item.count.toLocaleString()} comments</span>
                 </div>
                 <div class="progress-bar-container theme-progress-container">
                     <div class="progress-bar theme-progress-bar-negative" style="width: ${item.percentage}%;"></div>
