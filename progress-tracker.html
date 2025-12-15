@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Progress Tracker - TFG Employee Engagement Survey 2025</title>
+    <title>Progress Tracker - Sanlam Culture Survey 2026</title>
     
     <!-- Bootstrap 5.3 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -41,27 +41,24 @@
 
     <!-- Navigation -->
     <div class="nav-tabs-custom">
-        <div class="container-fluid px-4">
-            <!-- Navigation will be rendered by js/navigation.js -->
+        <div class="container-fluid px-0">
+            <a href="index.html"><i class='bx bx-grid-alt'></i> Overview</a>
+            <a href="reports.html"><i class='bx bx-file'></i> Reports</a>
+            <a href="comments-analysis.html"><i class='bx bx-message-square-dots'></i> Comments Analysis</a>
+            <a href="progress-tracker.html" class="active"><i class='bx bx-line-chart'></i> Progress Tracker</a>
+            <a href="action-tracker.html"><i class='bx bx-task'></i> Action Tracker</a>
+            <a href="user-management.html"><i class='bx bx-user'></i> User Management</a>
         </div>
     </div>
 
     <!-- Main Content -->
     <div class="container-fluid px-4 pb-5">
-        <!-- Tabs -->
-        <!-- <div class="content-tabs-container">
-            <div class="content-tabs">
-                <button class="content-tab active" data-tab="tracker">
-                    <i class="material-icons">trending_up</i>
-                    Progress Tracker
-                </button>
-                <button class="content-tab" data-tab="leaderboard">
-                    <i class="material-icons">leaderboard</i>
-                    Response Rate Leaderboard
-                </button>
-                
+        <!-- Page Title -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <h2 class="fs-4 fw-bold mb-0">Sanlam Culture Survey 2026 - Completion Progress</h2>
             </div>
-        </div> -->
+        </div>
 
         <!-- Tab Content -->
         <div class="content-tab-content">
@@ -71,68 +68,58 @@
             <div class="progress-tracker-container">
                 <!-- Summary Cards -->
                 <div class="progress-summary-cards">
-                    <div class="summary-card">
-                        <div class="card-icon">
+                    <div class="summary-card summary-card-blue">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #0075C9, #005a9f);">
                             <i class="material-icons">groups</i>
                         </div>
                         <div class="card-content">
-                            <div class="card-value" id="totalPopulation">27,686</div>
+                            <div class="card-value" id="totalPopulation">14,650</div>
                             <div class="card-label">Total Population</div>
                         </div>
                     </div>
-                    <div class="summary-card">
-                        <div class="card-icon">
+                    <div class="summary-card summary-card-green">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #28a745, #1e7e34);">
                             <i class="material-icons">check_circle</i>
                         </div>
                         <div class="card-content">
-                            <div class="card-value" id="totalCompleted">23,364</div>
+                            <div class="card-value" id="totalCompleted">13,715</div>
                             <div class="card-label">Completed</div>
                         </div>
                     </div>
-                    <div class="summary-card">
-                        <div class="card-icon">
+                    <div class="summary-card summary-card-orange">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #FF9800, #F57C00);">
                             <i class="material-icons">schedule</i>
                         </div>
                         <div class="card-content">
-                            <div class="card-value" id="totalInProgress">166</div>
+                            <div class="card-value" id="totalInProgress">655</div>
                             <div class="card-label">In Progress</div>
                         </div>
                     </div>
-                    <div class="summary-card">
-                        <div class="card-icon">
+                    <div class="summary-card summary-card-grey">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #9E9E9E, #757575);">
                             <i class="material-icons">radio_button_unchecked</i>
                         </div>
                         <div class="card-content">
-                            <div class="card-value" id="totalNotStarted">4,156</div>
+                            <div class="card-value" id="totalNotStarted">280</div>
                             <div class="card-label">Not Started</div>
                         </div>
                     </div>
-                    <div class="summary-card completion-card">
-                        <div class="card-icon">
+                    <div class="summary-card summary-card-purple completion-card">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #9C27B0, #7B1FA2);">
                             <i class="material-icons">analytics</i>
                         </div>
                         <div class="card-content">
-                            <div class="card-value card-completion-rate" id="overallCompletionRate">84%</div>
+                            <div class="card-value card-completion-rate" id="overallCompletionRate">94%</div>
                             <div class="card-label">Completion Rate</div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Progress Table with Integrated Breadcrumb -->
+                <!-- Progress Table -->
                 <div class="progress-table-container">
                     <div class="table-header">
-                        <!-- Breadcrumb Navigation -->
-                        <div class="progress-breadcrumb">
-                            <div class="breadcrumb-path">
-                                <span class="breadcrumb-item active" data-level="company">Sanlam</span>
-                            </div>
-                        </div>
                         <div class="table-header-left">
-                            <h3 id="tableTitle">Sanlam Overview</h3>
-                            <button id="backToParent" class="back-button" style="display: none;">
-                                <i class="material-icons">arrow_back</i>
-                                Back to Parent
-                            </button>
+                            <h3 id="tableTitle">Completion Progress by Business Unit</h3>
                         </div>
                         <div class="table-controls">
                             <div class="table-legend">
@@ -160,33 +147,88 @@
                             <thead>
                                 <tr>
                                     <th class="sortable" data-sort="name">
-                                        Worker Group 
+                                        BUSINESS UNIT 
                                         <i class="material-icons sort-icon">sort</i>
                                     </th>
                                     <th class="sortable" data-sort="population">
-                                        Population 
+                                        POPULATION 
                                         <i class="material-icons sort-icon">sort</i>
                                     </th>
                                     <th class="sortable" data-sort="completed">
-                                        Completed 
+                                        COMPLETED 
                                         <i class="material-icons sort-icon">sort</i>
                                     </th>
                                     <th class="sortable" data-sort="inprogress">
-                                        In Progress 
+                                        IN PROGRESS 
                                         <i class="material-icons sort-icon">sort</i>
                                     </th>
                                     <th class="sortable" data-sort="notstarted">
-                                        Not Started 
+                                        NOT STARTED 
                                         <i class="material-icons sort-icon">sort</i>
                                     </th>
                                     <th class="sortable" data-sort="completion">
-                                        Completion Rate 
+                                        COMPLETION RATE 
                                         <i class="material-icons sort-icon">sort</i>
                                     </th>
                                 </tr>
                             </thead>
                             <tbody id="progressTableBody">
-                                <!-- Table content will be populated by JavaScript -->
+                                <tr>
+                                    <td class="unit-name">Sanlam Corporate</td>
+                                    <td>1,250</td>
+                                    <td>1,180</td>
+                                    <td>45</td>
+                                    <td>25</td>
+                                    <td><span class="completion-rate excellent">94%</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="unit-name">Sanlam Life</td>
+                                    <td>2,100</td>
+                                    <td>1,980</td>
+                                    <td>85</td>
+                                    <td>35</td>
+                                    <td><span class="completion-rate excellent">94%</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="unit-name">Sanlam Investments</td>
+                                    <td>850</td>
+                                    <td>820</td>
+                                    <td>20</td>
+                                    <td>10</td>
+                                    <td><span class="completion-rate excellent">96%</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="unit-name">Sanlam Personal Finance</td>
+                                    <td>1,650</td>
+                                    <td>1,520</td>
+                                    <td>95</td>
+                                    <td>35</td>
+                                    <td><span class="completion-rate excellent">92%</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="unit-name">Santam</td>
+                                    <td>3,200</td>
+                                    <td>2,980</td>
+                                    <td>150</td>
+                                    <td>70</td>
+                                    <td><span class="completion-rate excellent">93%</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="unit-name">Sanlam Employee Benefits</td>
+                                    <td>680</td>
+                                    <td>650</td>
+                                    <td>20</td>
+                                    <td>10</td>
+                                    <td><span class="completion-rate excellent">96%</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="unit-name">Sanlam Group Technology</td>
+                                    <td>920</td>
+                                    <td>880</td>
+                                    <td>30</td>
+                                    <td>10</td>
+                                    <td><span class="completion-rate excellent">96%</span></td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -195,83 +237,6 @@
         </div>
 
 
-            <!-- Response Rate Leaderboard Tab -->
-            <div class="content-tab-pane" id="leaderboard-tab">
-                <div class="response-rate-leaderboard-container">
-                    <div class="response-rate-table-container mt-4">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <h6 class="mb-0"><strong>84% have completed</strong> the TFG Employee Engagement Survey as of <span id="leaderboardDate"></span></h3>
-                            <button id="exportLeaderboardPDF" class="btn-custom btn-primary gap-2">
-                                <i class="material-icons">picture_as_pdf</i>
-                                Export Leaderboard PDF
-                            </button>
-                        </div>
-
-                        <div class="table-responsive">
-                            <table class="table table-striped response-rate-leaderboard-table">
-                                <thead>
-                                    <tr>
-                                        <th class="text-center" style="width: 60px;">#</th>
-                                        <th>Segment</th>
-                                        <th class="text-center">Response Rate</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="text-center">1</td>
-                                        <td>Retail Operations</td>
-                                        <td class="text-center">
-                                            <span class="completion-rate">88%</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">2</td>
-                                        <td>Corporate</td>
-                                        <td class="text-center">
-                                            <span class="completion-rate">90%</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">3</td>
-                                        <td>Marketing & Sales</td>
-                                        <td class="text-center">
-                                            <span class="completion-rate">72%</span>
-                                        </td>
-                                    </tr>
-                                    <tr class="total-row">
-                                        <td colspan="2"><strong>Total</strong></td>
-                                        <td class="text-center">
-                                            <span class="completion-rate">84%</span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="table-controls justify-content-center mt-3">
-                            <div class="table-legend">
-                                <div class="legend-item">
-                                    <div class="legend-color excellent"></div>
-                                    <span>≥75% Excellent</span>
-                                </div>
-                                <div class="legend-item">
-                                    <div class="legend-color good"></div>
-                                    <span>60-74% Good</span>
-                                </div>
-                                <div class="legend-item">
-                                    <div class="legend-color fair"></div>
-                                    <span>45-59% Fair</span>
-                                </div>
-                                <div class="legend-item">
-                                    <div class="legend-color attention"></div>
-                                    <span>&lt;45% Needs Attention</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            
         </div>
     </div>
 
@@ -284,11 +249,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
     <!-- Custom Scripts -->
-    <script src="js/navigation.js"></script>
-    <!-- <script src="js/dashboard.js"></script> -->
-    <script src="js/progress-tracker/config.js"></script>
-    <script src="js/progress-tracker/data.js"></script>
-    <script src="js/progress-tracker/app.js"></script>
+    <script src="js/dashboard.js"></script>
 </body>
 </html>
 

@@ -42,7 +42,12 @@
     <!-- Navigation -->
     <div class="nav-tabs-custom">
         <div class="container-fluid px-0">
-            <!-- Navigation will be rendered by js/navigation.js -->
+            <a href="index.html"><i class='bx bx-grid-alt'></i> Overview</a>
+            <a href="reports.html" class="active"><i class='bx bx-file'></i> Reports</a>
+            <a href="comments-analysis.html"><i class='bx bx-message-square-dots'></i> Comments Analysis</a>
+            <a href="progress-tracker.html"><i class='bx bx-line-chart'></i> Progress Tracker</a>
+            <a href="action-tracker.html"><i class='bx bx-task'></i> Action Tracker</a>
+            <a href="user-management.html"><i class='bx bx-user'></i> User Management</a>
         </div>
     </div>
 
@@ -125,11 +130,6 @@
                                 <button type="button" class="filter-modal-btn" id="openRegionModal">Select Region</button>
                                 <span class="selected-summary" id="regionSelectedSummary">All</span>
                             </div>
-                            <div class="filter-row">
-                                <label>Company</label>
-                                <button type="button" class="filter-modal-btn" id="openCompanyModal">Select Company</button>
-                                <span class="selected-summary" id="companySelectedSummary">All</span>
-                            </div>
                         </div>
                     </div>
 
@@ -171,6 +171,11 @@
                                 <label>Management Level</label>
                                 <button type="button" class="filter-modal-btn" id="openManagementLevelModal">Select Management Level</button>
                                 <span class="selected-summary" id="managementLevelSelectedSummary">All</span>
+                            </div>
+                            <div class="filter-row">
+                                <label>Performance Level</label>
+                                <button type="button" class="filter-modal-btn" id="openPerformanceLevelModal">Select Performance Level</button>
+                                <span class="selected-summary" id="performanceLevelSelectedSummary">All</span>
                             </div>
                         </div>
                     </div>
@@ -315,23 +320,23 @@
         <div class="dimension-section mt-3">
             <h3 class="dimension-label">Generate Reports</h3>
             <div class="report-actions modern-actions justify-content-center">
-                <button type="button" class="button-primary" onclick="alert('View Online Report')">
+                <button type="button" class="button-primary" onclick="showReportComingSoon('View Online Report')">
                     <i class="material-icons">visibility</i>
                     <span>View Online Report</span>
                 </button>
-                <button type="button" class="button-primary" onclick="alert('Download PowerPoint')">
+                <button type="button" class="button-primary" onclick="showReportComingSoon('Download PowerPoint')">
                     <i class="material-icons">download</i>
                     <span>Download PowerPoint</span>
                 </button>
-                <button type="button" class="button-primary" onclick="alert('Download PDF')">
+                <button type="button" class="button-primary" onclick="showReportComingSoon('Download PDF')">
                     <i class="material-icons">picture_as_pdf</i>
                     <span>Download PDF</span>
                 </button>
-                <button type="button" class="button-primary" onclick="alert('Generate Infographic')">
+                <button type="button" class="button-primary" onclick="showReportComingSoon('Generate Infographic')">
                     <i class="material-icons">image</i>
                     <span>Generate Infographic (PDF)</span>
                 </button>
-                <button type="button" class="button-primary" onclick="alert('Download Comments')">
+                <button type="button" class="button-primary" onclick="showReportComingSoon('Download Comments')">
                     <i class="material-icons">table_chart</i>
                     <span>Download Comments (Excel)</span>
                 </button>
@@ -361,13 +366,61 @@
         </div>
     </div>
 
+    <!-- Report Coming Soon Modal -->
+    <div class="modal-backdrop" id="reportComingSoonModal">
+        <div class="modal-content" style="max-width: 500px;">
+            <div class="modal-header" style="text-align: center; padding-bottom: 0;">
+                <div style="width: 80px; height: 80px; margin: 0 auto 20px; background: linear-gradient(135deg, var(--color-primary), var(--primary-dark)); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                    <i class="material-icons" style="font-size: 40px; color: white;">construction</i>
+                </div>
+                <h4 style="margin: 0; font-size: 24px; font-weight: 600; color: var(--color-text);">Report Feature Coming Soon</h4>
+            </div>
+            <div class="modal-body" style="text-align: center; padding: 20px 0;">
+                <p style="font-size: 16px; color: #666; line-height: 1.6; margin: 0;">
+                    The <strong id="reportTypeName"></strong> feature is currently under development and will be available soon.
+                </p>
+                <p style="font-size: 14px; color: #999; margin-top: 16px; margin-bottom: 0;">
+                    We're working hard to bring you the best reporting experience.
+                </p>
+            </div>
+            <div class="modal-footer" style="justify-content: center; padding-top: 20px;">
+                <button class="btn-custom btn-primary" onclick="hideReportComingSoon()" style="min-width: 120px;">
+                    Got it
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
     <!-- Custom Scripts -->
-    <script src="js/navigation.js"></script>
     <script src="js/dashboard.js"></script>
     <script src="js/reports.js"></script>
+    <script>
+        function showReportComingSoon(reportType) {
+            document.getElementById('reportTypeName').textContent = reportType;
+            const modal = document.getElementById('reportComingSoonModal');
+            if (modal) {
+                modal.classList.add('show');
+            }
+        }
+        
+        function hideReportComingSoon() {
+            const modal = document.getElementById('reportComingSoonModal');
+            if (modal) {
+                modal.classList.remove('show');
+            }
+        }
+        
+        // Close modal when clicking outside
+        document.addEventListener('click', (e) => {
+            const modal = document.getElementById('reportComingSoonModal');
+            if (modal && e.target === modal) {
+                hideReportComingSoon();
+            }
+        });
+    </script>
 </body>
 </html>
 

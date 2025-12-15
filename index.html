@@ -42,7 +42,12 @@
     <!-- Navigation -->
     <div class="nav-tabs-custom">
         <div class="container-fluid px-0">
-            <!-- Navigation will be rendered by js/navigation.js -->
+            <a href="index.html" class="active"><i class='bx bx-grid-alt'></i> Overview</a>
+            <a href="reports.html"><i class='bx bx-file'></i> Reports</a>
+            <a href="comments-analysis.html"><i class='bx bx-message-square-dots'></i> Comments Analysis</a>
+            <a href="progress-tracker.html"><i class='bx bx-line-chart'></i> Progress Tracker</a>
+            <a href="action-tracker.html"><i class='bx bx-task'></i> Action Tracker</a>
+            <a href="user-management.html"><i class='bx bx-user'></i> User Management</a>
         </div>
     </div>
 
@@ -302,6 +307,99 @@
                 </div>
             </div>
         </div>
+
+        <!-- Enterprise Insights Section -->
+        <div class="row mt-5">
+            <div class="col-12 mb-4">
+                <h3 class="fs-5 fw-bold mb-2">Enterprise Insights</h3>
+                <p class="text-muted mb-0">Business unit level insights and recommendations for executive leadership</p>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <!-- Top Performing Units -->
+            <div class="col-lg-6 mb-4">
+                <div class="card-custom h-100">
+                    <h5 class="card-header-custom d-flex align-items-center gap-2">
+                        <i class='bx bx-trophy' style="color: #28a745;"></i>
+                        Top Performing Business Units
+                    </h5>
+                    <div id="topPerformingUnits">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Units Needing Attention -->
+            <div class="col-lg-6 mb-4">
+                <div class="card-custom h-100">
+                    <h5 class="card-header-custom d-flex align-items-center gap-2">
+                        <i class='bx bx-error-circle' style="color: #dc3545;"></i>
+                        Units Requiring Attention
+                    </h5>
+                    <div id="unitsNeedingAttention">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <!-- Business Unit Comparison -->
+            <div class="col-12 mb-4">
+                <div class="card-custom">
+                    <h5 class="card-header-custom d-flex align-items-center gap-2">
+                        <i class='bx bx-bar-chart-alt-2' style="color: var(--color-primary);"></i>
+                        Business Unit Performance Comparison
+                    </h5>
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0" id="businessUnitComparison">
+                            <thead>
+                                <tr>
+                                    <th>Business Unit</th>
+                                    <th class="text-center">Culture Index</th>
+                                    <th class="text-center">Response Rate</th>
+                                    <th class="text-center">Employee Count</th>
+                                    <th class="text-center">Key Strength</th>
+                                    <th class="text-center">Priority Area</th>
+                                </tr>
+                            </thead>
+                            <tbody id="businessUnitTableBody">
+                                <!-- Will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <!-- Strategic Recommendations -->
+            <div class="col-lg-6 mb-4">
+                <div class="card-custom h-100">
+                    <h5 class="card-header-custom d-flex align-items-center gap-2">
+                        <i class='bx bx-bulb' style="color: #ffc107;"></i>
+                        Strategic Recommendations
+                    </h5>
+                    <div id="strategicRecommendations">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Metrics Summary -->
+            <div class="col-lg-6 mb-4">
+                <div class="card-custom h-100">
+                    <h5 class="card-header-custom d-flex align-items-center gap-2">
+                        <i class='bx bx-line-chart' style="color: var(--color-primary);"></i>
+                        Key Metrics Summary
+                    </h5>
+                    <div id="keyMetricsSummary">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Filters Offcanvas -->
@@ -488,14 +586,13 @@
 
     <!-- Footer -->
     <div class="text-center py-3 bg-white border-top mt-5">
-        <p class="mb-0 text-muted" style="font-size: 13px;">Copyright © 2025. All Rights Reserved.</p>
+        <p class="mb-0 text-muted" style="font-size: 13px;">Copyright © Pure Survey (Pty) Ltd. Rights Reserved 2025.</p>
     </div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
     <!-- Custom Scripts -->
-    <script src="js/navigation.js"></script>
     <script src="js/charts.js"></script>
     <script src="js/dashboard.js"></script>
 </body>

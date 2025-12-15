@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Action Tracker - Sanlam Culture Survey 2026</title>
+    
+    <!-- Bootstrap 5.3 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Boxicons -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .action-tracker-container {
+            padding: 24px 0;
+        }
+        
+        .action-board {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 24px;
+        }
+        
+        .action-column {
+            background-color: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            min-height: 600px;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .column-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .column-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--color-text);
+        }
+        
+        .column-badge {
+            background-color: var(--color-primary);
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .action-card {
+            background: white;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid;
+            transition: all 0.2s ease;
+            cursor: move;
+        }
+        
+        .action-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+        
+        .action-card.focus-area {
+            border-left-color: #0075C9;
+        }
+        
+        .action-card.planned {
+            border-left-color: #ffc107;
+        }
+        
+        .action-card.completed {
+            border-left-color: #28a745;
+            opacity: 0.85;
+        }
+        
+        .action-card-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: 8px;
+        }
+        
+        .action-card-priority {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        
+        .priority-high {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+        
+        .priority-medium {
+            background-color: #fff3e0;
+            color: #e65100;
+        }
+        
+        .priority-low {
+            background-color: #e3f2fd;
+            color: #1565c0;
+        }
+        
+        .action-card-description {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+        
+        .action-card-due-date {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 12px;
+        }
+        
+        .action-card-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+            padding-top: 8px;
+            border-top: 1px solid #f0f0f0;
+        }
+        
+        .action-btn {
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 4px;
+            transition: all 0.2s;
+            font-size: 18px;
+        }
+        
+        .action-btn:hover {
+            background-color: #f5f5f5;
+            color: var(--color-primary);
+        }
+        
+        .action-btn.delete:hover {
+            color: #dc3545;
+        }
+        
+        .add-action-btn {
+            background-color: var(--color-primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+        
+        .add-action-btn:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .empty-column {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+            font-size: 14px;
+        }
+        
+        .action-column.drag-over {
+            background-color: #e3f2fd;
+            border: 2px dashed var(--color-primary);
+        }
+        
+        .action-card[draggable="true"] {
+            cursor: grab;
+        }
+        
+        .action-card[draggable="true"]:active {
+            cursor: grabbing;
+        }
+        
+        @media (max-width: 992px) {
+            .action-board {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="page-header">
+        <div class="container-fluid px-4">
+            <div class="row align-items-center">
+                <div class="col-md-10 d-flex align-items-center gap-5">
+                    <img src="assets/logo.png" alt="Logo" style="height: 32px;">
+                    <div class="">
+                        <h1 class="page-title mb-0">2026 Culture Measurement</h1>
+                        <p class="page-subtitle mb-0">Track and manage action items from survey insights</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-2 text-end">
+                    <span class="text-muted me-3">Hi, Pure Survey</span>
+                    <a href="#" class="text-decoration-none">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav-tabs-custom">
+        <div class="container-fluid px-0">
+            <a href="index.html"><i class='bx bx-grid-alt'></i> Overview</a>
+            <a href="reports.html"><i class='bx bx-file'></i> Reports</a>
+            <a href="comments-analysis.html"><i class='bx bx-message-square-dots'></i> Comments Analysis</a>
+            <a href="progress-tracker.html"><i class='bx bx-line-chart'></i> Progress Tracker</a>
+            <a href="action-tracker.html" class="active"><i class='bx bx-task'></i> Action Tracker</a>
+            <a href="user-management.html"><i class='bx bx-user'></i> User Management</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container-fluid px-4 pb-5">
+        <div class="action-tracker-container">
+            <!-- Header with Add Button -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="fs-4 fw-bold mb-0">Team Action Items</h2>
+                <button class="add-action-btn" onclick="actionTracker.showAddModal()">
+                    <i class='bx bx-plus'></i> Add Action Item
+                </button>
+            </div>
+
+            <!-- Action Board -->
+            <div class="action-board" id="actionBoard">
+                <!-- Current Focus Areas -->
+                <div class="action-column" data-column="focus">
+                    <div class="column-header">
+                        <div class="column-title">Current Focus Areas</div>
+                        <div class="column-badge" id="focusCount">3</div>
+                    </div>
+                    <div class="column-content" id="focusColumn">
+                        <!-- Action cards will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Planned Initiatives -->
+                <div class="action-column" data-column="planned">
+                    <div class="column-header">
+                        <div class="column-title">Planned Initiatives</div>
+                        <div class="column-badge" id="plannedCount">2</div>
+                    </div>
+                    <div class="column-content" id="plannedColumn">
+                        <!-- Action cards will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Completed Actions -->
+                <div class="action-column" data-column="completed">
+                    <div class="column-header">
+                        <div class="column-title">Completed Actions</div>
+                        <div class="column-badge" id="completedCount">2</div>
+                    </div>
+                    <div class="column-content" id="completedColumn">
+                        <!-- Action cards will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add/Edit Action Modal -->
+    <div class="modal-backdrop" id="actionModal">
+        <div class="modal-content" style="max-width: 600px;">
+            <div class="modal-header">
+                <h4 id="modalTitle">Add Action Item</h4>
+                <button class="btn-icon" onclick="actionTracker.hideModal()">
+                    <i class='bx bx-x' style="font-size: 24px;"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="actionForm">
+                    <input type="hidden" id="actionId">
+                    <input type="hidden" id="actionColumn">
+                    
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Title <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="actionTitle" required placeholder="Enter action item title">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Description</label>
+                        <textarea class="form-control" id="actionDescription" rows="3" placeholder="Enter detailed description"></textarea>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Priority <span class="text-danger">*</span></label>
+                            <select class="form-control" id="actionPriority" required>
+                                <option value="high">High</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="low">Low</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Due Date</label>
+                            <input type="date" class="form-control" id="actionDueDate">
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Linked to Survey Dimension</label>
+                        <select class="form-control" id="actionDimension">
+                            <option value="">Select dimension (optional)</option>
+                            <optgroup label="Business Outcomes">
+                                <option value="Continuous Development">Continuous Development</option>
+                                <option value="Change Agility">Change Agility</option>
+                                <option value="Productivity">Productivity</option>
+                                <option value="Customer Centricity">Customer Centricity</option>
+                            </optgroup>
+                            <optgroup label="Shared Values">
+                                <option value="Values">Values</option>
+                                <option value="Integrity">Integrity</option>
+                                <option value="Innovation">Innovation</option>
+                                <option value="Care">Care</option>
+                                <option value="Collaboration">Collaboration</option>
+                                <option value="Trust & Psychological Safety">Trust & Psychological Safety</option>
+                                <option value="Inclusion & Belonging">Inclusion & Belonging</option>
+                            </optgroup>
+                            <optgroup label="Employee Experience">
+                                <option value="Engagement">Engagement</option>
+                                <option value="Team Effectiveness">Team Effectiveness</option>
+                                <option value="Wellness">Wellness</option>
+                                <option value="Development & Growth">Development & Growth</option>
+                            </optgroup>
+                            <optgroup label="Leadership Enablement">
+                                <option value="Envisage Our Future">Envisage Our Future</option>
+                                <option value="Champion Sustainable Results">Champion Sustainable Results</option>
+                                <option value="Show Up and Inspire Excellence">Show Up and Inspire Excellence</option>
+                                <option value="Win Together">Win Together</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-custom btn-secondary" onclick="actionTracker.hideModal()">Cancel</button>
+                <button class="btn-custom btn-primary" onclick="actionTracker.saveAction()">Save Action Item</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="text-center py-3 bg-white border-top mt-5">
+        <p class="mb-0 text-muted" style="font-size: 13px;">Copyright © Pure Survey (Pty) Ltd. Rights Reserved 2025.</p>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.js"></script>
+    
+    <!-- Custom Scripts -->
+    <script src="js/action-tracker.js"></script>
+</body>
+</html>
+

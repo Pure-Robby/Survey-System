@@ -1007,18 +1007,29 @@ window.drillDown = drillDown;
 window.navigateToBreadcrumb = navigateToBreadcrumb;
 
 // ==================== Render Lever Details Overview ====================
+// Track sort state for each lever
+const leverSortState = {};
+
 function renderLeverDetailsOverview() {
     const container = document.getElementById('leverDetailsOverview');
     if (!container) return;
 
     container.innerHTML = '';
 
-    leverDetailsData.levers.forEach((lever) => {
+    leverDetailsData.levers.forEach((lever, leverIndex) => {
+        // Initialize sort state if not exists (default: ascending - lowest first)
+        if (!leverSortState[lever.name]) {
+            leverSortState[lever.name] = 'asc';
+        }
+        
         const leverCard = document.createElement('div');
         leverCard.className = 'lever-detail-card';
         
-        // Sort dimensions by score ascending (lowest/most concerning first)
-        const sortedDimensions = [...lever.dimensions].sort((a, b) => a.score - b.score);
+        // Sort dimensions based on current sort state
+        const sortOrder = leverSortState[lever.name];
+        const sortedDimensions = [...lever.dimensions].sort((a, b) => {
+            return sortOrder === 'asc' ? a.score - b.score : b.score - a.score;
+        });
         
         // Create dimension list items with click-through functionality
         const dimensionListHTML = sortedDimensions.map((dimension, sortedIndex) => {
@@ -1035,9 +1046,16 @@ function renderLeverDetailsOverview() {
             `;
         }).join('');
         
+        // Add sort indicator icon
+        const sortIcon = sortOrder === 'asc' ? 'bx-sort-up' : 'bx-sort-down';
+        const sortHint = sortOrder === 'asc' ? 'Lowest to Highest' : 'Highest to Lowest';
+        
         leverCard.innerHTML = `
-            <div class="lever-detail-header">
-                ${lever.name}
+            <div class="lever-detail-header" style="cursor: pointer;" onclick="toggleLeverSort('${lever.name}')" title="Click to sort by score">
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                    <span>${lever.name}</span>
+                    <i class='bx ${sortIcon}' style="font-size: 18px; opacity: 0.8;"></i>
+                </div>
             </div>
             <div class="lever-detail-body">
                 <ul class="dimension-list">
@@ -1048,6 +1066,13 @@ function renderLeverDetailsOverview() {
         
         container.appendChild(leverCard);
     });
+}
+
+function toggleLeverSort(leverName) {
+    // Toggle sort order
+    leverSortState[leverName] = leverSortState[leverName] === 'asc' ? 'desc' : 'asc';
+    // Re-render the overview
+    renderLeverDetailsOverview();
 }
 
 // ==================== Initialize on Page Load ====================
@@ -1099,6 +1124,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('leverDetailsOverview')) {
         renderLeverDetailsOverview();
     }
+    
+    // Initialize Enterprise Insights if on dashboard page
+    if (document.getElementById('topPerformingUnits')) {
+        renderEnterpriseInsights();
+    }
 });
 
 // ==================== Response Rate Leaderboard Functions ====================
@@ -1139,6 +1169,291 @@ function applyCompletionRateColors() {
     });
 }
 
+// ==================== Enterprise Insights Functions ====================
+const businessUnitData = [
+    {
+        name: "Sanlam Investments",
+        cultureIndex: 87.5,
+        responseRate: 96,
+        employeeCount: 850,
+        keyStrength: "Productivity",
+        priorityArea: "Change Agility",
+        trend: "up",
+        sentiment: "positive"
+    },
+    {
+        name: "Sanlam Employee Benefits",
+        cultureIndex: 86.2,
+        responseRate: 96,
+        employeeCount: 680,
+        keyStrength: "Team Effectiveness",
+        priorityArea: "Innovation",
+        trend: "up",
+        sentiment: "positive"
+    },
+    {
+        name: "Sanlam Group Technology",
+        cultureIndex: 84.8,
+        responseRate: 96,
+        employeeCount: 920,
+        keyStrength: "Continuous Development",
+        priorityArea: "Trust & Psychological Safety",
+        trend: "stable",
+        sentiment: "positive"
+    },
+    {
+        name: "Sanlam Corporate",
+        cultureIndex: 82.1,
+        responseRate: 94,
+        employeeCount: 1250,
+        keyStrength: "Customer Centricity",
+        priorityArea: "Collaboration",
+        trend: "up",
+        sentiment: "positive"
+    },
+    {
+        name: "Sanlam Life",
+        cultureIndex: 81.7,
+        responseRate: 94,
+        employeeCount: 2100,
+        keyStrength: "Engagement",
+        priorityArea: "Work-Life Balance",
+        trend: "stable",
+        sentiment: "neutral"
+    },
+    {
+        name: "Santam",
+        cultureIndex: 79.3,
+        responseRate: 93,
+        employeeCount: 3200,
+        keyStrength: "Wellness",
+        priorityArea: "Workload Management",
+        trend: "down",
+        sentiment: "neutral"
+    },
+    {
+        name: "Sanlam Personal Finance",
+        cultureIndex: 76.8,
+        responseRate: 92,
+        employeeCount: 1650,
+        keyStrength: "Development & Growth",
+        priorityArea: "Leadership Support",
+        trend: "down",
+        sentiment: "negative"
+    }
+];
+
+function renderEnterpriseInsights() {
+    renderTopPerformingUnits();
+    renderUnitsNeedingAttention();
+    renderBusinessUnitComparison();
+    renderStrategicRecommendations();
+    renderKeyMetricsSummary();
+}
+
+function renderTopPerformingUnits() {
+    const topUnits = [...businessUnitData]
+        .sort((a, b) => b.cultureIndex - a.cultureIndex)
+        .slice(0, 3);
+    
+    const container = document.getElementById('topPerformingUnits');
+    if (!container) return;
+    
+    container.innerHTML = topUnits.map((unit, index) => `
+        <div class="d-flex align-items-center justify-content-between p-3 mb-2 border rounded" style="border-left: 4px solid #28a745 !important;">
+            <div class="d-flex align-items-center gap-3">
+                <div class="d-flex align-items-center justify-content-center" style="width: 32px; height: 32px; background-color: #28a745; color: white; border-radius: 50%; font-weight: bold;">
+                    ${index + 1}
+                </div>
+                <div>
+                    <h6 class="mb-0 fw-semibold">${unit.name}</h6>
+                    <small class="text-muted">${unit.employeeCount.toLocaleString()} employees</small>
+                </div>
+            </div>
+            <div class="text-end">
+                <div class="fw-bold" style="color: #28a745; font-size: 18px;">${unit.cultureIndex}%</div>
+                <small class="text-muted">Culture Index</small>
+            </div>
+        </div>
+    `).join('');
+}
+
+function renderUnitsNeedingAttention() {
+    const unitsNeedingAttention = [...businessUnitData]
+        .sort((a, b) => a.cultureIndex - b.cultureIndex)
+        .slice(0, 3);
+    
+    const container = document.getElementById('unitsNeedingAttention');
+    if (!container) return;
+    
+    container.innerHTML = unitsNeedingAttention.map((unit, index) => `
+        <div class="d-flex align-items-center justify-content-between p-3 mb-2 border rounded" style="border-left: 4px solid #dc3545 !important;">
+            <div class="d-flex align-items-center gap-3">
+                <div class="d-flex align-items-center justify-content-center" style="width: 32px; height: 32px; background-color: #dc3545; color: white; border-radius: 50%; font-weight: bold;">
+                    ${index + 1}
+                </div>
+                <div>
+                    <h6 class="mb-0 fw-semibold">${unit.name}</h6>
+                    <small class="text-muted">Priority: ${unit.priorityArea}</small>
+                </div>
+            </div>
+            <div class="text-end">
+                <div class="fw-bold" style="color: #dc3545; font-size: 18px;">${unit.cultureIndex}%</div>
+                <small class="text-muted">Culture Index</small>
+            </div>
+        </div>
+    `).join('');
+}
+
+function renderBusinessUnitComparison() {
+    const sortedUnits = [...businessUnitData].sort((a, b) => b.cultureIndex - a.cultureIndex);
+    const container = document.getElementById('businessUnitTableBody');
+    if (!container) return;
+    
+    container.innerHTML = sortedUnits.map(unit => {
+        return `
+            <tr>
+                <td class="fw-semibold">${unit.name}</td>
+                <td class="text-center">
+                    <span class="badge" style="background-color: ${getScoreColor(unit.cultureIndex)}; color: white; font-size: 13px; padding: 6px 12px;">
+                        ${unit.cultureIndex}%
+                    </span>
+                </td>
+                <td class="text-center">${unit.responseRate}%</td>
+                <td class="text-center">${unit.employeeCount.toLocaleString()}</td>
+                <td class="text-center">
+                    <span class="badge badge-success" style="font-size: 12px;">${unit.keyStrength}</span>
+                </td>
+                <td class="text-center">
+                    <span class="badge badge-warning" style="font-size: 12px;">${unit.priorityArea}</span>
+                </td>
+            </tr>
+        `;
+    }).join('');
+}
+
+function renderStrategicRecommendations() {
+    const recommendations = [
+        {
+            title: "Focus on Leadership Development",
+            description: "Sanlam Personal Finance and Santam show lower scores in Leadership Support. Implement targeted leadership training programs.",
+            priority: "high",
+            impact: "High"
+        },
+        {
+            title: "Enhance Workload Management",
+            description: "Multiple units report workload concerns. Review resource allocation and consider process optimization initiatives.",
+            priority: "high",
+            impact: "High"
+        },
+        {
+            title: "Replicate Best Practices",
+            description: "Sanlam Investments and Employee Benefits excel in Productivity and Team Effectiveness. Document and share their practices.",
+            priority: "medium",
+            impact: "Medium"
+        },
+        {
+            title: "Improve Change Agility",
+            description: "Several units need improvement in Change Agility. Develop change management capabilities across the organization.",
+            priority: "medium",
+            impact: "Medium"
+        }
+    ];
+    
+    const container = document.getElementById('strategicRecommendations');
+    if (!container) return;
+    
+    container.innerHTML = recommendations.map(rec => {
+        const priorityColor = rec.priority === 'high' ? '#dc3545' : '#ffc107';
+        return `
+            <div class="p-3 mb-3 border rounded">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <h6 class="mb-0 fw-semibold">${rec.title}</h6>
+                    <span class="badge" style="background-color: ${priorityColor}; color: white; font-size: 11px;">
+                        ${rec.priority.toUpperCase()} PRIORITY
+                    </span>
+                </div>
+                <p class="mb-0" style="font-size: 13px; color: #666; line-height: 1.6;">${rec.description}</p>
+                <div class="mt-2">
+                    <small class="text-muted">Impact: <strong>${rec.impact}</strong></small>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+function renderKeyMetricsSummary() {
+    const unitsWithHighRisk = businessUnitData.filter(u => u.cultureIndex < 80).length;
+    const unitsExceedingTarget = businessUnitData.filter(u => u.cultureIndex >= 85).length;
+    const avgResponseRate = (businessUnitData.reduce((sum, u) => sum + u.responseRate, 0) / businessUnitData.length).toFixed(1);
+    const highestPerformer = [...businessUnitData].sort((a, b) => b.cultureIndex - a.cultureIndex)[0];
+    const lowestPerformer = [...businessUnitData].sort((a, b) => a.cultureIndex - b.cultureIndex)[0];
+    const performanceGap = (highestPerformer.cultureIndex - lowestPerformer.cultureIndex).toFixed(1);
+    const avgCultureIndex = (businessUnitData.reduce((sum, u) => sum + u.cultureIndex, 0) / businessUnitData.length).toFixed(1);
+    
+    const metrics = [
+        { 
+            label: "Units at Risk", 
+            value: unitsWithHighRisk, 
+            subtitle: `Below 80% threshold`,
+            color: "#dc3545",
+            icon: "bx-error-circle"
+        },
+        { 
+            label: "Units Exceeding Target", 
+            value: unitsExceedingTarget, 
+            subtitle: `Scoring 85% or above`,
+            color: "#28a745",
+            icon: "bx-trophy"
+        },
+        { 
+            label: "Performance Gap", 
+            value: `${performanceGap}%`, 
+            subtitle: `Between top & bottom units`,
+            color: "#ff9800",
+            icon: "bx-bar-chart-alt-2"
+        },
+        { 
+            label: "Average Culture Index", 
+            value: `${avgCultureIndex}%`, 
+            subtitle: `Across all business units`,
+            color: "#0075C9",
+            icon: "bx-line-chart"
+        }
+    ];
+    
+    const container = document.getElementById('keyMetricsSummary');
+    if (!container) return;
+    
+    container.innerHTML = `
+        <div class="row g-3">
+            ${metrics.map(metric => `
+                <div class="col-6">
+                    <div class="p-3 border rounded" style="border-left: 4px solid ${metric.color} !important;">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <i class='bx ${metric.icon}' style="font-size: 20px; color: ${metric.color};"></i>
+                            <div style="flex: 1;">
+                                <div class="fw-bold mb-0" style="font-size: 20px; color: ${metric.color};">
+                                    ${metric.value}
+                                </div>
+                                <div class="fw-semibold mb-1" style="font-size: 13px;">${metric.label}</div>
+                                <small class="text-muted" style="font-size: 11px;">${metric.subtitle}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('')}
+        </div>
+    `;
+}
+
+function getScoreColor(score) {
+    if (score >= 85) return '#28a745';
+    if (score >= 75) return '#ffc107';
+    if (score >= 65) return '#ff9800';
+    return '#dc3545';
+}
+
 // ==================== Export to Global Scope ====================
 window.dashboardJS = {
     showModal,
@@ -1152,4 +1467,7 @@ window.dashboardJS = {
     exportToExcel,
     animateCounter
 };
+
+// Make toggleLeverSort globally accessible
+window.toggleLeverSort = toggleLeverSort;
 

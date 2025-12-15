@@ -104,10 +104,11 @@ const filterOptions = {
     { value: 'individual-contributor', label: 'Individual Contributor' },
     { value: 'entry-level', label: 'Entry Level' }
   ],
-  company: [
+  performanceLevel: [
     { value: 'all', label: 'All' },
-    { value: 'Sanlam', label: 'Sanlam' },
-    { value: 'Santam', label: 'Santam' },
+    { value: 'high-performer', label: 'High Performer' },
+    { value: 'medium-performer', label: 'Medium Performer' },
+    { value: 'low-performer', label: 'Low Performer' }
   ],
   country: [
     { value: 'all', label: 'All' },
@@ -256,14 +257,14 @@ function initializeFilterModals() {
     'openTeamsModal': { key: 'teams', title: 'Select Team' },
     'openCountryModal': { key: 'country', title: 'Select Country' },
     'openRegionModal': { key: 'region', title: 'Select Region' },
-    'openCompanyModal': { key: 'company', title: 'Select Company' },
     'openSupervisoryOrgModal': { key: 'supervisoryOrg', title: 'Select Supervisory Organization' },
     'openJobFamilyModal': { key: 'jobFamily', title: 'Select Job Family' },
     'openWorkersManagerModal': { key: 'workersManager', title: 'Select Worker\'s Manager' },
     'openAgeBandModal': { key: 'ageBand', title: 'Select Age' },
     'openGenderModal': { key: 'gender', title: 'Select Gender' },
     'openRaceModal': { key: 'race', title: 'Select Race' },
-    'openManagementLevelModal': { key: 'managementLevel', title: 'Select Management Level' }
+    'openManagementLevelModal': { key: 'managementLevel', title: 'Select Management Level' },
+    'openPerformanceLevelModal': { key: 'performanceLevel', title: 'Select Performance Level' }
   };
 
   Object.keys(filterButtons).forEach(btnId => {
@@ -294,14 +295,14 @@ function updateFilterSummary(filterKey, selected) {
     'teams': 'teamsSelectedSummary',
     'country': 'countrySelectedSummary',
     'region': 'regionSelectedSummary',
-    'company': 'companySelectedSummary',
     'supervisoryOrg': 'supervisoryOrgSelectedSummary',
     'jobFamily': 'jobFamilySelectedSummary',
     'workersManager': 'workersManagerSelectedSummary',
     'ageBand': 'ageBandSelectedSummary',
     'gender': 'genderSelectedSummary',
     'race': 'raceSelectedSummary',
-    'managementLevel': 'managementLevelSelectedSummary'
+    'managementLevel': 'managementLevelSelectedSummary',
+    'performanceLevel': 'performanceLevelSelectedSummary'
   };
 
   const summaryId = summaryIdMap[filterKey];
