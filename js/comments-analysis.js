@@ -97,8 +97,8 @@ const commentsAnalysis = (() => {
     // Generate more mock comments to reach realistic numbers
     const themes = {
         positive: ["Career Growth", "Team Collaboration", "Work-Life Balance", "Recognition & Rewards", "Leadership Support", "Company Culture", "Benefits", "Training"],
-        negative: ["Workload Management", "Leadership Support", "Work-Life Balance", "Recognition & Rewards", "Career Growth", "Communication", "Resources", "Processes"],
-        neutral: ["General", "Policies", "Administration", "Facilities", "Technology"]
+        negative: ["Workload Management", "Leadership Support", "Work-Life Balance", "Recognition & Rewards", "Career Growth", "Team Collaboration", "Communication", "Resources", "Processes"],
+        neutral: ["Career Growth", "Team Collaboration", "Work-Life Balance", "Recognition & Rewards", "Leadership Support", "Workload Management", "General", "Policies"]
     };
 
     const businessUnits = ["Sanlam Corporate", "Sanlam Life", "Sanlam Investments", "Sanlam Personal Finance", "Santam", "Sanlam Employee Benefits", "Sanlam Group Technology"];
@@ -115,12 +115,12 @@ const commentsAnalysis = (() => {
             if (rand < sentimentCounts.positive / total) {
                 sentiment = "positive";
                 themeList = themes.positive;
-            } else if (rand < (sentimentCounts.positive + sentimentCounts.negative) / total) {
-                sentiment = "negative";
-                themeList = themes.negative;
-            } else {
+            } else if (rand < (sentimentCounts.positive + sentimentCounts.neutral) / total) {
                 sentiment = "neutral";
                 themeList = themes.neutral;
+            } else {
+                sentiment = "negative";
+                themeList = themes.negative;
             }
             
             const theme = themeList[Math.floor(Math.random() * themeList.length)];
@@ -153,7 +153,8 @@ const commentsAnalysis = (() => {
                 negative: ["Too much work", "Unmanageable workload", "Constant overtime required"]
             },
             "Team Collaboration": {
-                positive: ["Great team support", "Excellent collaboration", "Supportive colleagues"]
+                positive: ["Great team support", "Excellent collaboration", "Supportive colleagues"],
+                negative: ["Lack of teamwork", "Poor collaboration", "Team conflicts and silos"]
             },
             "Recognition & Rewards": {
                 positive: ["Feel valued and appreciated", "Great recognition programs"],
@@ -186,14 +187,17 @@ const commentsAnalysis = (() => {
         renderThemes();
         renderComments();
         renderInsights();
+        renderThemeSentimentBreakdown();
         updateCounts();
         
         // Initialize sentiment chart
         if (typeof createDonutChart === 'function') {
+            // Get colors from CSS variables
+            const styles = getComputedStyle(document.documentElement);
             createDonutChart('sentimentDonut', [
-                { value: 6943, color: '#28a745' },
-                { value: 4876, color: '#dc3545' },
-                { value: 3212, color: '#ffc107' }
+                { value: 6943, color: styles.getPropertyValue('--color-positive').trim() || '#28a745' },
+                { value: 4876, color: styles.getPropertyValue('--color-negative').trim() || '#dc3545' },
+                { value: 3212, color: styles.getPropertyValue('--color-neutral').trim() || '#ffc107' }
             ]);
         }
     }
@@ -255,74 +259,111 @@ const commentsAnalysis = (() => {
     }
 
     function renderThemes() {
-        // Calculate theme counts
-        const themeCounts = {};
-        allComments.forEach(comment => {
-            if (!themeCounts[comment.theme]) {
-                themeCounts[comment.theme] = { positive: 0, negative: 0, neutral: 0 };
-            }
-            themeCounts[comment.theme][comment.sentiment]++;
-        });
+        // Use shared sentiment themes module
+        if (typeof sentimentThemesShared !== 'undefined') {
+            sentimentThemesShared.render();
+        }
 
-        // Get top positive themes
-        const positiveThemes = Object.entries(themeCounts)
-            .map(([theme, counts]) => ({
-                theme,
-                count: counts.positive,
-                total: counts.positive + counts.negative + counts.neutral
-            }))
-            .filter(t => t.count > 0)
-            .sort((a, b) => b.count - a.count)
-            .slice(0, 5);
-
-        // Get top negative themes
-        const negativeThemes = Object.entries(themeCounts)
-            .map(([theme, counts]) => ({
-                theme,
-                count: counts.negative,
-                total: counts.positive + counts.negative + counts.neutral
-            }))
-            .filter(t => t.count > 0)
-            .sort((a, b) => b.count - a.count)
-            .slice(0, 5);
-
-        // Render positive themes
-        const positiveContainer = document.getElementById('positiveThemes');
-        positiveContainer.innerHTML = positiveThemes.map(item => `
-            <div class="mb-3">
-                <div class="d-flex justify-content-between align-items-center mb-1">
-                    <span style="font-size: 13px;">${item.theme}</span>
-                    <span class="fw-bold" style="font-size: 13px;">${item.count.toLocaleString()} comments</span>
-                </div>
-                <div class="progress-bar-container" style="height: 6px;">
-                    <div class="progress-bar" style="width: ${(item.count / Math.max(...positiveThemes.map(t => t.count)) * 100)}%; background-color: #28a745;"></div>
-                </div>
-            </div>
-        `).join('');
-
-        // Render negative themes
-        const negativeContainer = document.getElementById('negativeThemes');
-        negativeContainer.innerHTML = negativeThemes.map(item => `
-            <div class="mb-3">
-                <div class="d-flex justify-content-between align-items-center mb-1">
-                    <span style="font-size: 13px;">${item.theme}</span>
-                    <span class="fw-bold" style="font-size: 13px;">${item.count.toLocaleString()} comments</span>
-                </div>
-                <div class="progress-bar-container" style="height: 6px;">
-                    <div class="progress-bar" style="width: ${(item.count / Math.max(...negativeThemes.map(t => t.count)) * 100)}%; background-color: #dc3545;"></div>
-                </div>
-            </div>
-        `).join('');
-
-        // Populate theme filter
+        // Populate theme filter from all unique themes
         const themeFilter = document.getElementById('filterTheme');
-        const allThemes = [...new Set(allComments.map(c => c.theme))].sort();
-        allThemes.forEach(theme => {
-            const option = document.createElement('option');
-            option.value = theme;
-            option.textContent = theme;
-            themeFilter.appendChild(option);
+        if (themeFilter) {
+            const allThemes = [...new Set(allComments.map(c => c.theme))].sort();
+            allThemes.forEach(theme => {
+                const option = document.createElement('option');
+                option.value = theme;
+                option.textContent = theme;
+                themeFilter.appendChild(option);
+            });
+        }
+    }
+
+    function renderThemeSentimentBreakdown() {
+        const container = document.getElementById('themeSentimentBreakdown');
+        if (!container) return;
+
+        // Calculate sentiment breakdown by theme
+        const themeBreakdown = {};
+        allComments.forEach(comment => {
+            if (!themeBreakdown[comment.theme]) {
+                themeBreakdown[comment.theme] = {
+                    positive: 0,
+                    neutral: 0,
+                    negative: 0,
+                    total: 0
+                };
+            }
+            themeBreakdown[comment.theme][comment.sentiment]++;
+            themeBreakdown[comment.theme].total++;
         });
+
+        // Get top 5 themes by total comment count
+        const topThemes = Object.entries(themeBreakdown)
+            .sort((a, b) => b[1].total - a[1].total)
+            .slice(0, 5);
+
+        // Render stacked bar chart
+        container.innerHTML = topThemes.map(([theme, data]) => {
+            const positivePercent = (data.positive / data.total * 100);
+            const neutralPercent = (data.neutral / data.total * 100);
+            const negativePercent = (data.negative / data.total * 100);
+
+            return `
+                <div class="theme-sentiment-row d-flex align-items-center gap-3">
+                    <div class="theme-sentiment-label fs-7">${theme}</div>
+                    <div class="theme-sentiment-bar-container d-flex">
+                        <div class="theme-sentiment-bar theme-sentiment-bar-positive" 
+                             style="width: ${positivePercent}%;"
+                             title="Positive: ${data.positive} (${positivePercent.toFixed(1)}%)">
+                            ${positivePercent > 8 ? `${data.positive}` : ''}
+                        </div>
+                        <div class="theme-sentiment-bar theme-sentiment-bar-neutral" 
+                             style="width: ${neutralPercent}%;"
+                             title="Neutral: ${data.neutral} (${neutralPercent.toFixed(1)}%)">
+                            ${neutralPercent > 8 ? `${data.neutral}` : ''}
+                        </div>
+                        <div class="theme-sentiment-bar theme-sentiment-bar-negative" 
+                             style="width: ${negativePercent}%;"
+                             title="Negative: ${data.negative} (${negativePercent.toFixed(1)}%)">
+                            ${negativePercent > 8 ? `${data.negative}` : ''}
+                        </div>
+                    </div>
+                    <div class="theme-sentiment-total fs-7">
+                        ${data.total.toLocaleString()} total
+                    </div>
+                </div>
+            `;
+        }).join('');
+
+        // Add x-axis scale
+        const xAxis = `
+            <div class="theme-sentiment-axis">
+                <span class="theme-sentiment-axis-tick">0%</span>
+                <span class="theme-sentiment-axis-tick">25%</span>
+                <span class="theme-sentiment-axis-tick">50%</span>
+                <span class="theme-sentiment-axis-tick">75%</span>
+                <span class="theme-sentiment-axis-tick">100%</span>
+            </div>
+        `;
+        container.innerHTML += xAxis;
+
+        // Add legend
+        const legend = `
+            <div class="d-flex justify-content-center gap-4 mt-4 pt-3 border-top">
+                <div class="d-flex align-items-center gap-2">
+                    <div class="sentiment-indicator sentiment-indicator-positive"></div>
+                    <span class="fs-7">Positive</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <div class="sentiment-indicator sentiment-indicator-neutral"></div>
+                    <span class="fs-7">Neutral</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <div class="sentiment-indicator sentiment-indicator-negative"></div>
+                    <span class="fs-7">Negative</span>
+                </div>
+            </div>
+        `;
+        container.innerHTML += legend;
     }
 
     function renderComments() {
@@ -335,23 +376,33 @@ const commentsAnalysis = (() => {
         }
 
         container.innerHTML = commentsToShow.map(comment => {
-            const sentimentColor = {
-                positive: '#28a745',
-                negative: '#dc3545',
-                neutral: '#ffc107'
+            const sentimentCardClass = {
+                positive: 'enterprise-unit-card-success',
+                negative: 'enterprise-unit-card-danger',
+                neutral: 'enterprise-unit-card-warning'
+            };
+            const sentimentIconClass = {
+                positive: 'icon-success',
+                negative: 'icon-danger',
+                neutral: 'icon-warning'
             };
             const sentimentIcon = {
                 positive: 'bx-happy',
                 negative: 'bx-sad',
                 neutral: 'bx-confused'
             };
+            const sentimentBadgeClass = {
+                positive: 'badge-success',
+                negative: 'badge-danger',
+                neutral: 'badge-warning'
+            };
             
             return `
-                <div class="comment-item p-3 mb-3 border rounded" style="border-left: 4px solid ${sentimentColor[comment.sentiment]} !important;">
+                <div class="comment-item p-3 mb-3 border rounded ${sentimentCardClass[comment.sentiment]}">
                     <div class="d-flex justify-content-between align-items-start mb-2">
                         <div class="d-flex align-items-center gap-2">
-                            <i class='bx ${sentimentIcon[comment.sentiment]}' style="color: ${sentimentColor[comment.sentiment]}; font-size: 20px;"></i>
-                            <span class="badge" style="background-color: ${sentimentColor[comment.sentiment]}; color: white; text-transform: capitalize;">${comment.sentiment}</span>
+                            <i class='bx ${sentimentIcon[comment.sentiment]} ${sentimentIconClass[comment.sentiment]}' style="font-size: 20px;"></i>
+                            <span class="badge ${sentimentBadgeClass[comment.sentiment]} text-capitalize">${comment.sentiment}</span>
                             <span class="badge badge-primary">${comment.theme}</span>
                         </div>
                         <small class="text-muted">${comment.date}</small>
@@ -387,10 +438,10 @@ const commentsAnalysis = (() => {
             <div class="col-md-4 mb-3">
                 <div class="card-custom h-100">
                     <div class="d-flex align-items-center gap-2 mb-2">
-                        <i class='bx ${insight.icon}' style="font-size: 24px; color: ${insight.color};"></i>
+                        <i class='bx ${insight.icon} ${insight.iconClass}' style="font-size: 24px;"></i>
                         <h6 class="mb-0 fw-semibold">${insight.title}</h6>
                     </div>
-                    <p class="mb-0" style="font-size: 14px; color: #666;">${insight.description}</p>
+                    <p class="mb-0 fs-7 text-muted">${insight.description}</p>
                 </div>
             </div>
         `).join('');
@@ -415,19 +466,19 @@ const commentsAnalysis = (() => {
                 title: "Overall Sentiment",
                 description: `${positivePercent}% of comments are positive, indicating a generally favorable employee experience.`,
                 icon: "bx-trending-up",
-                color: "#28a745"
+                iconClass: "icon-success"
             },
             {
                 title: "Top Theme",
                 description: `"${topTheme[0]}" appears in ${topTheme[1].toLocaleString()} comments, making it the most discussed topic.`,
                 icon: "bx-bar-chart-alt-2",
-                color: "#0075C9"
+                iconClass: "icon-primary"
             },
             {
                 title: "Action Required",
                 description: `${negativePercent}% negative sentiment suggests areas needing attention, particularly around ${Object.entries(themeCounts).filter(([t, c]) => allComments.filter(com => com.theme === t && com.sentiment === 'negative').length > 0).sort((a, b) => b[1] - a[1])[0]?.[0] || 'workload management'}.`,
                 icon: "bx-error-circle",
-                color: "#dc3545"
+                iconClass: "icon-danger"
             }
         ];
     }
@@ -438,11 +489,31 @@ const commentsAnalysis = (() => {
         const neutral = filteredComments.filter(c => c.sentiment === 'neutral').length;
         const negative = filteredComments.filter(c => c.sentiment === 'negative').length;
 
+        // Calculate percentages
+        const positivePercent = total > 0 ? Math.round((positive / total) * 100) : 0;
+        const neutralPercent = total > 0 ? Math.round((neutral / total) * 100) : 0;
+        const negativePercent = total > 0 ? Math.round((negative / total) * 100) : 0;
+
+        // Update counts
         document.getElementById('totalCommentsCount').textContent = total.toLocaleString();
         document.getElementById('positiveCount').textContent = positive.toLocaleString();
         document.getElementById('neutralCount').textContent = neutral.toLocaleString();
         document.getElementById('negativeCount').textContent = negative.toLocaleString();
-        document.getElementById('sentimentTotal').textContent = total.toLocaleString();
+        
+        // Update percentages
+        const positivePercentEl = document.getElementById('positivePercent');
+        const neutralPercentEl = document.getElementById('neutralPercent');
+        const negativePercentEl = document.getElementById('negativePercent');
+        
+        if (positivePercentEl) positivePercentEl.textContent = positivePercent;
+        if (neutralPercentEl) neutralPercentEl.textContent = neutralPercent;
+        if (negativePercentEl) negativePercentEl.textContent = negativePercent;
+        
+        // Update donut center count if element exists
+        const sentimentCommentsCount = document.getElementById('sentimentCommentsCount');
+        if (sentimentCommentsCount) {
+            sentimentCommentsCount.textContent = total.toLocaleString();
+        }
     }
 
     function clearFilters() {

@@ -52,7 +52,7 @@
     </div>
 
     <!-- Main Content -->
-    <div class="container px-0 pb-5">
+    <div class="container-fluid px-4 pb-5">
         <!-- Action Bar -->
         <div class="row mb-3">
             <div class="col-md-12 d-flex justify-content-between align-items-center">
@@ -150,39 +150,18 @@
             <div class="col-lg-5">
                 <div class="card-custom h-100">
                     <h5 class="card-header-custom">Employee Comments & Sentiment</h5>
-                    <div class="d-flex justify-content-center align-items-center gap-5 ">
+                    <div class="d-flex justify-content-center align-items-center gap-4">
                         <div class="donut-wrap position-relative">
                             <div class="donut-chart" id="sentimentDonut"></div>
                             <div class="donut-center-text">
-                                <p class="donut-center-value mb-0 lh-sm">15,043</p>
+                                <p class="donut-center-value mb-0 lh-sm" id="sentimentCommentsCount">15,043</p>
                                 <p class="donut-center-label mb-0 pb-2">comments</p>
-                                <p class="donut-center-label mb-0 text-muted border-top pt-2">21,564 respondents</p>
+                                <p class="donut-center-label mb-0 text-muted border-top pt-2"><span id="sentimentRespondentsCount">21,564</span> respondents</p>
                             </div>
                         </div>
                         
-                            
-                        <div class="mt-3">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <div class="d-flex align-items-center">
-                                    <div class="sentiment-indicator sentiment-indicator-positive"></div>
-                                    <span>Positive:</span>
-                                </div>
-                                <span class="fw-bold">6,943 (46%)</span>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <div class="d-flex align-items-center">
-                                    <div class="sentiment-indicator sentiment-indicator-neutral"></div>
-                                    <span>Neutral:</span>
-                                </div>
-                                <span class="fw-bold">3,212 (21%)</span>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="d-flex align-items-center">
-                                    <div class="sentiment-indicator sentiment-indicator-negative"></div>
-                                    <span>Negative:</span>
-                                </div>
-                                <span class="fw-bold">4,876 (33%)</span>
-                            </div>
+                        <div class="d-flex flex-column gap-4" id="sentimentLegend">
+                            <!-- Will be populated by JavaScript -->
                         </div>
                     </div>
                     
@@ -192,116 +171,33 @@
             <!-- Sentiment Themes -->
             <div class="col-lg-7">
                 <div class="card-custom">
-                    <h5 class="card-header-custom">Employee Sentiment Themes</h5>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="card-header-custom mb-0">Employee Sentiment Themes</h5>
+                        <a href="/comments-analysis.html" class="text-decoration-none text-primary">View details <i class='bx bx-chevron-right'></i></a>
+                    </div>
                     
                     <div class="row">
                         <!-- Top 5 Positive Themes -->
-                        <div class="col-md-6">
-                            <h6 class="fw-semibold mb-3">Top 5 Positive Themes</h6>
-                            
-                            <div class="mb-3">
-                                <div class="d-flex justify-content-between align-items-center mb-1">
-                                    <span class="fs-7">Career Growth</span>
-                                    <span class="fw-bold fs-7">2288 comments</span>
-                                </div>
-                                <div class="progress-bar-container theme-progress-container">
-                                    <div class="progress-bar theme-progress-bar-positive" style="width: 85%;"></div>
-                                </div>
+                        <div class="col-md-4">
+                            <h6 class="fw-semibold mb-3">Top Positive</h6>
+                            <div id="positiveThemes">
+                                <!-- Will be populated by JavaScript -->
                             </div>
+                        </div>
 
-                            <div class="mb-3">
-                                <div class="d-flex justify-content-between align-items-center mb-1">
-                                    <span class="fs-7">Team Collaboration</span>
-                                    <span class="fw-bold fs-7">1464 comments</span>
-                                </div>
-                                <div class="progress-bar-container theme-progress-container">
-                                    <div class="progress-bar theme-progress-bar-positive" style="width: 55%;"></div>
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <div class="d-flex justify-content-between align-items-center mb-1">
-                                    <span class="fs-7">Work-Life Balance</span>
-                                    <span class="fw-bold fs-7">889 comments</span>
-                                </div>
-                                <div class="progress-bar-container theme-progress-container">
-                                    <div class="progress-bar theme-progress-bar-positive" style="width: 33%;"></div>
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <div class="d-flex justify-content-between align-items-center mb-1">
-                                    <span class="fs-7">Recognition & Rewards</span>
-                                    <span class="fw-bold fs-7">525 comments</span>
-                                </div>
-                                <div class="progress-bar-container theme-progress-container">
-                                    <div class="progress-bar theme-progress-bar-positive" style="width: 20%;"></div>
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <div class="d-flex justify-content-between align-items-center mb-1">
-                                    <span class="fs-7">Leadership Support</span>
-                                    <span class="fw-bold fs-7">339 comments</span>
-                                </div>
-                                <div class="progress-bar-container theme-progress-container">
-                                    <div class="progress-bar theme-progress-bar-positive" style="width: 13%;"></div>
-                                </div>
+                        <!-- Top 5 Neutral Themes -->
+                        <div class="col-md-4">
+                            <h6 class="fw-semibold mb-3">Top Neutral</h6>
+                            <div id="neutralThemes">
+                                <!-- Will be populated by JavaScript -->
                             </div>
                         </div>
 
                         <!-- Bottom 5 Negative Themes -->
-                        <div class="col-md-6">
-                            <h6 class="fw-semibold mb-3">Bottom 5 Negative Themes</h6>
-                            
-                            <div class="mb-3">
-                                <div class="d-flex justify-content-between align-items-center mb-1">
-                                    <span class="fs-7">Workload Management</span>
-                                    <span class="fw-bold fs-7">1423 comments</span>
-                                </div>
-                                <div class="progress-bar-container theme-progress-container">
-                                    <div class="progress-bar theme-progress-bar-negative" style="width: 90%;"></div>
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <div class="d-flex justify-content-between align-items-center mb-1">
-                                    <span class="fs-7">Leadership Support</span>
-                                    <span class="fw-bold fs-7">731 comments</span>
-                                </div>
-                                <div class="progress-bar-container theme-progress-container">
-                                    <div class="progress-bar theme-progress-bar-negative" style="width: 46%;"></div>
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <div class="d-flex justify-content-between align-items-center mb-1">
-                                    <span class="fs-7">Work-Life Balance</span>
-                                    <span class="fw-bold fs-7">589 comments</span>
-                                </div>
-                                <div class="progress-bar-container theme-progress-container">
-                                    <div class="progress-bar theme-progress-bar-negative" style="width: 37%;"></div>
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <div class="d-flex justify-content-between align-items-center mb-1">
-                                    <span class="fs-7">Recognition & Rewards</span>
-                                    <span class="fw-bold fs-7">464 comments</span>
-                                </div>
-                                <div class="progress-bar-container theme-progress-container">
-                                    <div class="progress-bar theme-progress-bar-negative" style="width: 29%;"></div>
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <div class="d-flex justify-content-between align-items-center mb-1">
-                                    <span class="fs-7">Career Growth</span>
-                                    <span class="fw-bold fs-7">369 comments</span>
-                                </div>
-                                <div class="progress-bar-container theme-progress-container">
-                                    <div class="progress-bar theme-progress-bar-negative" style="width: 23%;"></div>
-                                </div>
+                        <div class="col-md-4">
+                            <h6 class="fw-semibold mb-3">Top Negative</h6>
+                            <div id="negativeThemes">
+                                <!-- Will be populated by JavaScript -->
                             </div>
                         </div>
                     </div>
@@ -587,7 +483,7 @@
 
     <!-- Footer -->
     <div class="text-center py-3 bg-white border-top mt-5">
-        <p class="mb-0 text-muted" style="font-size: 13px;">Copyright © Pure Survey (Pty) Ltd. Rights Reserved 2025.</p>
+        <p class="mb-0 text-muted fs-7">Copyright © Pure Survey (Pty) Ltd. Rights Reserved 2025.</p>
     </div>
 
     <!-- Bootstrap JS -->
@@ -595,6 +491,7 @@
     
     <!-- Custom Scripts -->
     <script src="js/charts.js"></script>
+    <script src="js/sentiment-themes-shared.js"></script>
     <script src="js/dashboard.js"></script>
 </body>
 </html>

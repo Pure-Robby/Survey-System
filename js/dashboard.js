@@ -1129,6 +1129,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('topPerformingUnits')) {
         renderEnterpriseInsights();
     }
+    
+    // Render Sentiment Themes if on dashboard page (using shared module)
+    if (document.getElementById('positiveThemes') && document.getElementById('negativeThemes')) {
+        if (typeof sentimentThemesShared !== 'undefined') {
+            sentimentThemesShared.render();
+        }
+    }
 });
 
 // ==================== Response Rate Leaderboard Functions ====================

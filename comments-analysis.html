@@ -132,80 +132,61 @@
 
         <!-- Summary Cards -->
         <div class="row mb-4">
-            <div class="col-md-3">
+            <div class="col-lg-3 col-md-6 mb-3 mb-lg-0">
                 <div class="card-custom text-center">
                     <div class="d-flex align-items-center justify-content-center gap-2 mb-2">
-                        <i class='bx bx-message-dots' style="font-size: 24px; color: var(--color-primary);"></i>
+                        <i class='bx bx-message-dots icon-primary' style="font-size: 24px;"></i>
                         <h5 class="mb-0 fw-bold" id="totalCommentsCount">15,043</h5>
                     </div>
-                    <p class="mb-0 text-muted" style="font-size: 13px;">Total Comments</p>
+                    <p class="mb-0 text-muted fs-7">Total Comments</p>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-lg-3 col-md-6 mb-3 mb-lg-0">
                 <div class="card-custom text-center">
                     <div class="d-flex align-items-center justify-content-center gap-2 mb-2">
-                        <i class='bx bx-happy' style="font-size: 24px; color: #28a745;"></i>
+                        <i class='bx bx-happy icon-success' style="font-size: 24px;"></i>
                         <h5 class="mb-0 fw-bold" id="positiveCount">6,943</h5>
                     </div>
-                    <p class="mb-0 text-muted" style="font-size: 13px;">Positive (46%)</p>
+                    <p class="mb-0 text-muted fs-7">Positive (<span id="positivePercent">46</span>%)</p>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-lg-3 col-md-6 mb-3 mb-lg-0">
                 <div class="card-custom text-center">
                     <div class="d-flex align-items-center justify-content-center gap-2 mb-2">
-                        <i class='bx bx-confused' style="font-size: 24px; color: #ffc107;"></i>
+                        <i class='bx bx-confused icon-warning' style="font-size: 24px;"></i>
                         <h5 class="mb-0 fw-bold" id="neutralCount">3,212</h5>
                     </div>
-                    <p class="mb-0 text-muted" style="font-size: 13px;">Neutral (21%)</p>
+                    <p class="mb-0 text-muted fs-7">Neutral (<span id="neutralPercent">21</span>%)</p>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-lg-3 col-md-6">
                 <div class="card-custom text-center">
                     <div class="d-flex align-items-center justify-content-center gap-2 mb-2">
-                        <i class='bx bx-sad' style="font-size: 24px; color: #dc3545;"></i>
+                        <i class='bx bx-sad icon-danger' style="font-size: 24px;"></i>
                         <h5 class="mb-0 fw-bold" id="negativeCount">4,876</h5>
                     </div>
-                    <p class="mb-0 text-muted" style="font-size: 13px;">Negative (33%)</p>
+                    <p class="mb-0 text-muted fs-7">Negative (<span id="negativePercent">33</span>%)</p>
                 </div>
             </div>
         </div>
 
-        <div class="row">
+        <div class="row mb-4">
             <!-- Sentiment & Themes Section -->
             <div class="col-lg-5 mb-4">
                 <div class="card-custom h-100">
-                    <h5 class="card-header-custom">Sentiment Distribution</h5>
-                    <div class="d-flex justify-content-center align-items-center gap-5">
+                    <h5 class="card-header-custom">Employee Comments & Sentiment</h5>
+                    <div class="d-flex justify-content-center align-items-center gap-4">
                         <div class="donut-wrap position-relative">
                             <div class="donut-chart" id="sentimentDonut"></div>
                             <div class="donut-center-text">
-                                <p class="donut-center-label mb-1">Total Comments</p>
-                                <p class="donut-center-value" id="sentimentTotal">15,043</p>
+                                <p class="donut-center-value mb-0 lh-sm" id="sentimentCommentsCount">15,043</p>
+                                <p class="donut-center-label mb-0 pb-2">comments</p>
+                                <p class="donut-center-label mb-0 text-muted border-top pt-2"><span id="sentimentRespondentsCount">21,564</span> respondents</p>
                             </div>
                         </div>
                         
-                        <div class="mt-3">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <div class="d-flex align-items-center">
-                                    <div style="width: 12px; height: 12px; background-color: #28a745; border-radius: 50%; margin-right: 8px;"></div>
-                                    <span>Positive:</span>
-                                </div>
-                                <span class="fw-bold">6,943 (46%)</span>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <div class="d-flex align-items-center">
-                                    <div style="width: 12px; height: 12px; background-color: #ffc107; border-radius: 50%; margin-right: 8px;"></div>
-                                    <span>Neutral:</span>
-                                </div>
-                                <span class="fw-bold">3,212 (21%)</span>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="d-flex align-items-center">
-                                    <div style="width: 12px; height: 12px; background-color: #dc3545; border-radius: 50%; margin-right: 8px;"></div>
-                                    <span>Negative:</span>
-                                </div>
-                                <span class="fw-bold">4,876 (33%)</span>
-                            </div>
+                        <div class="d-flex flex-column gap-4" id="sentimentLegend">
+                            <!-- Will be populated by JavaScript -->
                         </div>
                     </div>
                 </div>
@@ -214,24 +195,45 @@
             <!-- Themes Section -->
             <div class="col-lg-7 mb-4">
                 <div class="card-custom">
-                    <h5 class="card-header-custom">Comment Themes</h5>
+                    <h5 class="card-header-custom">Employee Sentiment Themes</h5>
                     
                     <div class="row">
                         <!-- Top Positive Themes -->
-                        <div class="col-md-6">
-                            <h6 class="fw-semibold mb-3">Top Positive Themes</h6>
+                        <div class="col-md-4">
+                            <h6 class="fw-semibold mb-3">Top Positive</h6>
                             <div id="positiveThemes">
                                 <!-- Will be populated by JavaScript -->
                             </div>
                         </div>
 
+                        <!-- Top Neutral Themes -->
+                        <div class="col-md-4">
+                            <h6 class="fw-semibold mb-3">Top Neutral</h6>
+                            <div id="neutralThemes">
+                                <!-- Will be populated by JavaScript -->
+                            </div>
+                        </div>
+
                         <!-- Top Negative Themes -->
-                        <div class="col-md-6">
-                            <h6 class="fw-semibold mb-3">Top Negative Themes</h6>
+                        <div class="col-md-4">
+                            <h6 class="fw-semibold mb-3">Top Negative</h6>
                             <div id="negativeThemes">
                                 <!-- Will be populated by JavaScript -->
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sentiment by Theme Breakdown -->
+        <div class="row">
+            <div class="col-12 mb-4">
+                <div class="card-custom">
+                    <h5 class="card-header-custom">Top 5 Themes - Sentiment Breakdown</h5>
+                    <p class="text-muted mb-4 fs-7">Distribution of positive, neutral, and negative comments across the most discussed themes</p>
+                    <div id="themeSentimentBreakdown">
+                        <!-- Will be populated by JavaScript -->
                     </div>
                 </div>
             </div>
@@ -285,6 +287,7 @@
     
     <!-- Custom Scripts -->
     <script src="js/charts.js"></script>
+    <script src="js/sentiment-themes-shared.js"></script>
     <script src="js/pin-comments.js"></script>
     <script src="js/comments-analysis.js"></script>
 </body>
