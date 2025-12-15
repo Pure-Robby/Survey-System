@@ -73,7 +73,7 @@
         <!-- Data Date -->
         <div class="row mb-4">
             <div class="col-12">
-                <p id="dataDate" class="text-muted mb-0" style="font-size: 13px;">
+                <p id="dataDate" class="text-muted mb-0 user-management-data-date">
                     Data correct as of: —
                 </p>
             </div>
@@ -82,21 +82,21 @@
         <div class="row mb-4">
             <div class="col-lg-4 mb-3">
                 <div class="metric-card">
-                    <div class="metric-value" style="color: #17a2b8;">442</div>
+                    <div class="metric-value metric-value-info">442</div>
                     <div class="metric-label">Total Registered Users</div>
                 </div>
             </div>
 
             <div class="col-lg-4 mb-3">
                 <div class="metric-card">
-                    <div class="metric-value" style="color: #28a745;">438</div>
+                    <div class="metric-value metric-value-success">438</div>
                     <div class="metric-label">Active Users</div>
                 </div>
             </div>
 
             <div class="col-lg-4 mb-3">
                 <div class="metric-card">
-                    <div class="metric-value" style="color: #dc3545;">4</div>
+                    <div class="metric-value metric-value-danger">4</div>
                     <div class="metric-label">Inactive Users</div>
                 </div>
             </div>
@@ -112,28 +112,28 @@
                 <div id="bulkActions" class="d-none">
                     <div class="d-flex align-items-center gap-3">
                         <span class="fw-bold"><span id="selectedCount">0</span> users selected</span>
-                        <button class="btn-custom btn-secondary" style="padding: 6px 16px;">
+                        <button class="btn-custom btn-secondary bulk-action-btn">
                             <i class='bx bx-block'></i> DEACTIVATE
                         </button>
-                        <button class="btn-custom btn-secondary" style="padding: 6px 16px;">
+                        <button class="btn-custom btn-secondary bulk-action-btn">
                             <i class='bx bx-x'></i> CLEAR
                         </button>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 d-flex justify-content-end">
-                <input type="text" class="form-control" placeholder="Search users..." style="max-width: 400px;">
+                <input type="text" class="form-control user-search-input" placeholder="Search users...">
             </div>
         </div>
 
         
 
         <!-- Users Table -->
-        <div class="card-custom" style="padding: 0; overflow-x: auto;">
+        <div class="card-custom user-table-card">
             <table class="table-custom">
                 <thead>
                     <tr>
-                        <th style="width: 40px;">
+                        <th class="user-table-checkbox-col">
                             <input type="checkbox" id="selectAll">
                         </th>
                         <th data-sortable>Name</th>
@@ -162,10 +162,10 @@
                         <td>...</td>
                         <td><span class="badge badge-success">ACTIVE</span></td>
                         <td>
-                            <button class="btn btn-sm" style="background-color: #17a2b8; color: white; border: none; padding: 4px 8px; margin-right: 4px;">
+                            <button class="btn btn-sm user-action-btn user-action-btn-edit">
                                 <i class='bx bx-edit'></i>
                             </button>
-                            <button class="btn btn-sm" style="background-color: #dc3545; color: white; border: none; padding: 4px 8px;">
+                            <button class="btn btn-sm user-action-btn user-action-btn-delete">
                                 <i class='bx bx-trash'></i>
                             </button>
                         </td>
@@ -183,10 +183,10 @@
                         <td>All</td>
                         <td><span class="badge badge-success">ACTIVE</span></td>
                         <td>
-                            <button class="btn btn-sm" style="background-color: #17a2b8; color: white; border: none; padding: 4px 8px; margin-right: 4px;">
+                            <button class="btn btn-sm user-action-btn user-action-btn-edit">
                                 <i class='bx bx-edit'></i>
                             </button>
-                            <button class="btn btn-sm" style="background-color: #dc3545; color: white; border: none; padding: 4px 8px;">
+                            <button class="btn btn-sm user-action-btn user-action-btn-delete">
                                 <i class='bx bx-trash'></i>
                             </button>
                         </td>
@@ -204,10 +204,10 @@
                         <td>All</td>
                         <td><span class="badge badge-success">ACTIVE</span></td>
                         <td>
-                            <button class="btn btn-sm" style="background-color: #17a2b8; color: white; border: none; padding: 4px 8px; margin-right: 4px;">
+                            <button class="btn btn-sm user-action-btn user-action-btn-edit">
                                 <i class='bx bx-edit'></i>
                             </button>
-                            <button class="btn btn-sm" style="background-color: #dc3545; color: white; border: none; padding: 4px 8px;">
+                            <button class="btn btn-sm user-action-btn user-action-btn-delete">
                                 <i class='bx bx-trash'></i>
                             </button>
                         </td>
@@ -225,10 +225,10 @@
                         <td>All</td>
                         <td><span class="badge badge-success">ACTIVE</span></td>
                         <td>
-                            <button class="btn btn-sm" style="background-color: #17a2b8; color: white; border: none; padding: 4px 8px; margin-right: 4px;">
+                            <button class="btn btn-sm user-action-btn user-action-btn-edit">
                                 <i class='bx bx-edit'></i>
                             </button>
-                            <button class="btn btn-sm" style="background-color: #dc3545; color: white; border: none; padding: 4px 8px;">
+                            <button class="btn btn-sm user-action-btn user-action-btn-delete">
                                 <i class='bx bx-trash'></i>
                             </button>
                         </td>
@@ -246,10 +246,10 @@
                         <td>All</td>
                         <td><span class="badge badge-danger">INACTIVE</span></td>
                         <td>
-                            <button class="btn btn-sm" style="background-color: #17a2b8; color: white; border: none; padding: 4px 8px; margin-right: 4px;">
+                            <button class="btn btn-sm user-action-btn user-action-btn-edit">
                                 <i class='bx bx-edit'></i>
                             </button>
-                            <button class="btn btn-sm" style="background-color: #dc3545; color: white; border: none; padding: 4px 8px;">
+                            <button class="btn btn-sm user-action-btn user-action-btn-delete">
                                 <i class='bx bx-trash'></i>
                             </button>
                         </td>
@@ -268,10 +268,10 @@
                         <td>All</td>
                         <td><span class="badge badge-success">ACTIVE</span></td>
                         <td>
-                            <button class="btn btn-sm" style="background-color: #17a2b8; color: white; border: none; padding: 4px 8px; margin-right: 4px;">
+                            <button class="btn btn-sm user-action-btn user-action-btn-edit">
                                 <i class='bx bx-edit'></i>
                             </button>
-                            <button class="btn btn-sm" style="background-color: #dc3545; color: white; border: none; padding: 4px 8px;">
+                            <button class="btn btn-sm user-action-btn user-action-btn-delete">
                                 <i class='bx bx-trash'></i>
                             </button>
                         </td>
@@ -289,10 +289,10 @@
                         <td>All</td>
                         <td><span class="badge badge-success">ACTIVE</span></td>
                         <td>
-                            <button class="btn btn-sm" style="background-color: #17a2b8; color: white; border: none; padding: 4px 8px; margin-right: 4px;">
+                            <button class="btn btn-sm user-action-btn user-action-btn-edit">
                                 <i class='bx bx-edit'></i>
                             </button>
-                            <button class="btn btn-sm" style="background-color: #dc3545; color: white; border: none; padding: 4px 8px;">
+                            <button class="btn btn-sm user-action-btn user-action-btn-delete">
                                 <i class='bx bx-trash'></i>
                             </button>
                         </td>
@@ -310,10 +310,10 @@
                         <td>All</td>
                         <td><span class="badge badge-success">ACTIVE</span></td>
                         <td>
-                            <button class="btn btn-sm" style="background-color: #17a2b8; color: white; border: none; padding: 4px 8px; margin-right: 4px;">
+                            <button class="btn btn-sm user-action-btn user-action-btn-edit">
                                 <i class='bx bx-edit'></i>
                             </button>
-                            <button class="btn btn-sm" style="background-color: #dc3545; color: white; border: none; padding: 4px 8px;">
+                            <button class="btn btn-sm user-action-btn user-action-btn-delete">
                                 <i class='bx bx-trash'></i>
                             </button>
                         </td>
@@ -331,10 +331,10 @@
                         <td>All</td>
                         <td><span class="badge badge-success">ACTIVE</span></td>
                         <td>
-                            <button class="btn btn-sm" style="background-color: #17a2b8; color: white; border: none; padding: 4px 8px; margin-right: 4px;">
+                            <button class="btn btn-sm user-action-btn user-action-btn-edit">
                                 <i class='bx bx-edit'></i>
                             </button>
-                            <button class="btn btn-sm" style="background-color: #dc3545; color: white; border: none; padding: 4px 8px;">
+                            <button class="btn btn-sm user-action-btn user-action-btn-delete">
                                 <i class='bx bx-trash'></i>
                             </button>
                         </td>
@@ -352,10 +352,10 @@
                         <td>All</td>
                         <td><span class="badge badge-danger">INACTIVE</span></td>
                         <td>
-                            <button class="btn btn-sm" style="background-color: #17a2b8; color: white; border: none; padding: 4px 8px; margin-right: 4px;">
+                            <button class="btn btn-sm user-action-btn user-action-btn-edit">
                                 <i class='bx bx-edit'></i>
                             </button>
-                            <button class="btn btn-sm" style="background-color: #dc3545; color: white; border: none; padding: 4px 8px;">
+                            <button class="btn btn-sm user-action-btn user-action-btn-delete">
                                 <i class='bx bx-trash'></i>
                             </button>
                         </td>
@@ -405,12 +405,7 @@
 
     <!-- Footer -->
     <div class="text-center py-3 bg-white border-top mt-5">
-        <p class="mb-0 text-muted" style="font-size: 13px;">© 2025 Pure Survey</p>
-    </div>
-
-    <!-- Footer -->
-    <div class="text-center py-3 bg-white border-top mt-5">
-        <p class="mb-0 text-muted" style="font-size: 13px;">Copyright © Pure Survey (Pty) Ltd. Rights Reserved 2025.</p>
+        <p class="mb-0 text-muted footer-text-small">Copyright © Pure Survey (Pty) Ltd. Rights Reserved 2025.</p>
     </div>
 
     <!-- Bootstrap JS -->

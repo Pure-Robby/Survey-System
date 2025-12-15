@@ -1260,18 +1260,18 @@ function renderTopPerformingUnits() {
     if (!container) return;
     
     container.innerHTML = topUnits.map((unit, index) => `
-        <div class="d-flex align-items-center justify-content-between p-3 mb-2 border rounded" style="border-left: 4px solid #28a745 !important;">
+        <div class="enterprise-unit-card enterprise-unit-card-success d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center gap-3">
-                <div class="d-flex align-items-center justify-content-center" style="width: 32px; height: 32px; background-color: #28a745; color: white; border-radius: 50%; font-weight: bold;">
+                <div class="enterprise-unit-rank enterprise-unit-rank-success d-flex align-items-center justify-content-center">
                     ${index + 1}
                 </div>
                 <div>
-                    <h6 class="mb-0 fw-semibold">${unit.name}</h6>
-                    <small class="text-muted">${unit.employeeCount.toLocaleString()} employees</small>
+                    <h6 class="mb-1 fw-semibold">${unit.name} <span class="text-muted fs-7 fw-normal">• ${unit.employeeCount.toLocaleString()} respondents</span></h6>
+                    <span class="fs-7">Strength: <strong>${unit.keyStrength}</strong></span>
                 </div>
             </div>
             <div class="text-end">
-                <div class="fw-bold" style="color: #28a745; font-size: 18px;">${unit.cultureIndex}%</div>
+                <div class="enterprise-unit-score enterprise-unit-score-success">${unit.cultureIndex}%</div>
                 <small class="text-muted">Culture Index</small>
             </div>
         </div>
@@ -1287,18 +1287,18 @@ function renderUnitsNeedingAttention() {
     if (!container) return;
     
     container.innerHTML = unitsNeedingAttention.map((unit, index) => `
-        <div class="d-flex align-items-center justify-content-between p-3 mb-2 border rounded" style="border-left: 4px solid #dc3545 !important;">
+        <div class="enterprise-unit-card enterprise-unit-card-danger d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center gap-3">
-                <div class="d-flex align-items-center justify-content-center" style="width: 32px; height: 32px; background-color: #dc3545; color: white; border-radius: 50%; font-weight: bold;">
+                <div class="enterprise-unit-rank enterprise-unit-rank-danger d-flex align-items-center justify-content-center">
                     ${index + 1}
                 </div>
                 <div>
-                    <h6 class="mb-0 fw-semibold">${unit.name}</h6>
-                    <small class="text-muted">Priority: ${unit.priorityArea}</small>
+                    <h6 class="mb-1 fw-semibold">${unit.name} <span class="text-muted fs-7 fw-normal">• ${unit.employeeCount.toLocaleString()} respondents</span></h6>
+                    <span class="fs-7">Priority: <strong>${unit.priorityArea}</strong></span>
                 </div>
             </div>
             <div class="text-end">
-                <div class="fw-bold" style="color: #dc3545; font-size: 18px;">${unit.cultureIndex}%</div>
+                <div class="enterprise-unit-score enterprise-unit-score-danger">${unit.cultureIndex}%</div>
                 <small class="text-muted">Culture Index</small>
             </div>
         </div>
@@ -1311,21 +1311,22 @@ function renderBusinessUnitComparison() {
     if (!container) return;
     
     container.innerHTML = sortedUnits.map(unit => {
+        const scoreClass = getScoreColorClass(unit.cultureIndex);
         return `
             <tr>
                 <td class="fw-semibold">${unit.name}</td>
                 <td class="text-center">
-                    <span class="badge" style="background-color: ${getScoreColor(unit.cultureIndex)}; color: white; font-size: 13px; padding: 6px 12px;">
+                    <span class="badge business-unit-score-badge ${scoreClass}">
                         ${unit.cultureIndex}%
                     </span>
                 </td>
                 <td class="text-center">${unit.responseRate}%</td>
                 <td class="text-center">${unit.employeeCount.toLocaleString()}</td>
                 <td class="text-center">
-                    <span class="badge badge-success" style="font-size: 12px;">${unit.keyStrength}</span>
+                    <span class="badge badge-success badge-sm">${unit.keyStrength}</span>
                 </td>
                 <td class="text-center">
-                    <span class="badge badge-warning" style="font-size: 12px;">${unit.priorityArea}</span>
+                    <span class="badge badge-warning badge-sm">${unit.priorityArea}</span>
                 </td>
             </tr>
         `;
@@ -1364,16 +1365,16 @@ function renderStrategicRecommendations() {
     if (!container) return;
     
     container.innerHTML = recommendations.map(rec => {
-        const priorityColor = rec.priority === 'high' ? '#dc3545' : '#ffc107';
+        const priorityClass = rec.priority === 'high' ? 'recommendation-priority-high' : 'recommendation-priority-medium';
         return `
-            <div class="p-3 mb-3 border rounded">
+            <div class="recommendation-card">
                 <div class="d-flex justify-content-between align-items-start mb-2">
                     <h6 class="mb-0 fw-semibold">${rec.title}</h6>
-                    <span class="badge" style="background-color: ${priorityColor}; color: white; font-size: 11px;">
+                    <span class="badge recommendation-priority-badge ${priorityClass}">
                         ${rec.priority.toUpperCase()} PRIORITY
                     </span>
                 </div>
-                <p class="mb-0" style="font-size: 13px; color: #666; line-height: 1.6;">${rec.description}</p>
+                <p class="recommendation-description mb-0">${rec.description}</p>
                 <div class="mt-2">
                     <small class="text-muted">Impact: <strong>${rec.impact}</strong></small>
                 </div>
@@ -1396,28 +1397,28 @@ function renderKeyMetricsSummary() {
             label: "Units at Risk", 
             value: unitsWithHighRisk, 
             subtitle: `Below 80% threshold`,
-            color: "#dc3545",
+            type: "danger",
             icon: "bx-error-circle"
         },
         { 
             label: "Units Exceeding Target", 
             value: unitsExceedingTarget, 
             subtitle: `Scoring 85% or above`,
-            color: "#28a745",
+            type: "success",
             icon: "bx-trophy"
         },
         { 
             label: "Performance Gap", 
             value: `${performanceGap}%`, 
             subtitle: `Between top & bottom units`,
-            color: "#ff9800",
+            type: "warning",
             icon: "bx-bar-chart-alt-2"
         },
         { 
             label: "Average Culture Index", 
             value: `${avgCultureIndex}%`, 
             subtitle: `Across all business units`,
-            color: "#0075C9",
+            type: "primary",
             icon: "bx-line-chart"
         }
     ];
@@ -1429,15 +1430,15 @@ function renderKeyMetricsSummary() {
         <div class="row g-3">
             ${metrics.map(metric => `
                 <div class="col-6">
-                    <div class="p-3 border rounded" style="border-left: 4px solid ${metric.color} !important;">
+                    <div class="metric-summary-card metric-summary-card-${metric.type}">
                         <div class="d-flex align-items-center gap-2 mb-2">
-                            <i class='bx ${metric.icon}' style="font-size: 20px; color: ${metric.color};"></i>
+                            <i class='bx ${metric.icon} metric-summary-icon metric-summary-icon-${metric.type}'></i>
                             <div style="flex: 1;">
-                                <div class="fw-bold mb-0" style="font-size: 20px; color: ${metric.color};">
+                                <div class="metric-summary-value metric-summary-value-${metric.type}">
                                     ${metric.value}
                                 </div>
-                                <div class="fw-semibold mb-1" style="font-size: 13px;">${metric.label}</div>
-                                <small class="text-muted" style="font-size: 11px;">${metric.subtitle}</small>
+                                <div class="metric-summary-label">${metric.label}</div>
+                                <small class="text-muted metric-summary-subtitle">${metric.subtitle}</small>
                             </div>
                         </div>
                     </div>
@@ -1447,11 +1448,11 @@ function renderKeyMetricsSummary() {
     `;
 }
 
-function getScoreColor(score) {
-    if (score >= 85) return '#28a745';
-    if (score >= 75) return '#ffc107';
-    if (score >= 65) return '#ff9800';
-    return '#dc3545';
+function getScoreColorClass(score) {
+    if (score >= 85) return 'business-unit-score-excellent';
+    if (score >= 75) return 'business-unit-score-good';
+    if (score >= 65) return 'business-unit-score-fair';
+    return 'business-unit-score-poor';
 }
 
 // ==================== Export to Global Scope ====================
