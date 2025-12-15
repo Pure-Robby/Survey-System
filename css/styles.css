@@ -2457,3 +2457,50 @@ body {
     font-size: 12px;
 }
 
+.sentiment-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: var(--radius-circle);
+    margin-right: var(--spacing-sm);
+}
+
+.sentiment-indicator-positive {
+    background-color: var(--color-positive);
+}
+
+.sentiment-indicator-neutral {
+    background-color: var(--color-neutral);
+}
+
+.sentiment-indicator-negative {
+    background-color: var(--color-negative);
+}
+
+.theme-progress-container {
+    height: 6px;
+}
+
+.theme-progress-bar-positive {
+    background-color: var(--color-positive);
+}
+
+.theme-progress-bar-negative {
+    background-color: var(--color-negative);
+}
+
+.icon-success {
+    color: var(--color-success);
+}
+
+.icon-danger {
+    color: var(--color-danger);
+}
+
+.icon-warning {
+    color: var(--color-warning);
+}
+
+.icon-primary {
+    color: var(--color-primary);
+}
+
