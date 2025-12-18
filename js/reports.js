@@ -145,6 +145,8 @@ document.addEventListener('DOMContentLoaded', function() {
   initializeStickySampleSize();
   initializeFileUpload();
   initializeReportComposition();
+  initializeReportNameCounter();
+  initializeViewOnlineReport();
 });
 
 // Filter Modal Functions
@@ -562,6 +564,51 @@ function initializeReportComposition() {
       // Track checkbox state for report generation
       // In production: Send to report configuration handler
     });
+  });
+}
+
+// Report Name Character Counter (75 char limit)
+function initializeReportNameCounter() {
+  const MAX_LENGTH = 75;
+  const input = document.getElementById('reportName');
+  const counter = document.getElementById('reportNameCharCount');
+
+  if (!input || !counter) return;
+
+  function updateCounter() {
+    // Enforce max length defensively in case maxlength is bypassed (e.g. paste)
+    if (input.value.length > MAX_LENGTH) {
+      input.value = input.value.slice(0, MAX_LENGTH);
+    }
+    counter.textContent = input.value.length.toString();
+  }
+
+  // Initial state
+  updateCounter();
+
+  input.addEventListener('input', updateCounter);
+}
+
+// View Online Report Handler
+function initializeViewOnlineReport() {
+  const viewBtn = document.getElementById('viewOnlineReportBtn');
+  
+  if (!viewBtn) return;
+  
+  viewBtn.addEventListener('click', function() {
+    const reportNameInput = document.getElementById('reportName');
+    const reportName = reportNameInput?.value.trim();
+    
+    if (!reportName) {
+      alert('Please enter a report name before viewing the online report.');
+      if (reportNameInput) {
+        reportNameInput.focus();
+      }
+      return;
+    }
+    
+    const url = `report-viewer.html?reportName=${encodeURIComponent(reportName)}`;
+    window.open(url, '_blank');
   });
 }
 

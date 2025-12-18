@@ -135,6 +135,104 @@
             <!-- Lever detail cards will be rendered here by JavaScript -->
         </div>
 
+         <!--Flight Risk & eNPS section-->
+        <div class="row mb-5">
+           <div class="col-lg-6">
+            <!--Flight Risk-->
+            <div class="card-custom h-100">
+                <h5 class="card-header-custom">Flight Risk Distribution</h5>
+                <div class="flight-risk-dashboard">
+                    <div class="flight-risk-stat mb-4">
+                        <span class="flight-risk-stat-value">27%</span>
+                        <span class="flight-risk-stat-label">of your employees indicated themselves as a high flight risk</span>
+                        <i class="bx bx-info-circle flight-risk-info" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" title="The Flight Risk Indicator is derived from respondents who answered 'yes' to both questions below. Employees who respond with 'yes' to both are much more likely to exit within the next 6 months."></i>
+                    </div>
+                    <div class="flight-risk-item mb-4">
+                        <div class="flight-risk-question mb-2">At this moment, I am actively searching for another job.</div>
+                        <div class="stacked-bar-dashboard">
+                            <div class="bar-segment-dashboard" style="width: 75%; background-color: #28a745;" title="No: 75%">
+                                <span>75%</span>
+                            </div>
+                            <div class="bar-segment-dashboard" style="width: 25%; background-color: #dc3545;" title="Yes: 25%">
+                                <span>25%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flight-risk-item mb-3">
+                        <div class="flight-risk-question mb-2">I am planning to quit my job within the next 3 months.</div>
+                        <div class="stacked-bar-dashboard">
+                            <div class="bar-segment-dashboard" style="width: 80%; background-color: #28a745;" title="No: 80%">
+                                <span>80%</span>
+                            </div>
+                            <div class="bar-segment-dashboard" style="width: 20%; background-color: #dc3545;" title="Yes: 20%">
+                                <span>20%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flight-risk-legend">
+                        <div class="legend-item-dashboard"><span class="legend-color-dashboard" style="background-color: #28a745;"></span>No</div>
+                        <div class="legend-item-dashboard"><span class="legend-color-dashboard" style="background-color: #dc3545;"></span>Yes</div>
+                    </div>
+                </div>
+            </div>
+           </div>    
+           <div class="col-lg-6">
+            <!--eNPS-->
+            <div class="card-custom h-100">
+                <h5 class="card-header-custom">eNPS Score</h5>
+                <div class="enps-container">
+                    <div class="enps-chart-wrapper d-flex justify-content-center align-items-center gap-4 mb-3">
+                        <div class="enps-donut-wrap position-relative">
+                            <canvas id="enpsDonut" width="250" height="250"></canvas>
+                            <div class="enps-center-text">
+                                <p class="enps-center-label mb-1">eNPS Score</p>
+                                <p class="enps-center-value mb-0" id="enpsScoreValue">17</p>
+                            </div>
+                        </div>
+                        <div class="enps-legend p-0">
+                            
+                                <div class="enps-legend-item">
+                                    <span class="enps-legend-dot promoters"></span>
+                                    <span>Promoters: <span class="fw-bold">51.5%</span></span>
+                                </div>
+                                
+                                <div class="enps-legend-item">
+                                    <span class="enps-legend-dot passives"></span>
+                                    <span>Passives: <span class="fw-bold">14.0%</span></span>
+                                </div>
+                                <div class="enps-legend-item">
+                                    <span class="enps-legend-dot detractors"></span>
+                                    <span>Detractors: <span class="fw-bold">34.5%</span></span>
+                                </div>
+                            
+
+                            
+
+                            
+                        </div>
+                    </div>
+                    <div class="enps-formula d-flex justify-content-center align-items-center gap-3">
+                        <div class="enps-formula-label mb-0">eNPS Score</div>
+                        <div class="enps-formula-calculation">
+                            <span class="enps-formula-equals">=</span>
+                            <div class="enps-formula-component promoters">
+                                <div class="enps-formula-value">51.5%</div>
+                                <div class="enps-formula-text">% Promoters</div>
+                            </div>
+                            <span class="enps-formula-operator">-</span>
+                            <div class="enps-formula-component detractors">
+                                <div class="enps-formula-value">34.5%</div>
+                                <div class="enps-formula-text">% Detractors</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <img src="assets/enps-graphic.png" alt="eNPS Formula" class="mw-100"> -->
+                </div>
+            </div>
+           </div>  
+        </div>
+
         <!-- Comments & Sentiment Section -->
         <div class="row mb-5 sentiment-section-row">
             <!-- Sentiment Distribution -->
@@ -273,7 +371,7 @@
                         <i class='bx bx-bulb icon-warning'></i>
                         Strategic Recommendations
                     </h5>
-                    <div id="strategicRecommendations">
+                    <div id="strategicRecommendations" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
                         <!-- Will be populated by JavaScript -->
                     </div>
                 </div>
@@ -476,12 +574,16 @@
     </div>
 
     <!-- Footer -->
-    <div class="text-center py-3 bg-white border-top mt-5">
+    <div class="text-center py-3 bg-white border-top">
         <p class="mb-0 text-muted fs-7">Copyright © Pure Survey (Pty) Ltd. Rights Reserved 2025.</p>
     </div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
     
     <!-- Shared Components -->
     <script src="js/shared/navigation.js"></script>

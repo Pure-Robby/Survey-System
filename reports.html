@@ -272,7 +272,20 @@
                     <div class="w-100">
                         <label for="reportName" class="field-label">Report Name <span class="required">*</span></label>
                         <p class="field-description">Give your report a descriptive name for easy identification</p>
-                        <input type="text" class="form-input" id="reportName" name="reportName" placeholder="Sanlam Culture Report" value="Sanlam Culture Report">
+                        <div class="report-name-input-wrapper">
+                            <input 
+                                type="text" 
+                                class="form-input" 
+                                id="reportName" 
+                                name="reportName" 
+                                placeholder="Sanlam Culture Report" 
+                                value="Sanlam Culture Report"
+                                maxlength="75"
+                                aria-describedby="reportNameCounter">
+                            <div id="reportNameCounter" class="char-counter text-muted text-end mt-1">
+                                <span id="reportNameCharCount">0</span>/75 characters
+                            </div>
+                        </div>
                     </div>
                     <div class="results-count-card" id="resultsCountCard">
                         <div class="count-header">
@@ -312,7 +325,7 @@
         <div class="dimension-section mt-3">
             <h3 class="dimension-label">Generate Reports</h3>
             <div class="report-actions modern-actions justify-content-center">
-                <button type="button" class="btn-custom btn-primary" onclick="showReportComingSoon('View Online Report')">
+                <button type="button" id="viewOnlineReportBtn" class="btn-custom btn-primary">
                     <i class="material-icons">visibility</i>
                     <span>View Online Report</span>
                 </button>

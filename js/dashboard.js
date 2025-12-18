@@ -817,6 +817,12 @@ document.addEventListener('DOMContentLoaded', () => {
             sentimentThemesShared.render();
         }
     }
+    
+    // Initialize Bootstrap tooltips
+    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
 });
 
 // ==================== Response Rate Leaderboard Functions ====================
@@ -1047,7 +1053,7 @@ function renderKeyMetricsSummary() {
             ${metrics.map(metric => `
                 <div class="col-6">
                     <div class="metric-summary-card metric-summary-card-${metric.type}">
-                        <div class="d-flex align-items-center gap-2 mb-2">
+                        <div class="d-flex align-items-start gap-2">
                             <i class='bx ${metric.icon} metric-summary-icon metric-summary-icon-${metric.type}'></i>
                             <div style="flex: 1;">
                                 <div class="metric-summary-value metric-summary-value-${metric.type}">

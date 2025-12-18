@@ -1,4 +1,5 @@
 # Ignore local analysis tools and prompts
 Comments Explorer/
+Report Generator/
 NewLeaderboardDesignPrompt.txt
 UI-CLEANUP-SUMMARY.md

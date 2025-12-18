@@ -310,14 +310,60 @@ function initializeCharts() {
         ]);
     }
     
-    // eNPS Donut Chart
+    // eNPS Donut Chart (Dashboard - matching image data)
     const enpsDonut = document.getElementById('enpsDonut');
     if (enpsDonut) {
-        createDonutChart('enpsDonut', [
-            { value: 42, color: '#28a745' }, // Promoters
-            { value: 33, color: '#ffc107' }, // Passives
-            { value: 25, color: '#dc3545' }  // Detractors
-        ]);
+        // Get canvas context
+        const ctx = enpsDonut.getContext('2d');
+        
+        // Data matching the provided image
+        const data = {
+            labels: ['Promoters', 'Detractors', 'Passives'],
+            datasets: [{
+                data: [51.5, 34.5, 14.0],
+                backgroundColor: [
+                    '#28a745', // Promoters - green
+                    '#dc3545', // Detractors - red
+                    '#ffc107'  // Passives - yellow
+                ],
+                borderWidth: 0,
+                cutout: '58%'
+            }]
+        };
+        
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: data,
+            plugins: [ChartDataLabels],
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const label = context.label || '';
+                                const value = context.parsed || 0;
+                                return label + ': ' + value + '%';
+                            }
+                        }
+                    },
+                    datalabels: {
+                        color: '#fff',
+                        font: {
+                            weight: 'normal',
+                            size: 14
+                        },
+                        formatter: function(value, context) {
+                            return value + '%';
+                        }
+                    }
+                }
+            }
+        });
     }
     
     // Comment Sentiment Donut Chart (Overview Dashboard)
