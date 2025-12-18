@@ -488,8 +488,32 @@
                                 family: 'Roboto',
                                 size: 11
                             },
-                            maxRotation: 45,
-                            minRotation: 45
+                            maxRotation: 0,
+                            minRotation: 0,
+                            autoSkip: false,
+                            callback: function(value, index, ticks) {
+                                const label = this.getLabelForValue(value);
+                                const maxChars = 15; // Adjust this number based on your needs
+                                if (label.length > maxChars) {
+                                    // Split label into multiple lines
+                                    const words = label.split(' ');
+                                    const lines = [];
+                                    let currentLine = '';
+                                    
+                                    words.forEach(word => {
+                                        if ((currentLine + word).length > maxChars) {
+                                            lines.push(currentLine.trim());
+                                            currentLine = word + ' ';
+                                        } else {
+                                            currentLine += word + ' ';
+                                        }
+                                    });
+                                    if (currentLine) lines.push(currentLine.trim());
+                                    
+                                    return lines;
+                                }
+                                return label;
+                            }
                         },
                         grid: {
                             display: false

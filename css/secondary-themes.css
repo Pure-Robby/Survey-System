@@ -180,8 +180,9 @@
 }
 
 .secondary-themes-scrollable {
-    max-height: 500px;
+    max-height: 550px;
     overflow-y: auto;
+    padding-right: 1rem;
 }
 
 /* Sentiment Flow Chart */
