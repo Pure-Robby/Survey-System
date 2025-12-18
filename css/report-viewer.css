@@ -172,6 +172,22 @@ body {
     margin-bottom: 1.5rem;
 }
 
+/* Work in Progress Slide */
+.slide-wip {
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.wip-content h2 {
+    font-size: 2.5rem;
+    color: var(--text-color);
+    font-weight: 400;
+    margin: 0;
+}
+
 /* Responsive Header */
 @media (max-width: 768px) {
     .preview-header {

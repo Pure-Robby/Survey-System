@@ -17,7 +17,7 @@ function initializeReportViewer() {
     
     const slideContainer = document.getElementById('slide-container');
     if (slideContainer) {
-        slideContainer.innerHTML = createCoverSlide(reportName, currentDate);
+        slideContainer.innerHTML = createCoverSlide(reportName, currentDate) + createWipSlide();
     }
     
     updatePageTitle(reportName);
@@ -69,6 +69,16 @@ function updatePreviewTitle(reportName) {
     if (previewTitle) {
         previewTitle.textContent = reportName;
     }
+}
+
+function createWipSlide() {
+    return `
+        <div class="slide slide-wip">
+            <div class="wip-content">
+                <h2>This is a work in progress</h2>
+            </div>
+        </div>
+    `;
 }
 
 function escapeHtml(text) {
