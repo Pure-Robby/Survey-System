@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reports - 2026 Sanlam Culture Measurement Survey</title>
+    <title>Reports - Sanlam 2026 Culture Measurement</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
     
     <!-- Bootstrap 5.3 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -24,7 +25,7 @@
         <div class="container-fluid px-4">
             <div class="row align-items-center">
                 <div class="col-md-10 d-flex align-items-center gap-5">
-                    <img src="assets/logo.png" alt="Logo" style="height: 32px;">
+                    <img src="assets/logo.png" alt="Logo" class="logo-height">
                     <div class="">
                         <h1 class="page-title mb-0">2026 Culture Measurement</h1>
                         <p class="page-subtitle mb-0">Generate customised reports with organisation and demographic filters</p>
@@ -40,16 +41,7 @@
     </div>
 
     <!-- Navigation -->
-    <div class="nav-tabs-custom">
-        <div class="container-fluid px-0">
-            <a href="index.html"><i class='bx bx-grid-alt'></i> Overview</a>
-            <a href="reports.html" class="active"><i class='bx bx-file'></i> Reports</a>
-            <a href="comments-analysis.html"><i class='bx bx-message-square-dots'></i> Comments Analysis</a>
-            <a href="progress-tracker.html"><i class='bx bx-line-chart'></i> Progress Tracker</a>
-            <a href="action-tracker.html"><i class='bx bx-task'></i> Action Tracker</a>
-            <a href="user-management.html"><i class='bx bx-user'></i> User Management</a>
-        </div>
-    </div>
+    <div class="nav-tabs-custom" data-active-nav="reports"></div>
 
     <!-- Main Content -->
     <div class="container px-0 pb-5">
@@ -196,7 +188,7 @@
                                 <p>Drag and drop your file here or click to browse</p>
                                 <p class="upload-formats">Supported formats: XLSX or CSV</p>
                                 <input type="file" id="customReportFile" accept=".xlsx,.csv" style="display: none;">
-                                <button type="button" class="button-primary" id="browseFileBtn">
+                                <button type="button" class="btn-custom btn-primary" id="browseFileBtn">
                                     <i class="material-icons">folder_open</i>
                                     Browse Files
                                 </button>
@@ -218,11 +210,11 @@
                     </div>
 
                     <div class="upload-actions" id="uploadActions" style="display: none;">
-                        <button type="button" class="button-primary" id="processReportBtn">
+                        <button type="button" class="btn-custom btn-primary" id="processReportBtn">
                             <i class="material-icons">play_arrow</i>
                             Process Report
                         </button>
-                        <button type="button" class="button-secondary" id="cancelUploadBtn">
+                        <button type="button" class="btn-custom btn-secondary" id="cancelUploadBtn">
                             Cancel
                         </button>
                     </div>
@@ -320,23 +312,23 @@
         <div class="dimension-section mt-3">
             <h3 class="dimension-label">Generate Reports</h3>
             <div class="report-actions modern-actions justify-content-center">
-                <button type="button" class="button-primary" onclick="showReportComingSoon('View Online Report')">
+                <button type="button" class="btn-custom btn-primary" onclick="showReportComingSoon('View Online Report')">
                     <i class="material-icons">visibility</i>
                     <span>View Online Report</span>
                 </button>
-                <button type="button" class="button-primary" onclick="showReportComingSoon('Download PowerPoint')">
+                <button type="button" class="btn-custom btn-primary" onclick="showReportComingSoon('Download PowerPoint')">
                     <i class="material-icons">download</i>
                     <span>Download PowerPoint</span>
                 </button>
-                <button type="button" class="button-primary" onclick="showReportComingSoon('Download PDF')">
+                <button type="button" class="btn-custom btn-primary" onclick="showReportComingSoon('Download PDF')">
                     <i class="material-icons">picture_as_pdf</i>
                     <span>Download PDF</span>
                 </button>
-                <button type="button" class="button-primary" onclick="showReportComingSoon('Generate Infographic')">
+                <button type="button" class="btn-custom btn-primary" onclick="showReportComingSoon('Generate Infographic')">
                     <i class="material-icons">image</i>
                     <span>Generate Infographic (PDF)</span>
                 </button>
-                <button type="button" class="button-primary" onclick="showReportComingSoon('Download Comments')">
+                <button type="button" class="btn-custom btn-primary" onclick="showReportComingSoon('Download Comments')">
                     <i class="material-icons">table_chart</i>
                     <span>Download Comments (Excel)</span>
                 </button>
@@ -346,7 +338,7 @@
 
     <!-- Footer -->
     <div class="text-center py-3 bg-white border-top mt-5">
-        <p class="mb-0 text-muted" style="font-size: 13px;">Copyright © Pure Survey (Pty) Ltd. Rights Reserved 2025.</p>
+        <p class="mb-0 text-muted fs-13">Copyright © Pure Survey (Pty) Ltd. Rights Reserved 2025.</p>
     </div>
 
     <!-- Filter Modal (Reusable) -->
@@ -360,31 +352,31 @@
                 <!-- Checkbox list will be injected here -->
             </div>
             <div class="filter-modal-footer">
-                <button type="button" id="applyFilterModal" class="button-primary">Apply Selected</button>
-                <button type="button" id="cancelFilterModal" class="button-secondary">Cancel</button>
+                <button type="button" id="applyFilterModal" class="btn-custom btn-primary">Apply Selected</button>
+                <button type="button" id="cancelFilterModal" class="btn-custom btn-secondary">Cancel</button>
             </div>
         </div>
     </div>
 
     <!-- Report Coming Soon Modal -->
     <div class="modal-backdrop" id="reportComingSoonModal">
-        <div class="modal-content" style="max-width: 500px;">
-            <div class="modal-header" style="text-align: center; padding-bottom: 0;">
-                <div style="width: 80px; height: 80px; margin: 0 auto 20px; background: linear-gradient(135deg, var(--color-primary), var(--primary-dark)); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                    <i class="material-icons" style="font-size: 40px; color: white;">construction</i>
+        <div class="modal-content modal-w-500">
+            <div class="modal-header modal-header-center">
+                <div class="modal-icon-circle">
+                    <i class="material-icons">construction</i>
                 </div>
-                <h4 style="margin: 0; font-size: 24px; font-weight: 600; color: var(--color-text);">Report Feature Coming Soon</h4>
+                <h4 class="modal-title-lg">Report Feature Coming Soon</h4>
             </div>
-            <div class="modal-body" style="text-align: center; padding: 20px 0;">
-                <p style="font-size: 16px; color: #666; line-height: 1.6; margin: 0;">
+            <div class="modal-body modal-body-center">
+                <p class="modal-text-lg">
                     The <strong id="reportTypeName"></strong> feature is currently under development and will be available soon.
                 </p>
-                <p style="font-size: 14px; color: #999; margin-top: 16px; margin-bottom: 0;">
+                <p class="modal-text-sm">
                     We're working hard to bring you the best reporting experience.
                 </p>
             </div>
-            <div class="modal-footer" style="justify-content: center; padding-top: 20px;">
-                <button class="btn-custom btn-primary" onclick="hideReportComingSoon()" style="min-width: 120px;">
+            <div class="modal-footer modal-footer-center">
+                <button class="btn-custom btn-primary btn-min-w-120" onclick="hideReportComingSoon()">
                     Got it
                 </button>
             </div>
@@ -394,7 +386,10 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
-    <!-- Custom Scripts -->
+    <!-- Shared Components -->
+    <script src="js/shared/navigation.js"></script>
+    
+    <!-- Page Scripts -->
     <script src="js/dashboard.js"></script>
     <script src="js/reports.js"></script>
     <script>

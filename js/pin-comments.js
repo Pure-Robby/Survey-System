@@ -13,6 +13,11 @@
     const toolbarBtn = document.getElementById('pinToggle');
     const statusEl = document.getElementById('pinStatus');
   
+    // Exit early if required elements don't exist on this page
+    if (!toolbarBtn) {
+      return;
+    }
+  
     const pinEls = new Map();  // id -> pin element
     const popEls = new Map();  // id -> pop element
   
@@ -52,7 +57,9 @@
     toolbarBtn.onclick = () => {
       state.enabled = !state.enabled;
       toolbarBtn.textContent = state.enabled ? 'Disable Comment Mode' : 'Enable Comment Mode';
-      statusEl.textContent = state.enabled ? 'on' : 'off';
+      if (statusEl) {
+        statusEl.textContent = state.enabled ? 'on' : 'off';
+      }
     };
   
     // Close pop when clicking away (only in view mode)

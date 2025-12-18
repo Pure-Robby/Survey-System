@@ -32,10 +32,11 @@
     --color-light-grey: #f2f4f6;
     --color-darker-grey: #bec8d4;
     --color-button: var(--brand-primary);
-    --color-button-hover: var(--brand-primary);
+    --color-button-hover: var(--brand-ink);
     
     /* Semantic Colors */
     --color-primary: var(--brand-primary);
+    --color-primary-dark: var(--brand-ink);
     --color-success: #28a745;
     --color-danger: #dc3545;
     --color-warning: #ffc107;
@@ -122,6 +123,133 @@ body {
     font-size: 0.75rem !important;
 }
 
+/* Additional font-size utilities for production cleanup */
+.fs-13 {
+    font-size: 13px !important;
+}
+
+.fs-14 {
+    font-size: 14px !important;
+}
+
+/* Logo utility */
+.logo-height {
+    height: 32px;
+}
+
+/* Custom gap utilities */
+.gap-5 {
+    gap: 3rem !important;
+}
+
+/* Spacer utilities */
+.spacer-18 {
+    height: 18px;
+}
+
+/* Filter button utility */
+.filter-btn-sm {
+    padding: 6px 12px;
+    font-size: 13px;
+}
+
+/* Form label utility */
+.form-label-fw {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Icon size utilities */
+.icon-24 {
+    font-size: 24px;
+}
+
+/* Max width utilities */
+.max-w-300 {
+    max-width: 300px;
+}
+
+/* Cursor utility */
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* Comment item utilities */
+.comment-item {
+    transition: all 0.2s ease;
+}
+
+.comment-item:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.comment-item .badge {
+    font-size: 11px;
+    padding: 4px 8px;
+}
+
+/* Modal utility classes */
+.modal-w-500 {
+    max-width: 500px;
+}
+
+.modal-header-center {
+    text-align: center;
+    padding-bottom: 0;
+}
+
+.modal-icon-circle {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-icon-circle .material-icons {
+    font-size: 40px;
+    color: white;
+}
+
+.modal-title-lg {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.modal-body-center {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.modal-text-lg {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.modal-text-sm {
+    font-size: 14px;
+    color: #999;
+    margin-top: 16px;
+    margin-bottom: 0;
+}
+
+.modal-footer-center {
+    justify-content: center;
+    padding-top: 20px;
+}
+
+.btn-min-w-120 {
+    min-width: 120px;
+}
+
 /* ==================== Layout ==================== */
 
 
@@ -148,6 +276,9 @@ body {
     padding: var(--spacing-sm) var(--spacing-lg);
     border-bottom: 2px solid var(--color-light-grey);
     margin-bottom: var(--spacing-lg);
+    position: sticky;
+    top: 0;
+    z-index: 900;
 }
 
 .nav-tabs-custom a {
@@ -188,7 +319,6 @@ body {
     border-radius: var(--radius-lg);
     padding: var(--spacing-lg);
     box-shadow: var(--shadow-sm);
-    /* margin-bottom: var(--spacing-lg); */
 }
 
 /* Prevent sentiment distribution column from shrinking too much */
@@ -234,7 +364,6 @@ body {
     border-radius: var(--radius-md);
     padding: var(--spacing-lg);
     box-shadow: var(--shadow-sm);
-    /* text-align: center; */
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
@@ -248,7 +377,6 @@ body {
     font-weight: 700;
     color: var(--color-primary);
     line-height: 40px;
-    /* margin-bottom: var(--spacing-xs); */
 }
 
 .metric-label {
@@ -265,7 +393,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* margin: 0 auto var(--spacing-md); */
     font-size: 24px;
 }
 
@@ -338,7 +465,6 @@ body {
 .score-card h3 {
     font-size: 1.25rem;
     font-weight: 600;
-    /* margin-bottom: var(--spacing-lg); */
     flex-shrink: 0;
     min-height: 3rem;
 }
@@ -1186,14 +1312,15 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
-    margin: 30px 0;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
     position: relative;
 }
 
 .progress-summary-cards::after {
     content: '';
     position: absolute;
-    bottom: -30px;
+    bottom: 0px;
     left: 20px;
     right: 20px;
     height: 2px;
@@ -1278,18 +1405,12 @@ body {
 }
 
 .progress-breadcrumb {
-    position: sticky;
-    top: 0;
-    z-index: 99;
     display: flex;
     align-items: center;
     gap: 12px;
     border-radius: 8px 8px 0 0;
     font-size: 0.85rem;
     width: 100%;
-    padding: 10px 24px;
-    background: var(--color-bg);
-    border-bottom: 1px solid var(--color-light-grey);
     margin: 0;
 }
 
@@ -1304,7 +1425,7 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
-    color: var(--color-text-muted);
+    color: var(--color-primary);
     cursor: pointer;
     transition: all 0.2s ease;
     padding: 6px 10px;
@@ -1315,7 +1436,7 @@ body {
 
 .breadcrumb-item .material-icons {
     font-size: 16px;
-    color: var(--color-primary);
+    
 }
 
 .breadcrumb-item:hover:not(.active) {
@@ -1324,8 +1445,7 @@ body {
 }
 
 .breadcrumb-item.active {
-    color: var(--color-primary);
-    font-weight: 600;
+    color: var(--color-text-muted);
     cursor: default;
 }
 
@@ -1643,7 +1763,6 @@ body {
 }
 
 .lever-detail-body {
-    /* padding: var(--spacing-md); */
     flex-grow: 1;
     overflow-y: auto;
     overflow-x: hidden;
@@ -1689,7 +1808,6 @@ body {
 
 .dimension-list-item:hover {
     background-color: rgba(0, 0, 0, 0.02);
-    /* padding-left: var(--spacing-xs); */
 }
 
 .dimension-list-item-clickable {
@@ -1699,7 +1817,6 @@ body {
 
 .dimension-list-item-clickable:hover {
     background-color: rgba(0, 117, 201, 0.08);
-    /* transform: translateX(4px); */
 }
 
 .dimension-name-text {
@@ -2185,7 +2302,7 @@ body {
 }
 
 .add-action-btn:hover {
-    background-color: var(--primary-dark);
+    background-color: var(--color-primary-dark);
 }
 
 .empty-column {
@@ -2473,6 +2590,10 @@ body {
 
 .sentiment-indicator-negative {
     background-color: var(--color-negative);
+}
+
+.sentiment-question-box {
+    background: var(--accent-9043);
 }
 
 .theme-progress-container {

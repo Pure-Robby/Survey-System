@@ -106,10 +106,10 @@ const sentimentThemesShared = (() => {
                 </div>
             </div>
             
-            <div class="p-3 rounded-4 mt-auto" style="background: #e8e6df">
-                <h6>Question text:</h6>
+            <!--<div class="p-3 rounded-4 mt-auto sentiment-question-box">
+                <h6 class="fw-semibold fs-7 mb-1">Question text:</h6>
                 <p class="mb-0 fs-7">${sentimentData.questionText}</p>
-            </div>
+            </div>-->
         `;
     }
 
@@ -180,4 +180,3 @@ const sentimentThemesShared = (() => {
         render: renderAll
     };
 })();
-

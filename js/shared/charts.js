@@ -345,4 +345,3 @@ window.chartsJS = {
 
 // Auto-initialize charts when DOM is ready
 document.addEventListener('DOMContentLoaded', initializeCharts);
-

@@ -1,78 +1,23 @@
-// TFG Survey System POC - Dashboard Interactions
+// Dashboard Interactions Module
 
-// ==================== Lever Details Data ====================
-const leverDetailsData = {
-    levers: [
-        {
-            name: "Business Outcomes",
-            link: "business-outcomes.html",
-            dimensions: [
-                { name: "Continuous Development", score: 85.0, statementCount: 3 },
-                { name: "Change Agility", score: 78.5, statementCount: 3 },
-                { name: "Productivity", score: 88.2, statementCount: 4 },
-                { name: "Customer Centricity", score: 81.8, statementCount: 5 }
-            ]
-        },
-        {
-            name: "Shared Values",
-            link: "shared-values.html",
-            dimensions: [
-                { name: "Values", score: 72.3, statementCount: 2 },
-                { name: "Integrity", score: 68.5, statementCount: 2 },
-                { name: "Innovation", score: 65.8, statementCount: 3 },
-                { name: "Care", score: 70.2, statementCount: 4 },
-                { name: "Collaboration", score: 64.5, statementCount: 3 },
-                { name: "Trust & Psychological Safety", score: 62.8, statementCount: 5 },
-                { name: "Inclusion & Belonging", score: 69.5, statementCount: 2 }
-            ]
-        },
-        {
-            name: "Employee Experience",
-            link: "employee-experience.html",
-            dimensions: [
-                { name: "Engagement", score: 78.5, statementCount: 12 },
-                { name: "Team Effectiveness", score: 85.2, statementCount: 5 },
-                { name: "Wellness", score: 80.8, statementCount: 5 },
-                { name: "Development & Growth", score: 84.5, statementCount: 7 }
-            ]
-        },
-        {
-            name: "Leadership Enablement",
-            link: "leadership-enablement.html",
-            dimensions: [
-                { 
-                    name: "Envisage Our Future", 
-                    score: 76.4, 
-                    statementCount: 2,
-                    guidingPrinciple: "Transform our organisation with vision, enhanced solutions and customer-centric excellence"
-                },
-                { 
-                    name: "Champion Sustainable Results", 
-                    score: 79.8, 
-                    statementCount: 2,
-                    guidingPrinciple: "Optimise resources to deliver creative solutions and cultivate a culture of growth"
-                },
-                { 
-                    name: "Show Up and Inspire Excellence", 
-                    score: 80.2, 
-                    statementCount: 2,
-                    guidingPrinciple: "Make quality decisions with speed, face challenges with humility, and lead with integrity and a growth mindset"
-                },
-                { 
-                    name: "Win Together", 
-                    score: 78.0, 
-                    statementCount: 2,
-                    guidingPrinciple: "Create a supportive, inclusive and engaging work environment for mutual success"
-                }
-            ]
-        }
-    ]
-};
+// ==================== Mock Data Access ====================
+// Mock data is loaded from mock-data.js and available via window.mockData
+// Access: window.mockData.leverDetailsData, window.mockData.progressTrackerData, window.mockData.businessUnitData
+// In production: Remove mock-data.js script tag and replace with API calls
+
+// Helper getters to avoid null errors and provide fallbacks
+const getMockData = () => window.mockData || {};
+const getLeverDetailsData = () => getMockData().leverDetailsData || { levers: [] };
+const getProgressTrackerData = () => getMockData().progressTrackerData || { company: {}, segments: [] };
+const getBusinessUnitData = () => getMockData().businessUnitData || [];
 
 // ==================== Get Today's Date ====================
 const options = { day: "2-digit", month: "short", year: "numeric" };
-document.getElementById("dataDate").textContent =
-    "Data correct as of: " + new Date().toLocaleDateString("en-GB", options);
+const dataDateElement = document.getElementById("dataDate");
+if (dataDateElement) {
+    dataDateElement.textContent =
+        "Data correct as of: " + new Date().toLocaleDateString("en-GB", options);
+}
 
 
 // ==================== Counter Animation ====================
@@ -134,6 +79,11 @@ function initTabs() {
             const targetPane = document.getElementById(`${targetTab}-tab`);
             if (targetPane) {
                 targetPane.classList.add('active');
+            }
+            
+            // Initialize leaderboard on first view
+            if (targetTab === 'leaderboard' && typeof initializeLeaderboard === 'function') {
+                initializeLeaderboard();
             }
         });
     });
@@ -370,18 +320,30 @@ function hideModal(modalId) {
 }
 
 // ==================== Export Functions ====================
+/**
+ * Export dashboard data to PDF
+ * @param {string} filename - Name of the PDF file
+ * Production: Implement server-side PDF generation or use a library like jsPDF
+ */
 function exportToPDF(filename = 'report') {
-    // POC: Simple placeholder functionality
     alert(`PDF Export: ${filename}.pdf\n\nIn production, this would generate a PDF report of the current dashboard.`);
 }
 
+/**
+ * Export dashboard data to PowerPoint
+ * @param {string} filename - Name of the PowerPoint file
+ * Production: Implement server-side PowerPoint generation or use a library like PptxGenJS
+ */
 function exportToPPT(filename = 'report') {
-    // POC: Simple placeholder functionality
     alert(`PowerPoint Export: ${filename}.pptx\n\nIn production, this would generate a PowerPoint presentation.`);
 }
 
+/**
+ * Export comments data to Excel
+ * @param {string} filename - Name of the Excel file
+ * Production: Use a library like SheetJS (xlsx) for Excel export
+ */
 function exportToExcel(filename = 'comments') {
-    // POC: Simple placeholder functionality
     alert(`Excel Export: ${filename}.xlsx\n\nIn production, this would export comments data to Excel.`);
 }
 
@@ -418,275 +380,9 @@ let progressTrackerState = {
     currentSegment: null,
     currentDivision: null,
     currentDepartment: null,
-    breadcrumbs: [{ level: 'company', name: 'TFG Organization' }],
+    breadcrumbs: [{ level: 'company', name: 'Sanlam Overall' }],
     sortBy: null,
     sortDirection: 'asc'
-};
-
-// Mock data structure for progress tracker
-const progressTrackerData = {
-    company: {
-        name: "TFG Organization",
-        population: 27686,
-        completed: 23364,
-        inProgress: 166,
-        notStarted: 4156,
-        completionRate: 84,
-        children: "segments"
-    },
-    segments: [
-        {
-            name: "Retail Operations",
-            population: 12500,
-            completed: 11000,
-            inProgress: 80,
-            notStarted: 1420,
-            completionRate: 88,
-            divisions: [
-                {
-                    name: "Store Operations",
-                    population: 8500,
-                    completed: 7650,
-                    inProgress: 50,
-                    notStarted: 800,
-                    completionRate: 90,
-                    departments: [
-                        {
-                            name: "Sales",
-                            population: 6000,
-                            completed: 5500,
-                            inProgress: 30,
-                            notStarted: 470,
-                            completionRate: 92,
-                            teams: [
-                                {
-                                    name: "Sales Team A",
-                                    population: 2000,
-                                    completed: 1900,
-                                    inProgress: 10,
-                                    notStarted: 90,
-                                    completionRate: 95
-                                },
-                                {
-                                    name: "Sales Team B",
-                                    population: 2000,
-                                    completed: 1800,
-                                    inProgress: 10,
-                                    notStarted: 190,
-                                    completionRate: 90
-                                },
-                                {
-                                    name: "Sales Team C",
-                                    population: 2000,
-                                    completed: 1800,
-                                    inProgress: 10,
-                                    notStarted: 190,
-                                    completionRate: 90
-                                }
-                            ]
-                        },
-                        {
-                            name: "Customer Service",
-                            population: 2500,
-                            completed: 2150,
-                            inProgress: 20,
-                            notStarted: 330,
-                            completionRate: 86,
-                            teams: []
-                        }
-                    ]
-                },
-                {
-                    name: "Distribution",
-                    population: 4000,
-                    completed: 3350,
-                    inProgress: 30,
-                    notStarted: 620,
-                    completionRate: 84,
-                    departments: [
-                        {
-                            name: "Warehouse",
-                            population: 3000,
-                            completed: 2500,
-                            inProgress: 20,
-                            notStarted: 480,
-                            completionRate: 83,
-                            teams: []
-                        },
-                        {
-                            name: "Logistics",
-                            population: 1000,
-                            completed: 850,
-                            inProgress: 10,
-                            notStarted: 140,
-                            completionRate: 85,
-                            teams: []
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            name: "Corporate",
-            population: 8000,
-            completed: 7200,
-            inProgress: 50,
-            notStarted: 750,
-            completionRate: 90,
-            divisions: [
-                {
-                    name: "Finance",
-                    population: 3000,
-                    completed: 2800,
-                    inProgress: 20,
-                    notStarted: 180,
-                    completionRate: 93,
-                    departments: [
-                        {
-                            name: "Accounting",
-                            population: 1500,
-                            completed: 1420,
-                            inProgress: 10,
-                            notStarted: 70,
-                            completionRate: 95,
-                            teams: []
-                        },
-                        {
-                            name: "Financial Planning",
-                            population: 1500,
-                            completed: 1380,
-                            inProgress: 10,
-                            notStarted: 110,
-                            completionRate: 92,
-                            teams: []
-                        }
-                    ]
-                },
-                {
-                    name: "Human Resources",
-                    population: 2500,
-                    completed: 2300,
-                    inProgress: 15,
-                    notStarted: 185,
-                    completionRate: 92,
-                    departments: [
-                        {
-                            name: "Recruitment",
-                            population: 1200,
-                            completed: 1100,
-                            inProgress: 8,
-                            notStarted: 92,
-                            completionRate: 92,
-                            teams: []
-                        },
-                        {
-                            name: "Employee Relations",
-                            population: 1300,
-                            completed: 1200,
-                            inProgress: 7,
-                            notStarted: 93,
-                            completionRate: 92,
-                            teams: []
-                        }
-                    ]
-                },
-                {
-                    name: "IT",
-                    population: 2500,
-                    completed: 2100,
-                    inProgress: 15,
-                    notStarted: 385,
-                    completionRate: 84,
-                    departments: [
-                        {
-                            name: "Development",
-                            population: 1500,
-                            completed: 1250,
-                            inProgress: 10,
-                            notStarted: 240,
-                            completionRate: 83,
-                            teams: []
-                        },
-                        {
-                            name: "Infrastructure",
-                            population: 1000,
-                            completed: 850,
-                            inProgress: 5,
-                            notStarted: 145,
-                            completionRate: 85,
-                            teams: []
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            name: "Marketing & Sales",
-            population: 7186,
-            completed: 5164,
-            inProgress: 36,
-            notStarted: 1986,
-            completionRate: 72,
-            divisions: [
-                {
-                    name: "Digital Marketing",
-                    population: 4000,
-                    completed: 3000,
-                    inProgress: 20,
-                    notStarted: 980,
-                    completionRate: 75,
-                    departments: [
-                        {
-                            name: "Social Media",
-                            population: 2000,
-                            completed: 1500,
-                            inProgress: 10,
-                            notStarted: 490,
-                            completionRate: 75,
-                            teams: []
-                        },
-                        {
-                            name: "Content",
-                            population: 2000,
-                            completed: 1500,
-                            inProgress: 10,
-                            notStarted: 490,
-                            completionRate: 75,
-                            teams: []
-                        }
-                    ]
-                },
-                {
-                    name: "Brand Management",
-                    population: 3186,
-                    completed: 2164,
-                    inProgress: 16,
-                    notStarted: 1006,
-                    completionRate: 68,
-                    departments: [
-                        {
-                            name: "Brand Strategy",
-                            population: 2000,
-                            completed: 1400,
-                            inProgress: 10,
-                            notStarted: 590,
-                            completionRate: 70,
-                            teams: []
-                        },
-                        {
-                            name: "Creative",
-                            population: 1186,
-                            completed: 764,
-                            inProgress: 6,
-                            notStarted: 416,
-                            completionRate: 64,
-                            teams: []
-                        }
-                    ]
-                }
-            ]
-        }
-    ]
 };
 
 // Progress Tracker Functions
@@ -716,21 +412,21 @@ function setupProgressEventListeners() {
 function renderProgressSummary() {
     const data = getCurrentProgressData();
     
-    const totalPopulation = document.getElementById('totalPopulation');
-    const totalCompleted = document.getElementById('totalCompleted');
-    const totalInProgress = document.getElementById('totalInProgress');
-    const totalNotStarted = document.getElementById('totalNotStarted');
-    const overallCompletionRate = document.getElementById('overallCompletionRate');
-    
-    if (totalPopulation) totalPopulation.textContent = data.population.toLocaleString();
-    if (totalCompleted) totalCompleted.textContent = data.completed.toLocaleString();
-    if (totalInProgress) totalInProgress.textContent = data.inProgress.toLocaleString();
-    if (totalNotStarted) totalNotStarted.textContent = data.notStarted.toLocaleString();
-    
-    if (overallCompletionRate) {
-        overallCompletionRate.textContent = data.completionRate + '%';
-        overallCompletionRate.className = 'card-value card-completion-rate';
-    }
+    const setField = (field, value, formatter = (v) => v.toLocaleString()) => {
+        document.querySelectorAll(`[data-progress-field="${field}"]`).forEach(el => {
+            el.textContent = formatter(value);
+        });
+    };
+
+    setField('totalPopulation', data.population);
+    setField('totalCompleted', data.completed);
+    setField('totalInProgress', data.inProgress);
+    setField('totalNotStarted', data.notStarted);
+
+    document.querySelectorAll('[data-progress-field="overallCompletionRate"]').forEach(el => {
+        el.textContent = data.completionRate + '%';
+        el.className = 'card-value card-completion-rate';
+    });
 }
 
 function renderProgressTable() {
@@ -740,24 +436,7 @@ function renderProgressTable() {
     const backButton = document.getElementById('backToParent');
     
     if (!tableBody) return;
-    
-    // Update table title and back button
-    if (progressTrackerState.currentLevel === 'company') {
-        if (tableTitle) tableTitle.textContent = 'TFG Organization Overview';
-        if (backButton) backButton.style.display = 'none';
-    } else if (progressTrackerState.currentLevel === 'segments') {
-        if (tableTitle) tableTitle.textContent = `${progressTrackerState.currentSegment} - Divisions`;
-        if (backButton) backButton.style.display = 'flex';
-    } else if (progressTrackerState.currentLevel === 'divisions') {
-        if (tableTitle) tableTitle.textContent = `${progressTrackerState.currentDivision} - Departments`;
-        if (backButton) backButton.style.display = 'flex';
-    } else if (progressTrackerState.currentLevel === 'departments') {
-        if (tableTitle) tableTitle.textContent = `${progressTrackerState.currentDepartment} - Teams`;
-        if (backButton) backButton.style.display = 'flex';
-    } else if (progressTrackerState.currentLevel === 'teams') {
-        if (tableTitle) tableTitle.textContent = 'Team Details';
-        if (backButton) backButton.style.display = 'flex';
-    }
+
     
     // Update breadcrumbs
     updateBreadcrumbs();
@@ -818,50 +497,52 @@ function renderProgressTable() {
 }
 
 function getCurrentProgressData() {
+    const data = getProgressTrackerData();
     if (progressTrackerState.currentLevel === 'company') {
-        return progressTrackerData.company;
+        return data.company;
     } else if (progressTrackerState.currentLevel === 'segments') {
-        const segment = progressTrackerData.segments.find(s => s.name === progressTrackerState.currentSegment);
-        return segment || progressTrackerData.company;
+        const segment = data.segments.find(s => s.name === progressTrackerState.currentSegment);
+        return segment || data.company;
     } else if (progressTrackerState.currentLevel === 'divisions') {
-        const segment = progressTrackerData.segments.find(s => s.name === progressTrackerState.currentSegment);
+        const segment = data.segments.find(s => s.name === progressTrackerState.currentSegment);
         const division = segment ? segment.divisions.find(d => d.name === progressTrackerState.currentDivision) : null;
-        return division || progressTrackerData.company;
+        return division || data.company;
     } else if (progressTrackerState.currentLevel === 'departments') {
-        const segment = progressTrackerData.segments.find(s => s.name === progressTrackerState.currentSegment);
+        const segment = data.segments.find(s => s.name === progressTrackerState.currentSegment);
         const division = segment ? segment.divisions.find(d => d.name === progressTrackerState.currentDivision) : null;
         const department = division ? division.departments.find(d => d.name === progressTrackerState.currentDepartment) : null;
-        return department || progressTrackerData.company;
+        return department || data.company;
     } else if (progressTrackerState.currentLevel === 'teams') {
-        const segment = progressTrackerData.segments.find(s => s.name === progressTrackerState.currentSegment);
+        const segment = data.segments.find(s => s.name === progressTrackerState.currentSegment);
         const division = segment ? segment.divisions.find(d => d.name === progressTrackerState.currentDivision) : null;
         const department = division ? division.departments.find(d => d.name === progressTrackerState.currentDepartment) : null;
-        return department || progressTrackerData.company;
+        return department || data.company;
     }
-    return progressTrackerData.company;
+    return data.company;
 }
 
 function getTableData() {
+    const data = getProgressTrackerData();
     if (progressTrackerState.currentLevel === 'company') {
-        return progressTrackerData.segments.map(segment => ({
+        return data.segments.map(segment => ({
             ...segment,
             hasChildren: segment.divisions && segment.divisions.length > 0
         }));
     } else if (progressTrackerState.currentLevel === 'segments') {
-        const segment = progressTrackerData.segments.find(s => s.name === progressTrackerState.currentSegment);
+        const segment = data.segments.find(s => s.name === progressTrackerState.currentSegment);
         return segment ? segment.divisions.map(division => ({
             ...division,
             hasChildren: division.departments && division.departments.length > 0
         })) : [];
     } else if (progressTrackerState.currentLevel === 'divisions') {
-        const segment = progressTrackerData.segments.find(s => s.name === progressTrackerState.currentSegment);
+        const segment = data.segments.find(s => s.name === progressTrackerState.currentSegment);
         const division = segment ? segment.divisions.find(d => d.name === progressTrackerState.currentDivision) : null;
         return division ? division.departments.map(department => ({
             ...department,
             hasChildren: department.teams && department.teams.length > 0
         })) : [];
     } else if (progressTrackerState.currentLevel === 'departments') {
-        const segment = progressTrackerData.segments.find(s => s.name === progressTrackerState.currentSegment);
+        const segment = data.segments.find(s => s.name === progressTrackerState.currentSegment);
         const division = segment ? segment.divisions.find(d => d.name === progressTrackerState.currentDivision) : null;
         const department = division ? division.departments.find(d => d.name === progressTrackerState.currentDepartment) : null;
         return department ? department.teams.map(team => ({
@@ -1016,7 +697,7 @@ function renderLeverDetailsOverview() {
 
     container.innerHTML = '';
 
-    leverDetailsData.levers.forEach((lever, leverIndex) => {
+    getLeverDetailsData().levers.forEach((lever, leverIndex) => {
         // Initialize sort state if not exists (default: ascending - lowest first)
         if (!leverSortState[lever.name]) {
             leverSortState[lever.name] = 'asc';
@@ -1177,79 +858,6 @@ function applyCompletionRateColors() {
 }
 
 // ==================== Enterprise Insights Functions ====================
-const businessUnitData = [
-    {
-        name: "Sanlam Investments",
-        cultureIndex: 87.5,
-        responseRate: 96,
-        employeeCount: 850,
-        keyStrength: "Productivity",
-        priorityArea: "Change Agility",
-        trend: "up",
-        sentiment: "positive"
-    },
-    {
-        name: "Sanlam Employee Benefits",
-        cultureIndex: 86.2,
-        responseRate: 96,
-        employeeCount: 680,
-        keyStrength: "Team Effectiveness",
-        priorityArea: "Innovation",
-        trend: "up",
-        sentiment: "positive"
-    },
-    {
-        name: "Sanlam Group Technology",
-        cultureIndex: 84.8,
-        responseRate: 96,
-        employeeCount: 920,
-        keyStrength: "Continuous Development",
-        priorityArea: "Trust & Psychological Safety",
-        trend: "stable",
-        sentiment: "positive"
-    },
-    {
-        name: "Sanlam Corporate",
-        cultureIndex: 82.1,
-        responseRate: 94,
-        employeeCount: 1250,
-        keyStrength: "Customer Centricity",
-        priorityArea: "Collaboration",
-        trend: "up",
-        sentiment: "positive"
-    },
-    {
-        name: "Sanlam Life",
-        cultureIndex: 81.7,
-        responseRate: 94,
-        employeeCount: 2100,
-        keyStrength: "Engagement",
-        priorityArea: "Work-Life Balance",
-        trend: "stable",
-        sentiment: "neutral"
-    },
-    {
-        name: "Santam",
-        cultureIndex: 79.3,
-        responseRate: 93,
-        employeeCount: 3200,
-        keyStrength: "Wellness",
-        priorityArea: "Workload Management",
-        trend: "down",
-        sentiment: "neutral"
-    },
-    {
-        name: "Sanlam Personal Finance",
-        cultureIndex: 76.8,
-        responseRate: 92,
-        employeeCount: 1650,
-        keyStrength: "Development & Growth",
-        priorityArea: "Leadership Support",
-        trend: "down",
-        sentiment: "negative"
-    }
-];
-
 function renderEnterpriseInsights() {
     renderTopPerformingUnits();
     renderUnitsNeedingAttention();
@@ -1259,7 +867,7 @@ function renderEnterpriseInsights() {
 }
 
 function renderTopPerformingUnits() {
-    const topUnits = [...businessUnitData]
+    const topUnits = [...getBusinessUnitData()]
         .sort((a, b) => b.cultureIndex - a.cultureIndex)
         .slice(0, 3);
     
@@ -1286,7 +894,7 @@ function renderTopPerformingUnits() {
 }
 
 function renderUnitsNeedingAttention() {
-    const unitsNeedingAttention = [...businessUnitData]
+    const unitsNeedingAttention = [...getBusinessUnitData()]
         .sort((a, b) => a.cultureIndex - b.cultureIndex)
         .slice(0, 3);
     
@@ -1313,7 +921,7 @@ function renderUnitsNeedingAttention() {
 }
 
 function renderBusinessUnitComparison() {
-    const sortedUnits = [...businessUnitData].sort((a, b) => b.cultureIndex - a.cultureIndex);
+    const sortedUnits = [...getBusinessUnitData()].sort((a, b) => b.cultureIndex - a.cultureIndex);
     const container = document.getElementById('businessUnitTableBody');
     if (!container) return;
     
@@ -1344,7 +952,7 @@ function renderStrategicRecommendations() {
     const recommendations = [
         {
             title: "Focus on Leadership Development",
-            description: "Sanlam Personal Finance and Santam show lower scores in Leadership Support. Implement targeted leadership training programs.",
+            description: "SanlamAllianz and Santam show lower scores in Leadership Support. Implement targeted leadership training programs.",
             priority: "high",
             impact: "High"
         },
@@ -1356,7 +964,7 @@ function renderStrategicRecommendations() {
         },
         {
             title: "Replicate Best Practices",
-            description: "Sanlam Investments and Employee Benefits excel in Productivity and Team Effectiveness. Document and share their practices.",
+            description: "Sanlam Fintech and Sanlam Investment Group excel in Productivity and Team Effectiveness. Document and share their practices.",
             priority: "medium",
             impact: "Medium"
         },
@@ -1391,13 +999,14 @@ function renderStrategicRecommendations() {
 }
 
 function renderKeyMetricsSummary() {
-    const unitsWithHighRisk = businessUnitData.filter(u => u.cultureIndex < 80).length;
-    const unitsExceedingTarget = businessUnitData.filter(u => u.cultureIndex >= 85).length;
-    const avgResponseRate = (businessUnitData.reduce((sum, u) => sum + u.responseRate, 0) / businessUnitData.length).toFixed(1);
-    const highestPerformer = [...businessUnitData].sort((a, b) => b.cultureIndex - a.cultureIndex)[0];
-    const lowestPerformer = [...businessUnitData].sort((a, b) => a.cultureIndex - b.cultureIndex)[0];
+    const data = getBusinessUnitData();
+    const unitsWithHighRisk = data.filter(u => u.cultureIndex < 80).length;
+    const unitsExceedingTarget = data.filter(u => u.cultureIndex >= 85).length;
+    const avgResponseRate = (data.reduce((sum, u) => sum + u.responseRate, 0) / data.length).toFixed(1);
+    const highestPerformer = [...data].sort((a, b) => b.cultureIndex - a.cultureIndex)[0];
+    const lowestPerformer = [...data].sort((a, b) => a.cultureIndex - b.cultureIndex)[0];
     const performanceGap = (highestPerformer.cultureIndex - lowestPerformer.cultureIndex).toFixed(1);
-    const avgCultureIndex = (businessUnitData.reduce((sum, u) => sum + u.cultureIndex, 0) / businessUnitData.length).toFixed(1);
+    const avgCultureIndex = (data.reduce((sum, u) => sum + u.cultureIndex, 0) / data.length).toFixed(1);
     
     const metrics = [
         { 

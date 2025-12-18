@@ -559,8 +559,8 @@ function initializeReportComposition() {
   
   compositionCheckboxes.forEach(checkbox => {
     checkbox.addEventListener('change', function() {
-      // Simple demo - just log the change
-      console.log('Composition checkbox changed:', this.value, this.checked);
+      // Track checkbox state for report generation
+      // In production: Send to report configuration handler
     });
   });
 }

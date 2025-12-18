@@ -91,7 +91,7 @@
   justify-content: space-between;
   align-items: center;
   padding-bottom: 12px;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid var(--color-border-light);
 }
 
 .filter-modal-header h3 {
@@ -127,14 +127,14 @@
   gap: 12px;
   justify-content: flex-end;
   padding-top: 12px;
-  border-top: 1px solid #f0f0f0;
+  border-top: 1px solid var(--color-border-light);
 }
 
 /* Filter Button Styles */
 .filter-modal-btn {
   padding: 10px 16px;
   border-radius: 8px;
-  border: 1px solid #d1d5db;
+  border: 1px solid var(--color-border-light);
   background: var(--color-bg);
   color: var(--color-text);
   font-weight: 500;
@@ -215,7 +215,7 @@
   appearance: none;
   width: 18px;
   height: 18px;
-  border: 2px solid #d1d5db;
+  border: 2px solid var(--color-border-light);
   border-radius: 3px;
   background: var(--color-bg);
   position: relative;
@@ -249,7 +249,7 @@
 .content-tabs {
   display: flex;
   gap: 8px;
-  border-bottom: 2px solid #e5e5e5;
+  border-bottom: 2px solid var(--color-border-light);
 }
 
 .content-tab {
@@ -343,8 +343,8 @@
 
 /* Results Count Card */
 .results-count-card {
-  background: linear-gradient(135deg, #f8fcff 0%, #e8edf5 100%);
-  border: 2px solid rgba(0, 65, 150, 0.15);
+  background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-bg-subtle) 100%);
+  border: 2px solid rgba(0, 117, 201, 0.15);
   border-radius: 12px;
   padding: 18px;
   text-align: center;
@@ -406,8 +406,8 @@
 .count-spinner .spinner {
   width: 20px;
   height: 20px;
-  border: 2px solid rgba(0, 150, 119, 0.2);
-  border-top: 2px solid #009677;
+  border: 2px solid rgba(118, 194, 182, 0.2);
+  border-top: 2px solid var(--brand-secondary-teal);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -452,7 +452,7 @@
 }
 
 .upload-area {
-  border: 2px dashed #e5e5e5;
+  border: 2px dashed var(--color-border-light);
   border-radius: 12px;
   padding: 32px;
   text-align: center;
@@ -496,13 +496,13 @@
 
 .upload-formats {
   font-size: 0.8rem !important;
-  color: #808285 !important;
+  color: var(--color-neutral-warm) !important;
   margin-top: 4px !important;
   font-family: Arial, sans-serif;
 }
 
 .upload-preview {
-  border: 1px solid #e5e5e5;
+  border: 1px solid var(--color-border-light);
   border-radius: 8px;
   padding: 16px;
   background: var(--color-bg);
@@ -610,7 +610,7 @@
 }
 
 .export-field-group.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid var(--color-border-light);
 }
 
 .field-label {
@@ -636,7 +636,7 @@
 .form-input {
   width: 100%;
   padding: 10px 12px;
-  border: 1px solid #d1d5db;
+  border: 1px solid var(--color-border-light);
   border-radius: 6px;
   font-size: 0.9rem;
   font-family: Arial, sans-serif;
@@ -677,49 +677,6 @@
   justify-content: center;
 }
 
-.button-primary {
-  padding: 10px 20px;
-  background: var(--color-primary);
-  color: var(--brand-primary-contrast);
-  border: none;
-  border-radius: 6px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: Arial, sans-serif;
-}
-
-.button-primary:hover {
-  background: var(--color-primary-dark);
-  box-shadow: 0 2px 8px rgba(0, 150, 119, 0.3);
-}
-
-.button-secondary {
-  padding: 10px 20px;
-  background: var(--color-bg);
-  color: var(--color-text);
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: Arial, sans-serif;
-}
-
-.button-secondary:hover {
-  background: var(--color-bg-subtle);
-  border-color: var(--color-primary);
-  color: var(--color-primary);
-}
-
 .btn-close {
   background: none;
   border: none;
@@ -744,7 +701,7 @@
   }
   
   .content-tab {
-    border-bottom: 1px solid #e5e5e5;
+    border-bottom: 1px solid var(--color-border-light);
     border-radius: 0;
     justify-content: flex-start;
     padding: 16px;
@@ -752,7 +709,7 @@
   
   .content-tab.active {
     border-bottom-color: var(--brand-secondary-teal);
-    background-color: rgba(0, 150, 119, 0.1);
+    background-color: rgba(118, 194, 182, 0.1);
   }
   
   .filters-grid {
@@ -781,8 +738,7 @@
     flex-direction: column;
   }
   
-  .upload-actions .button-primary,
-  .upload-actions .button-secondary {
+  .upload-actions .btn-custom {
     width: 100%;
     justify-content: center;
   }

@@ -7,7 +7,7 @@ const commentsAnalysis = (() => {
             text: "I really appreciate the opportunities for career growth and development. The company invests in our learning and provides clear paths for advancement.",
             sentiment: "positive",
             theme: "Career Growth",
-            businessUnit: "Sanlam Corporate",
+            businessUnit: "Sanlam Group Office",
             date: "2026-01-15",
             author: "Employee A"
         },
@@ -16,7 +16,7 @@ const commentsAnalysis = (() => {
             text: "The workload has become unmanageable. I'm constantly working overtime and feel overwhelmed with the amount of tasks assigned.",
             sentiment: "negative",
             theme: "Workload Management",
-            businessUnit: "Sanlam Life",
+            businessUnit: "Sanlam Life & Savings",
             date: "2026-01-14",
             author: "Employee B"
         },
@@ -25,7 +25,7 @@ const commentsAnalysis = (() => {
             text: "Our team works really well together. There's great collaboration and everyone supports each other.",
             sentiment: "positive",
             theme: "Team Collaboration",
-            businessUnit: "Sanlam Investments",
+            businessUnit: "Sanlam Investment Group",
             date: "2026-01-13",
             author: "Employee C"
         },
@@ -34,7 +34,7 @@ const commentsAnalysis = (() => {
             text: "I feel like my contributions aren't recognized. There's no feedback or acknowledgment for good work.",
             sentiment: "negative",
             theme: "Recognition & Rewards",
-            businessUnit: "Sanlam Personal Finance",
+            businessUnit: "Sanlam Fintech",
             date: "2026-01-12",
             author: "Employee D"
         },
@@ -52,7 +52,7 @@ const commentsAnalysis = (() => {
             text: "Leadership needs to be more supportive. Decisions are made without consulting the team and there's little communication.",
             sentiment: "negative",
             theme: "Leadership Support",
-            businessUnit: "Sanlam Employee Benefits",
+            businessUnit: "SanlamAllianz",
             date: "2026-01-10",
             author: "Employee F"
         },
@@ -61,7 +61,7 @@ const commentsAnalysis = (() => {
             text: "I'm satisfied with the current state of things. Nothing particularly stands out as excellent or problematic.",
             sentiment: "neutral",
             theme: "General",
-            businessUnit: "Sanlam Group Technology",
+            businessUnit: "Sanlam Life & Savings",
             date: "2026-01-09",
             author: "Employee G"
         },
@@ -70,7 +70,7 @@ const commentsAnalysis = (() => {
             text: "The recognition programs are fantastic. I feel valued and appreciated for my contributions.",
             sentiment: "positive",
             theme: "Recognition & Rewards",
-            businessUnit: "Sanlam Corporate",
+            businessUnit: "Sanlam Group Office",
             date: "2026-01-08",
             author: "Employee H"
         },
@@ -79,7 +79,7 @@ const commentsAnalysis = (() => {
             text: "Career advancement opportunities are limited. I don't see a clear path forward in my current role.",
             sentiment: "negative",
             theme: "Career Growth",
-            businessUnit: "Sanlam Life",
+            businessUnit: "Sanlam Fintech",
             date: "2026-01-07",
             author: "Employee I"
         },
@@ -88,7 +88,7 @@ const commentsAnalysis = (() => {
             text: "The leadership team is very supportive and provides excellent guidance. They're approachable and listen to concerns.",
             sentiment: "positive",
             theme: "Leadership Support",
-            businessUnit: "Sanlam Investments",
+            businessUnit: "Sanlam Investment Group",
             date: "2026-01-06",
             author: "Employee J"
         }
@@ -101,7 +101,7 @@ const commentsAnalysis = (() => {
         neutral: ["Career Growth", "Team Collaboration", "Work-Life Balance", "Recognition & Rewards", "Leadership Support", "Workload Management", "General", "Policies"]
     };
 
-    const businessUnits = ["Sanlam Corporate", "Sanlam Life", "Sanlam Investments", "Sanlam Personal Finance", "Santam", "Sanlam Employee Benefits", "Sanlam Group Technology"];
+    const businessUnits = ["Sanlam Fintech", "Sanlam Life & Savings", "Santam", "SanlamAllianz", "Sanlam Group Office", "Sanlam Investment Group"];
 
     function generateMockComments(count) {
         const comments = [...mockComments];
@@ -203,21 +203,35 @@ const commentsAnalysis = (() => {
     }
 
     function setupEventListeners() {
-        document.getElementById('searchComments').addEventListener('input', applyFilters);
-        document.getElementById('filterSentiment').addEventListener('change', applyFilters);
-        document.getElementById('filterTheme').addEventListener('change', applyFilters);
-        document.getElementById('filterBusinessUnit').addEventListener('change', applyFilters);
-        document.getElementById('filterDateRange').addEventListener('change', applyFilters);
-        document.getElementById('sortComments').addEventListener('change', applyFilters);
+        const searchEl = document.getElementById('searchComments');
+        const sentimentEl = document.getElementById('filterSentiment');
+        const themeEl = document.getElementById('filterTheme');
+        const businessUnitEl = document.getElementById('filterBusinessUnit');
+        const dateRangeEl = document.getElementById('filterDateRange');
+        const sortEl = document.getElementById('sortComments');
+        
+        if (searchEl) searchEl.addEventListener('input', applyFilters);
+        if (sentimentEl) sentimentEl.addEventListener('change', applyFilters);
+        if (themeEl) themeEl.addEventListener('change', applyFilters);
+        if (businessUnitEl) businessUnitEl.addEventListener('change', applyFilters);
+        if (dateRangeEl) dateRangeEl.addEventListener('change', applyFilters);
+        if (sortEl) sortEl.addEventListener('change', applyFilters);
     }
 
     function applyFilters() {
-        const searchTerm = document.getElementById('searchComments').value.toLowerCase();
-        const sentiment = document.getElementById('filterSentiment').value;
-        const theme = document.getElementById('filterTheme').value;
-        const businessUnit = document.getElementById('filterBusinessUnit').value;
-        const dateRange = document.getElementById('filterDateRange').value;
-        const sortBy = document.getElementById('sortComments').value;
+        const searchEl = document.getElementById('searchComments');
+        const sentimentEl = document.getElementById('filterSentiment');
+        const themeEl = document.getElementById('filterTheme');
+        const businessUnitEl = document.getElementById('filterBusinessUnit');
+        const dateRangeEl = document.getElementById('filterDateRange');
+        const sortEl = document.getElementById('sortComments');
+        
+        const searchTerm = searchEl ? searchEl.value.toLowerCase() : '';
+        const sentiment = sentimentEl ? sentimentEl.value : '';
+        const theme = themeEl ? themeEl.value : '';
+        const businessUnit = businessUnitEl ? businessUnitEl.value : '';
+        const dateRange = dateRangeEl ? dateRangeEl.value : '';
+        const sortBy = sortEl ? sortEl.value : 'newest';
 
         filteredComments = allComments.filter(comment => {
             if (searchTerm && !comment.text.toLowerCase().includes(searchTerm)) return false;
@@ -368,6 +382,8 @@ const commentsAnalysis = (() => {
 
     function renderComments() {
         const container = document.getElementById('commentsList');
+        if (!container) return; // Exit if comments list is not present
+        
         const commentsToShow = filteredComments.slice(0, displayedCount);
         
         if (commentsToShow.length === 0) {
@@ -421,8 +437,11 @@ const commentsAnalysis = (() => {
             `;
         }).join('');
 
-        document.getElementById('commentsShown').textContent = 
-            `Showing ${Math.min(displayedCount, filteredComments.length)} of ${filteredComments.length.toLocaleString()} comments`;
+        const commentsShownEl = document.getElementById('commentsShown');
+        if (commentsShownEl) {
+            commentsShownEl.textContent = 
+                `Showing ${Math.min(displayedCount, filteredComments.length)} of ${filteredComments.length.toLocaleString()} comments`;
+        }
     }
 
     function loadMoreComments() {
@@ -435,7 +454,7 @@ const commentsAnalysis = (() => {
         const container = document.getElementById('insightsContainer');
         
         container.innerHTML = insights.map(insight => `
-            <div class="col-md-4 mb-3">
+            <div class="">
                 <div class="card-custom h-100">
                     <div class="d-flex align-items-center gap-2 mb-2">
                         <i class='bx ${insight.icon} ${insight.iconClass}' style="font-size: 24px;"></i>
@@ -517,11 +536,18 @@ const commentsAnalysis = (() => {
     }
 
     function clearFilters() {
-        document.getElementById('searchComments').value = '';
-        document.getElementById('filterSentiment').value = '';
-        document.getElementById('filterTheme').value = '';
-        document.getElementById('filterBusinessUnit').value = '';
-        document.getElementById('filterDateRange').value = '';
+        const searchEl = document.getElementById('searchComments');
+        const sentimentEl = document.getElementById('filterSentiment');
+        const themeEl = document.getElementById('filterTheme');
+        const businessUnitEl = document.getElementById('filterBusinessUnit');
+        const dateRangeEl = document.getElementById('filterDateRange');
+        
+        if (searchEl) searchEl.value = '';
+        if (sentimentEl) sentimentEl.value = '';
+        if (themeEl) themeEl.value = '';
+        if (businessUnitEl) businessUnitEl.value = '';
+        if (dateRangeEl) dateRangeEl.value = '';
+        
         applyFilters();
     }
 
