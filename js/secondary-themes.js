@@ -43,6 +43,7 @@
         updateInsightsBanner();
         renderRelationshipMap();
         renderSecondaryThemeCards();
+        renderSentimentFlowChart();
         renderCommentsExplorer();
         generateInsights();
     }
@@ -389,6 +390,117 @@
             `;
             
             container.appendChild(card);
+        });
+    }
+
+    function renderSentimentFlowChart() {
+        const ctx = document.getElementById('sentimentFlowChart');
+        if (!ctx) return;
+        
+        const ctxContext = ctx.getContext('2d');
+        
+        const data = {
+            labels: secondaryThemeStats.filter(t => t.count > 0).map(t => t.name),
+            datasets: [
+                {
+                    label: 'Positive',
+                    data: secondaryThemeStats.filter(t => t.count > 0).map(t => t.positivePercent),
+                    backgroundColor: 'rgba(40, 167, 69, 0.8)',
+                    borderColor: '#28a745',
+                    borderWidth: 2,
+                    tension: 0.4
+                },
+                {
+                    label: 'Neutral', 
+                    data: secondaryThemeStats.filter(t => t.count > 0).map(t => t.neutralPercent),
+                    backgroundColor: 'rgba(255, 193, 7, 0.8)',
+                    borderColor: '#ffc107',
+                    borderWidth: 2,
+                    tension: 0.4
+                },
+                {
+                    label: 'Negative',
+                    data: secondaryThemeStats.filter(t => t.count > 0).map(t => t.negativePercent),
+                    backgroundColor: 'rgba(220, 53, 69, 0.8)',
+                    borderColor: '#dc3545',
+                    borderWidth: 2,
+                    tension: 0.4
+                }
+            ]
+        };
+        
+        new Chart(ctxContext, {
+            type: 'line',
+            data: data,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: false
+                    },
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            font: {
+                                family: 'Roboto',
+                                size: 12
+                            },
+                            padding: 15,
+                            usePointStyle: true
+                        }
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        callbacks: {
+                            label: function(context) {
+                                return context.dataset.label + ': ' + context.parsed.y + '%';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        title: {
+                            display: true,
+                            text: 'Percentage (%)',
+                            font: {
+                                family: 'Roboto',
+                                size: 12
+                            }
+                        },
+                        ticks: {
+                            font: {
+                                family: 'Roboto',
+                                size: 11
+                            }
+                        },
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.05)'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            font: {
+                                family: 'Roboto',
+                                size: 11
+                            },
+                            maxRotation: 45,
+                            minRotation: 45
+                        },
+                        grid: {
+                            display: false
+                        }
+                    }
+                },
+                interaction: {
+                    intersect: false,
+                    mode: 'index'
+                }
+            }
         });
     }
 

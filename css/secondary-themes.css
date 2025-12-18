@@ -184,6 +184,17 @@
     overflow-y: auto;
 }
 
+/* Sentiment Flow Chart */
+.sentiment-flow-container {
+    height: 350px;
+    position: relative;
+    padding: 1rem 0;
+}
+
+.sentiment-flow-container canvas {
+    max-height: 100%;
+}
+
 /* Secondary Theme Cards */
 .secondary-theme-card {
     background: white;
