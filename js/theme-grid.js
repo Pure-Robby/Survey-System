@@ -274,7 +274,7 @@
                     <div class="tile-title">${theme.name}</div>
                     <div class="tile-count">${theme.count} comments</div>
                 </div>
-                <div class="tile-icon" style="background: ${theme.color}">
+                <div class="tile-icon" style="--tile-theme-color: ${theme.color};">
                     <span class="material-icons">${theme.icon}</span>
                 </div>
             </div>
@@ -295,11 +295,11 @@
             </div>
             
             <div class="tile-actions">
-                <button class="view-details-btn" data-theme="${theme.id}">
+                <button class="view-details-btn btn-primary-outline" data-theme="${theme.id}">
                     <span class="material-icons">visibility</span>
                     View Details
                 </button>
-                <button class="secondary-themes-btn" data-theme="${theme.id}">
+                <button class="secondary-themes-btn btn-primary" data-theme="${theme.id}">
                     <span class="material-icons">insights</span>
                     Secondary Themes
                 </button>
