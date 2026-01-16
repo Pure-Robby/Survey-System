@@ -4,7 +4,7 @@
     { id: 'reports', href: 'reports.html', icon: 'bx bx-file', label: 'Reports' },
     { id: 'comments', href: 'comments-analysis.html', icon: 'bx bx-message-square-dots', label: 'Comments Analysis' },
     { id: 'progress', href: 'progress-tracker.html', icon: 'bx bx-line-chart', label: 'Progress Tracker' },
-    { id: 'actions', href: 'action-tracker.html', icon: 'bx bx-task', label: 'Action Tracker' },
+    //{ id: 'actions', href: 'action-tracker.html', icon: 'bx bx-task', label: 'Action Tracker' },
     { id: 'users', href: 'user-management.html', icon: 'bx bx-user', label: 'User Management' }
   ];
 
