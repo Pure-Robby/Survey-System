@@ -413,8 +413,10 @@
 
     // Exactly 1 selection across all filters: show the single value next to title
     if (totalCount === 1) {
-      const singleLabel = Object.values(perFilter)[0][0];
-      indicator.textContent = `- ${singleLabel}`;
+      const [singleKey, singleValues] = Object.entries(perFilter)[0];
+      const singleLabel = singleValues[0];
+      const singleFilterName = filterDisplayNames[singleKey] || singleKey;
+      indicator.textContent = `- ${singleFilterName}: ${singleLabel}`;
       return;
     }
 
