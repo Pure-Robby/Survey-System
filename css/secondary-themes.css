@@ -86,27 +86,9 @@
     margin-top: 0.25rem;
 }
 
-.insight-box {
-    background: linear-gradient(135deg, rgba(234, 143, 63, 0.05), rgba(234, 143, 63, 0.02));
-    border-left: 4px solid var(--accent-clay-orange);
-    padding: 1rem 1.25rem;
-    border-radius: var(--radius-md);
-}
-
-.insight-icon {
-    font-size: 20px;
-    color: var(--accent-clay-orange);
-    margin-top: 2px;
-}
-
-.insight-title {
-    color: var(--brand-ink);
-    font-size: var(--font-size-base);
-}
-
-.insight-text {
-    font-size: var(--font-size-sm);
-    color: var(--color-text-muted);
+/* Header insights grid */
+.secondary-theme-insights .card-custom {
+    border: 1px solid var(--color-border-light);
 }
 
 /* Select Wrapper with Icon */

@@ -143,7 +143,6 @@
     gap: 0.5rem;
 }
 
-.view-details-btn,
 .secondary-themes-btn {
     flex: 1;
     padding: 0.625rem 1rem;
@@ -157,17 +156,6 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-}
-
-.view-details-btn {
-    /* background: linear-gradient(135deg, var(--brand-primary), var(--accent-7699)); */
-    /* background:var(--brand-primary);
-    color: white; */
-}
-
-.view-details-btn:hover {
-    /* transform: translateY(-2px); */
-    box-shadow: 0 4px 12px rgba(0, 117, 201, 0.3);
 }
 
 .secondary-themes-btn {
@@ -581,7 +569,6 @@
         flex-direction: column;
     }
     
-    .view-details-btn,
     .secondary-themes-btn {
         width: 100%;
     }

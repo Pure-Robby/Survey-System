@@ -16,6 +16,7 @@
     
     <!-- Custom Styles -->
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/reports.css">
 </head>
 <body>
     <!-- Header -->
@@ -45,10 +46,10 @@
     <!-- Main Content -->
     <div class="container-fluid px-4 pb-5">
         <!-- Action Bar -->
-        <div class="row mb-3">
+        <div class="row mb-4">
             <div class="col-md-12 d-flex justify-content-between align-items-center">
                 <div class="d-flex align-items-center gap-4">
-                    <button class="filter-toggle" onclick="dashboardJS.showOffcanvas('filtersOffcanvas')">
+                    <button class="filter-toggle" onclick="uiOffcanvas.show('filtersOffcanvas')">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M4 6H20M4 12H20M4 18H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
                         </svg>
@@ -57,21 +58,26 @@
                     <h2 class="fs-4 mb-0 fw-bold">Overview</h2>
                 </div>
                 
-
-                <button class="btn-custom btn-primary" onclick="dashboardJS.showModal('exportModal')">
-                    <i class='bx bx-download'></i> Export PDF
-                </button>
+<div>
+    <button class="btn-custom btn-primary" onclick="dashboardJS.showModal('exportModal', 'PPT')">
+        <i class='bx bx-download'></i> Export PPT
+    </button>
+    <button class="btn-custom btn-primary" onclick="dashboardJS.showModal('exportModal', 'PDF')">
+        <i class='bx bx-download'></i> Export PDF
+    </button>
+</div>
+                
             </div>
         </div>
 
         <!-- Data Date -->
-        <div class="row mb-4">
+        <!-- <div class="row mb-4">
             <div class="col-12">
                 <p id="dataDate" class="text-muted mb-0 fs-13">
                     Data correct as of: —
                 </p>
             </div>
-        </div>
+        </div> -->
 
         <div class="results-summary">
             <div class="score-card p-0">
@@ -397,153 +403,114 @@
         <div class="offcanvas-content">
             <div class="offcanvas-header">
                 <h4 class="mb-0"><i class='bx bx-filter'></i> Filters</h4>
-                <button class="btn-icon" onclick="dashboardJS.hideOffcanvas('filtersOffcanvas')" aria-label="Close">
+                <button class="btn-icon" onclick="uiOffcanvas.hide('filtersOffcanvas')" aria-label="Close">
                     <i class='bx bx-x icon-24'></i>
                 </button>
             </div>
             
             <div class="offcanvas-body">
-                <!-- Primary Filters -->
-                <div class="card-custom">
-                    <h5 class="card-header-custom">Primary Filters</h5>
-                    
-                    <div class="filter-grid">
-                        <div class="filter-item">
-                            <label class="form-label form-label-fw">Worker Group</label>
-                            <select class="form-control" id="filter-worker-group">
-                                <option>Select Worker Group</option>
-                                <option>Executive</option>
-                                <option>Management</option>
-                                <option>Staff</option>
-                            </select>
-                            <button class="btn-custom btn-primary mt-2 filter-btn-sm" onclick="document.getElementById('filter-worker-group').selectedIndex = 0">All</button>
-                        </div>
-
-                        <div class="filter-item">
-                            <label class="form-label form-label-fw">Cluster</label>
-                            <select class="form-control" id="filter-cluster">
-                                <option>Select Cluster</option>
-                                <option>Cluster A</option>
-                                <option>Cluster B</option>
-                            </select>
-                            <button class="btn-custom btn-primary mt-2 filter-btn-sm" onclick="document.getElementById('filter-cluster').selectedIndex = 0">All</button>
-                        </div>
-
-                        <div class="filter-item">
-                            <label class="form-label form-label-fw">Business Unit</label>
-                            <select class="form-control" id="filter-business-unit">
-                                <option>Select Business Unit</option>
-                                <option>Operations</option>
-                                <option>Sales</option>
-                                <option>Marketing</option>
-                            </select>
-                            <button class="btn-custom btn-primary mt-2 filter-btn-sm" onclick="document.getElementById('filter-business-unit').selectedIndex = 0">All</button>
-                        </div>
-
-                        <div class="filter-item">
-                            <label class="form-label form-label-fw">Division</label>
-                            <select class="form-control" id="filter-division">
-                                <option>Select Division</option>
-                                <option>Division 1</option>
-                                <option>Division 2</option>
-                            </select>
-                            <button class="btn-custom btn-primary mt-2 filter-btn-sm" onclick="document.getElementById('filter-division').selectedIndex = 0">All</button>
-                        </div>
-
-                        <div class="filter-item">
-                            <label class="form-label form-label-fw">Department</label>
-                            <select class="form-control" id="filter-department">
-                                <option>Select Department</option>
-                                <option>IT</option>
-                                <option>HR</option>
-                                <option>Finance</option>
-                            </select>
-                            <button class="btn-custom btn-primary mt-2 filter-btn-sm" onclick="document.getElementById('filter-department').selectedIndex = 0">All</button>
+                <form class="modern-report-form">
+                    <!-- Primary Filters -->
+                    <div class="report-filters-card">
+                        <h3>Primary Filters</h3>
+                        <div class="filters-grid">
+                            <div class="filter-row">
+                                <label>Worker Group</label>
+                                <button type="button" class="filter-modal-btn" id="openWorkerGroupModal">Select Worker Group</button>
+                                <span class="selected-summary" id="workerGroupSelectedSummary">All</span>
+                            </div>
+                            <div class="filter-row">
+                                <label>Cluster</label>
+                                <button type="button" class="filter-modal-btn" id="openClusterModal">Select Cluster</button>
+                                <span class="selected-summary" id="clusterSelectedSummary">All</span>
+                            </div>
+                            <div class="filter-row">
+                                <label>Business Unit</label>
+                                <button type="button" class="filter-modal-btn" id="openBusinessUnitModal">Select Business Unit</button>
+                                <span class="selected-summary" id="businessUnitSelectedSummary">All</span>
+                            </div>
+                            <div class="filter-row">
+                                <label>Division</label>
+                                <button type="button" class="filter-modal-btn" id="openDivisionsModal">Select Division</button>
+                                <span class="selected-summary" id="divisionsSelectedSummary">All</span>
+                            </div>
+                            <div class="filter-row">
+                                <label>Department</label>
+                                <button type="button" class="filter-modal-btn" id="openDepartmentsModal">Select Department</button>
+                                <span class="selected-summary" id="departmentsSelectedSummary">All</span>
+                            </div>
+                            <div class="filter-row">
+                                <label>Team</label>
+                                <button type="button" class="filter-modal-btn" id="openTeamsModal">Select Team</button>
+                                <span class="selected-summary" id="teamsSelectedSummary">All</span>
+                            </div>
+                            <div class="filter-row">
+                                <label>Country</label>
+                                <button type="button" class="filter-modal-btn" id="openCountryModal">Select Country</button>
+                                <span class="selected-summary" id="countrySelectedSummary">All</span>
+                            </div>
+                            <div class="filter-row">
+                                <label>Region</label>
+                                <button type="button" class="filter-modal-btn" id="openRegionModal">Select Region</button>
+                                <span class="selected-summary" id="regionSelectedSummary">All</span>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Secondary Filters -->
-                <div class="card-custom">
-                    <h5 class="card-header-custom">Secondary Filters</h5>
-                    
-                    <div class="filter-grid">
-                        <div class="filter-item">
-                            <label class="form-label form-label-fw">Job Family</label>
-                            <select class="form-control" id="filter-job-family">
-                                <option>Select Job Family</option>
-                                <option>Technical</option>
-                                <option>Administrative</option>
-                            </select>
-                            <button class="btn-custom btn-primary mt-2 filter-btn-sm" onclick="document.getElementById('filter-job-family').selectedIndex = 0">All</button>
+                    <!-- Secondary Filters -->
+                    <div class="report-filters-card">
+                        <h3>Secondary Filters</h3>
+                        <div class="filters-grid">
+                            <div class="filter-row">
+                                <label>Supervisory Organization</label>
+                                <button type="button" class="filter-modal-btn" id="openSupervisoryOrgModal">Select Supervisory Organization</button>
+                                <span class="selected-summary" id="supervisoryOrgSelectedSummary">All</span>
+                            </div>
+                            <div class="filter-row">
+                                <label>Job Family</label>
+                                <button type="button" class="filter-modal-btn" id="openJobFamilyModal">Select Job Family</button>
+                                <span class="selected-summary" id="jobFamilySelectedSummary">All</span>
+                            </div>
+                            <div class="filter-row">
+                                <label>Worker's Manager</label>
+                                <button type="button" class="filter-modal-btn" id="openWorkersManagerModal">Select Worker's Manager</button>
+                                <span class="selected-summary" id="workersManagerSelectedSummary">All</span>
+                            </div>
+                            <div class="filter-row">
+                                <label>Age</label>
+                                <button type="button" class="filter-modal-btn" id="openAgeBandModal">Select Age</button>
+                                <span class="selected-summary" id="ageBandSelectedSummary">All</span>
+                            </div>
+                            <div class="filter-row">
+                                <label>Gender</label>
+                                <button type="button" class="filter-modal-btn" id="openGenderModal">Select Gender</button>
+                                <span class="selected-summary" id="genderSelectedSummary">All</span>
+                            </div>
+                            <div class="filter-row">
+                                <label>Race</label>
+                                <button type="button" class="filter-modal-btn" id="openRaceModal">Select Race</button>
+                                <span class="selected-summary" id="raceSelectedSummary">All</span>
+                            </div>
+                            <div class="filter-row">
+                                <label>Management Level</label>
+                                <button type="button" class="filter-modal-btn" id="openManagementLevelModal">Select Management Level</button>
+                                <span class="selected-summary" id="managementLevelSelectedSummary">All</span>
+                            </div>
+                            <div class="filter-row">
+                                <label>Performance Level</label>
+                                <button type="button" class="filter-modal-btn" id="openPerformanceLevelModal">Select Performance Level</button>
+                                <span class="selected-summary" id="performanceLevelSelectedSummary">All</span>
+                            </div>
                         </div>
-
-                        <div class="filter-item">
-                            <label class="form-label form-label-fw">Worker's Manager</label>
-                            <select class="form-control" id="filter-manager">
-                                <option>Select Worker's Manager</option>
-                                <option>Manager A</option>
-                                <option>Manager B</option>
-                            </select>
-                            <button class="btn-custom btn-primary mt-2 filter-btn-sm" onclick="document.getElementById('filter-manager').selectedIndex = 0">All</button>
-                        </div>
-
-                        <div class="filter-item">
-                            <label class="form-label form-label-fw">Age</label>
-                            <select class="form-control" id="filter-age">
-                                <option>Select Age</option>
-                                <option>18-25</option>
-                                <option>26-35</option>
-                                <option>36-45</option>
-                                <option>46+</option>
-                            </select>
-                            <button class="btn-custom btn-primary mt-2 filter-btn-sm" onclick="document.getElementById('filter-age').selectedIndex = 0">All</button>
-                        </div>
-
-                        <div class="filter-item">
-                            <label class="form-label form-label-fw">Gender</label>
-                            <select class="form-control" id="filter-gender">
-                                <option>Select Gender</option>
-                                <option>Male</option>
-                                <option>Female</option>
-                                <option>Other</option>
-                            </select>
-                            <button class="btn-custom btn-primary mt-2 filter-btn-sm" onclick="document.getElementById('filter-gender').selectedIndex = 0">All</button>
-                        </div>
-
-                        <div class="filter-item">
-                            <label class="form-label form-label-fw">Race</label>
-                            <select class="form-control" id="filter-race">
-                                <option>Select Race</option>
-                                <option>African</option>
-                                <option>Coloured</option>
-                                <option>Indian</option>
-                                <option>White</option>
-                            </select>
-                            <button class="btn-custom btn-primary mt-2 filter-btn-sm" onclick="document.getElementById('filter-race').selectedIndex = 0">All</button>
-                        </div>
-
-                        <div class="filter-item">
-                            <label class="form-label form-label-fw">Management Level</label>
-                                <select class="form-control max-w-300">
-                                    <option>Select Management Level</option>
-                                    <option>Executive</option>
-                                    <option>Senior Management</option>
-                                    <option>Middle Management</option>
-                                    <option>Junior Management</option>
-                                </select>
-                            <button class="btn-custom btn-primary mt-2 filter-btn-sm" onclick="document.getElementById('filter-management-level').selectedIndex = 0">All</button>
-                        </div>
-
                     </div>
-                </div>
+                </form>
             </div>
 
             <div class="offcanvas-footer">
-                <button class="btn-custom btn-secondary" onclick="dashboardJS.clearFilters()">
+                <button class="btn-custom btn-secondary" onclick="reportFilters.reset()">
                     <i class='bx bx-reset'></i> Clear Filters
                 </button>
-                <button class="btn-custom btn-primary" onclick="dashboardJS.applyFilters()">
+                <button class="btn-custom btn-primary" onclick="reportFilters.apply(); uiOffcanvas.hide('filtersOffcanvas')">
                     <i class='bx bx-check'></i> Apply Selection
                 </button>
             </div>
@@ -561,14 +528,14 @@
                     <label class="form-label">Confirm file name</label>
                     <div class="d-flex align-items-center">
                         <input type="text" class="form-control" id="exportFilename" value="Overall Report" maxlength="50">
-                        <span class="ms-2">.pdf</span>
+                        <span class="ms-2 file-extension">.pdf</span>
                     </div>
                     <small class="text-muted">Max. 50 characters</small>
                 </div>
             </div>
             <div class="modal-footer">
                 <button class="btn-custom btn-secondary" onclick="dashboardJS.hideModal('exportModal')">CANCEL</button>
-                <button class="btn-custom btn-primary" onclick="dashboardJS.exportToPDF(document.getElementById('exportFilename').value); dashboardJS.hideModal('exportModal')">GENERATE REPORT</button>
+                <button class="btn-custom btn-primary export-button" onclick="dashboardJS.exportToPDF(document.getElementById('exportFilename').value); dashboardJS.hideModal('exportModal')">GENERATE REPORT</button>
             </div>
         </div>
     </div>
@@ -593,7 +560,16 @@
     <script src="js/shared/mock-data.js"></script>
     
     <!-- Page Scripts -->
+    <script src="js/shared/offcanvas.js"></script>
+    <script src="js/shared/report-filters.js"></script>
     <script src="js/dashboard.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.reportFilters) {
+                window.reportFilters.init();
+            }
+        });
+    </script>
 </body>
 </html>
 

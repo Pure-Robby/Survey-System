@@ -594,6 +594,34 @@ const commentsAnalysis = (() => {
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     commentsAnalysis.init();
+
+    // Ensure hash navigation (e.g. comments-analysis.html#themesGrid) scrolls correctly
+    // after any JS-driven layout/DOM updates have occurred.
+    const scrollToHashTarget = () => {
+        const { hash } = window.location;
+        if (!hash || hash === '#') return;
+
+        // Decode for safety (e.g. spaces encoded)
+        const targetId = decodeURIComponent(hash.slice(1));
+        if (!targetId) return;
+
+        const el = document.getElementById(targetId);
+        if (!el) return;
+
+        const NAV_OFFSET_PX = 80;
+
+        // Double-rAF to wait for layout; then scroll.
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                const rect = el.getBoundingClientRect();
+                const top = Math.max(0, window.scrollY + rect.top - NAV_OFFSET_PX);
+                window.scrollTo({ top });
+            });
+        });
+    };
+
+    scrollToHashTarget();
+    window.addEventListener('hashchange', scrollToHashTarget);
 });
 
 

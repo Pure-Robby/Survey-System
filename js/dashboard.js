@@ -233,21 +233,29 @@ function updateBulkActions() {
 
 // ==================== Offcanvas Functions ====================
 function showOffcanvas(offcanvasId) {
+    if (window.uiOffcanvas && typeof window.uiOffcanvas.show === 'function') {
+        window.uiOffcanvas.show(offcanvasId);
+        return;
+    }
+
     const offcanvas = document.getElementById(offcanvasId);
     if (offcanvas) {
         offcanvas.classList.add('show');
         document.body.style.overflow = 'hidden';
         
         // Close on backdrop click
-        offcanvas.addEventListener('click', function(e) {
-            if (e.target === offcanvas) {
-                hideOffcanvas(offcanvasId);
-            }
+        offcanvas.addEventListener('click', function (e) {
+            if (e.target === offcanvas) hideOffcanvas(offcanvasId);
         });
     }
 }
 
 function hideOffcanvas(offcanvasId) {
+    if (window.uiOffcanvas && typeof window.uiOffcanvas.hide === 'function') {
+        window.uiOffcanvas.hide(offcanvasId);
+        return;
+    }
+
     const offcanvas = document.getElementById(offcanvasId);
     if (offcanvas) {
         offcanvas.classList.remove('show');
@@ -255,57 +263,34 @@ function hideOffcanvas(offcanvasId) {
     }
 }
 
-function clearFilters() {
-    // Reset all filter dropdowns
-    const filterIds = [
-        'filter-worker-group', 'filter-cluster', 'filter-business-unit',
-        'filter-division', 'filter-department', 'filter-job-family',
-        'filter-manager', 'filter-age', 'filter-gender', 'filter-race'
-    ];
-    
-    filterIds.forEach(id => {
-        const select = document.getElementById(id);
-        if (select) {
-            select.selectedIndex = 0;
-        }
-    });
-    
-    alert('All filters have been cleared.');
-}
-
-function applyFilters() {
-    // Collect selected filter values
-    const filters = {
-        workerGroup: document.getElementById('filter-worker-group').value,
-        cluster: document.getElementById('filter-cluster').value,
-        businessUnit: document.getElementById('filter-business-unit').value,
-        division: document.getElementById('filter-division').value,
-        department: document.getElementById('filter-department').value,
-        jobFamily: document.getElementById('filter-job-family').value,
-        manager: document.getElementById('filter-manager').value,
-        age: document.getElementById('filter-age').value,
-        gender: document.getElementById('filter-gender').value,
-        race: document.getElementById('filter-race').value
-    };
-    
-    // Filter out default/unselected values
-    const activeFilters = Object.entries(filters)
-        .filter(([key, value]) => !value.toLowerCase().startsWith('select'))
-        .map(([key, value]) => value);
-    
-    hideOffcanvas('filtersOffcanvas');
-    
-    if (activeFilters.length > 0) {
-        alert(`Filters applied:\n${activeFilters.join('\n')}\n\nIn production, this would update the dashboard data.`);
-    } else {
-        alert('No filters selected.');
-    }
-}
-
 // ==================== Modal Functions ====================
-function showModal(modalId) {
+function showModal(modalId, documentType) {
     const modal = document.getElementById(modalId);
     if (modal) {
+        // Update modal content based on document type
+        if (documentType && modalId === 'exportModal') {
+            const modalHeader = modal.querySelector('.modal-header');
+            const fileExtension = modal.querySelector('.file-extension');
+            const exportButton = modal.querySelector('.export-button');
+            const filenameInput = document.getElementById('exportFilename');
+            
+            if (documentType === 'PPT') {
+                if (modalHeader) modalHeader.textContent = 'EXPORT PPT REPORT';
+                if (fileExtension) fileExtension.textContent = '.pptx';
+                if (exportButton) {
+                    exportButton.setAttribute('onclick', `dashboardJS.exportToPPT(document.getElementById('exportFilename').value); dashboardJS.hideModal('exportModal')`);
+                }
+                if (filenameInput) filenameInput.value = 'Overall Report';
+            } else if (documentType === 'PDF') {
+                if (modalHeader) modalHeader.textContent = 'EXPORT PDF REPORT';
+                if (fileExtension) fileExtension.textContent = '.pdf';
+                if (exportButton) {
+                    exportButton.setAttribute('onclick', `dashboardJS.exportToPDF(document.getElementById('exportFilename').value); dashboardJS.hideModal('exportModal')`);
+                }
+                if (filenameInput) filenameInput.value = 'Overall Report';
+            }
+        }
+        
         modal.classList.add('show');
         document.body.style.overflow = 'hidden';
     }
@@ -1083,8 +1068,6 @@ window.dashboardJS = {
     hideModal,
     showOffcanvas,
     hideOffcanvas,
-    clearFilters,
-    applyFilters,
     exportToPDF,
     exportToPPT,
     exportToExcel,

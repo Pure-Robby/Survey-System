@@ -1306,7 +1306,7 @@ body {
 .offcanvas-body {
     flex: 1;
     overflow-y: auto;
-    padding: var(--spacing-lg);
+    /* padding: var(--spacing-lg); */
 }
 
 .offcanvas-footer {

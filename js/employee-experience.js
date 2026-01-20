@@ -280,7 +280,7 @@ function showDimensionDetail(dimensionIndex) {
 
     // Render statements
     const container = document.getElementById('statementsContainer');
-    container.innerHTML = `<div class="d-flex align-items-center justify-content-between"><h6 class="mb-0">Statements Breakdown</h6><div class="statement-legend">
+    container.innerHTML = `<div class="d-flex align-items-center justify-content-between"><h6 class="mb-0">Statements Distribution Breakdown</h6><div class="statement-legend">
                         <div class="legend-item">
                             <div class="legend-color" style="background-color: #28a745;"></div>
                             <span>Positive</span>

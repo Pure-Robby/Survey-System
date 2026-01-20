@@ -295,23 +295,17 @@
             </div>
             
             <div class="tile-actions">
-                <button class="view-details-btn btn-primary-outline" data-theme="${theme.id}">
+                <button class="secondary-themes-btn btn-primary" data-theme="${theme.id}">
                     <span class="material-icons">visibility</span>
                     View Details
-                </button>
-                <button class="secondary-themes-btn btn-primary" data-theme="${theme.id}">
-                    <span class="material-icons">insights</span>
-                    Secondary Themes
                 </button>
             </div>
         `;
         
         // Add event listeners
-        const viewBtn = tile.querySelector('.view-details-btn');
         const secondaryBtn = tile.querySelector('.secondary-themes-btn');
         
-        viewBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
+        tile.addEventListener('click', () => {
             openThemeModal(theme, comments);
         });
         

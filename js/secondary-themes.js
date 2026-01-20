@@ -26,6 +26,11 @@
     let allComments = [];
     let primaryTheme = null;
     let secondaryThemeStats = [];
+    let commentsVisibleCount = 12;
+    let isLoadingMoreComments = false;
+
+    const COMMENTS_INITIAL_COUNT = 12;
+    const COMMENTS_PAGE_SIZE = 50;
 
     // Initialize
     document.addEventListener('DOMContentLoaded', init);
@@ -532,7 +537,12 @@
         window.filterCommentsBySecondary();
     }
 
-    window.filterCommentsBySecondary = function() {
+    window.filterCommentsBySecondary = function(options) {
+        const { reset = true } = options || {};
+        if (reset) {
+            commentsVisibleCount = COMMENTS_INITIAL_COUNT;
+        }
+
         const focusTheme = document.getElementById('focusSecondaryTheme').value;
         const focusSentiment = document.getElementById('focusSentiment').value;
         
@@ -557,7 +567,8 @@
             return;
         }
         
-        filteredComments.slice(0, 12).forEach(comment => {
+        const safeVisibleCount = Math.min(commentsVisibleCount, filteredComments.length);
+        filteredComments.slice(0, safeVisibleCount).forEach(comment => {
             const col = document.createElement('div');
             col.className = 'col-md-6 col-lg-4';
             
@@ -583,20 +594,54 @@
             container.appendChild(col);
         });
         
-        if (filteredComments.length > 12) {
+        const remaining = Math.max(0, filteredComments.length - safeVisibleCount);
+        if (remaining > 0) {
+            const loadCount = Math.min(COMMENTS_PAGE_SIZE, remaining);
+            const loadLabel = remaining > COMMENTS_PAGE_SIZE
+                ? `Load ${COMMENTS_PAGE_SIZE} more comments`
+                : `Load ${loadCount} more comments`;
+
             const col = document.createElement('div');
             col.className = 'col-md-6 col-lg-4';
             col.innerHTML = `
                 <div class="comment-card" style="background: var(--color-bg-subtle); border-style: dashed;">
                     <div class="text-center py-4 text-muted">
                         <i class="bx bx-plus" style="font-size: 2rem; display: block; margin-bottom: 0.5rem;"></i>
-                        <strong>+${filteredComments.length - 12} more comments</strong><br>
-                        <small>Adjust filters to explore more</small>
+                        <button
+                            type="button"
+                            class="btn-custom btn-primary justify-content-center"
+                            style="min-width: 220px;"
+                            id="loadMoreSecondaryCommentsBtn"
+                            ${isLoadingMoreComments ? 'disabled' : ''}
+                            onclick="loadMoreSecondaryComments()">
+                            ${isLoadingMoreComments ? 'Loading…' : loadLabel}
+                        </button>
+                        <div class="mt-2">
+                            <small>${remaining.toLocaleString()} remaining</small>
+                        </div>
                     </div>
                 </div>
             `;
             container.appendChild(col);
         }
+    };
+
+    // Simulate lazy-loading more comments (POC)
+    window.loadMoreSecondaryComments = function() {
+        if (isLoadingMoreComments) return;
+        isLoadingMoreComments = true;
+
+        const btn = document.getElementById('loadMoreSecondaryCommentsBtn');
+        if (btn) {
+            btn.disabled = true;
+            btn.textContent = 'Loading…';
+        }
+
+        window.setTimeout(() => {
+            commentsVisibleCount += COMMENTS_PAGE_SIZE;
+            isLoadingMoreComments = false;
+            window.filterCommentsBySecondary({ reset: false });
+        }, 500);
     };
 
     function generateInsights() {
