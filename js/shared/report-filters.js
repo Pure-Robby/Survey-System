@@ -5,16 +5,23 @@
   const filterOptions = {
     organisationalLevel1: [
       { value: 'all', label: 'All' },
-      { value: 'executive', label: 'Executive' },
-      { value: 'management', label: 'Management' },
-      { value: 'staff', label: 'Staff' }
+      { value: 'sanlam', label: 'Sanlam' }
+      // { value: 'management', label: 'Management' },
+      // { value: 'staff', label: 'Staff' }
     ],
     organisationalLevel2: [
-      { value: 'all', label: 'All' },
-      { value: 'operations', label: 'Operations' },
-      { value: 'sales', label: 'Sales' },
-      { value: 'corporate', label: 'Corporate' }
+      { value: 'all', label: 'All Business Units' },
+      { value: 'sa-retail-affluent', label: 'SA Retail Affluent' },
+      { value: 'sanlam-corporate', label: 'Sanlam Corporate' },
+      { value: 'sanlam-group-office', label: 'Sanlam Group Office' },
+      { value: 'sanlam-group-technology', label: 'Sanlam Group Technology' },
+      { value: 'sanlam-investment-group', label: 'Sanlam Investment Group' },
+      { value: 'sanlam-namibia', label: 'Sanlam Namibia' },
+      { value: 'santam', label: 'Santam' },
+      { value: 'sem-sa', label: 'SEM SA' },
+      { value: 'not-specified', label: 'Not Specified' }
     ],
+
     organisationalLevel3: [
       { value: 'all', label: 'All' },
       { value: 'finance', label: 'Finance' },
