@@ -11,16 +11,16 @@
     let currentTheme = null;
     let themeComments = [];
     
-    // Theme definitions with Sanlam color palette and Material Icons
+    // Theme definitions with Sanlam color palette and Boxicons
     const themes = [
-        { id: 'leadership', name: 'Leadership', icon: 'workspace_premium', color: '#0075c9' },
-        { id: 'communication', name: 'Communication', icon: 'forum', color: '#902d98' },
-        { id: 'workload', name: 'Workload', icon: 'bar_chart', color: '#dd009b' },
-        { id: 'culture', name: 'Company Culture', icon: 'favorite', color: '#4fc83c' },
-        { id: 'growth', name: 'Growth & Development', icon: 'trending_up', color: '#ea8f3f' },
-        { id: 'compensation', name: 'Compensation', icon: 'paid', color: '#cb333b' },
-        { id: 'workspace', name: 'Workspace', icon: 'business', color: '#33647e' },
-        { id: 'balance', name: 'Work-Life Balance', icon: 'balance', color: '#825474' }
+        { id: 'leadership', name: 'Leadership', icon: 'bx-award', color: '#0075c9' },
+        { id: 'communication', name: 'Communication', icon: 'bx-chat', color: '#902d98' },
+        { id: 'workload', name: 'Workload', icon: 'bx-bar-chart-alt-2', color: '#dd009b' },
+        { id: 'culture', name: 'Company Culture', icon: 'bx-heart', color: '#4fc83c' },
+        { id: 'growth', name: 'Growth & Development', icon: 'bx-trending-up', color: '#ea8f3f' },
+        { id: 'compensation', name: 'Compensation', icon: 'bx-money', color: '#cb333b' },
+        { id: 'workspace', name: 'Workspace', icon: 'bx-buildings', color: '#33647e' },
+        { id: 'balance', name: 'Work-Life Balance', icon: 'bx-time-five', color: '#825474' }
     ];
 
     // Mock comment data generator
@@ -275,28 +275,28 @@
                     <div class="tile-count">${theme.count} comments</div>
                 </div>
                 <div class="tile-icon" style="--tile-theme-color: ${theme.color};">
-                    <span class="material-icons">${theme.icon}</span>
+                    <i class="bx ${theme.icon}"></i>
                 </div>
             </div>
             
             <div class="sentiment-stats">
                 <div class="sentiment-stat positive">
-                    <span class="material-icons">sentiment_satisfied</span>
+                    <i class="bx bx-smile"></i>
                     <span>${theme.positivePercent}%</span>
                 </div>
                 <div class="sentiment-stat neutral">
-                    <span class="material-icons">sentiment_neutral</span>
+                    <i class="bx bx-meh"></i>
                     <span>${theme.neutralPercent}%</span>
                 </div>
                 <div class="sentiment-stat negative">
-                    <span class="material-icons">sentiment_dissatisfied</span>
+                    <i class="bx bx-sad"></i>
                     <span>${theme.negativePercent}%</span>
                 </div>
             </div>
             
             <div class="tile-actions">
                 <button class="secondary-themes-btn btn-primary" data-theme="${theme.id}">
-                    <span class="material-icons">visibility</span>
+                    <i class="bx bx-show"></i>
                     View Details
                 </button>
             </div>

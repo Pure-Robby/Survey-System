@@ -3,19 +3,19 @@
 // - Does NOT update data; only updates the page title indicator per POC rules.
 (() => {
   const filterOptions = {
-    workerGroup: [
+    organisationalLevel1: [
       { value: 'all', label: 'All' },
       { value: 'executive', label: 'Executive' },
       { value: 'management', label: 'Management' },
       { value: 'staff', label: 'Staff' }
     ],
-    cluster: [
+    organisationalLevel2: [
       { value: 'all', label: 'All' },
       { value: 'operations', label: 'Operations' },
       { value: 'sales', label: 'Sales' },
       { value: 'corporate', label: 'Corporate' }
     ],
-    businessUnit: [
+    organisationalLevel3: [
       { value: 'all', label: 'All' },
       { value: 'finance', label: 'Finance' },
       { value: 'marketing', label: 'Marketing' },
@@ -24,7 +24,7 @@
       { value: 'human-resources', label: 'Human Resources' },
       { value: 'sales', label: 'Sales' }
     ],
-    divisions: [
+    organisationalLevel4: [
       { value: 'all', label: 'All' },
       { value: 'division-1', label: 'Division 1' },
       { value: 'division-2', label: 'Division 2' },
@@ -32,7 +32,7 @@
       { value: 'division-4', label: 'Division 4' },
       { value: 'division-5', label: 'Division 5' }
     ],
-    departments: [
+    organisationalLevel5: [
       { value: 'all', label: 'All' },
       { value: 'customer-service', label: 'Customer Service' },
       { value: 'product-development', label: 'Product Development' },
@@ -43,7 +43,7 @@
       { value: 'risk-management', label: 'Risk Management' },
       { value: 'operations-support', label: 'Operations Support' }
     ],
-    teams: [
+    organisationalLevel6: [
       { value: 'all', label: 'All' },
       { value: 'team-alpha', label: 'Team Alpha' },
       { value: 'team-beta', label: 'Team Beta' },
@@ -51,7 +51,7 @@
       { value: 'team-delta', label: 'Team Delta' },
       { value: 'team-epsilon', label: 'Team Epsilon' }
     ],
-    jobFamily: [
+    organisationalLevel7: [
       { value: 'all', label: 'All' },
       { value: 'administration', label: 'Administration' },
       { value: 'customer-service', label: 'Customer Service' },
@@ -64,7 +64,7 @@
       { value: 'operations', label: 'Operations' },
       { value: 'sales', label: 'Sales' }
     ],
-    workersManager: [
+    organisationalLevel8: [
       { value: 'all', label: 'All' },
       { value: 'manager-1', label: 'Manager 1' },
       { value: 'manager-2', label: 'Manager 2' },
@@ -73,14 +73,21 @@
       { value: 'manager-5', label: 'Manager 5' },
       { value: 'manager-6', label: 'Manager 6' }
     ],
-    race: [
+    organisationalLevel9: [
       { value: 'all', label: 'All' },
-      { value: 'asian', label: 'Asian' },
-      { value: 'black', label: 'Black' },
-      { value: 'coloured', label: 'Coloured' },
-      { value: 'white', label: 'White' },
-      { value: 'other', label: 'Other' },
-      { value: 'prefer-not', label: 'Prefer not to say' }
+      { value: 'south-africa', label: 'South Africa' },
+      { value: 'southern-africa', label: 'Southern Africa' },
+      { value: 'east-africa', label: 'East Africa' },
+      { value: 'west-africa', label: 'West Africa' }
+    ],
+    lineManager: [
+      { value: 'all', label: 'All' },
+      { value: 'manager-1', label: 'Manager 1' },
+      { value: 'manager-2', label: 'Manager 2' },
+      { value: 'manager-3', label: 'Manager 3' },
+      { value: 'manager-4', label: 'Manager 4' },
+      { value: 'manager-5', label: 'Manager 5' },
+      { value: 'manager-6', label: 'Manager 6' }
     ],
     gender: [
       { value: 'all', label: 'All' },
@@ -96,7 +103,22 @@
       { value: '50+', label: '50+' },
       { value: 'unknown', label: 'Unknown' }
     ],
-    managementLevel: [
+    ethnicity: [
+      { value: 'all', label: 'All' },
+      { value: 'asian', label: 'Asian' },
+      { value: 'black', label: 'Black' },
+      { value: 'coloured', label: 'Coloured' },
+      { value: 'white', label: 'White' },
+      { value: 'other', label: 'Other' },
+      { value: 'prefer-not', label: 'Prefer not to say' }
+    ],
+    tenure: [
+      { value: 'all', label: 'All' },
+      { value: 'high-performer', label: 'High Performer' },
+      { value: 'medium-performer', label: 'Medium Performer' },
+      { value: 'low-performer', label: 'Low Performer' }
+    ],
+    jobLevel: [
       { value: 'all', label: 'All' },
       { value: 'executive', label: 'Executive' },
       { value: 'senior-management', label: 'Senior Management' },
@@ -104,93 +126,61 @@
       { value: 'supervisor', label: 'Supervisor' },
       { value: 'individual-contributor', label: 'Individual Contributor' },
       { value: 'entry-level', label: 'Entry Level' }
-    ],
-    performanceLevel: [
-      { value: 'all', label: 'All' },
-      { value: 'high-performer', label: 'High Performer' },
-      { value: 'medium-performer', label: 'Medium Performer' },
-      { value: 'low-performer', label: 'Low Performer' }
-    ],
-    country: [
-      { value: 'all', label: 'All' },
-      { value: 'south-africa', label: 'South Africa' },
-      { value: 'namibia', label: 'Namibia' },
-      { value: 'botswana', label: 'Botswana' }
-    ],
-    supervisoryOrg: [
-      { value: 'all', label: 'All' },
-      { value: 'executive-office', label: 'Executive Office' },
-      { value: 'finance-operations', label: 'Finance & Operations' },
-      { value: 'human-resources', label: 'Human Resources' },
-      { value: 'information-technology', label: 'Information Technology' },
-      { value: 'legal-compliance', label: 'Legal & Compliance' },
-      { value: 'marketing-communications', label: 'Marketing & Communications' },
-      { value: 'sales-distribution', label: 'Sales & Distribution' }
-    ],
-    region: [
-      { value: 'all', label: 'All' },
-      { value: 'south-africa', label: 'South Africa' },
-      { value: 'southern-africa', label: 'Southern Africa' },
-      { value: 'east-africa', label: 'East Africa' },
-      { value: 'west-africa', label: 'West Africa' }
-    ]
+    ]    
   };
 
   const filterDisplayNames = {
-    workerGroup: 'Worker Group',
-    cluster: 'Cluster',
-    businessUnit: 'Business Unit',
-    divisions: 'Division',
-    departments: 'Department',
-    teams: 'Team',
-    country: 'Country',
-    region: 'Region',
-    supervisoryOrg: 'Supervisory Organization',
-    jobFamily: 'Job Family',
-    workersManager: "Worker's Manager",
-    ageBand: 'Age',
+    organisationalLevel1: 'Organisational Level 1',
+    organisationalLevel2: 'Organisational Level 2',
+    organisationalLevel3: 'Organisational Level 3',
+    organisationalLevel4: 'Organisational Level 4',
+    organisationalLevel5: 'Organisational Level 5',
+    organisationalLevel6: 'Organisational Level 6',
+    organisationalLevel7: 'Organisational Level 7',
+    organisationalLevel8: 'Organisational Level 8',
+    organisationalLevel9: 'Organisational Level 9',
+    lineManager: 'Line Manager',
     gender: 'Gender',
-    race: 'Race',
-    managementLevel: 'Management Level',
-    performanceLevel: 'Performance Level'
+    ageBand: 'Age',
+    ethnicity: 'Ethnicity',
+    tenure: 'Tenure',
+    jobLevel: 'Job Level'
   };
 
   const summaryIdMap = {
-    workerGroup: 'workerGroupSelectedSummary',
-    cluster: 'clusterSelectedSummary',
-    businessUnit: 'businessUnitSelectedSummary',
-    divisions: 'divisionsSelectedSummary',
-    departments: 'departmentsSelectedSummary',
-    teams: 'teamsSelectedSummary',
-    country: 'countrySelectedSummary',
-    region: 'regionSelectedSummary',
-    supervisoryOrg: 'supervisoryOrgSelectedSummary',
-    jobFamily: 'jobFamilySelectedSummary',
-    workersManager: 'workersManagerSelectedSummary',
-    ageBand: 'ageBandSelectedSummary',
+    organisationalLevel1: 'organisationalLevel1SelectedSummary',
+    organisationalLevel2: 'organisationalLevel2SelectedSummary',
+    organisationalLevel3: 'organisationalLevel3SelectedSummary',
+    organisationalLevel4: 'organisationalLevel4SelectedSummary',
+    organisationalLevel5: 'organisationalLevel5SelectedSummary',
+    organisationalLevel6: 'organisationalLevel6SelectedSummary',
+    organisationalLevel7: 'organisationalLevel7SelectedSummary',
+    organisationalLevel8: 'organisationalLevel8SelectedSummary',
+    organisationalLevel9: 'organisationalLevel9SelectedSummary',
+    lineManager: 'lineManagerSelectedSummary',
     gender: 'genderSelectedSummary',
-    race: 'raceSelectedSummary',
-    managementLevel: 'managementLevelSelectedSummary',
-    performanceLevel: 'performanceLevelSelectedSummary'
+    ageBand: 'ageBandSelectedSummary',
+    ethnicity: 'ethnicitySelectedSummary',
+    tenure: 'tenureSelectedSummary',
+    jobLevel: 'jobLevelSelectedSummary'
   };
 
   const buttonConfig = {
-    openWorkerGroupModal: { key: 'workerGroup', title: 'Select Worker Group' },
-    openClusterModal: { key: 'cluster', title: 'Select Cluster' },
-    openBusinessUnitModal: { key: 'businessUnit', title: 'Select Business Unit' },
-    openDivisionsModal: { key: 'divisions', title: 'Select Division' },
-    openDepartmentsModal: { key: 'departments', title: 'Select Department' },
-    openTeamsModal: { key: 'teams', title: 'Select Team' },
-    openCountryModal: { key: 'country', title: 'Select Country' },
-    openRegionModal: { key: 'region', title: 'Select Region' },
-    openSupervisoryOrgModal: { key: 'supervisoryOrg', title: 'Select Supervisory Organization' },
-    openJobFamilyModal: { key: 'jobFamily', title: 'Select Job Family' },
-    openWorkersManagerModal: { key: 'workersManager', title: "Select Worker's Manager" },
-    openAgeBandModal: { key: 'ageBand', title: 'Select Age' },
+    openOrganisationalLevel1Modal: { key: 'organisationalLevel1', title: 'Select Organisational Level 1' },
+    openOrganisationalLevel2Modal: { key: 'organisationalLevel2', title: 'Select Organisational Level 2' },
+    openOrganisationalLevel3Modal: { key: 'organisationalLevel3', title: 'Select Organisational Level 3' },
+    openOrganisationalLevel4Modal: { key: 'organisationalLevel4', title: 'Select Organisational Level 4' },
+    openOrganisationalLevel5Modal: { key: 'organisationalLevel5', title: 'Select Organisational Level 5' },
+    openOrganisationalLevel6Modal: { key: 'organisationalLevel6', title: 'Select Organisational Level 6' },
+    openOrganisationalLevel7Modal: { key: 'organisationalLevel7', title: 'Select Organisational Level 7' },
+    openOrganisationalLevel8Modal: { key: 'organisationalLevel8', title: 'Select Organisational Level 8' },
+    openOrganisationalLevel9Modal: { key: 'organisationalLevel9', title: 'Select Organisational Level 9' },
+    openLineManagerModal: { key: 'lineManager', title: 'Select Line Manager' },
     openGenderModal: { key: 'gender', title: 'Select Gender' },
-    openRaceModal: { key: 'race', title: 'Select Race' },
-    openManagementLevelModal: { key: 'managementLevel', title: 'Select Management Level' },
-    openPerformanceLevelModal: { key: 'performanceLevel', title: 'Select Performance Level' }
+    openAgeBandModal: { key: 'ageBand', title: 'Select Age' },
+    openEthnicityModal: { key: 'ethnicity', title: 'Select Ethnicity' },
+    openTenureModal: { key: 'tenure', title: 'Select Tenure' },
+    openJobLevelModal: { key: 'jobLevel', title: 'Select Job Level' }
   };
 
   let currentFilterKey = null;

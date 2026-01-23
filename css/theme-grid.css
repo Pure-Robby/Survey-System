@@ -69,7 +69,7 @@
     transition: all 0.3s ease;
 }
 
-.tile-icon .material-icons {
+.tile-icon i {
     font-size: 24px;
     color: inherit;
 }
@@ -101,7 +101,7 @@
     transition: all 0.2s ease;
 }
 
-.sentiment-stat .material-icons {
+.sentiment-stat i {
     font-size: 18px;
 }
 

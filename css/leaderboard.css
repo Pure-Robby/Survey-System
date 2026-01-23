@@ -50,7 +50,7 @@
     color: var(--lb-text);
 }
 
-.champion-zone-header h3 .material-icons {
+.champion-zone-header h3 i {
     font-size: 2rem;
     color: var(--lb-accent);
 }
@@ -105,7 +105,7 @@
     margin-bottom: 1rem;
 }
 
-.champion-rank .material-icons {
+.champion-rank i {
     font-size: 2rem;
     color: var(--lb-accent);
 }
@@ -206,7 +206,7 @@
     border-radius: var(--radius-sm);
 }
 
-.momentum-indicator .material-icons {
+.momentum-indicator i {
     font-size: 1rem;
 }
 
@@ -407,7 +407,7 @@
     color: var(--lb-muted);
 }
 
-.meta-item .material-icons {
+.meta-item i {
     font-size: 1rem;
 }
 
@@ -548,7 +548,7 @@
         font-size: 1.25rem;
     }
     
-    .champion-rank .material-icons {
+    .champion-rank i {
         font-size: 1.5rem;
     }
     

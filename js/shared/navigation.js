@@ -1,7 +1,7 @@
 (function () {
   const NAV_ITEMS = [
     { id: 'overview', href: 'index.html', icon: 'bx bx-grid-alt', label: 'Overview' },
-    { id: 'reports', href: 'reports.html', icon: 'bx bx-file', label: 'Reports' },
+    // { id: 'reports', href: 'reports.html', icon: 'bx bx-file', label: 'Reports' },
     { id: 'comments', href: 'comments-analysis.html', icon: 'bx bx-message-square-dots', label: 'Comments Analysis' },
     { id: 'progress', href: 'progress-tracker.html', icon: 'bx bx-line-chart', label: 'Progress Tracker' },
     //{ id: 'actions', href: 'action-tracker.html', icon: 'bx bx-task', label: 'Action Tracker' },

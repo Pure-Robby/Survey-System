@@ -16,8 +16,6 @@
     <link rel="stylesheet" href="css/styles.css">
     <!-- Reports Section Styles -->
     <link rel="stylesheet" href="css/reports.css">
-    <!-- Material Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <!-- Header -->
@@ -62,11 +60,11 @@
         <!-- <div class="content-tabs-container mb-0">
             <div class="content-tabs">
                 <button class="content-tab active" data-tab="filters">
-                    <i class="material-icons">filter_list</i>
+                    <i class="bx bx-filter"></i>
                     Filters
                 </button>
                 <button class="content-tab" data-tab="custom-report">
-                    <i class="material-icons">upload_file</i>
+                    <i class="bx bx-upload"></i>
                     Custom Report
                 </button>
             </div>
@@ -183,13 +181,13 @@
                     <div class="upload-section">
                         <div class="upload-area" id="uploadArea">
                             <div class="upload-content">
-                                <i class="material-icons upload-icon">cloud_upload</i>
+                                <i class="bx bx-cloud-upload upload-icon"></i>
                                 <h4>Upload Custom Report</h4>
                                 <p>Drag and drop your file here or click to browse</p>
                                 <p class="upload-formats">Supported formats: XLSX or CSV</p>
                                 <input type="file" id="customReportFile" accept=".xlsx,.csv" style="display: none;">
                                 <button type="button" class="btn-custom btn-primary" id="browseFileBtn">
-                                    <i class="material-icons">folder_open</i>
+                                    <i class="bx bx-folder-open"></i>
                                     Browse Files
                                 </button>
                             </div>
@@ -197,13 +195,13 @@
                         
                         <div class="upload-preview" id="uploadPreview" style="display: none;">
                             <div class="file-info">
-                                <i class="material-icons file-icon">description</i>
+                                <i class="bx bx-file file-icon"></i>
                                 <div class="file-details">
                                     <h5 id="fileName">filename.xlsx</h5>
                                     <p id="fileSize">2.5 MB</p>
                                 </div>
                                 <button type="button" class="btn-close" id="removeFileBtn">
-                                    <i class="material-icons">close</i>
+                                    <i class="bx bx-x"></i>
                                 </button>
                             </div>
                         </div>
@@ -211,7 +209,7 @@
 
                     <div class="upload-actions" id="uploadActions" style="display: none;">
                         <button type="button" class="btn-custom btn-primary" id="processReportBtn">
-                            <i class="material-icons">play_arrow</i>
+                            <i class="bx bx-play"></i>
                             Process Report
                         </button>
                         <button type="button" class="btn-custom btn-secondary" id="cancelUploadBtn">
@@ -289,7 +287,7 @@
                     </div>
                     <div class="results-count-card" id="resultsCountCard">
                         <div class="count-header">
-                            <i class="material-icons">analytics</i>
+                            <i class="bx bx-line-chart"></i>
                             <span>Sample Size</span>
                         </div>
                         <div class="count-display">
@@ -308,7 +306,7 @@
         <!-- Sticky Sample Size Card (appears in bottom corner) -->
         <div id="stickyResultsCard" class="results-count-card sticky-results-card" style="display: none;">
             <div class="count-header">
-                <i class="material-icons">analytics</i>
+                <i class="bx bx-line-chart"></i>
                 <span>Sample Size</span>
             </div>
             <div class="count-display">
@@ -326,23 +324,23 @@
             <h3 class="dimension-label">Generate Reports</h3>
             <div class="report-actions modern-actions justify-content-center">
                 <button type="button" id="viewOnlineReportBtn" class="btn-custom btn-primary">
-                    <i class="material-icons">visibility</i>
+                    <i class="bx bx-show"></i>
                     <span>View Online Report</span>
                 </button>
                 <button type="button" class="btn-custom btn-primary" onclick="showReportComingSoon('Download PowerPoint')">
-                    <i class="material-icons">download</i>
+                    <i class="bx bx-download"></i>
                     <span>Download PowerPoint</span>
                 </button>
                 <button type="button" class="btn-custom btn-primary" onclick="showReportComingSoon('Download PDF')">
-                    <i class="material-icons">picture_as_pdf</i>
+                    <i class="bx bxs-file-pdf"></i>
                     <span>Download PDF</span>
                 </button>
                 <button type="button" class="btn-custom btn-primary" onclick="showReportComingSoon('Generate Infographic')">
-                    <i class="material-icons">image</i>
+                    <i class="bx bx-image"></i>
                     <span>Generate Infographic (PDF)</span>
                 </button>
                 <button type="button" class="btn-custom btn-primary" onclick="showReportComingSoon('Download Comments')">
-                    <i class="material-icons">table_chart</i>
+                    <i class="bx bx-table"></i>
                     <span>Download Comments (Excel)</span>
                 </button>
             </div>
@@ -376,7 +374,7 @@
         <div class="modal-content modal-w-500">
             <div class="modal-header modal-header-center">
                 <div class="modal-icon-circle">
-                    <i class="material-icons">construction</i>
+                    <i class="bx bx-wrench"></i>
                 </div>
                 <h4 class="modal-title-lg">Report Feature Coming Soon</h4>
             </div>

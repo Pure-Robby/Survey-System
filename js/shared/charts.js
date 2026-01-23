@@ -311,10 +311,10 @@ function initializeCharts() {
     }
     
     // eNPS Donut Chart (Dashboard - matching image data)
-    const enpsDonut = document.getElementById('enpsDonut');
-    if (enpsDonut) {
+    const enpsDonutCurrent = document.getElementById('enpsDonutCurrent');
+    if (enpsDonutCurrent) {
         // Get canvas context
-        const ctx = enpsDonut.getContext('2d');
+        const ctx = enpsDonutCurrent.getContext('2d');
         
         // Data matching the provided image
         const data = {
@@ -354,8 +354,63 @@ function initializeCharts() {
                     datalabels: {
                         color: '#fff',
                         font: {
-                            weight: 'normal',
-                            size: 14
+                            weight: 'bold',
+                            size: 12
+                        },
+                        formatter: function(value, context) {
+                            return value + '%';
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    const enpsDonutPrevious = document.getElementById('enpsDonutPrevious');
+    if (enpsDonutPrevious) {
+        // Get canvas context
+        const ctx = enpsDonutPrevious.getContext('2d');
+        
+        // Data matching the provided image
+        const data = {
+            labels: ['Promoters', 'Detractors', 'Passives'],
+            datasets: [{
+                data: [61.45, 24.55, 14.0],
+                backgroundColor: [
+                    '#28a745', // Promoters - green
+                    '#dc3545', // Detractors - red
+                    '#ffc107'  // Passives - yellow
+                ],
+                borderWidth: 0,
+                cutout: '58%'
+            }]
+        };
+        
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: data,
+            plugins: [ChartDataLabels],
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const label = context.label || '';
+                                const value = context.parsed || 0;
+                                return label + ': ' + value + '%';
+                            }
+                        }
+                    },
+                    datalabels: {
+                        color: '#fff',
+                        font: {
+                            weight: 'bold',
+                            size: 12
                         },
                         formatter: function(value, context) {
                             return value + '%';

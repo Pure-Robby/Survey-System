@@ -595,7 +595,7 @@ function updateBreadcrumbs() {
         const separator = index > 0 ? '<span class="breadcrumb-separator">›</span>' : '';
         
         // Add home icon for the top level (company)
-        const homeIcon = index === 0 ? '<i class="material-icons">home</i>' : '';
+        const homeIcon = index === 0 ? '<i class="bx bx-home"></i>' : '';
         
         return `${separator}<span class="breadcrumb-item ${isLast ? 'active' : ''}" 
                        ${!isLast ? `onclick="navigateToBreadcrumb(${index})"` : ''} 

@@ -11,16 +11,16 @@
     const themeName = urlParams.get('name') || 'Theme';
     const themeColor = urlParams.get('color') || '#0075c9';
 
-    // Theme definitions with Material Icons
+    // Theme definitions with Boxicons
     const themes = [
-        { id: 'leadership', name: 'Leadership', icon: 'workspace_premium', color: '#0075c9' },
-        { id: 'communication', name: 'Communication', icon: 'forum', color: '#902d98' },
-        { id: 'workload', name: 'Workload', icon: 'bar_chart', color: '#dd009b' },
-        { id: 'culture', name: 'Company Culture', icon: 'favorite', color: '#4fc83c' },
-        { id: 'growth', name: 'Growth & Development', icon: 'trending_up', color: '#ea8f3f' },
-        { id: 'compensation', name: 'Compensation', icon: 'paid', color: '#cb333b' },
-        { id: 'workspace', name: 'Workspace', icon: 'business', color: '#33647e' },
-        { id: 'balance', name: 'Work-Life Balance', icon: 'balance', color: '#825474' }
+        { id: 'leadership', name: 'Leadership', icon: 'bx-award', color: '#0075c9' },
+        { id: 'communication', name: 'Communication', icon: 'bx-chat', color: '#902d98' },
+        { id: 'workload', name: 'Workload', icon: 'bx-bar-chart-alt-2', color: '#dd009b' },
+        { id: 'culture', name: 'Company Culture', icon: 'bx-heart', color: '#4fc83c' },
+        { id: 'growth', name: 'Growth & Development', icon: 'bx-trending-up', color: '#ea8f3f' },
+        { id: 'compensation', name: 'Compensation', icon: 'bx-money', color: '#cb333b' },
+        { id: 'workspace', name: 'Workspace', icon: 'bx-buildings', color: '#33647e' },
+        { id: 'balance', name: 'Work-Life Balance', icon: 'bx-time-five', color: '#825474' }
     ];
 
     let allComments = [];
@@ -167,8 +167,10 @@
         document.getElementById('totalSecondaryThemes').textContent = secondaryCount;
         
         const themeBadge = document.getElementById('themeBadge');
-        const icon = themeBadge.querySelector('.material-icons');
-        icon.textContent = primaryTheme.icon;
+        const icon = themeBadge.querySelector('.bx');
+        if (icon) {
+            icon.className = `bx ${primaryTheme.icon}`;
+        }
         themeBadge.style.background = `linear-gradient(135deg, ${themeColor}, ${adjustColor(themeColor, -20)})`;
         
         // Populate theme selector dropdown
@@ -368,7 +370,7 @@
             card.innerHTML = `
                 <div class="theme-card-header">
                     <div class="theme-card-title">
-                        <span class="material-icons theme-card-icon" style="color: ${theme.color};">${theme.icon}</span>
+                        <i class="bx ${theme.icon} theme-card-icon" style="color: ${theme.color};"></i>
                         ${theme.name}
                     </div>
                     <div class="connection-strength ${theme.strength.toLowerCase()}">${theme.strength}</div>

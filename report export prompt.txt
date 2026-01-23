@@ -1,0 +1,60 @@
+I have a browser-rendered single long HTML page (no “slides”). I want Export to PPTX and Export to PDF.
+Requirements
+Manual page breaks: authors place markers in the HTML where a new exported page should start, e.g. <div class="export-break"></div> or <div data-export-break></div>.
+PPTX output: true 16:9 slides using PptxGenJS, one exported page per slide, full-bleed image. Use pptx.layout = 'LAYOUT_16x9' and slide.addImage({ data, x:0, y:0, w:10, h:5.625 }).
+PDF output: use jsPDF and mirror the same “pages” as PPT (16:9 page size), one exported page per PDF page, full-bleed image.
+Export should be client-side only. No server.
+Use html2canvas to capture DOM to images.
+The long page is wrapped in a container like #export-root.
+During export, temporarily hide any UI (headers/buttons) that should not appear.
+Handle external images/fonts robustly: useCORS: true, imageTimeout, and ensure images load before capture.
+Keep it production-grade: restore UI state in finally, show progress text, allow cancellation (optional).
+Implementation details to follow
+Force a consistent export width in CSS (e.g. 1280px) on #export-root during export so layout is stable.
+Compute page segments from markers:
+Segment 1 starts at 0
+Each marker’s Y position (relative to #export-root) starts a new segment
+Final segment ends at #export-root.scrollHeight
+Preferred approach: capture once then slice:
+const fullCanvas = await html2canvas(exportRoot, { scale: 2, useCORS: true, backgroundColor: '#fff' })
+For each segment 
+[
+s
+t
+a
+r
+t
+Y
+,
+e
+n
+d
+Y
+)
+[startY,endY), create a new canvas and drawImage the relevant rectangle out of fullCanvas
+Convert each slice to data:image/jpeg;base64,... (quality ~0.85)
+For PPTX: add one slide per slice (full-bleed).
+For PDF: create jsPDF with unit:'pt' and page format:[pageWPt, pageHPt] where points are derived from the CSS export page size:
+pxToPt = px * 72/96
+pageWPt = pxToPt(exportWidthPx)
+pageHPt = pxToPt(exportWidthPx * 9/16) (or use slice height if you pad/crop)
+Decide how to handle segments whose height differs from 16:9:
+Default: scale-to-fit + white padding onto a 16:9 canvas before export so PPT/PDF pages are consistent and nothing is cropped.
+Alternative: crop to 16:9 (only if explicitly requested).
+Deliverables
+Provide a small, clean set of functions (plain JS or TS):
+getBreakSegments(exportRoot): Array<{startY:number,endY:number}>
+captureFullCanvas(exportRoot): Promise<HTMLCanvasElement>
+sliceCanvas(fullCanvas, segments, options): Array<{dataUrl:string, width:number, height:number}>
+exportToPPTX(slices, fileName): Promise<void>
+exportToPDF(slices, fileName): void
+Include the minimal HTML script tags / npm package notes:
+html2canvas
+pptxgenjs
+jspdf
+Include a short example of required markup:
+#export-root wrapper
+.export-break markers
+“Export PPTX / Export PDF” buttons wiring.
+Ensure all state (styles, hidden UI) is restored after export even if errors occur.
+Please generate the code and explain any constants (export width, scale) and how to tune them for quality vs memory.

@@ -151,17 +151,17 @@ function formatNumber(num) {
 function renderMomentumIndicator(delta) {
     if (delta > 0) {
         return `<span class="momentum-indicator momentum-up">
-            <i class="material-icons">arrow_upward</i>
+            <i class="bx bx-up-arrow-alt"></i>
             <span>+${delta}</span>
         </span>`;
     } else if (delta < 0) {
         return `<span class="momentum-indicator momentum-down">
-            <i class="material-icons">arrow_downward</i>
+            <i class="bx bx-down-arrow-alt"></i>
             <span>${delta}</span>
         </span>`;
     } else {
         return `<span class="momentum-indicator momentum-flat">
-            <i class="material-icons">remove</i>
+            <i class="bx bx-minus"></i>
             <span>0</span>
         </span>`;
     }
@@ -180,7 +180,7 @@ function renderChampionZone() {
     const html = `
         <div class="champion-zone-header">
             <h3 class="mb-0">
-                <i class="material-icons">emoji_events</i>
+                <i class="bx bx-trophy"></i>
                 Participation Leaders
             </h3>
             <p class="text-muted mb-0 fs-7">Top performing business units by completion rate</p>
@@ -189,7 +189,7 @@ function renderChampionZone() {
             ${top3.map((unit, index) => `
                 <div class="champion-card ${index === 0 ? 'rank-1' : ''}">
                     <div class="champion-rank">
-                        ${index === 0 ? '<i class="material-icons">emoji_events</i>' : ''}
+                        ${index === 0 ? '<i class="bx bx-trophy"></i>' : ''}
                         <span class="rank-number">#${unit.globalRank}</span>
                     </div>
                     <div class="champion-info">
@@ -237,7 +237,7 @@ function renderBusinessUnitRow(unit) {
                 <h5 class="unit-name">${unit.name}</h5>
                 <div class="unit-meta">
                     <span class="meta-item">
-                        <i class="material-icons">groups</i>
+                        <i class="bx bx-group"></i>
                         ${formatNumber(unit.population)}
                     </span>
                 </div>
@@ -306,7 +306,7 @@ function renderOrgLeaderboard() {
                              aria-expanded="true"
                              aria-controls="${divisionId}">
                             <div class="division-title">
-                                <i class="material-icons chevron">expand_more</i>
+                                <i class="bx bx-chevron-down chevron"></i>
                                 <h4>${division.divisionName}</h4>
                                 <span class="unit-count">${division.businessUnits.length} unit${division.businessUnits.length !== 1 ? 's' : ''}</span>
                             </div>

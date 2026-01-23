@@ -12,9 +12,6 @@
     <!-- Boxicons -->
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     
-    <!-- Material Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    
     <!-- Custom Styles -->
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/secondary-themes.css" />
@@ -60,7 +57,7 @@
                             <select class="form-control form-select-sm" id="themeSelector" onchange="switchTheme()">
                                 <!-- Options will be populated by JavaScript -->
                             </select>
-                            <span class="material-icons select-icon">expand_more</span>
+                            <i class="bx bx-chevron-down select-icon"></i>
                         </div>
                     </div>
                 </div>
@@ -74,7 +71,7 @@
         <div class="secondary-theme-header mt-4 mb-4">
             <div class="d-flex align-items-center gap-3 mb-3">
                 <div class="theme-badge" id="themeBadge">
-                    <span class="material-icons">analytics</span>
+                    <i class="bx bx-bar-chart-alt-2"></i>
                 </div>
                 <div class="flex-grow-1">
                     <h2 class="mb-1">
@@ -97,7 +94,7 @@
                 <div class="col-md-6 col-lg-3">
                     <div class="card-custom h-100">
                         <div class="d-flex align-items-center gap-2 mb-2">
-                            <span class="material-icons icon-warning icon-lg">lightbulb</span>
+                            <i class="bx bx-bulb icon-warning icon-lg"></i>
                             <h6 class="mb-0 fw-semibold">Key Finding</h6>
                         </div>
                         <p class="mb-0 fs-7 text-muted" id="keyInsight">Loading...</p>
@@ -106,7 +103,7 @@
                 <div class="col-md-6 col-lg-3">
                     <div class="card-custom h-100">
                         <div class="d-flex align-items-center gap-2 mb-2">
-                            <span class="material-icons icon-primary icon-lg">search</span>
+                            <i class="bx bx-search icon-primary icon-lg"></i>
                             <h6 class="mb-0 fw-semibold">Pattern Detection</h6>
                         </div>
                         <p class="mb-0 fs-7 text-muted" id="patternInsight">Loading...</p>
@@ -115,7 +112,7 @@
                 <div class="col-md-6 col-lg-3">
                     <div class="card-custom h-100">
                         <div class="d-flex align-items-center gap-2 mb-2">
-                            <span class="material-icons icon-success icon-lg">trending_up</span>
+                            <i class="bx bx-trending-up icon-success icon-lg"></i>
                             <h6 class="mb-0 fw-semibold">Trend Analysis</h6>
                         </div>
                         <p class="mb-0 fs-7 text-muted" id="trendInsight">Loading...</p>
@@ -124,7 +121,7 @@
                 <div class="col-md-6 col-lg-3">
                     <div class="card-custom h-100">
                         <div class="d-flex align-items-center gap-2 mb-2">
-                            <span class="material-icons icon-warning icon-lg">playlist_add_check</span>
+                            <i class="bx bx-list-check icon-warning icon-lg"></i>
                             <h6 class="mb-0 fw-semibold">Recommendations</h6>
                         </div>
                         <p class="mb-0 fs-7 text-muted" id="recommendationInsight">Loading...</p>
@@ -170,7 +167,7 @@
                                 <option value="sentiment">By Sentiment</option>
                                 <option value="alphabetical">Alphabetically</option>
                             </select>
-                            <span class="material-icons select-icon">expand_more</span>
+                            <i class="bx bx-chevron-down select-icon"></i>
                         </div>
                     </div>
                     <div id="secondaryThemesContainer" class="secondary-themes-scrollable">
@@ -202,7 +199,7 @@
                         <select class="form-control form-select-sm" id="focusSecondaryTheme" onchange="filterCommentsBySecondary()">
                             <option value="all">All Secondary Themes</option>
                         </select>
-                        <span class="material-icons select-icon">expand_more</span>
+                        <i class="bx bx-chevron-down select-icon"></i>
                     </div>
                     <div class="select-wrapper">
                         <select class="form-control form-select-sm" id="focusSentiment" onchange="filterCommentsBySecondary()">
@@ -211,7 +208,7 @@
                             <option value="neutral">Neutral</option>
                             <option value="negative">Negative</option>
                         </select>
-                        <span class="material-icons select-icon">expand_more</span>
+                        <i class="bx bx-chevron-down select-icon"></i>
                     </div>
                 </div>
             </div>

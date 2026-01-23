@@ -15,11 +15,6 @@
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet" />
 
-    <!-- Material Icons -->
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet" />
-
     <!-- Custom Styles -->
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/reports.css" />
@@ -69,7 +64,7 @@
           </div>
           <div class="d-flex gap-2">
             <button type="button" class="btn-custom btn-primary" onclick="commentsAnalysis.exportComments()">
-              <i class="material-icons">table_chart</i>
+              <i class="bx bx-table"></i>
               <span>Download Comments (Excel)</span>
             </button>
 
@@ -138,9 +133,9 @@
         <div class="col-lg-4">
           <div class="card-custom h-100">
             <h5 class="card-header-custom">Employee Comments & Sentiment</h5>
-            <div class="d-inline-flex justify-content-center align-items-center px-3 py-2 rounded-4 gap-2 sentiment-question-box mb-3">
-              <h6 class="fw-semibold fs-7 mb-0">Question text:</h6>
-              <p class="mb-0 fs-7">Free-text question text to be added here.</p>
+            <div class="sentiment-question-box px-3 py-2 rounded-4 gap-2 mb-3">
+              <h6 class="fw-semibold fs-7 mb-1 flex-shrink-0">Question text:</h6>
+              <p class="mb-0 fs-7 lh-sm">What could help improve your feedback and sentiment before the next survey?</p>
           </div>
             <div class="d-flex justify-content-center align-items-center gap-4">
               <div class="donut-wrap position-relative">
@@ -269,124 +264,7 @@
       
     </div>
 
-    <!-- Filters Offcanvas -->
-    <div class="offcanvas-backdrop" id="filtersOffcanvas">
-      <div class="offcanvas-content">
-        <div class="offcanvas-header">
-          <h4 class="mb-0"><i class='bx bx-filter'></i> Filters</h4>
-          <button class="btn-icon" onclick="uiOffcanvas.hide('filtersOffcanvas')" aria-label="Close">
-            <i class='bx bx-x icon-24'></i>
-          </button>
-        </div>
-        
-        <div class="offcanvas-body">
-          <form class="modern-report-form">
-            <!-- Primary Filters -->
-            <div class="report-filters-card">
-              <h3>Primary Filters</h3>
-              <div class="filters-grid">
-                <div class="filter-row">
-                  <label>Worker Group</label>
-                  <button type="button" class="filter-modal-btn" id="openWorkerGroupModal">Select Worker Group</button>
-                  <span class="selected-summary" id="workerGroupSelectedSummary">All</span>
-                </div>
-                <div class="filter-row">
-                  <label>Cluster</label>
-                  <button type="button" class="filter-modal-btn" id="openClusterModal">Select Cluster</button>
-                  <span class="selected-summary" id="clusterSelectedSummary">All</span>
-                </div>
-                <div class="filter-row">
-                  <label>Business Unit</label>
-                  <button type="button" class="filter-modal-btn" id="openBusinessUnitModal">Select Business Unit</button>
-                  <span class="selected-summary" id="businessUnitSelectedSummary">All</span>
-                </div>
-                <div class="filter-row">
-                  <label>Division</label>
-                  <button type="button" class="filter-modal-btn" id="openDivisionsModal">Select Division</button>
-                  <span class="selected-summary" id="divisionsSelectedSummary">All</span>
-                </div>
-                <div class="filter-row">
-                  <label>Department</label>
-                  <button type="button" class="filter-modal-btn" id="openDepartmentsModal">Select Department</button>
-                  <span class="selected-summary" id="departmentsSelectedSummary">All</span>
-                </div>
-                <div class="filter-row">
-                  <label>Team</label>
-                  <button type="button" class="filter-modal-btn" id="openTeamsModal">Select Team</button>
-                  <span class="selected-summary" id="teamsSelectedSummary">All</span>
-                </div>
-                <div class="filter-row">
-                  <label>Country</label>
-                  <button type="button" class="filter-modal-btn" id="openCountryModal">Select Country</button>
-                  <span class="selected-summary" id="countrySelectedSummary">All</span>
-                </div>
-                <div class="filter-row">
-                  <label>Region</label>
-                  <button type="button" class="filter-modal-btn" id="openRegionModal">Select Region</button>
-                  <span class="selected-summary" id="regionSelectedSummary">All</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Secondary Filters -->
-            <div class="report-filters-card">
-              <h3>Secondary Filters</h3>
-              <div class="filters-grid">
-                <div class="filter-row">
-                  <label>Supervisory Organization</label>
-                  <button type="button" class="filter-modal-btn" id="openSupervisoryOrgModal">Select Supervisory Organization</button>
-                  <span class="selected-summary" id="supervisoryOrgSelectedSummary">All</span>
-                </div>
-                <div class="filter-row">
-                  <label>Job Family</label>
-                  <button type="button" class="filter-modal-btn" id="openJobFamilyModal">Select Job Family</button>
-                  <span class="selected-summary" id="jobFamilySelectedSummary">All</span>
-                </div>
-                <div class="filter-row">
-                  <label>Worker's Manager</label>
-                  <button type="button" class="filter-modal-btn" id="openWorkersManagerModal">Select Worker's Manager</button>
-                  <span class="selected-summary" id="workersManagerSelectedSummary">All</span>
-                </div>
-                <div class="filter-row">
-                  <label>Age</label>
-                  <button type="button" class="filter-modal-btn" id="openAgeBandModal">Select Age</button>
-                  <span class="selected-summary" id="ageBandSelectedSummary">All</span>
-                </div>
-                <div class="filter-row">
-                  <label>Gender</label>
-                  <button type="button" class="filter-modal-btn" id="openGenderModal">Select Gender</button>
-                  <span class="selected-summary" id="genderSelectedSummary">All</span>
-                </div>
-                <div class="filter-row">
-                  <label>Race</label>
-                  <button type="button" class="filter-modal-btn" id="openRaceModal">Select Race</button>
-                  <span class="selected-summary" id="raceSelectedSummary">All</span>
-                </div>
-                <div class="filter-row">
-                  <label>Management Level</label>
-                  <button type="button" class="filter-modal-btn" id="openManagementLevelModal">Select Management Level</button>
-                  <span class="selected-summary" id="managementLevelSelectedSummary">All</span>
-                </div>
-                <div class="filter-row">
-                  <label>Performance Level</label>
-                  <button type="button" class="filter-modal-btn" id="openPerformanceLevelModal">Select Performance Level</button>
-                  <span class="selected-summary" id="performanceLevelSelectedSummary">All</span>
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-
-        <div class="offcanvas-footer">
-          <button class="btn-custom btn-secondary" onclick="reportFilters.reset()">
-            <i class='bx bx-reset'></i> Clear Filters
-          </button>
-          <button class="btn-custom btn-primary" onclick="reportFilters.apply(); uiOffcanvas.hide('filtersOffcanvas')">
-            <i class='bx bx-check'></i> Apply Selection
-          </button>
-        </div>
-      </div>
-    </div>
+    <!-- Filters Offcanvas is injected by js/shared/filters-offcanvas.js -->
 
     <!-- Theme Details Modal -->
     <div class="modal-overlay" id="modalOverlay">
@@ -462,10 +340,10 @@
 
         <div class="modal-footer">
           <button class="btn-custom btn-secondary" onclick="exportThemeData()">
-            <i class="material-icons">table_chart</i> Export CSV
+            <i class="bx bx-table"></i> Export CSV
           </button>
           <button class="btn-custom btn-primary" onclick="openSecondaryThemeExplorer()" style="background: linear-gradient(135deg, #28a745, #20883b);">
-            <i class="material-icons">insights</i> Explore Secondary Themes
+            <i class="bx bx-bulb"></i> Explore Secondary Themes
           </button>
         </div>
       </div>
@@ -494,13 +372,7 @@
     <script src="js/shared/mock-data.js"></script>
     <script src="js/shared/offcanvas.js"></script>
     <script src="js/shared/report-filters.js"></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        if (window.reportFilters) {
-          window.reportFilters.init();
-        }
-      });
-    </script>
+    <script src="js/shared/filters-offcanvas.js"></script>
     
     <!-- Page Scripts -->
     <script src="js/pin-comments.js"></script>
