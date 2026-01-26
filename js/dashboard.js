@@ -317,10 +317,20 @@ function exportToPDF(filename = 'report') {
 /**
  * Export dashboard data to PowerPoint
  * @param {string} filename - Name of the PowerPoint file
- * Production: Implement server-side PowerPoint generation or use a library like PptxGenJS
  */
 function exportToPPT(filename = 'report') {
-    alert(`PowerPoint Export: ${filename}.pptx\n\nIn production, this would generate a PowerPoint presentation.`);
+    if (typeof window.exportDashboardToPptInternal === 'function') {
+        window.exportDashboardToPptInternal({
+            filename: `${filename}.pptx`,
+            scale: 2,
+            slideWIn: 13.33,
+            slideHIn: 7.5,
+            animationWaitMs: 700
+        });
+    } else {
+        console.error('Export function not available. Make sure exporter.js is loaded.');
+        alert('Export function not available. Please contact support.');
+    }
 }
 
 /**
@@ -717,10 +727,10 @@ function renderLeverDetailsOverview() {
         const sortHint = sortOrder === 'asc' ? 'Lowest to Highest' : 'Highest to Lowest';
         
         leverCard.innerHTML = `
-            <div class="lever-detail-header" style="cursor: pointer;" onclick="toggleLeverSort('${lever.name}')" title="Click to sort by score">
+            <div class="lever-detail-header style="cursor: pointer;" onclick="toggleLeverSort('${lever.name}')" title="Click to sort by score">
                 <div style="display: flex; align-items: center; justify-content: space-between;">
                     <span>${lever.name}</span>
-                    <i class='bx ${sortIcon}' style="font-size: 18px; opacity: 0.8;"></i>
+                    <i class='bx ${sortIcon} no-export' style="font-size: 18px; opacity: 0.8;"></i>
                 </div>
             </div>
             <div class="lever-detail-body">

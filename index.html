@@ -15,7 +15,8 @@
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     
     <!-- Custom Styles -->
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="/css/styles.css">   
+
     <link rel="stylesheet" href="css/reports.css">
 </head>
 <body>
@@ -28,11 +29,11 @@
                     <img src="assets/logo.png" alt="Logo" class="logo-height">
                     <div>
                         <h1 class="page-title mb-0">2026 Culture Measurement</h1>
-                        <p class="page-subtitle mb-0">Generate customised reports with organisation and demographic filters</p>
+                        <p class="page-subtitle mb-0 no-export">Generate customised reports with organisation and demographic filters</p>
                     </div>
                 </div>
                 
-                <div class="col-md-2 text-end">
+                <div class="col-md-2 text-end no-export">
                     <span class="text-muted me-3">Hi, Pure Survey</span>
                     <a href="#" class="text-decoration-none">Logout</a>
                 </div>
@@ -41,7 +42,23 @@
     </div>
 
     <!-- Navigation -->
-    <div class="nav-tabs-custom" data-active-nav="overview"></div>
+    <div class="nav-tabs-custom no-export" data-active-nav="overview"></div>
+
+    <!-- Export Cover Page (Hidden, only visible during export) -->
+    <div class="export-cover-page" style="display: none;">
+        <div class="cover-background"></div>
+        <div class="cover-title-overlay">
+            <h1 class="cover-report-title"></h1>
+        </div>
+    </div>
+
+    <!-- Export Filters Page (Hidden, only visible during export) -->
+    <div class="export-filters-page" style="display: none;">
+        <h2 class="filters-page-title">APPLIED FILTERS</h2>
+        <div class="filters-summary-list" id="exportFiltersGrid">
+            <!-- Will be populated dynamically with filter data -->
+        </div>
+    </div>
 
     <!-- Main Content -->
     <div class="container-fluid px-4 pb-5">
@@ -49,7 +66,7 @@
         <div class="row mb-4">
             <div class="col-md-12 d-flex justify-content-between align-items-center">
                 <div class="d-flex align-items-center gap-4">
-                    <button class="filter-toggle" onclick="uiOffcanvas.show('filtersOffcanvas')">
+                    <button class="filter-toggle no-export" onclick="uiOffcanvas.show('filtersOffcanvas')">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M4 6H20M4 12H20M4 18H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
                         </svg>
@@ -58,7 +75,7 @@
                     <h2 class="fs-4 mb-0 fw-bold">Overview</h2>
                 </div>
                 
-                <div>
+                <div class="no-export">
                     <button class="btn-custom btn-primary" onclick="dashboardJS.showModal('exportModal', 'PPT')">
                         <i class='bx bx-download'></i> Export PPT
                     </button>
@@ -134,7 +151,7 @@
         </div>
 
         <!-- Lever Details Overview Section -->
-        <div class="row mb-4">
+        <div class="row mb-4 no-export">
             <div class="col-12">
                 <h3 class="fs-5 fw-bold mb-2">Culture Framework Overview</h3>
                 <p class="text-muted mb-0">Explore the dimensions that make up each lever of our culture framework</p>
@@ -144,6 +161,8 @@
         <div class="lever-details-overview mb-5" id="leverDetailsOverview">
             <!-- Lever detail cards will be rendered here by JavaScript -->
         </div>
+
+        <div data-export-break></div>
 
          <!--Flight Risk & eNPS section-->
         <div class="row mb-5">
@@ -344,7 +363,7 @@
                 <div class="card-custom h-100 d-flex flex-column">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h5 class="card-header-custom mb-0">Employee Sentiment Themes</h5>
-                        <a href="./comments-analysis.html" class="text-decoration-none text-primary">View details <i class='bx bx-chevron-right'></i></a>
+                        <a href="./comments-analysis.html" class="text-decoration-none text-primary no-export">View details <i class='bx bx-chevron-right'></i></a>
                     </div>
                     
                     <div class="row flex-grow-1 align-items-stretch" style="min-height: 0;">
@@ -375,6 +394,8 @@
                 </div>
             </div>
         </div>
+
+        <div data-export-break></div>
 
         <!-- Enterprise Insights Section -->
         <div class="row mb-3">
@@ -441,6 +462,8 @@
             </div>
         </div>
 
+        <div data-export-break></div>
+
         <div class="row mb-4">
             <!-- Strategic Recommendations -->
             <div class="col-lg-6 mb-4">
@@ -496,9 +519,9 @@
     </div>
 
     <!-- Footer -->
-    <div class="text-center py-3 bg-white border-top">
+    <footer class="page-footer text-center py-3 bg-white border-top">
         <p class="mb-0 text-muted fs-7">Copyright © Pure Survey (Pty) Ltd. Rights Reserved 2025.</p>
-    </div>
+    </footer>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -506,6 +529,12 @@
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+
+    <!-- html2canvas -->
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+    <!-- PptxGenJS (bundle build for browsers) -->
+    <script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.11.0/dist/pptxgen.bundle.js"></script>
     
     <!-- Shared Components -->
     <script src="js/shared/navigation.js"></script>
@@ -519,6 +548,9 @@
     <script src="js/shared/report-filters.js"></script>
     <script src="js/shared/filters-offcanvas.js"></script>
     <script src="js/dashboard.js"></script>
+
+    <!-- your exporter -->
+    <script src="js/exporter.js"></script>
 </body>
 </html>
 

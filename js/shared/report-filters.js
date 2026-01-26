@@ -532,7 +532,10 @@
     reset,
     apply,
     getState,
-    // exposed for debugging/demo only
+    getAppliedFilters: computeAppliedSelections,
+    filterDisplayNames: filterDisplayNames,
+    filterOptions: filterOptions,
+    selectedFilters: selectedFilters,
     _updateTitleIndicator: updateTitleIndicator
   });
 })();

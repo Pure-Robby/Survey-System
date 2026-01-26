@@ -710,7 +710,7 @@ body {
 }
 
 .score-card:nth-child(5) {
-    background: linear-gradient(135deg, var(--accent-apple-green) 0%, color-mix(in srgb, var(--accent-apple-green) 70%, black) 100%);
+    background: linear-gradient(135deg, var(--accent-apple-green) 0%, #378c2a 100%);
 }
 
 .score-card:nth-child(6) {
@@ -799,7 +799,7 @@ body {
 }
 
 .btn-success:hover {
-    background-color: color-mix(in srgb, var(--color-positive) 80%, black);
+    background-color: #208637;
 }
 
 .btn-danger {
@@ -808,7 +808,7 @@ body {
 }
 
 .btn-danger:hover {
-    background-color: color-mix(in srgb, var(--color-negative) 80%, black);
+    background-color: #b02a37;
 }
 
 .btn-secondary {
@@ -817,7 +817,7 @@ body {
 }
 
 .btn-secondary:hover {
-    background-color: color-mix(in srgb, var(--color-darker-grey) 80%, black);
+    background-color: #98a0aa;
 }
 
 .btn-outline {
@@ -951,7 +951,7 @@ body {
 
 .table-custom tbody tr.selected {
     border-left: 4px solid var(--color-primary);
-    background-color: color-mix(in srgb, var(--brand-primary) 10%, white);
+    background-color: #e6f1fa;
 }
 
 /* ==================== Badges ==================== */
@@ -966,8 +966,8 @@ body {
 }
 
 .badge-success {
-    background-color: color-mix(in srgb, var(--color-positive) 20%, white);
-    color: color-mix(in srgb, var(--color-positive) 70%, black);
+    background-color: #d4edda;
+    color: #1c7530;
 }
 
 .badge-success::before {
@@ -977,8 +977,8 @@ body {
 }
 
 .badge-danger {
-    background-color: color-mix(in srgb, var(--color-negative) 20%, white);
-    color: color-mix(in srgb, var(--color-negative) 70%, black);
+    background-color: #f8d7da;
+    color: #9a2530;
 }
 
 .badge-danger::before {
@@ -988,18 +988,18 @@ body {
 }
 
 .badge-warning {
-    background-color: color-mix(in srgb, var(--color-neutral) 20%, white);
-    color: color-mix(in srgb, var(--color-neutral) 70%, black);
+    background-color: #fff3cd;
+    color: #b28705;
 }
 
 .badge-info {
-    background-color: color-mix(in srgb, var(--brand-secondary-teal) 20%, white);
-    color: color-mix(in srgb, var(--brand-secondary-teal) 70%, black);
+    background-color: #e4f3f0;
+    color: #53887f;
 }
 
 .badge-primary {
-    background-color: color-mix(in srgb, var(--brand-primary) 20%, white);
-    color: color-mix(in srgb, var(--brand-primary) 70%, black);
+    background-color: #cce3f4;
+    color: #00528d;
 }
 
 /* ==================== Progress Bars ==================== */
@@ -1040,6 +1040,8 @@ body {
 
 .circular-progress svg {
     transform: rotate(-90deg);
+    width: 150px;
+    height: 150px;
 }
 
 .circular-progress-bg {
@@ -1087,6 +1089,8 @@ body {
 
 .donut-chart svg {
     transform: rotate(-90deg);
+    width: 250px;
+    height: 250px;
 }
 
 .donut-segment {
@@ -1630,7 +1634,7 @@ body {
 }
 
 .card-icon-green {
-    background: linear-gradient(135deg, var(--color-positive), color-mix(in srgb, var(--color-positive) 70%, black));
+    background: linear-gradient(135deg, var(--color-positive), #1c7530);
 }
 
 .card-icon-orange {
@@ -1638,7 +1642,7 @@ body {
 }
 
 .card-icon-grey {
-    background: linear-gradient(135deg, var(--color-darker-grey), color-mix(in srgb, var(--color-darker-grey) 70%, black));
+    background: linear-gradient(135deg, var(--color-darker-grey), #858c94);
 }
 
 .card-icon-purple {
@@ -2021,7 +2025,7 @@ body {
 }
 
 .lever-detail-card:nth-child(3) .lever-detail-header {
-    background: linear-gradient(135deg, var(--accent-apple-green) 0%, color-mix(in srgb, var(--accent-apple-green) 70%, black) 100%);
+    background: linear-gradient(135deg, var(--accent-apple-green) 0%, #378c2a 100%);
 }
 
 .lever-detail-card:nth-child(4) .lever-detail-header {
@@ -2498,18 +2502,18 @@ body {
 }
 
 .priority-high {
-    background-color: color-mix(in srgb, var(--color-negative) 15%, white);
-    color: color-mix(in srgb, var(--color-negative) 85%, black);
+    background-color: #fae1e3;
+    color: #bb2d3b;
 }
 
 .priority-medium {
-    background-color: color-mix(in srgb, var(--accent-clay-orange) 15%, white);
-    color: color-mix(in srgb, var(--accent-clay-orange) 85%, black);
+    background-color: #fceee2;
+    color: #c77a36;
 }
 
 .priority-low {
-    background-color: color-mix(in srgb, var(--brand-primary) 15%, white);
-    color: color-mix(in srgb, var(--brand-primary) 85%, black);
+    background-color: #d9eaf7;
+    color: #0063ab;
 }
 
 .action-card-description {
@@ -2579,7 +2583,7 @@ body {
 }
 
 .action-column.drag-over {
-    background-color: color-mix(in srgb, var(--brand-primary) 10%, white);
+    background-color: #e6f1fa;
     border: 2px dashed var(--color-primary);
 }
 
@@ -2645,7 +2649,7 @@ body {
 }
 
 .user-action-btn-edit:hover {
-    background-color: color-mix(in srgb, var(--brand-secondary-teal) 85%, black);
+    background-color: #64a59b;
 }
 
 .user-action-btn-delete {
@@ -2654,7 +2658,7 @@ body {
 }
 
 .user-action-btn-delete:hover {
-    background-color: color-mix(in srgb, var(--color-negative) 85%, black);
+    background-color: #bb2d3b;
 }
 
 .footer-text-small {
@@ -2973,3 +2977,159 @@ body {
     color: var(--color-primary);
 }
 
+/* Everything inside export mode */
+.export-mode-root {
+    /* avoid animations / spinners shifting during capture */
+    scroll-behavior: auto;
+  }
+
+  .export-mode-root * {
+    animation: none !important;
+    transition: none !important;
+    caret-color: transparent !important;
+  }
+  
+  .export-mode-root .no-export {
+    display: none !important;
+  }
+  
+/* Make fixed/sticky behave like normal flow in export */
+.export-mode-root .fixed,
+.export-mode-root .sticky,
+.export-mode-root [style*="position: fixed"],
+.export-mode-root [style*="position:sticky"],
+.export-mode-root [style*="position: sticky"] {
+  position: static !important;
+}
+  
+  /* Optional: remove shadows that look weird in screenshots */
+  /* .export-mode-root .card {
+    box-shadow: none;
+  } */
+  
+ 
+
+  .export-mode-root .lever-detail-card {
+    height: auto;
+}
+
+  .export-mode-root .lever-detail-card:nth-child(2) .dimension-list-item {
+    padding: var(--spacing-sm) var(--spacing-md);
+}
+
+.export-mode-root .lever-detail-card:nth-child(2) .dimension-name-text {
+    /* font-size: 0.9rem; */
+    line-height: 1.3;
+}
+
+.export-mode-root .dimension-statements-badge {
+    font-size: var(--font-size-base, 0.875rem);
+    color: var(--color-text-light);
+    font-weight: 400;
+}
+
+.export-mode-root .dimension-score-badge {
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: var(--primary-color);
+    text-align: right;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.export-mode-root .mb-5 {
+    margin-bottom: 16px !important;
+}
+
+.export-mode-root .lever-details-overview {
+    margin-bottom: 0 !important;
+}
+
+[data-export-break] {
+    height: 0;
+    margin-bottom: 2rem; /* Add consistent spacing after each break */
+}
+
+/* ========== Export Cover Page ========== */
+.export-cover-page {
+    position: relative;
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+}
+
+.cover-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../assets/cover-background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.cover-title-overlay {
+    position: absolute;
+    top: 720px;
+    right: 186px;
+    text-align: right;
+    color: white;
+    z-index: 10;
+    width: 820px;
+}
+
+.cover-report-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+    line-height: 1.2;
+}
+
+/* ========== Export Filters Page ========== */
+.export-filters-page {
+    width: 1920px;
+    min-height: 800px;
+    padding: 3rem 4rem;
+    background: #f2f4f6;
+}
+
+.filters-page-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.5px;
+}
+
+.filters-summary-list {
+    background: white;
+    padding: 2rem;
+    border-radius: 4px;
+    max-width: 1400px;
+}
+
+.filter-summary-row {
+    display: flex;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.filter-summary-row:last-child {
+    border-bottom: none;
+}
+
+.filter-label {
+    flex: 0 0 280px;
+    font-size: 0.95rem;
+    color: #666;
+    padding-right: 1rem;
+}
+
+.filter-value {
+    flex: 1;
+    font-size: 0.95rem;
+    color: #333;
+}
