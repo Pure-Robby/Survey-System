@@ -9,7 +9,7 @@
     const wrapper = document.createElement('div');
     wrapper.innerHTML = `
       <!-- Filters Offcanvas (injected) -->
-      <div class="offcanvas-backdrop" id="${OFFCANVAS_ID}">
+      <div class="offcanvas-backdrop no-export" id="${OFFCANVAS_ID}">
         <div class="offcanvas-content">
           <div class="offcanvas-header">
             <h4 class="mb-0"><i class='bx bx-filter'></i> Filters</h4>

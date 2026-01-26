@@ -510,6 +510,19 @@ const footerHIn = footerImg ? (slideWIn * (footerImg.imgPxH / footerImg.imgPxW))
         });
       }
       
+      // Add page number (filters page = page 1)
+      filtersSlide.addText('1', {
+        x: slideWIn - 0.8,
+        y: slideHIn - 0.325,
+        w: 0.6,
+        h: 0.3,
+        fontSize: 8,
+        color: '777777',
+        align: 'right',
+        valign: 'middle',
+        fontFace: 'Roboto'
+      });
+      
       // Place filters content in content area
       const filtersFit = fitImageToBox(filtersCanvas.width, filtersCanvas.height, slideWIn, contentHIn);
       filtersSlide.addImage({
@@ -557,6 +570,20 @@ slide.background = { fill: "#f2f4f6" }; // or "#ffffff"
           h: footerHIn,
         });
       }
+
+      // Add page number to footer (filters page is 1, so content starts at 2)
+      const pageNumber = i + 2;
+      slide.addText(`${pageNumber}`, {
+        x: slideWIn - 0.8,
+        y: slideHIn - 0.325,
+        w: 0.6,
+        h: 0.3,
+        fontSize: 8,
+        color: '777777',
+        align: 'right',
+        valign: 'middle',
+        fontFace: 'Roboto'
+      });
 
       // Place the cropped page content in the remaining content area
       const fit = fitImageToBox(cropped.width, cropped.height, slideWIn, contentHIn);

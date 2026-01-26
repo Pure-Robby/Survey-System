@@ -496,7 +496,7 @@
     <!-- Filters Offcanvas is injected by js/shared/filters-offcanvas.js -->
 
     <!-- Export Modal -->
-    <div class="modal-backdrop" id="exportModal">
+    <div class="modal-backdrop no-export" id="exportModal">
         <div class="modal-content">
             <div class="modal-header">
                 EXPORT PDF REPORT
@@ -520,7 +520,10 @@
 
     <!-- Footer -->
     <footer class="page-footer text-center py-3 bg-white border-top">
-        <p class="mb-0 text-muted fs-7">Copyright © Pure Survey (Pty) Ltd. Rights Reserved 2025.</p>
+        <p class="mb-0 text-muted fs-7">Copyright © Pure Survey (Pty) Ltd. Rights Reserved <span id="currentYear"></span>.</p>
+        <script>
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+        </script>
     </footer>
 
     <!-- Bootstrap JS -->

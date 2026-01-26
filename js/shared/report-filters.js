@@ -209,7 +209,7 @@
 
     const wrapper = document.createElement('div');
     wrapper.innerHTML = `
-      <div id="filterModal" class="filter-modal">
+      <div id="filterModal" class="filter-modal no-export">
         <div class="filter-modal-overlay"></div>
         <div class="filter-modal-content">
           <div class="filter-modal-header">
