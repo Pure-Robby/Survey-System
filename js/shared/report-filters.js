@@ -432,7 +432,7 @@
       .join('');
 
     const infoIcon = document.createElement('i');
-    infoIcon.className = 'bx bx-info-circle ms-1';
+    infoIcon.className = 'bx bx-info-circle ms-1 no-export';
     infoIcon.setAttribute('role', 'button');
     infoIcon.setAttribute('tabindex', '0');
     infoIcon.setAttribute('data-bs-toggle', 'tooltip');

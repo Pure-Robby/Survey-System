@@ -278,7 +278,8 @@ function showModal(modalId, documentType) {
                 if (modalHeader) modalHeader.textContent = 'EXPORT PPT REPORT';
                 if (fileExtension) fileExtension.textContent = '.pptx';
                 if (exportButton) {
-                    exportButton.setAttribute('onclick', `dashboardJS.exportToPPT(document.getElementById('exportFilename').value); dashboardJS.hideModal('exportModal')`);
+                    exportButton.setAttribute('onclick', `dashboardJS.exportToPPT(document.getElementById('exportFilename').value)`);
+                    exportButton.textContent = 'GENERATE REPORT';
                 }
                 if (filenameInput) filenameInput.value = 'Overall Report';
             } else if (documentType === 'PDF') {
@@ -318,15 +319,44 @@ function exportToPDF(filename = 'report') {
  * Export dashboard data to PowerPoint
  * @param {string} filename - Name of the PowerPoint file
  */
-function exportToPPT(filename = 'report') {
+async function exportToPPT(filename = 'report') {
+    const exportButton = document.querySelector('.export-button');
+    
     if (typeof window.exportDashboardToPptInternal === 'function') {
-        window.exportDashboardToPptInternal({
-            filename: `${filename}.pptx`,
-            scale: 2,
-            slideWIn: 13.33,
-            slideHIn: 7.5,
-            animationWaitMs: 700
-        });
+        // Show spinner and disable button
+        if (exportButton) {
+            const originalText = exportButton.innerHTML;
+            exportButton.disabled = true;
+            exportButton.innerHTML = '<span class="export-button-spinner"></span>GENERATING...';
+            
+            try {
+                await window.exportDashboardToPptInternal({
+                    filename: `${filename}.pptx`,
+                    scale: 2,
+                    slideWIn: 13.33,
+                    slideHIn: 7.5,
+                    animationWaitMs: 700
+                });
+            } catch (error) {
+                console.error('Export failed:', error);
+                alert('Export failed. Please try again.');
+            } finally {
+                // Restore button state
+                exportButton.disabled = false;
+                exportButton.innerHTML = originalText;
+                hideModal('exportModal');
+            }
+        } else {
+            // Fallback if button not found
+            await window.exportDashboardToPptInternal({
+                filename: `${filename}.pptx`,
+                scale: 2,
+                slideWIn: 13.33,
+                slideHIn: 7.5,
+                animationWaitMs: 700
+            });
+            hideModal('exportModal');
+        }
     } else {
         console.error('Export function not available. Make sure exporter.js is loaded.');
         alert('Export function not available. Please contact support.');
