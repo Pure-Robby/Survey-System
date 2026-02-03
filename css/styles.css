@@ -479,6 +479,77 @@ body {
 
 }
 
+/* Flight Risk KPI Cards */
+.flight-risk-kpi-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.flight-risk-kpi-card {
+    background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1rem;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.flight-risk-kpi-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+}
+
+.flight-risk-kpi-card--positive {
+    background: linear-gradient(135deg, rgba(79, 200, 60, 0.08) 0%, rgba(79, 200, 60, 0.02) 100%);
+    border-color: rgba(79, 200, 60, 0.3);
+}
+
+.flight-risk-kpi-card--negative {
+    background: linear-gradient(135deg, rgba(220, 53, 69, 0.08) 0%, rgba(220, 53, 69, 0.02) 100%);
+    border-color: rgba(220, 53, 69, 0.3);
+}
+
+.flight-risk-kpi-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--color-text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.flight-risk-kpi-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-negative);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+}
+
+.flight-risk-kpi-card--positive .flight-risk-kpi-value {
+    color: #2d7a23;
+}
+
+.flight-risk-kpi-card--negative .flight-risk-kpi-value {
+    color: var(--color-negative);
+}
+
+.flight-risk-kpi-value i {
+    font-size: 1.75rem;
+}
+
+.flight-risk-kpi-sublabel {
+    font-size: 0.8rem;
+    color: var(--color-text-light);
+    font-weight: 500;
+}
+
+
 .flight-risk-stat {
     display: flex;
     align-items: center;
@@ -2404,6 +2475,16 @@ body {
 
     .score-value-large {
         font-size: 2.5rem;
+    }
+
+    /* Flight Risk KPI Cards - Mobile */
+    .flight-risk-kpi-row {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    .flight-risk-kpi-value {
+        font-size: 1.75rem;
     }
 }
 

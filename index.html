@@ -169,12 +169,30 @@
            <div class="col-lg-6">
             <!--Flight Risk-->
             <div class="card-custom h-100">
-                <h5 class="card-header-custom">Flight Risk Distribution</h5>
+                <h5 class="card-header-custom">
+                    Flight Risk Distribution
+                    <i class="bx bx-info-circle text-muted ms-2" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" title="The Flight Risk Indicator is derived from respondents who answered 'yes' to both questions below. Employees who respond with 'yes' to both are much more likely to exit within the next 6 months." style="font-size: 1.1rem; cursor: help;"></i>
+                </h5>
                 <div class="flight-risk-dashboard">
-                    <div class="flight-risk-stat mb-4">
-                        <span class="flight-risk-stat-value">27%</span>
-                        <span class="flight-risk-stat-label">of your employees indicated themselves as a high flight risk</span>
-                        <i class="bx bx-info-circle flight-risk-info" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" title="The Flight Risk Indicator is derived from respondents who answered 'yes' to both questions below. Employees who respond with 'yes' to both are much more likely to exit within the next 6 months."></i>
+                    <!-- Flight Risk KPI Cards -->
+                    <div class="flight-risk-kpi-row mb-4">
+                        <div class="flight-risk-kpi-card">
+                            <div class="flight-risk-kpi-label">Current</div>
+                            <div class="flight-risk-kpi-value">27%</div>
+                            <div class="flight-risk-kpi-sublabel">High Flight Risk</div>
+                        </div>
+                        <div class="flight-risk-kpi-card">
+                            <div class="flight-risk-kpi-label">Previous</div>
+                            <div class="flight-risk-kpi-value text-muted">33%</div>
+                            <div class="flight-risk-kpi-sublabel">High Flight Risk</div>
+                        </div>
+                        <div class="flight-risk-kpi-card flight-risk-kpi-card--positive">
+                            <div class="flight-risk-kpi-label">Change</div>
+                            <div class="flight-risk-kpi-value">
+                                <i class='bx bx-trending-down'></i> 6%
+                            </div>
+                            <div class="flight-risk-kpi-sublabel">Improvement</div>
+                        </div>
                     </div>
                     <div class="flight-risk-item mb-3">
                         <div class="d-flex justify-content-between align-items-center">
@@ -233,7 +251,32 @@
            <div class="col-lg-6">
             <!--eNPS-->
             <div class="card-custom h-100">
-                <h5 class="card-header-custom">eNPS Score</h5>
+                <h5 class="card-header-custom">
+                    eNPS Score
+                    <i class="bx bx-info-circle text-muted ms-2" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" title="Employee Net Promoter Score measures employee loyalty and likelihood to recommend your organization as a place to work." style="font-size: 1.1rem; cursor: help;"></i>
+                </h5>
+                
+                <!-- eNPS KPI Cards -->
+                <div class="flight-risk-kpi-row mb-4">
+                    <div class="flight-risk-kpi-card">
+                        <div class="flight-risk-kpi-label">Current</div>
+                        <div class="flight-risk-kpi-value" style="color: var(--brand-primary);">17</div>
+                        <div class="flight-risk-kpi-sublabel">eNPS Score</div>
+                    </div>
+                    <div class="flight-risk-kpi-card">
+                        <div class="flight-risk-kpi-label">Previous</div>
+                        <div class="flight-risk-kpi-value text-muted">36.9</div>
+                        <div class="flight-risk-kpi-sublabel">eNPS Score</div>
+                    </div>
+                    <div class="flight-risk-kpi-card flight-risk-kpi-card--negative">
+                        <div class="flight-risk-kpi-label">Change</div>
+                        <div class="flight-risk-kpi-value">
+                            <i class='bx bx-trending-down'></i> 19.9
+                        </div>
+                        <div class="flight-risk-kpi-sublabel">Decline</div>
+                    </div>
+                </div>
+
                 <div class="d-flex justify-content-between align-items-center gap-3">
                     <div class="enps-container">
                         <p class="m-0 text-muted">Current:</p>

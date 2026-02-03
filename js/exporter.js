@@ -599,6 +599,43 @@ slide.background = { fill: "#f2f4f6" }; // or "#ffffff"
     await pptx.writeFile({ fileName: filename });
   }
 
+
+  // const dimensions = [
+  //   { 
+  //     title: 'Business Outcomes', 
+  //     subDimensions: [
+  //       { url: 'business-outcomes.html?dimension=0' },
+  //       { url: 'business-outcomes.html?dimension=1' },
+  //       { url: 'business-outcomes.html?dimension=2' },
+  //       { url: 'business-outcomes.html?dimension=3' }
+  //     ]
+  //   },
+  //   { title: 'Shared Values', subDimensions: [
+  //       { url: 'shared-values.html?dimension=0' },
+  //       { url: 'shared-values.html?dimension=1' },
+  //       { url: 'shared-values.html?dimension=2' },
+  //       { url: 'shared-values.html?dimension=3' },
+  //       { url: 'shared-values.html?dimension=4' },
+  //       { url: 'shared-values.html?dimension=5' },
+  //       { url: 'shared-values.html?dimension=6' }
+  //     ] 
+  //   },
+  //   { title: 'Employee Experience', subDimensions: [
+  //       { url: 'employee-experience.html?dimension=0' },
+  //       { url: 'employee-experience.html?dimension=1' },
+  //       { url: 'employee-experience.html?dimension=2' },
+  //       { url: 'employee-experience.html?dimension=3' }
+  //     ] 
+  //   },
+  //   { title: 'Leadership Enablement', subDimensions: [
+  //       { url: 'leadership-enablement.html?dimension=0' },
+  //       { url: 'leadership-enablement.html?dimension=1' },
+  //       { url: 'leadership-enablement.html?dimension=2' },
+  //       { url: 'leadership-enablement.html?dimension=3' }
+  //     ] 
+  //   }
+  // ];
+
   // ====== PUBLIC GLOBAL API ======
   // Expose the internal function so it can be called with custom parameters
   window.exportDashboardToPptInternal = exportDashboardToPptInternal;
