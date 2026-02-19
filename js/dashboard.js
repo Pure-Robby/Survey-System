@@ -81,8 +81,8 @@ function initTabs() {
                 targetPane.classList.add('active');
             }
             
-            // Initialize leaderboard on first view
-            if (targetTab === 'leaderboard' && typeof initializeLeaderboard === 'function') {
+            // Initialize leaderboard old on first view
+            if (targetTab === 'leaderboard-old' && typeof initializeLeaderboard === 'function') {
                 initializeLeaderboard();
             }
         });
@@ -406,14 +406,17 @@ let progressTrackerState = {
     currentDivision: null,
     currentDepartment: null,
     breadcrumbs: [{ level: 'company', name: 'Sanlam Overall' }],
-    sortBy: null,
-    sortDirection: 'asc'
+    sortBy: 'completion',
+    sortDirection: 'desc'
 };
 
 // Progress Tracker Functions
 function initializeProgressTracker() {
     renderProgressSummary();
     renderProgressTable();
+    if (document.getElementById('leaderboardTableBody')) {
+        renderLeaderboard2Table();
+    }
     setupProgressEventListeners();
 }
 
@@ -519,6 +522,58 @@ function renderProgressTable() {
         </tr>
     `;
     }).join('');
+    updateSortIcons();
+}
+
+function renderLeaderboard2Table() {
+    const tableBody = document.getElementById('leaderboardTableBody');
+    if (!tableBody) return;
+
+    const tableData = getTableData();
+    let dataToRender = tableData;
+    if (progressTrackerState.sortBy) {
+        dataToRender = [...tableData].sort((a, b) => {
+            let aValue, bValue;
+            switch (progressTrackerState.sortBy) {
+                case 'name':
+                    aValue = a.name.toLowerCase();
+                    bValue = b.name.toLowerCase();
+                    return progressTrackerState.sortDirection === 'asc'
+                        ? aValue.localeCompare(bValue)
+                        : bValue.localeCompare(aValue);
+                case 'completion':
+                    aValue = a.completionRate;
+                    bValue = b.completionRate;
+                    return progressTrackerState.sortDirection === 'asc'
+                        ? aValue - bValue
+                        : bValue - aValue;
+                default:
+                    return 0;
+            }
+        });
+    }
+
+    tableBody.innerHTML = dataToRender.map(item => {
+        const hasChildren = item.hasChildren;
+        const rowClass = hasChildren ? 'clickable-row' : '';
+        const unitClass = hasChildren ? 'unit-name clickable' : 'unit-name';
+        const onClick = hasChildren ? `onclick="drillDown('${item.name.replace(/'/g, "\\'")}')" title="Click to view details"` : '';
+        const rateClass = getCompletionRateClass(item.completionRate);
+        return `
+        <tr ${onClick} class="${rowClass}">
+            <td><span class="${unitClass}">${item.name}</span></td>
+            <td class="progress-bar-cell">
+                <div class="lb-progress-bar-container">
+                    <div class="lb-progress-bar ${rateClass}" style="width: ${item.completionRate}%"></div>
+                </div>
+            </td>
+            <td>
+                <span class="completion-rate ${rateClass}">${item.completionRate}%</span>
+            </td>
+        </tr>
+    `;
+    }).join('');
+    updateSortIcons();
 }
 
 function getCurrentProgressData() {
@@ -602,6 +657,7 @@ function drillDown(itemName) {
     
     renderProgressSummary();
     renderProgressTable();
+    renderLeaderboard2Table();
 }
 
 function navigateBackInHierarchy() {
@@ -624,25 +680,21 @@ function navigateBackInHierarchy() {
     
     renderProgressSummary();
     renderProgressTable();
+    renderLeaderboard2Table();
 }
 
 function updateBreadcrumbs() {
-    const breadcrumbPath = document.querySelector('.breadcrumb-path');
-    if (!breadcrumbPath) return;
-    
-    breadcrumbPath.innerHTML = progressTrackerState.breadcrumbs.map((crumb, index) => {
+    const breadcrumbHtml = progressTrackerState.breadcrumbs.map((crumb, index) => {
         const isLast = index === progressTrackerState.breadcrumbs.length - 1;
         const separator = index > 0 ? '<span class="breadcrumb-separator">›</span>' : '';
-        
-        // Add home icon for the top level (company)
         const homeIcon = index === 0 ? '<i class="bx bx-home"></i>' : '';
-        
         return `${separator}<span class="breadcrumb-item ${isLast ? 'active' : ''}" 
                        ${!isLast ? `onclick="navigateToBreadcrumb(${index})"` : ''} 
                        data-level="${crumb.level}">
                     ${homeIcon}${crumb.name}
                 </span>`;
     }).join('');
+    document.querySelectorAll('.breadcrumb-path').forEach(el => { el.innerHTML = breadcrumbHtml; });
 }
 
 function navigateToBreadcrumb(index) {
@@ -672,6 +724,7 @@ function navigateToBreadcrumb(index) {
     
     renderProgressSummary();
     renderProgressTable();
+    renderLeaderboard2Table();
 }
 
 function getCompletionRateClass(rate) {
@@ -689,22 +742,19 @@ function handleTableSort(sortKey) {
         progressTrackerState.sortDirection = 'asc';
     }
     
-    // Re-render table with sorting applied
     renderProgressTable();
+    renderLeaderboard2Table();
 }
 
 function updateSortIcons() {
-    // Reset all sort icons
-    document.querySelectorAll('.sort-icon').forEach(icon => {
-        icon.textContent = 'sort';
+    document.querySelectorAll('.progress-table .sort-icon').forEach(icon => {
+        icon.className = 'bx bx-sort sort-icon';
     });
-    
-    // Update the active sort icon
     if (progressTrackerState.sortBy) {
-        const activeHeader = document.querySelector(`[data-sort="${progressTrackerState.sortBy}"] .sort-icon`);
-        if (activeHeader) {
-            activeHeader.textContent = progressTrackerState.sortDirection === 'asc' ? 'arrow_upward' : 'arrow_downward';
-        }
+        const sortClass = progressTrackerState.sortDirection === 'asc' ? 'bx-sort-up' : 'bx-sort-down';
+        document.querySelectorAll(`.progress-table [data-sort="${progressTrackerState.sortBy}"] .sort-icon`).forEach(icon => {
+            icon.className = `bx ${sortClass} sort-icon`;
+        });
     }
 }
 

@@ -14,7 +14,6 @@
     
     <!-- Custom Styles -->
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/leaderboard.css">
 </head>
 <body>
     <!-- Header -->
@@ -106,8 +105,12 @@
                     <i class="bx bx-line-chart"></i>
                     Progress
                 </button>
-                <button class="content-tab" data-tab="leaderboard">
+                <button class="content-tab d-none" data-tab="leaderboard-old" aria-hidden="true">
                     <i class="bx bx-trophy"></i>
+                    Leaderboard old
+                </button>
+                <button class="content-tab" data-tab="leaderboard">
+                    <i class="bx bx-bar-chart-alt-2"></i>
                     Leaderboard
                 </button>
             </div>
@@ -245,8 +248,8 @@
             </div>
         </div>
 
-        <!-- Leaderboard Tab -->
-        <div class="content-tab-pane" id="leaderboard-tab">
+        <!-- Leaderboard old Tab -->
+        <div class="content-tab-pane" id="leaderboard-old-tab">
             <div class="response-rate-leaderboard-container">
                 <!-- Champion Zone -->
                 <div class="champion-zone" id="championZone">
@@ -256,6 +259,43 @@
                 <!-- Org-Level Leaderboard -->
                 <div class="org-leaderboard" id="orgLeaderboard">
                     <!-- Populated by leaderboard.js -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Leaderboard Tab -->
+        <div class="content-tab-pane" id="leaderboard-tab">
+            <div class="progress-tracker-container">
+                <div class="progress-table-container">
+                    <div class="table-header">
+                        <div class="table-header-left">
+                            <div class="progress-breadcrumb">
+                                <div class="breadcrumb-path">
+                                    <!-- Breadcrumb items populated by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress-table-wrapper">
+                        <table class="progress-table" id="leaderboardTable">
+                            <thead>
+                                <tr>
+                                    <th class="sortable" data-sort="name">
+                                        BUSINESS UNIT
+                                        <i class="bx bx-sort sort-icon"></i>
+                                    </th>
+                                    <th class="progress-bar-cell">PROGRESS</th>
+                                    <th class="sortable" data-sort="completion">
+                                        COMPLETION RATE
+                                        <i class="bx bx-sort sort-icon"></i>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody id="leaderboardTableBody">
+                                <!-- Populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
