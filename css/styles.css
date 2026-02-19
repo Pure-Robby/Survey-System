@@ -766,7 +766,8 @@ body {
     flex-direction: column;
     justify-content: space-between;
     min-height: 130px;
-    background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-ink) 100%);
+    /* background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-ink) 100%); */
+    background: var(--brand-primary);
 }
 
 
@@ -808,7 +809,7 @@ body {
     opacity: 1;
 }
 
-.score-card.lever {
+/* .score-card.lever {
     background: #FFF;
     color: var(--color-text);
     border: 1px solid #FFF !important;
@@ -834,7 +835,7 @@ body {
 
 .score-card.lever:hover h3, .score-card.lever:hover .dimension-click-hint, .score-card.lever:hover .score-value {
     color: var(--brand-primary) !important;
-}
+} */
 
 /* ==================== Buttons ==================== */
 .btn-custom {
@@ -864,14 +865,14 @@ body {
 
 .btn-outline-primary {
     background-color: #FFF;
-    color: var(--brand-primary);
-    border: 1px solid var(--brand-primary);
+    color: var(--color-text-muted);
+    border: 1px solid #F5F4F4;
 }
 
 .btn-outline-primary:hover {
-    background-color: var(--color-button);
-    color: var(--color-bg);
-    border: 1px solid var(--brand-primary);
+    background-color: #FFF;
+    color: var(--color-text);
+    border: 1px solid var(--color-text-muted);
 }
 
 .btn-primary:hover {
@@ -2099,21 +2100,20 @@ body {
 }
 
 .lever-detail-header {
-    color: var(--color-text);
+    color: #FFF;
     padding: var(--spacing-lg);
     font-size: var(--font-size-lg);
     font-weight: 600;
     text-align: center;
     position: relative;
     flex-shrink: 0;
-    background: #FFF;
+    background: var(--brand-primary);
     border-bottom: 1px solid var(--color-light-grey);
     cursor: pointer;
 }
 
 .lever-detail-header:hover {
-    color: var(--brand-primary) !important;
-    /* background: var(--color-bg-subtle); */
+    color: #fff !important;
     border-bottom: 1px solid var(--brand-primary);
 }
 
