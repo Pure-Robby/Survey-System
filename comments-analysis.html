@@ -134,8 +134,9 @@
           <div class="card-custom h-100">
             <h5 class="card-header-custom">Employee Comments & Sentiment</h5>
             <div class="sentiment-question-box px-3 py-2 rounded-4 gap-2 mb-3">
-              <h6 class="fw-semibold fs-7 mb-1 flex-shrink-0">Question text:</h6>
-              <p class="mb-0 fs-7 lh-sm">What could help improve your feedback and sentiment before the next survey?</p>
+              <h6 class="fw-semibold fs-7 mb-1 flex-shrink-0">Question text:</h6>              
+              <!-- <p class="mb-0 fs-7 lh-sm">What could help improve your feedback and sentiment before the next survey?</p> -->
+              <p class="mb-0 lh-sm fs-7">What actions or changes would most improve your experience and sentiment before the next Culture survey?</p>
           </div>
             <div class="d-flex justify-content-center align-items-center gap-4">
               <div class="donut-wrap position-relative">
@@ -163,30 +164,30 @@
 
         <!-- Themes Section -->
         <div class="col-lg-8">
-          <div class="card-custom h-100">
+          <div class="card-custom h-100 d-flex flex-column">
             <h5 class="card-header-custom">Employee Sentiment Themes</h5>
 
-            <div class="row">
+            <div class="row flex-grow-1">
               <!-- Top Positive Themes -->
-              <div class="col-md-4">
+              <div class="col-md-4 d-flex flex-column h-100">
                 <h6 class="fw-semibold mb-3">Top Positive</h6>
-                <div id="positiveThemes">
+                <div id="positiveThemes" class="d-flex flex-column justify-content-between flex-grow-1">
                   <!-- Will be populated by JavaScript -->
                 </div>
               </div>
 
               <!-- Top Neutral Themes -->
-              <div class="col-md-4">
+              <div class="col-md-4 d-flex flex-column h-100">
                 <h6 class="fw-semibold mb-3">Top Neutral</h6>
-                <div id="neutralThemes">
+                <div id="neutralThemes" class="d-flex flex-column justify-content-between flex-grow-1">
                   <!-- Will be populated by JavaScript -->
                 </div>
               </div>
 
               <!-- Top Negative Themes -->
-              <div class="col-md-4">
+              <div class="col-md-4 d-flex flex-column h-100">
                 <h6 class="fw-semibold mb-3">Top Negative</h6>
-                <div id="negativeThemes">
+                <div id="negativeThemes" class="d-flex flex-column justify-content-between flex-grow-1">
                   <!-- Will be populated by JavaScript -->
                 </div>
               </div>

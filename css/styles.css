@@ -132,6 +132,10 @@ body {
     font-size: 14px !important;
 }
 
+.mh-auto {
+    min-height: auto !important;
+}
+
 /* Logo utility */
 .logo-height {
     height: 32px;
@@ -796,7 +800,7 @@ body {
     flex-shrink: 0;
 }
 
-.score-card:nth-child(2) {
+.score-card:nth-child(1), .score-card:nth-child(2) {
     background: var(--white);
 }
 
