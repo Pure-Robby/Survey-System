@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanlam Culture Survey</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo-container">
+                <img src="sanlam-logo.png" alt="Sanlam Logo" class="logo-image">
+            </div>
+            <p class="survey-subtitle">Your feedback helps us improve our workplace culture and operations.</p>
+        </div>
+    </header>
+
+    <!-- Progress Info Bar -->
+    <div class="progress-info-container">
+        <div class="container">
+            <div class="progress-info">
+                <span class="progress-questions" id="progressQuestions">Questions 1 - 3 of 68</span>
+                <span class="progress-section" id="progressSection">Employee Sentiment</span>
+            </div>
+            <div class="progress-percentage-bar">
+                <div class="progress-percentage-fill" id="progressPercentageFill"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Progress Indicator -->
+    <div class="progress-container md-elevation-1">
+        <div class="container">
+            <div class="progress-indicator" id="progressIndicator">
+                <div class="progress-step active" data-step="1">
+                    <div class="step-circle md-elevation-2">
+                        <span class="material-icons">trending_up</span>
+                    </div>
+                    <div class="step-label md-body-2">Business Outcomes</div>
+                </div>
+                <div class="progress-step" data-step="2">
+                    <div class="step-circle md-elevation-2">
+                        <span class="material-icons">stars</span>
+                    </div>
+                    <div class="step-label md-body-2">Shared Values</div>
+                </div>
+                <div class="progress-step" data-step="3">
+                    <div class="step-circle md-elevation-2">
+                        <span class="material-icons">favorite</span>
+                    </div>
+                    <div class="step-label md-body-2">Employee Experience</div>
+                </div>
+                <div class="progress-step" data-step="4">
+                    <div class="step-circle md-elevation-2">
+                        <span class="material-icons">people</span>
+                    </div>
+                    <div class="step-label md-body-2">Leadership Enablement</div>
+                </div>
+                <div class="progress-step" data-step="5">
+                    <div class="step-circle md-elevation-2">
+                        <span class="material-icons">flight_takeoff</span>
+                    </div>
+                    <div class="step-label md-body-2">Flight Risk</div>
+                </div>
+                <div class="progress-step" data-step="6">
+                    <div class="step-circle md-elevation-2">
+                        <span class="material-icons">thumb_up</span>
+                    </div>
+                    <div class="step-label md-body-2">eNPS</div>
+                </div>
+                <div class="progress-step" data-step="7">
+                    <div class="step-circle md-elevation-2">
+                        <span class="material-icons">comment</span>
+                    </div>
+                    <div class="step-label md-body-2">Feedback</div>
+                </div>
+                <div class="progress-step" data-step="8">
+                    <div class="step-circle md-elevation-2">
+                        <span class="material-icons">analytics</span>
+                    </div>
+                    <div class="step-label md-body-2">Results Summary</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Survey Container -->
+    <div class="survey-container">
+        <div class="container">
+            <form id="cultureSurvey">
+                <!-- Landing Page -->
+                <div class="survey-page md-card md-elevation-8 active" id="landingPage">
+                    <div class="landing-content">
+                        <h2 class="landing-title">Welcome to the Sanlam Staff Culture Survey</h2>
+                        
+                        <div class="welcome-message">
+                            <p>Thank you for participating in this important survey. Your feedback is essential in helping us understand and improve our workplace culture across the organization.</p>
+                        </div>
+
+                        <div class="survey-info">
+                            <h3>About This Survey</h3>
+                            <ul>
+                                <li><strong>Duration:</strong> Approximately 25 minutes to complete</li>
+                                <li><strong>Questions:</strong> 68 questions covering 4 key dimensions of workplace culture</li>
+                                <li><strong>Format:</strong> Rate your agreement with statements on a 5-point scale</li>
+                                <!-- <li><strong>Optional comments:</strong> Share additional thoughts on each topic</li> -->
+                            </ul>
+                        </div>
+
+                        <div class="survey-dimensions">
+                            <h3>What We'll Explore</h3>
+                            <div class="dimension-grid">
+                                <div class="dimension-item">
+                                    <span class="material-icons">trending_up</span>
+                                    <span>Business Outcomes</span>
+                                </div>
+                                <div class="dimension-item">
+                                    <span class="material-icons">stars</span>
+                                    <span>Shared Values</span>
+                                </div>
+                                <div class="dimension-item">
+                                    <span class="material-icons">favorite</span>
+                                    <span>Employee Experience</span>
+                                </div>
+                                <div class="dimension-item">
+                                    <span class="material-icons">people</span>
+                                    <span>Leadership Enablement</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="confidentiality-notice">
+                            <h3><span class="material-icons">lock</span> Your Privacy is Protected</h3>
+                            <div class="confidentiality-content">
+                                <p><strong>Independent Survey Management:</strong> This survey is being managed independently by Pure Survey (www.puresurvey.co.za), a professional survey platform specializing in confidential employee feedback. This ensures complete independence and neutrality in data collection and analysis.</p>
+                                
+                                <p><strong>Complete Confidentiality:</strong> Your individual responses are completely confidential and anonymous. No one at Sanlam, including management, HR, or any other department, will have access to your individual responses.</p>
+                                
+                                <p><strong>How We Protect Your Privacy:</strong></p>
+                                <ul>
+                                    <li>All responses are collected anonymously through Pure Survey's secure platform</li>
+                                    <li>Data is aggregated and analyzed at group level only</li>
+                                    <li>No personal identifiers are linked to your responses</li>
+                                    <li>Results are presented in summary format that cannot identify individuals</li>
+                                    <li>Independent management ensures unbiased data handling</li>
+                                </ul>
+                                
+                                <p>Please answer honestly and openly. Your candid feedback is crucial for improving our workplace culture.</p>
+                            </div>
+                        </div>
+
+                        <div class="getting-started">
+                            <p><strong>Ready to begin?</strong> Click the button below to start the survey. You can save your progress and return to complete it later if needed.</p>
+                        </div>
+                    </div>
+
+                    <div class="page-navigation">
+                        <button type="button" class="nav-button primary" id="startSurvey">
+                            <span class="material-icons">play_arrow</span>
+                            Start Survey
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Page 1: Business Outcomes -->
+                <div class="survey-page md-card md-elevation-8" id="page1">
+                    <h3 class="page-title">Business Outcomes</h3>
+                    <div class="page-meta">
+                        <span class="questions-range">Questions 1 - 4</span>
+                    </div>
+                    <p class="page-description">Measures how culture drives business performance and results</p>
+
+                    <div class="question">
+                        <div class="question-text">1. Our organization consistently achieves its business goals and objectives.</div>
+                        <div class="likert-scale">
+                            <div class="scale-option">
+                                <input type="radio" id="q1_1" name="q1" value="1">
+                                <label for="q1_1">1</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q1_2" name="q1" value="2">
+                                <label for="q1_2">2</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q1_3" name="q1" value="3">
+                                <label for="q1_3">3</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q1_4" name="q1" value="4">
+                                <label for="q1_4">4</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q1_5" name="q1" value="5">
+                                <label for="q1_5">5</label>
+                            </div>
+                        </div>
+                        <div class="scale-labels">
+                            <span>Strongly Disagree</span>
+                            <span>Strongly Agree</span>
+                        </div>
+                        <div class="comment-box">
+                            <label for="q1_comment">Optional Comment:</label>
+                            <textarea id="q1_comment" name="q1_comment" placeholder="Please share any additional thoughts about this statement..." rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <div class="question-text">2. Our workplace culture directly contributes to our financial performance and success.</div>
+                        <div class="likert-scale">
+                            <div class="scale-option">
+                                <input type="radio" id="q2_1" name="q2" value="1">
+                                <label for="q2_1">1</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q2_2" name="q2" value="2">
+                                <label for="q2_2">2</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q2_3" name="q2" value="3">
+                                <label for="q2_3">3</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q2_4" name="q2" value="4">
+                                <label for="q2_4">4</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q2_5" name="q2" value="5">
+                                <label for="q2_5">5</label>
+                            </div>
+                        </div>
+                        <div class="scale-labels">
+                            <span>Strongly Disagree</span>
+                            <span>Strongly Agree</span>
+                        </div>
+                        <div class="comment-box">
+                            <label for="q2_comment">Optional Comment:</label>
+                            <textarea id="q2_comment" name="q2_comment" placeholder="Please share any additional thoughts about this statement..." rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <div class="question-text">3. We effectively measure and track the impact of our culture on business results.</div>
+                        <div class="likert-scale">
+                            <div class="scale-option">
+                                <input type="radio" id="q3_1" name="q3" value="1">
+                                <label for="q3_1">1</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q3_2" name="q3" value="2">
+                                <label for="q3_2">2</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q3_3" name="q3" value="3">
+                                <label for="q3_3">3</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q3_4" name="q3" value="4">
+                                <label for="q3_4">4</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q3_5" name="q3" value="5">
+                                <label for="q3_5">5</label>
+                            </div>
+                        </div>
+                        <div class="scale-labels">
+                            <span>Strongly Disagree</span>
+                            <span>Strongly Agree</span>
+                        </div>
+                        <div class="comment-box">
+                            <label for="q3_comment">Optional Comment:</label>
+                            <textarea id="q3_comment" name="q3_comment" placeholder="Please share any additional thoughts about this statement..." rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <div class="question-text">4. Our organization demonstrates strong performance in customer satisfaction and quality delivery.</div>
+                        <div class="likert-scale">
+                            <div class="scale-option">
+                                <input type="radio" id="q4_1" name="q4" value="1">
+                                <label for="q4_1">1</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q4_2" name="q4" value="2">
+                                <label for="q4_2">2</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q4_3" name="q4" value="3">
+                                <label for="q4_3">3</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q4_4" name="q4" value="4">
+                                <label for="q4_4">4</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q4_5" name="q4" value="5">
+                                <label for="q4_5">5</label>
+                            </div>
+                        </div>
+                        <div class="scale-labels">
+                            <span>Strongly Disagree</span>
+                            <span>Strongly Agree</span>
+                        </div>
+                        <div class="comment-box">
+                            <label for="q4_comment">Optional Comment:</label>
+                            <textarea id="q4_comment" name="q4_comment" placeholder="Please share any additional thoughts about this statement..." rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="navigation">
+                        <div></div>
+                        <button type="button" class="nav-button next-button" id="nextPage1">Next: Shared Values</button>
+                    </div>
+                </div>
+
+                <!-- Page 2: Shared Values -->
+                <div class="survey-page" id="page2">
+                    <h3 class="page-title">Shared Values</h3>
+                    <div class="page-meta">
+                        <span class="questions-range">Questions 5 - 8</span>
+                    </div>
+                    <p class="page-description">Measures alignment with organizational values and principles</p>
+
+                    <div class="question">
+                        <div class="question-text">5. Our organization's values are clearly communicated and understood by all employees.</div>
+                        <div class="likert-scale">
+                            <div class="scale-option">
+                                <input type="radio" id="q5_1" name="q5" value="1">
+                                <label for="q5_1">1</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q5_2" name="q5" value="2">
+                                <label for="q5_2">2</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q5_3" name="q5" value="3">
+                                <label for="q5_3">3</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q5_4" name="q5" value="4">
+                                <label for="q5_4">4</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q5_5" name="q5" value="5">
+                                <label for="q5_5">5</label>
+                            </div>
+                        </div>
+                        <div class="scale-labels">
+                            <span>Strongly Disagree</span>
+                            <span>Strongly Agree</span>
+                        </div>
+                        <div class="comment-box">
+                            <label for="q5_comment">Optional Comment:</label>
+                            <textarea id="q5_comment" name="q5_comment" placeholder="Please share any additional thoughts about this statement..." rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <div class="question-text">6. Employees consistently demonstrate our organizational values in their daily work and interactions.</div>
+                        <div class="likert-scale">
+                            <div class="scale-option">
+                                <input type="radio" id="q6_1" name="q6" value="1">
+                                <label for="q6_1">1</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q6_2" name="q6" value="2">
+                                <label for="q6_2">2</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q6_3" name="q6" value="3">
+                                <label for="q6_3">3</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q6_4" name="q6" value="4">
+                                <label for="q6_4">4</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q6_5" name="q6" value="5">
+                                <label for="q6_5">5</label>
+                            </div>
+                        </div>
+                        <div class="scale-labels">
+                            <span>Strongly Disagree</span>
+                            <span>Strongly Agree</span>
+                        </div>
+                        <div class="comment-box">
+                            <label for="q6_comment">Optional Comment:</label>
+                            <textarea id="q6_comment" name="q6_comment" placeholder="Please share any additional thoughts about this statement..." rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <div class="question-text">7. Decision-making processes in our organization are guided by our core values and principles.</div>
+                        <div class="likert-scale">
+                            <div class="scale-option">
+                                <input type="radio" id="q7_1" name="q7" value="1">
+                                <label for="q7_1">1</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q7_2" name="q7" value="2">
+                                <label for="q7_2">2</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q7_3" name="q7" value="3">
+                                <label for="q7_3">3</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q7_4" name="q7" value="4">
+                                <label for="q7_4">4</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q7_5" name="q7" value="5">
+                                <label for="q7_5">5</label>
+                            </div>
+                        </div>
+                        <div class="scale-labels">
+                            <span>Strongly Disagree</span>
+                            <span>Strongly Agree</span>
+                        </div>
+                        <div class="comment-box">
+                            <label for="q7_comment">Optional Comment:</label>
+                            <textarea id="q7_comment" name="q7_comment" placeholder="Please share any additional thoughts about this statement..." rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <div class="question-text">8. I feel personally aligned with our organization's values and mission.</div>
+                        <div class="likert-scale">
+                            <div class="scale-option">
+                                <input type="radio" id="q8_1" name="q8" value="1">
+                                <label for="q8_1">1</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q8_2" name="q8" value="2">
+                                <label for="q8_2">2</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q8_3" name="q8" value="3">
+                                <label for="q8_3">3</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q8_4" name="q8" value="4">
+                                <label for="q8_4">4</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q8_5" name="q8" value="5">
+                                <label for="q8_5">5</label>
+                            </div>
+                        </div>
+                        <div class="scale-labels">
+                            <span>Strongly Disagree</span>
+                            <span>Strongly Agree</span>
+                        </div>
+                        <div class="comment-box">
+                            <label for="q8_comment">Optional Comment:</label>
+                            <textarea id="q8_comment" name="q8_comment" placeholder="Please share any additional thoughts about this statement..." rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="navigation">
+                        <button type="button" class="nav-button prev-button" id="prevPage2">Previous: Business Outcomes</button>
+                        <button type="button" class="nav-button next-button" id="nextPage2">Next: Employee Experience</button>
+                    </div>
+                </div>
+
+                <!-- Page 3: Employee Experience -->
+                <div class="survey-page" id="page3">
+                    <h3 class="page-title">Employee Experience</h3>
+                    <div class="page-meta">
+                        <span class="questions-range">Questions 9 - 12</span>
+                    </div>
+                    <p class="page-description">Measures the overall quality of workplace experience and well-being</p>
+
+                    <div class="question">
+                        <div class="question-text">9. I have the resources and support I need to do my job effectively.</div>
+                        <div class="likert-scale">
+                            <div class="scale-option">
+                                <input type="radio" id="q9_1" name="q9" value="1">
+                                <label for="q9_1">1</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q9_2" name="q9" value="2">
+                                <label for="q9_2">2</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q9_3" name="q9" value="3">
+                                <label for="q9_3">3</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q9_4" name="q9" value="4">
+                                <label for="q9_4">4</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q9_5" name="q9" value="5">
+                                <label for="q9_5">5</label>
+                            </div>
+                        </div>
+                        <div class="scale-labels">
+                            <span>Strongly Disagree</span>
+                            <span>Strongly Agree</span>
+                        </div>
+                        <div class="comment-box">
+                            <label for="q9_comment">Optional Comment:</label>
+                            <textarea id="q9_comment" name="q9_comment" placeholder="Please share any additional thoughts about this statement..." rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <div class="question-text">10. My workload and work-life balance are manageable and sustainable.</div>
+                        <div class="likert-scale">
+                            <div class="scale-option">
+                                <input type="radio" id="q10_1" name="q10" value="1">
+                                <label for="q10_1">1</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q10_2" name="q10" value="2">
+                                <label for="q10_2">2</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q10_3" name="q10" value="3">
+                                <label for="q10_3">3</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q10_4" name="q10" value="4">
+                                <label for="q10_4">4</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q10_5" name="q10" value="5">
+                                <label for="q10_5">5</label>
+                            </div>
+                        </div>
+                        <div class="scale-labels">
+                            <span>Strongly Disagree</span>
+                            <span>Strongly Agree</span>
+                        </div>
+                        <div class="comment-box">
+                            <label for="q10_comment">Optional Comment:</label>
+                            <textarea id="q10_comment" name="q10_comment" placeholder="Please share any additional thoughts about this statement..." rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <div class="question-text">11. I feel valued and recognized for my contributions to the organization.</div>
+                        <div class="likert-scale">
+                            <div class="scale-option">
+                                <input type="radio" id="q11_1" name="q11" value="1">
+                                <label for="q11_1">1</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q11_2" name="q11" value="2">
+                                <label for="q11_2">2</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q11_3" name="q11" value="3">
+                                <label for="q11_3">3</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q11_4" name="q11" value="4">
+                                <label for="q11_4">4</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q11_5" name="q11" value="5">
+                                <label for="q11_5">5</label>
+                            </div>
+                        </div>
+                        <div class="scale-labels">
+                            <span>Strongly Disagree</span>
+                            <span>Strongly Agree</span>
+                        </div>
+                        <div class="comment-box">
+                            <label for="q11_comment">Optional Comment:</label>
+                            <textarea id="q11_comment" name="q11_comment" placeholder="Please share any additional thoughts about this statement..." rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <div class="question-text">12. I have opportunities for professional development and career growth within the organization.</div>
+                        <div class="likert-scale">
+                            <div class="scale-option">
+                                <input type="radio" id="q12_1" name="q12" value="1">
+                                <label for="q12_1">1</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q12_2" name="q12" value="2">
+                                <label for="q12_2">2</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q12_3" name="q12" value="3">
+                                <label for="q12_3">3</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q12_4" name="q12" value="4">
+                                <label for="q12_4">4</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q12_5" name="q12" value="5">
+                                <label for="q12_5">5</label>
+                            </div>
+                        </div>
+                        <div class="scale-labels">
+                            <span>Strongly Disagree</span>
+                            <span>Strongly Agree</span>
+                        </div>
+                        <div class="comment-box">
+                            <label for="q12_comment">Optional Comment:</label>
+                            <textarea id="q12_comment" name="q12_comment" placeholder="Please share any additional thoughts about this statement..." rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="navigation">
+                        <button type="button" class="nav-button prev-button" id="prevPage3">Previous: Shared Values</button>
+                        <button type="button" class="nav-button next-button" id="nextPage3">Next: Leadership Enablement</button>
+                    </div>
+                </div>
+
+                <!-- Page 4: Leadership Enablement -->
+                <div class="survey-page" id="page4">
+                    <h3 class="page-title">Leadership Enablement</h3>
+                    <div class="page-meta">
+                        <span class="questions-range">Questions 13 - 16</span>
+                    </div>
+                    <p class="page-description">Measures the effectiveness of leadership support and empowerment</p>
+
+                    <div class="question">
+                        <div class="question-text">13. Leaders in our organization effectively communicate vision and direction.</div>
+                        <div class="likert-scale">
+                            <div class="scale-option">
+                                <input type="radio" id="q13_1" name="q13" value="1">
+                                <label for="q13_1">1</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q13_2" name="q13" value="2">
+                                <label for="q13_2">2</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q13_3" name="q13" value="3">
+                                <label for="q13_3">3</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q13_4" name="q13" value="4">
+                                <label for="q13_4">4</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q13_5" name="q13" value="5">
+                                <label for="q13_5">5</label>
+                            </div>
+                        </div>
+                        <div class="scale-labels">
+                            <span>Strongly Disagree</span>
+                            <span>Strongly Agree</span>
+                        </div>
+                        <div class="comment-box">
+                            <label for="q13_comment">Optional Comment:</label>
+                            <textarea id="q13_comment" name="q13_comment" placeholder="Please share any additional thoughts about this statement..." rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <div class="question-text">14. My manager provides the support and guidance I need to be successful.</div>
+                        <div class="likert-scale">
+                            <div class="scale-option">
+                                <input type="radio" id="q14_1" name="q14" value="1">
+                                <label for="q14_1">1</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q14_2" name="q14" value="2">
+                                <label for="q14_2">2</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q14_3" name="q14" value="3">
+                                <label for="q14_3">3</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q14_4" name="q14" value="4">
+                                <label for="q14_4">4</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q14_5" name="q14" value="5">
+                                <label for="q14_5">5</label>
+                            </div>
+                        </div>
+                        <div class="scale-labels">
+                            <span>Strongly Disagree</span>
+                            <span>Strongly Agree</span>
+                        </div>
+                        <div class="comment-box">
+                            <label for="q14_comment">Optional Comment:</label>
+                            <textarea id="q14_comment" name="q14_comment" placeholder="Please share any additional thoughts about this statement..." rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <div class="question-text">15. Leaders empower employees to make decisions and take ownership of their work.</div>
+                        <div class="likert-scale">
+                            <div class="scale-option">
+                                <input type="radio" id="q15_1" name="q15" value="1">
+                                <label for="q15_1">1</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q15_2" name="q15" value="2">
+                                <label for="q15_2">2</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q15_3" name="q15" value="3">
+                                <label for="q15_3">3</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q15_4" name="q15" value="4">
+                                <label for="q15_4">4</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q15_5" name="q15" value="5">
+                                <label for="q15_5">5</label>
+                            </div>
+                        </div>
+                        <div class="scale-labels">
+                            <span>Strongly Disagree</span>
+                            <span>Strongly Agree</span>
+                        </div>
+                        <div class="comment-box">
+                            <label for="q15_comment">Optional Comment:</label>
+                            <textarea id="q15_comment" name="q15_comment" placeholder="Please share any additional thoughts about this statement..." rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <div class="question-text">16. Senior leadership demonstrates genuine commitment to employee development and well-being.</div>
+                        <div class="likert-scale">
+                            <div class="scale-option">
+                                <input type="radio" id="q16_1" name="q16" value="1">
+                                <label for="q16_1">1</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q16_2" name="q16" value="2">
+                                <label for="q16_2">2</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q16_3" name="q16" value="3">
+                                <label for="q16_3">3</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q16_4" name="q16" value="4">
+                                <label for="q16_4">4</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q16_5" name="q16" value="5">
+                                <label for="q16_5">5</label>
+                            </div>
+                        </div>
+                        <div class="scale-labels">
+                            <span>Strongly Disagree</span>
+                            <span>Strongly Agree</span>
+                        </div>
+                        <div class="comment-box">
+                            <label for="q16_comment">Optional Comment:</label>
+                            <textarea id="q16_comment" name="q16_comment" placeholder="Please share any additional thoughts about this statement..." rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="navigation">
+                        <button type="button" class="nav-button prev-button" id="prevPage4">Previous: Leadership Enablement</button>
+                        <button type="button" class="nav-button next-button" id="nextPage4">Next: Flight Risk</button>
+                    </div>
+                </div>
+
+                <!-- Page 5: Flight Risk -->
+                <div class="survey-page" id="page5">
+                    <h3 class="page-title">Flight Risk</h3>
+                    <div class="page-meta">
+                        <span class="questions-range">Questions 17 - 18</span>
+                    </div>
+                    <p class="page-description">Understanding employee retention and job search intentions</p>
+
+                    <div class="question">
+                        <div class="question-text">17. At the moment, I am actively searching for another job.</div>
+                        <div class="yes-no-scale">
+                            <div class="yes-no-option">
+                                <input type="radio" id="q17_yes" name="q17" value="yes">
+                                <label for="q17_yes">Yes</label>
+                            </div>
+                            <div class="yes-no-option">
+                                <input type="radio" id="q17_no" name="q17" value="no">
+                                <label for="q17_no">No</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <div class="question-text">18. I am planning to quit my job in the next 3 months.</div>
+                        <div class="yes-no-scale">
+                            <div class="yes-no-option">
+                                <input type="radio" id="q18_yes" name="q18" value="yes">
+                                <label for="q18_yes">Yes</label>
+                            </div>
+                            <div class="yes-no-option">
+                                <input type="radio" id="q18_no" name="q18" value="no">
+                                <label for="q18_no">No</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Conditional Flight Risk Reasons (shown only if both answers are Yes) -->
+                    <div id="flightRiskReasonsContainer" style="display: none;" class="flight-risk-reasons">
+                        <div class="question">
+                            <div class="question-text">Please select the reasons why you answered "Yes" to both questions above (select all that apply):</div>
+                            <div class="checkbox-list">
+                                <div class="checkbox-option">
+                                    <input type="checkbox" id="reason1" name="flightRiskReasons" value="better_compensation">
+                                    <label for="reason1">Better compensation</label>
+                                </div>
+                                <div class="checkbox-option">
+                                    <input type="checkbox" id="reason2" name="flightRiskReasons" value="career_advancement">
+                                    <label for="reason2">Career advancement opportunities</label>
+                                </div>
+                                <div class="checkbox-option">
+                                    <input type="checkbox" id="reason3" name="flightRiskReasons" value="work_life_balance">
+                                    <label for="reason3">Better work-life balance</label>
+                                </div>
+                                <div class="checkbox-option">
+                                    <input type="checkbox" id="reason4" name="flightRiskReasons" value="company_culture">
+                                    <label for="reason4">Company culture concerns</label>
+                                </div>
+                                <div class="checkbox-option">
+                                    <input type="checkbox" id="reason5" name="flightRiskReasons" value="management_issues">
+                                    <label for="reason5">Management or leadership issues</label>
+                                </div>
+                                <div class="checkbox-option">
+                                    <input type="checkbox" id="reason6" name="flightRiskReasons" value="location_remote">
+                                    <label for="reason6">Location or remote work preferences</label>
+                                </div>
+                                <div class="checkbox-option">
+                                    <input type="checkbox" id="reason7" name="flightRiskReasons" value="job_security">
+                                    <label for="reason7">Job security concerns</label>
+                                </div>
+                                <div class="checkbox-option">
+                                    <input type="checkbox" id="reason8" name="flightRiskReasons" value="other">
+                                    <label for="reason8">Other</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="navigation">
+                        <button type="button" class="nav-button prev-button" id="prevPage5">Previous: Leadership Enablement</button>
+                        <button type="button" class="nav-button next-button" id="nextPage5">Next: eNPS</button>
+                    </div>
+                </div>
+
+                <!-- Page 6: eNPS -->
+                <div class="survey-page" id="page6">
+                    <h3 class="page-title">eNPS</h3>
+                    <div class="page-meta">
+                        <span class="questions-range">Question 19</span>
+                    </div>
+                    <p class="page-description">Employee Net Promoter Score</p>
+
+                    <div class="question">
+                        <div class="question-text">19. How likely are you to recommend your employer to other people, who currently do not work for the organisation?</div>
+                        <div class="enps-scale">
+                            <div class="scale-option">
+                                <input type="radio" id="q19_0" name="q19" value="0">
+                                <label for="q19_0">0</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q19_1" name="q19" value="1">
+                                <label for="q19_1">1</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q19_2" name="q19" value="2">
+                                <label for="q19_2">2</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q19_3" name="q19" value="3">
+                                <label for="q19_3">3</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q19_4" name="q19" value="4">
+                                <label for="q19_4">4</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q19_5" name="q19" value="5">
+                                <label for="q19_5">5</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q19_6" name="q19" value="6">
+                                <label for="q19_6">6</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q19_7" name="q19" value="7">
+                                <label for="q19_7">7</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q19_8" name="q19" value="8">
+                                <label for="q19_8">8</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q19_9" name="q19" value="9">
+                                <label for="q19_9">9</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="q19_10" name="q19" value="10">
+                                <label for="q19_10">10</label>
+                            </div>
+                        </div>
+                        <div class="scale-labels">
+                            <span>Not at all likely</span>
+                            <span>Extremely likely</span>
+                        </div>
+                    </div>
+
+                    <div class="navigation">
+                        <button type="button" class="nav-button prev-button" id="prevPage6">Previous: Flight Risk</button>
+                        <button type="button" class="nav-button next-button" id="nextPage6">Next: Feedback</button>
+                    </div>
+                </div>
+
+                <!-- Page 7: Feedback (Open-ended) -->
+                <div class="survey-page" id="page7">
+                    <h3 class="page-title">Feedback</h3>
+                    <div class="page-meta">
+                        <span class="questions-range">Question 20</span>
+                    </div>
+                    <p class="page-description">Open-ended feedback</p>
+
+                    <div class="question">
+                        <div class="question-text">20. What could help improve your feedback and sentiment before the next survey?</div>
+                        <textarea id="q20" name="q20" class="open-ended-textarea" placeholder="Type your answer here..." rows="6"></textarea>
+                    </div>
+
+                    <div class="navigation">
+                        <button type="button" class="nav-button prev-button" id="prevPage7">Previous: eNPS</button>
+                        <button type="button" class="nav-button next-button" id="nextPage7">View Results</button>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Dashboard -->
+            <div class="dashboard" id="dashboard">
+                <h2 class="dashboard-title">Survey Results & Insights</h2>
+                
+                <div class="dashboard-intro md-card md-elevation-2" style="text-align: center; margin-bottom: var(--spacing-xl); padding: var(--spacing-lg); background: var(--outline-variant);">
+                    <h3 class="mb-3">Thank You for Participating!</h3>
+                    <p class="mb-2">We appreciate you taking the time to complete the Sanlam Culture Survey.</p>
+                    <p style="color: var(--on-surface-variant); font-size: 0.875rem;">The results and insights below are personalised based on your individual responses and reflect your unique perspective on our organizational culture.</p>
+                </div>
+                
+                <div class="results-summary">
+                    <div class="score-card">
+                        <h3>Culture Index</h3>
+                        <div>
+                            <div class="score-value" id="overallScore">0</div>
+                            <div class="score-label">Average Score</div>
+                        </div>
+                        <!-- <div class="spacer-18"></div> -->
+                    </div>
+                    <div class="score-card">
+                        <h3>Business Outcomes</h3>
+                        <div>
+                            <div class="score-value" id="businessScore">0</div>
+                            <div class="score-label">Average Score</div>
+                        </div>
+                    </div>
+                    <div class="score-card">
+                        <h3>Shared Values</h3>
+                        <div>
+                            <div class="score-value" id="valuesScore">0</div>
+                            <div class="score-label">Average Score</div>
+                        </div>
+                    </div>
+                    <div class="score-card">
+                        <h3>Employee Experience</h3>
+                        <div>
+                            <div class="score-value" id="experienceScore">0</div>
+                            <div class="score-label">Average Score</div>
+                        </div>
+                    </div>
+                    <div class="score-card">
+                        <h3>Leadership Enablement</h3>
+                        <div>
+                            <div class="score-value" id="leadershipScore">0</div>
+                            <div class="score-label">Average Score</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lever Details Overview Section -->
+                <!-- <div style="margin-top: var(--spacing-xl); margin-bottom: var(--spacing-lg);">
+                    <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: var(--spacing-sm); color: var(--on-surface);">Culture Framework Overview</h3>
+                    <p style="color: var(--on-surface-variant); margin-bottom: 0;">Explore the dimensions that make up each lever of our culture framework</p>
+                </div> -->
+
+                <div class="lever-details-overview mb-5" id="leverDetailsOverview">
+                    <!-- Lever detail cards will be rendered here by JavaScript -->
+                </div>
+
+                <!-- <div class="visual-dashboard">
+                    <div class="dashboard-indicators">
+                        <div class="indicator-card md-card md-elevation-4">
+                            <h4 class="indicator-title md-headline-6">Overall Culture Health</h4>
+                            <div class="culture-gauge" id="cultureGauge">
+                                <div class="gauge-container">
+                                    <div class="gauge-fill" id="gaugeFill"></div>
+                                    <div class="gauge-text md-headline-4" id="gaugeText">0%</div>
+                                </div>
+                                <div class="gauge-status md-body-2" id="gaugeStatus">Analyzing...</div>
+                            </div>
+                        </div>
+                        
+                        <div class="indicator-card md-card md-elevation-4">
+                            <h4 class="indicator-title md-headline-6">Response Distribution</h4>
+                            <div class="response-quality" id="responseQuality">
+                                <div class="quality-bars">
+                                    <div class="quality-bar" data-level="1">
+                                        <div class="bar-fill" id="bar1"></div>
+                                        <span class="bar-label md-caption">Negative</span>
+                                    </div>
+                                    <div class="quality-bar" data-level="2">
+                                        <div class="bar-fill" id="bar2"></div>
+                                        <span class="bar-label md-caption">Neutral</span>
+                                    </div>
+                                    <div class="quality-bar" data-level="3">
+                                        <div class="bar-fill" id="bar3"></div>
+                                        <span class="bar-label md-caption">Positive</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="indicator-card md-card md-elevation-4 full-width">
+                            <h4 class="indicator-title md-headline-6">Dimension Performance</h4>
+                            <div class="dimension-indicators" id="dimensionIndicators">
+                                <div class="dimension-item md-elevation-2" data-dimension="business">
+                                    <div class="dimension-icon">
+                                        <span class="material-icons">trending_up</span>
+                                    </div>
+                                    <div class="dimension-info">
+                                        <span class="dimension-name md-subtitle-1">Business Outcomes</span>
+                                        <div class="dimension-meter">
+                                            <div class="meter-fill" id="businessMeter"></div>
+                                        </div>
+                                        <span class="dimension-score md-headline-6" id="businessDisplay">0%</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="dimension-item md-elevation-2" data-dimension="values">
+                                    <div class="dimension-icon">
+                                        <span class="material-icons">stars</span>
+                                    </div>
+                                    <div class="dimension-info">
+                                        <span class="dimension-name md-subtitle-1">Shared Values</span>
+                                        <div class="dimension-meter">
+                                            <div class="meter-fill" id="valuesMeter"></div>
+                                        </div>
+                                        <span class="dimension-score md-headline-6" id="valuesDisplay">0%</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="dimension-item md-elevation-2" data-dimension="experience">
+                                    <div class="dimension-icon">
+                                        <span class="material-icons">favorite</span>
+                                    </div>
+                                    <div class="dimension-info">
+                                        <span class="dimension-name md-subtitle-1">Employee Experience</span>
+                                        <div class="dimension-meter">
+                                            <div class="meter-fill" id="experienceMeter"></div>
+                                        </div>
+                                        <span class="dimension-score md-headline-6" id="experienceDisplay">0%</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="dimension-item md-elevation-2" data-dimension="leadership">
+                                    <div class="dimension-icon">
+                                        <span class="material-icons">people</span>
+                                    </div>
+                                    <div class="dimension-info">
+                                        <span class="dimension-name md-subtitle-1">Leadership Enablement</span>
+                                        <div class="dimension-meter">
+                                            <div class="meter-fill" id="leadershipMeter"></div>
+                                        </div>
+                                        <span class="dimension-score md-headline-6" id="leadershipDisplay">0%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
+                <div class="retention-enps-grid" id="retentionEnpsSummary">
+                    <!-- Retention + eNPS summary cards will be rendered here by JavaScript -->
+                </div>
+
+                <div class="personal-insights-section md-card md-elevation-4">
+                    <h3 class="card-title md-headline-5">
+                        <span class="material-icons">psychology</span>
+                        Your Personal Culture Profile
+                    </h3>
+                    <div class="personal-insights-grid" id="personalInsightsContainer">
+                        <!-- Personal insights will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="action-recommendations-section md-card md-elevation-4">
+                    <h3 class="card-title md-headline-5">
+                        <span class="material-icons">lightbulb</span>
+                        Personalised Recommendations
+                    </h3>
+                    <div class="recommendations-grid" id="recommendationsContainer">
+                        <!-- Recommendations will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button type="button" class="action-button md-button md-elevation-2 download-button" id="downloadResults">
+                        <span class="material-icons">download</span>
+                        Download Results
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="survey-footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">
+                    <a href="https://www.puresurvey.co.za" target="_blank" rel="noopener noreferrer" class="footer-link">
+                        <span class="powered-by-text">Powered by</span>
+                        <img src="pure-survey-logo.png" alt="Pure Survey Logo" class="footer-logo">
+                    </a>
+                </p>
+                <p class="footer-description">Independent survey management for confidential employee feedback</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
