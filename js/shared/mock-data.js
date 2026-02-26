@@ -125,27 +125,27 @@ const progressTrackerData = {
     company: {
         name: "Sanlam Overall",
         population: 10650,
-        completed: 9852,
-        inProgress: 440,
-        notStarted: 358,
-        completionRate: 93
+        completed: 7213,
+        inProgress: 1376,
+        notStarted: 2061,
+        completionRate: 68
     },
     segments: [
         {
             name: "Sanlam Fintech",
             population: 1200,
-            completed: 1140,
-            inProgress: 30,
-            notStarted: 30,
-            completionRate: 95,
+            completed: 1152,
+            inProgress: 24,
+            notStarted: 24,
+            completionRate: 96,
             divisions: [
                 {
                     name: "Sanlam Fintech - All Divisions",
                     population: 1200,
-                    completed: 1140,
-                    inProgress: 30,
-                    notStarted: 30,
-                    completionRate: 95,
+                    completed: 1152,
+                    inProgress: 24,
+                    notStarted: 24,
+                    completionRate: 96,
                     departments: []
                 }
             ]
@@ -153,18 +153,18 @@ const progressTrackerData = {
         {
             name: "Sanlam Life & Savings",
             population: 2700,
-            completed: 2511,
-            inProgress: 100,
-            notStarted: 89,
-            completionRate: 93,
+            completed: 1755,
+            inProgress: 378,
+            notStarted: 567,
+            completionRate: 65,
             divisions: [
                 {
                     name: "Sanlam Life & Savings - All Divisions",
                     population: 2700,
-                    completed: 2511,
-                    inProgress: 100,
-                    notStarted: 89,
-                    completionRate: 93,
+                    completed: 1755,
+                    inProgress: 378,
+                    notStarted: 567,
+                    completionRate: 65,
                     departments: []
                 }
             ]
@@ -172,18 +172,18 @@ const progressTrackerData = {
         {
             name: "Santam",
             population: 3200,
-            completed: 2944,
-            inProgress: 150,
-            notStarted: 106,
-            completionRate: 92,
+            completed: 1536,
+            inProgress: 666,
+            notStarted: 998,
+            completionRate: 48,
             divisions: [
                 {
                     name: "Santam - All Divisions",
                     population: 3200,
-                    completed: 2944,
-                    inProgress: 150,
-                    notStarted: 106,
-                    completionRate: 92,
+                    completed: 1536,
+                    inProgress: 666,
+                    notStarted: 998,
+                    completionRate: 48,
                     departments: []
                 }
             ]
@@ -191,18 +191,18 @@ const progressTrackerData = {
         {
             name: "SanlamAllianz",
             population: 800,
-            completed: 720,
-            inProgress: 40,
-            notStarted: 40,
-            completionRate: 90,
+            completed: 304,
+            inProgress: 198,
+            notStarted: 298,
+            completionRate: 38,
             divisions: [
                 {
                     name: "SanlamAllianz - All Divisions",
                     population: 800,
-                    completed: 720,
-                    inProgress: 40,
-                    notStarted: 40,
-                    completionRate: 90,
+                    completed: 304,
+                    inProgress: 198,
+                    notStarted: 298,
+                    completionRate: 38,
                     departments: []
                 }
             ]
@@ -210,18 +210,18 @@ const progressTrackerData = {
         {
             name: "Sanlam Group Office",
             population: 1600,
-            completed: 1456,
-            inProgress: 80,
-            notStarted: 64,
-            completionRate: 91,
+            completed: 1408,
+            inProgress: 77,
+            notStarted: 115,
+            completionRate: 88,
             divisions: [
                 {
                     name: "Sanlam Group Office - All Divisions",
                     population: 1600,
-                    completed: 1456,
-                    inProgress: 80,
-                    notStarted: 64,
-                    completionRate: 91,
+                    completed: 1408,
+                    inProgress: 77,
+                    notStarted: 115,
+                    completionRate: 88,
                     departments: []
                 }
             ]
@@ -229,18 +229,18 @@ const progressTrackerData = {
         {
             name: "Sanlam Investment Group",
             population: 1150,
-            completed: 1081,
-            inProgress: 40,
-            notStarted: 29,
-            completionRate: 94,
+            completed: 1058,
+            inProgress: 46,
+            notStarted: 46,
+            completionRate: 92,
             divisions: [
                 {
                     name: "Sanlam Investment Group - All Divisions",
                     population: 1150,
-                    completed: 1081,
-                    inProgress: 40,
-                    notStarted: 29,
-                    completionRate: 94,
+                    completed: 1058,
+                    inProgress: 46,
+                    notStarted: 46,
+                    completionRate: 92,
                     departments: []
                 }
             ]
