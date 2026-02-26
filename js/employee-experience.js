@@ -10,75 +10,99 @@ const employeeExperienceData = {
             statements: [
                 {
                     text: "I am proud to work for this organisation",
-                    agree: 52,
-                    unsure: 20,
-                    disagree: 28
+                    stronglyAgree: 21,
+                    agree: 31,
+                    neutral: 20,
+                    disagree: 17,
+                    stronglyDisagree: 11
                 },
                 {
                     text: "I would recommend this organisation as a great place to work",
-                    agree: 50,
-                    unsure: 22,
-                    disagree: 28
+                    stronglyAgree: 20,
+                    agree: 30,
+                    neutral: 22,
+                    disagree: 17,
+                    stronglyDisagree: 11
                 },
                 {
                     text: "I feel motivated and engaged in my work",
-                    agree: 54,
-                    unsure: 18,
-                    disagree: 28
+                    stronglyAgree: 22,
+                    agree: 32,
+                    neutral: 18,
+                    disagree: 17,
+                    stronglyDisagree: 11
                 },
                 {
                     text: "I understand how my work contributes to the organisation's goals",
-                    agree: 56,
-                    unsure: 18,
-                    disagree: 26
+                    stronglyAgree: 22,
+                    agree: 34,
+                    neutral: 18,
+                    disagree: 16,
+                    stronglyDisagree: 10
                 },
                 {
                     text: "I feel valued and appreciated for my contributions",
-                    agree: 48,
-                    unsure: 24,
-                    disagree: 28
+                    stronglyAgree: 19,
+                    agree: 29,
+                    neutral: 24,
+                    disagree: 17,
+                    stronglyDisagree: 11
                 },
                 {
                     text: "My manager recognizes and appreciates my efforts",
-                    agree: 52,
-                    unsure: 20,
-                    disagree: 28
+                    stronglyAgree: 21,
+                    agree: 31,
+                    neutral: 20,
+                    disagree: 17,
+                    stronglyDisagree: 11
                 },
                 {
                     text: "I have the autonomy to make decisions in my role",
-                    agree: 50,
-                    unsure: 22,
-                    disagree: 28
+                    stronglyAgree: 20,
+                    agree: 30,
+                    neutral: 22,
+                    disagree: 17,
+                    stronglyDisagree: 11
                 },
                 {
                     text: "I feel a strong sense of belonging at this organisation",
-                    agree: 48,
-                    unsure: 24,
-                    disagree: 28
+                    stronglyAgree: 19,
+                    agree: 29,
+                    neutral: 24,
+                    disagree: 17,
+                    stronglyDisagree: 11
                 },
                 {
                     text: "The work I do makes a difference",
-                    agree: 54,
-                    unsure: 20,
-                    disagree: 26
+                    stronglyAgree: 22,
+                    agree: 32,
+                    neutral: 20,
+                    disagree: 16,
+                    stronglyDisagree: 10
                 },
                 {
                     text: "I am satisfied with my current role",
-                    agree: 51,
-                    unsure: 21,
-                    disagree: 28
+                    stronglyAgree: 20,
+                    agree: 31,
+                    neutral: 21,
+                    disagree: 17,
+                    stronglyDisagree: 11
                 },
                 {
                     text: "I see myself working here in two years time",
-                    agree: 47,
-                    unsure: 26,
-                    disagree: 27
+                    stronglyAgree: 19,
+                    agree: 28,
+                    neutral: 26,
+                    disagree: 16,
+                    stronglyDisagree: 11
                 },
                 {
                     text: "I am enthusiastic about the future direction of the organisation",
-                    agree: 49,
-                    unsure: 23,
-                    disagree: 28
+                    stronglyAgree: 20,
+                    agree: 29,
+                    neutral: 23,
+                    disagree: 17,
+                    stronglyDisagree: 11
                 }
             ]
         },
@@ -88,33 +112,43 @@ const employeeExperienceData = {
             statements: [
                 {
                     text: "My team has a clear understanding of our goals and priorities",
-                    agree: 58,
-                    unsure: 17,
-                    disagree: 25
+                    stronglyAgree: 23,
+                    agree: 35,
+                    neutral: 17,
+                    disagree: 15,
+                    stronglyDisagree: 10
                 },
                 {
                     text: "I feel connected to my team",
-                    agree: 60,
-                    unsure: 15,
-                    disagree: 25
+                    stronglyAgree: 24,
+                    agree: 36,
+                    neutral: 15,
+                    disagree: 15,
+                    stronglyDisagree: 10
                 },
                 {
                     text: "I have the technology I need to help me stay connected to my manager and team",
-                    agree: 62,
-                    unsure: 15,
-                    disagree: 23
+                    stronglyAgree: 25,
+                    agree: 37,
+                    neutral: 15,
+                    disagree: 14,
+                    stronglyDisagree: 9
                 },
                 {
                     text: "Everyone on my team contributes equally to our success",
-                    agree: 54,
-                    unsure: 20,
-                    disagree: 26
+                    stronglyAgree: 22,
+                    agree: 32,
+                    neutral: 20,
+                    disagree: 16,
+                    stronglyDisagree: 10
                 },
                 {
                     text: "There is a strong sense of mutual respect and trust in my team",
-                    agree: 58,
-                    unsure: 17,
-                    disagree: 25
+                    stronglyAgree: 23,
+                    agree: 35,
+                    neutral: 17,
+                    disagree: 15,
+                    stronglyDisagree: 10
                 }
             ]
         },
@@ -124,33 +158,43 @@ const employeeExperienceData = {
             statements: [
                 {
                     text: "I feel emotionally supported at work",
-                    agree: 54,
-                    unsure: 20,
-                    disagree: 26
+                    stronglyAgree: 22,
+                    agree: 32,
+                    neutral: 20,
+                    disagree: 16,
+                    stronglyDisagree: 10
                 },
                 {
                     text: "My current role allows me to have the work-life balance that I want",
-                    agree: 52,
-                    unsure: 22,
-                    disagree: 26
+                    stronglyAgree: 21,
+                    agree: 31,
+                    neutral: 22,
+                    disagree: 16,
+                    stronglyDisagree: 10
                 },
                 {
                     text: "I am able to manage work-related stress effectively",
-                    agree: 50,
-                    unsure: 24,
-                    disagree: 26
+                    stronglyAgree: 20,
+                    agree: 30,
+                    neutral: 24,
+                    disagree: 16,
+                    stronglyDisagree: 10
                 },
                 {
                     text: "My manager cares about my well-being",
-                    agree: 58,
-                    unsure: 18,
-                    disagree: 24
+                    stronglyAgree: 23,
+                    agree: 35,
+                    neutral: 18,
+                    disagree: 14,
+                    stronglyDisagree: 10
                 },
                 {
                     text: "I know how to access support for mental or physical health when needed",
-                    agree: 60,
-                    unsure: 18,
-                    disagree: 22
+                    stronglyAgree: 24,
+                    agree: 36,
+                    neutral: 18,
+                    disagree: 13,
+                    stronglyDisagree: 9
                 }
             ]
         },
@@ -160,50 +204,68 @@ const employeeExperienceData = {
             statements: [
                 {
                     text: "I have access to the learning and development resources I need to grow in my role",
-                    agree: 58,
-                    unsure: 18,
-                    disagree: 24
+                    stronglyAgree: 23,
+                    agree: 35,
+                    neutral: 18,
+                    disagree: 14,
+                    stronglyDisagree: 10
                 },
                 {
                     text: "My organisation has professional development resources that are useful to me",
-                    agree: 56,
-                    unsure: 20,
-                    disagree: 24
+                    stronglyAgree: 22,
+                    agree: 34,
+                    neutral: 20,
+                    disagree: 14,
+                    stronglyDisagree: 10
                 },
                 {
                     text: "I understand the career opportunities available at my organisation",
-                    agree: 52,
-                    unsure: 24,
-                    disagree: 24
+                    stronglyAgree: 21,
+                    agree: 31,
+                    neutral: 24,
+                    disagree: 14,
+                    stronglyDisagree: 10
                 },
                 {
                     text: "Leadership encourages and supports employee growth, career development and progression",
-                    agree: 54,
-                    unsure: 22,
-                    disagree: 24
+                    stronglyAgree: 22,
+                    agree: 32,
+                    neutral: 22,
+                    disagree: 14,
+                    stronglyDisagree: 10
                 },
                 {
                     text: "I believe that there are clear opportunities to grow and develop within the organisation",
-                    agree: 53,
-                    unsure: 23,
-                    disagree: 24
+                    stronglyAgree: 21,
+                    agree: 32,
+                    neutral: 23,
+                    disagree: 14,
+                    stronglyDisagree: 10
                 },
                 {
                     text: "The organisation does provide adequate and appropriate resources and learning offerings for skills development and career growth",
-                    agree: 55,
-                    unsure: 21,
-                    disagree: 24
+                    stronglyAgree: 22,
+                    agree: 33,
+                    neutral: 21,
+                    disagree: 14,
+                    stronglyDisagree: 10
                 },
                 {
                     text: "In my team, my line manager supports my professional growth and learning",
-                    agree: 60,
-                    unsure: 18,
-                    disagree: 22
+                    stronglyAgree: 24,
+                    agree: 36,
+                    neutral: 18,
+                    disagree: 13,
+                    stronglyDisagree: 9
                 }
             ]
         }
     ]
 };
+
+// Global state for 5-point scale toggle
+let use5PointScale = true;
+let currentDimensionIndex = null;
 
 // Initialize page
 document.addEventListener('DOMContentLoaded', function() {
@@ -228,6 +290,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
+
+// Toggle scale function
+function toggleScale() {
+    use5PointScale = !use5PointScale;
+    if (currentDimensionIndex !== null) {
+        showDimensionDetail(currentDimensionIndex);
+    }
+}
 
 // Render dimensions overview
 function renderDimensionsOverview() {
@@ -268,6 +338,8 @@ function showDimensionDetail(dimensionIndex) {
     const dimension = employeeExperienceData.dimensions[dimensionIndex];
     if (!dimension) return;
 
+    currentDimensionIndex = dimensionIndex;
+
     // Hide overview, show detail
     document.getElementById('dimensionsOverview').style.display = 'none';
     document.getElementById('statementsOverview').style.display = 'none';
@@ -280,27 +352,68 @@ function showDimensionDetail(dimensionIndex) {
 
     // Render statements
     const container = document.getElementById('statementsContainer');
-    container.innerHTML = `<div class="d-flex align-items-center justify-content-between"><h6 class="mb-0">Statements Distribution Breakdown</h6><div class="statement-legend">
-                        <div class="legend-item">
-                            <div class="legend-color" style="background-color: #28a745;"></div>
-                            <span>Positive</span>
-                        </div>
-                        <div class="legend-item">
-                            <div class="legend-color" style="background-color: #ffc107;"></div>
-                            <span>Neutral</span>
-                        </div>
-                        <div class="legend-item">
-                            <div class="legend-color" style="background-color: #dc3545;"></div>
-                            <span>Negative</span>
-                        </div>
-                    </div></div>
-                    <hr>`;
+    
+    let legendHTML = '';
+    if (use5PointScale) {
+        legendHTML = `
+            <div class="statement-legend">
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: var(--color-scale-strongly-agree);"></div>
+                    <span>Strongly Agree</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: var(--color-scale-agree);"></div>
+                    <span>Agree</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: var(--color-scale-neutral);"></div>
+                    <span>Neutral</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: var(--color-scale-disagree);"></div>
+                    <span>Disagree</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: var(--color-scale-strongly-disagree);"></div>
+                    <span>Strongly Disagree</span>
+                </div>
+            </div>`;
+    } else {
+        legendHTML = `
+            <div class="statement-legend">
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: var(--color-positive);"></div>
+                    <span>Agree</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: var(--color-neutral);"></div>
+                    <span>Neutral</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: var(--color-negative);"></div>
+                    <span>Disagree</span>
+                </div>
+            </div>`;
+    }
+
+    container.innerHTML = `
+        <div class="d-flex align-items-center justify-content-between mb-3">
+            <h6 class="mb-0">Statements Distribution Breakdown</h6>
+            <div class="d-flex align-items-center gap-3">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="scaleToggle" ${use5PointScale ? 'checked' : ''} onchange="toggleScale()">
+                    <label class="form-check-label" for="scaleToggle">5-Point Scale</label>
+                </div>
+                ${legendHTML}
+            </div>
+        </div>
+        <hr>`;
 
     // Sort statements by score ascending (lowest/most concerning first)
-    const sortedStatements = [...dimension.statements].sort((a, b) => a.agree - b.agree);
+    const sortedStatements = [...dimension.statements].sort((a, b) => (a.stronglyAgree + a.agree) - (b.stronglyAgree + b.agree));
 
     sortedStatements.forEach((statement, index) => {
-        const statementScore = statement.agree; // Positive percentage is the statement score
+        const statementScore = statement.stronglyAgree + statement.agree; // Positive percentage is the sum of SA and A
         const statementDiv = document.createElement('div');
         statementDiv.className = 'statement-item';
         statementDiv.innerHTML = `
@@ -322,29 +435,64 @@ function showDimensionDetail(dimensionIndex) {
 
 // Create statement scoring bar visualization
 function createStatementScoringBar(statement) {
-    // Values are already percentages (sum to 100)
-    const agreePercent = statement.agree;
-    const unsurePercent = statement.unsure;
-    const disagreePercent = statement.disagree;
-    
-    // Round to integers for display
-    const agreeDisplay = Math.round(agreePercent);
-    const unsureDisplay = Math.round(unsurePercent);
-    const disagreeDisplay = Math.round(disagreePercent);
+    if (use5PointScale) {
+        // Values are already percentages (sum to 100)
+        const saPercent = statement.stronglyAgree;
+        const aPercent = statement.agree;
+        const nPercent = statement.neutral;
+        const dPercent = statement.disagree;
+        const sdPercent = statement.stronglyDisagree;
+        
+        // Round to integers for display
+        const saDisplay = Math.round(saPercent);
+        const aDisplay = Math.round(aPercent);
+        const nDisplay = Math.round(nPercent);
+        const dDisplay = Math.round(dPercent);
+        const sdDisplay = Math.round(sdPercent);
 
-    return `
-        <div class="statement-bar-track">
-            <div class="statement-bar-segment agree" style="width: ${agreePercent}%;" title="Agree: ${agreeDisplay}%">
-                ${agreeDisplay >= 5 ? `<span class="bar-label">${agreeDisplay}%</span>` : ''}
+        return `
+            <div class="statement-bar-track">
+                <div class="statement-bar-segment strongly-agree" style="width: ${saPercent}%;" title="Strongly Agree: ${saDisplay}%">
+                    ${saDisplay >= 5 ? `<span class="bar-label">${saDisplay}%</span>` : ''}
+                </div>
+                <div class="statement-bar-segment agree" style="width: ${aPercent}%;" title="Agree: ${aDisplay}%">
+                    ${aDisplay >= 5 ? `<span class="bar-label">${aDisplay}%</span>` : ''}
+                </div>
+                <div class="statement-bar-segment neutral" style="width: ${nPercent}%;" title="Neutral: ${nDisplay}%">
+                    ${nDisplay >= 5 ? `<span class="bar-label">${nDisplay}%</span>` : ''}
+                </div>
+                <div class="statement-bar-segment disagree" style="width: ${dPercent}%;" title="Disagree: ${dDisplay}%">
+                    ${dDisplay >= 5 ? `<span class="bar-label">${dDisplay}%</span>` : ''}
+                </div>
+                <div class="statement-bar-segment strongly-disagree" style="width: ${sdPercent}%;" title="Strongly Disagree: ${sdDisplay}%">
+                    ${sdDisplay >= 5 ? `<span class="bar-label">${sdDisplay}%</span>` : ''}
+                </div>
             </div>
-            <div class="statement-bar-segment unsure" style="width: ${unsurePercent}%;" title="Unsure: ${unsureDisplay}%">
-                ${unsureDisplay >= 5 ? `<span class="bar-label">${unsureDisplay}%</span>` : ''}
+        `;
+    } else {
+        // 3-point scale aggregation
+        const agreePercent = statement.stronglyAgree + statement.agree;
+        const neutralPercent = statement.neutral;
+        const disagreePercent = statement.disagree + statement.stronglyDisagree;
+
+        const agreeDisplay = Math.round(agreePercent);
+        const neutralDisplay = Math.round(neutralPercent);
+        const disagreeDisplay = Math.round(disagreePercent);
+
+        return `
+            <div class="statement-bar-track">
+                <div class="statement-bar-segment" style="width: ${agreePercent}%; background-color: var(--color-positive);" title="Agree: ${agreeDisplay}%">
+                    ${agreeDisplay >= 5 ? `<span class="bar-label">${agreeDisplay}%</span>` : ''}
+                </div>
+                <div class="statement-bar-segment" style="width: ${neutralPercent}%; background-color: var(--color-neutral);" title="Neutral: ${neutralDisplay}%">
+                    ${neutralDisplay >= 5 ? `<span class="bar-label" style="color: var(--color-text);">${neutralDisplay}%</span>` : ''}
+                </div>
+                <div class="statement-bar-segment" style="width: ${disagreePercent}%; background-color: var(--color-negative);" title="Disagree: ${disagreeDisplay}%">
+                    ${disagreeDisplay >= 5 ? `<span class="bar-label">${disagreeDisplay}%</span>` : ''}
+                </div>
             </div>
-            <div class="statement-bar-segment disagree" style="width: ${disagreePercent}%;" title="Disagree: ${disagreeDisplay}%">
-                ${disagreeDisplay >= 5 ? `<span class="bar-label">${disagreeDisplay}%</span>` : ''}
-            </div>
-        </div>
-    `;
+        `;
+    }
 }
 
 // Render statements overview (top/bottom statements)
@@ -355,7 +503,7 @@ function renderStatementsOverview() {
         dimension.statements.forEach(statement => {
             allStatements.push({
                 text: statement.text,
-                score: statement.agree,
+                score: statement.stronglyAgree + statement.agree,
                 dimension: dimension.name
             });
         });
@@ -410,4 +558,3 @@ function showDimensionsOverview() {
 
 // Make functions available globally
 window.showDimensionsOverview = showDimensionsOverview;
-

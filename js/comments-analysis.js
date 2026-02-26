@@ -275,7 +275,7 @@ const commentsAnalysis = (() => {
     function renderThemes() {
         // Use shared sentiment themes module
         if (typeof sentimentThemesShared !== 'undefined') {
-            sentimentThemesShared.render();
+            sentimentThemesShared.render({ showMixed: false });
         }
 
         // Populate theme filter from all unique themes

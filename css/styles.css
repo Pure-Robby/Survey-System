@@ -58,6 +58,13 @@
     --color-positive: #28a745;
     --color-neutral: #ffc107;
     --color-negative: #dc3545;
+
+    /* 5-Point Scale Colors */
+    --color-scale-strongly-agree: #1B5E20;
+    --color-scale-agree: #43A047;
+    --color-scale-neutral: #FDD835;
+    --color-scale-disagree: #FB8C00;
+    --color-scale-strongly-disagree: #E53935;
     
     /* Chart Colors - mapped to brand accents */
     --color-chart-1: var(--brand-primary);
@@ -2622,16 +2629,28 @@ body {
     transition: width 0.5s ease;
 }
 
-.statement-bar-segment.agree {
-    background-color: var(--color-positive);
+.statement-bar-segment.strongly-agree {
+    background-color: var(--color-scale-strongly-agree);
 }
 
-.statement-bar-segment.unsure {
-    background-color: var(--color-neutral);
+.statement-bar-segment.agree {
+    background-color: var(--color-scale-agree);
+}
+
+.statement-bar-segment.neutral {
+    background-color: var(--color-scale-neutral);
 }
 
 .statement-bar-segment.disagree {
-    background-color: var(--color-negative);
+    background-color: var(--color-scale-disagree);
+}
+
+.statement-bar-segment.strongly-disagree {
+    background-color: var(--color-scale-strongly-disagree);
+}
+
+.statement-bar-segment.unsure {
+    background-color: var(--color-scale-neutral);
 }
 
 .statement-bar-segment .bar-label {
@@ -2644,6 +2663,10 @@ body {
 }
 
 .statement-bar-segment.unsure .bar-label {
+    color: var(--color-text);
+}
+
+.statement-bar-segment.neutral .bar-label {
     color: var(--color-text);
 }
 
@@ -3012,6 +3035,143 @@ body {
     background-color: var(--color-danger);
 }
 
+/* ==================== Business Unit Drill-Down Table ==================== */
+
+.bu-legend {
+    display: flex;
+    gap: 16px;
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+}
+
+.bu-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.bu-legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    display: inline-block;
+}
+
+.bu-legend-green {
+    background-color: var(--color-success);
+}
+
+.bu-legend-amber {
+    background-color: var(--color-warning);
+}
+
+.bu-legend-red {
+    background-color: var(--color-danger);
+}
+
+.bu-parent-row {
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.bu-parent-row:hover {
+    background-color: var(--color-bg-subtle);
+}
+
+.bu-chevron {
+    font-size: 1.2rem;
+    color: var(--color-text-muted);
+    transition: transform 0.3s ease;
+    vertical-align: middle;
+    margin-right: 6px;
+}
+
+.bu-parent-row.expanded .bu-chevron {
+    transform: rotate(90deg);
+}
+
+.bu-parent-row.expanded td,
+.bu-expandable.expanded td {
+    border-bottom: none;
+}
+
+.bu-child-row {
+    display: none;
+}
+
+.bu-child-row td {
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+.bu-child-row.bu-visible td {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.bu-label-row td {
+    padding: 6px 16px !important;
+    border-bottom: 1px solid var(--color-border-light);
+}
+
+.bu-sub-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--color-text-muted);
+}
+
+.bu-sub-row td {
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--color-border-light);
+}
+
+.bu-sub-row.bu-expandable {
+    cursor: pointer;
+}
+
+.bu-sub-row.bu-expandable:hover {
+    background-color: rgba(126, 147, 171, 0.08);
+}
+
+.bu-sub-row-last td {
+    border-bottom: 2px solid var(--color-border-light);
+}
+
+/* Depth-level backgrounds & indentation */
+.bu-depth-1 td {
+    background: var(--color-bg-subtle);
+}
+
+.bu-depth-1 td:first-child {
+    padding-left: 32px;
+}
+
+.bu-depth-2 td {
+    background: var(--color-bg-muted);
+}
+
+.bu-depth-2 td:first-child {
+    padding-left: 56px;
+}
+
+.bu-rank {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: white;
+    background-color: var(--color-primary);
+    margin-right: 8px;
+    flex-shrink: 0;
+}
+
 .recommendation-card {
     padding: var(--spacing-md);
     margin-bottom: var(--spacing-md);
@@ -3140,6 +3300,10 @@ body {
     background-color: var(--color-negative);
 }
 
+.sentiment-indicator-mixed {
+    background-color: var(--brand-primary);
+}
+
 .sentiment-question-box {
     background: var(--accent-9043);
 }
@@ -3158,6 +3322,10 @@ body {
 
 .theme-progress-bar-negative {
     background-color: var(--color-negative);
+}
+
+.theme-progress-bar-mixed {
+    background-color: var(--brand-primary);
 }
 
 .theme-sentiment-row {

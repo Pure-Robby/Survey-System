@@ -34,7 +34,8 @@ const sentimentThemesShared = (() => {
         breakdown: {
             positive: { count: 6943, percentage: 46 },
             neutral: { count: 3212, percentage: 21 },
-            negative: { count: 4876, percentage: 33 }
+            negative: { count: 4876, percentage: 33 },
+            mixed: { count: 1856, percentage: 12 }
         }
     };
 
@@ -60,6 +61,13 @@ const sentimentThemesShared = (() => {
             { theme: "Work-Life Balance", count: 589, percentage: 37 },
             { theme: "Recognition & Rewards", count: 464, percentage: 29 },
             { theme: "Career Growth", count: 369, percentage: 23 }
+        ],
+        mixed: [
+            { theme: "Leadership Communication", count: 724, percentage: 68 },
+            { theme: "Work-Life Balance", count: 512, percentage: 48 },
+            { theme: "Career Growth", count: 398, percentage: 37 },
+            { theme: "Team Collaboration", count: 261, percentage: 24 },
+            { theme: "Recognition & Rewards", count: 187, percentage: 17 }
         ]
     };
 
@@ -77,7 +85,9 @@ const sentimentThemesShared = (() => {
     }
 
     // Render sentiment donut legend and question text
-    function renderSentimentLegend() {
+    // options.showMixed: boolean (default true) — pass false to hide the Mixed row
+    function renderSentimentLegend(options) {
+        const showMixed = !options || options.showMixed !== false;
         const container = document.getElementById('sentimentLegend');
         if (!container) return;
         
@@ -97,13 +107,21 @@ const sentimentThemesShared = (() => {
                     </div>
                     <span class="fw-bold">${sentimentData.breakdown.neutral.count.toLocaleString()} (${sentimentData.breakdown.neutral.percentage}%)</span>
                 </div>
-                <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex justify-content-between align-items-center${showMixed ? ' mb-2' : ''}">
                     <div class="d-flex align-items-center">
                         <div class="sentiment-indicator sentiment-indicator-negative"></div>
                         <span>Negative:</span>
                     </div>
                     <span class="fw-bold">${sentimentData.breakdown.negative.count.toLocaleString()} (${sentimentData.breakdown.negative.percentage}%)</span>
                 </div>
+                ${showMixed ? `
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center">
+                        <div class="sentiment-indicator sentiment-indicator-mixed"></div>
+                        <span>Mixed:</span>
+                    </div>
+                    <span class="fw-bold">${sentimentData.breakdown.mixed.count.toLocaleString()} (${sentimentData.breakdown.mixed.percentage}%)</span>
+                </div>` : ''}
             </div>
             
             <!--<div class="p-3 rounded-4 mt-auto sentiment-question-box">
@@ -118,6 +136,7 @@ const sentimentThemesShared = (() => {
         const positiveContainer = document.getElementById('positiveThemes');
         const neutralContainer = document.getElementById('neutralThemes');
         const negativeContainer = document.getElementById('negativeThemes');
+        const mixedContainer = document.getElementById('mixedThemes');
         
         if (!positiveContainer || !negativeContainer) return;
         
@@ -161,12 +180,28 @@ const sentimentThemesShared = (() => {
                 </div>
             </div>
         `).join('');
+
+        // Render mixed themes
+        if (mixedContainer) {
+            mixedContainer.innerHTML = themesData.mixed.map(item => `
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between align-items-center mb-1 gap-2">
+                        <span class="fs-7 flex-shrink-0">${item.theme}</span>
+                        <span class="fw-semibold fs-8 text-end lh-sm">${item.count.toLocaleString()} comments</span>
+                    </div>
+                    <div class="progress-bar-container theme-progress-container">
+                        <div class="progress-bar theme-progress-bar-mixed" style="width: ${item.percentage}%;"></div>
+                    </div>
+                </div>
+            `).join('');
+        }
     }
 
     // Render all components
-    function renderAll() {
+    // options.showMixed: boolean (default true) — pass false to hide the Mixed legend row
+    function renderAll(options) {
         updateDonutCenterText();
-        renderSentimentLegend();
+        renderSentimentLegend(options);
         renderThemes();
     }
 

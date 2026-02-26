@@ -268,7 +268,8 @@ function initializeCharts() {
         createDonutChart('sentimentDonut', [
             { value: 6943, color: '#28a745' }, // Positive
             { value: 4876, color: '#dc3545' }, // Negative
-            { value: 3212, color: '#ffc107' }  // Neutral
+            { value: 3212, color: '#ffc107' }, // Neutral
+            { value: 1856, color: '#0075c9' }  // Mixed
         ]);
     }
     

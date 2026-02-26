@@ -1005,28 +1005,117 @@ function renderBusinessUnitComparison() {
     const sortedUnits = [...getBusinessUnitData()].sort((a, b) => b.cultureIndex - a.cultureIndex);
     const container = document.getElementById('businessUnitTableBody');
     if (!container) return;
-    
-    container.innerHTML = sortedUnits.map(unit => {
+
+    function buildDataRow(unit, cssClass, depthClass, parentKey, rank) {
         const scoreClass = getScoreColorClass(unit.cultureIndex);
+        const hasChildren = unit.subUnits && unit.subUnits.length > 0;
+        const chevron = hasChildren ? `<i class='bx bx-chevron-right bu-chevron'></i>` : '';
+        const rankBadge = rank != null ? `<span class="bu-rank">${rank}</span>` : '';
         return `
-            <tr>
-                <td class="fw-semibold">${unit.name}</td>
-                <td class="text-center">
-                    <span class="badge business-unit-score-badge ${scoreClass}">
-                        ${unit.cultureIndex}%
-                    </span>
-                </td>
-                <td class="text-center">${unit.responseRate}%</td>
-                <td class="text-center">${unit.employeeCount.toLocaleString()}</td>
-                <td class="text-center">
-                    <span class="badge badge-success badge-sm">${unit.keyStrength}</span>
-                </td>
-                <td class="text-center">
-                    <span class="badge badge-warning badge-sm">${unit.priorityArea}</span>
-                </td>
-            </tr>
-        `;
-    }).join('');
+            <td class="${depthClass ? '' : 'fw-semibold'}">
+                ${rankBadge}${chevron}
+                ${unit.name}
+            </td>
+            <td class="text-center">
+                <span class="badge business-unit-score-badge ${scoreClass}">${unit.cultureIndex}%</span>
+            </td>
+            <td class="text-center">${unit.responseRate}%</td>
+            <td class="text-center">${unit.employeeCount.toLocaleString()}</td>
+            <td class="text-center">
+                <span class="badge badge-success badge-sm">${unit.keyStrength}</span>
+            </td>
+            <td class="text-center">
+                <span class="badge badge-warning badge-sm">${unit.priorityArea}</span>
+            </td>`;
+    }
+
+    let html = '';
+
+    sortedUnits.forEach((unit, idx) => {
+        const l1Key = `${idx}`;
+        html += `<tr class="bu-parent-row bu-depth-0" data-bu-key="${l1Key}">${buildDataRow(unit, 'bu-parent-row', '', l1Key, null)}</tr>`;
+
+        const topL2 = (unit.subUnits || []).slice().sort((a, b) => b.cultureIndex - a.cultureIndex).slice(0, 3);
+
+        html += `<tr class="bu-child-row bu-label-row bu-depth-1" data-bu-parent="${l1Key}">
+            <td colspan="6"><span class="bu-sub-label">Top 3 Sub-Units</span></td></tr>`;
+
+        topL2.forEach((sub, sIdx) => {
+            const l2Key = `${idx}-${sIdx}`;
+            const isLastL2 = sIdx === topL2.length - 1;
+            const hasL3 = sub.subUnits && sub.subUnits.length > 0;
+            html += `<tr class="bu-child-row bu-sub-row bu-depth-1${isLastL2 && !hasL3 ? ' bu-sub-row-last' : ''}${hasL3 ? ' bu-expandable' : ''}" data-bu-parent="${l1Key}" data-bu-key="${l2Key}">${buildDataRow(sub, 'bu-sub-row', 'bu-depth-1', l2Key, sIdx + 1)}</tr>`;
+
+            if (hasL3) {
+                const topL3 = sub.subUnits.slice().sort((a, b) => b.cultureIndex - a.cultureIndex).slice(0, 3);
+
+                html += `<tr class="bu-child-row bu-label-row bu-depth-2" data-bu-parent="${l2Key}">
+                    <td colspan="6"><span class="bu-sub-label">Top 3 Sub-Units</span></td></tr>`;
+
+                topL3.forEach((grandchild, gIdx) => {
+                    const isLastL3 = gIdx === topL3.length - 1;
+                    html += `<tr class="bu-child-row bu-sub-row bu-depth-2${isLastL3 ? ' bu-sub-row-last' : ''}" data-bu-parent="${l2Key}">${buildDataRow(grandchild, 'bu-sub-row', 'bu-depth-2', null, gIdx + 1)}</tr>`;
+                });
+            }
+        });
+    });
+
+    container.innerHTML = html;
+
+    function toggleChildren(triggerRow, expand) {
+        const key = triggerRow.getAttribute('data-bu-key');
+        const directChildren = container.querySelectorAll(`.bu-child-row[data-bu-parent="${key}"]`);
+
+        if (expand) {
+            triggerRow.classList.add('expanded');
+            directChildren.forEach((child, i) => {
+                child.style.display = 'table-row';
+                child.querySelectorAll('td').forEach(td => { td.style.transitionDelay = `${i * 40}ms`; });
+            });
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    directChildren.forEach(child => child.classList.add('bu-visible'));
+                });
+            });
+        } else {
+            triggerRow.classList.remove('expanded');
+            const allDescendants = getAllDescendants(key);
+            allDescendants.forEach(child => child.classList.remove('bu-visible'));
+            container.querySelectorAll(`.bu-expandable.expanded`).forEach(row => {
+                if (row.getAttribute('data-bu-parent') === key) {
+                    row.classList.remove('expanded');
+                }
+            });
+            setTimeout(() => {
+                allDescendants.forEach(child => { child.style.display = 'none'; });
+            }, 220);
+        }
+    }
+
+    function getAllDescendants(parentKey) {
+        const direct = container.querySelectorAll(`.bu-child-row[data-bu-parent="${parentKey}"]`);
+        let all = [...direct];
+        direct.forEach(child => {
+            const childKey = child.getAttribute('data-bu-key');
+            if (childKey) {
+                all = all.concat(getAllDescendants(childKey));
+            }
+        });
+        return all;
+    }
+
+    container.querySelectorAll('.bu-parent-row.bu-depth-0').forEach(row => {
+        row.addEventListener('click', () => {
+            toggleChildren(row, !row.classList.contains('expanded'));
+        });
+    });
+
+    container.querySelectorAll('.bu-sub-row.bu-expandable').forEach(row => {
+        row.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleChildren(row, !row.classList.contains('expanded'));
+        });
+    });
 }
 
 function renderStrategicRecommendations() {
@@ -1147,8 +1236,7 @@ function renderKeyMetricsSummary() {
 
 function getScoreColorClass(score) {
     if (score >= 85) return 'business-unit-score-excellent';
-    if (score >= 75) return 'business-unit-score-good';
-    if (score >= 65) return 'business-unit-score-fair';
+    if (score >= 80) return 'business-unit-score-good';
     return 'business-unit-score-poor';
 }
 
