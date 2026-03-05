@@ -190,14 +190,14 @@ const commentsAnalysis = (() => {
         renderThemeSentimentBreakdown();
         updateCounts();
         
-        // Initialize sentiment chart
-        if (typeof createDonutChart === 'function') {
-            // Get colors from CSS variables
+        // Initialize sentiment chart (order matches legend: Positive, Neutral, Negative; no Mixed)
+        if (typeof createDonutChart === 'function' && typeof sentimentThemesShared !== 'undefined') {
             const styles = getComputedStyle(document.documentElement);
+            const b = sentimentThemesShared.sentimentData.breakdown;
             createDonutChart('sentimentDonut', [
-                { value: 6943, color: styles.getPropertyValue('--color-positive').trim() || '#28a745' },
-                { value: 4876, color: styles.getPropertyValue('--color-negative').trim() || '#dc3545' },
-                { value: 3212, color: styles.getPropertyValue('--color-neutral').trim() || '#ffc107' }
+                { value: b.positive.count, color: styles.getPropertyValue('--color-positive').trim() || '#28a745' },
+                { value: b.neutral.count, color: styles.getPropertyValue('--color-neutral').trim() || '#ffc107' },
+                { value: b.negative.count, color: styles.getPropertyValue('--color-negative').trim() || '#dc3545' }
             ]);
         }
     }

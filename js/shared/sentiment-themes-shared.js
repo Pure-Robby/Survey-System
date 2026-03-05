@@ -26,17 +26,26 @@
 // ============================================================================
 
 const sentimentThemesShared = (() => {
-    // Single source of truth for sentiment data
+    // Single source of truth for sentiment data (counts sum to totalComments, percentages sum to 100%)
+    const totalComments = 15043;
     const sentimentData = {
-        totalComments: 15043,
+        totalComments,
         totalRespondents: 21564,
         questionText: "Free-text question text to be added here.",
-        breakdown: {
-            positive: { count: 6943, percentage: 46 },
-            neutral: { count: 3212, percentage: 21 },
-            negative: { count: 4876, percentage: 33 },
-            mixed: { count: 1856, percentage: 12 }
-        }
+        breakdown: (() => {
+            const counts = {
+                positive: 6192,
+                neutral: 2862,
+                negative: 4344,
+                mixed: 1645
+            };
+            return {
+                positive: { count: counts.positive, percentage: Math.round((counts.positive / totalComments) * 100) },
+                neutral: { count: counts.neutral, percentage: Math.round((counts.neutral / totalComments) * 100) },
+                negative: { count: counts.negative, percentage: Math.round((counts.negative / totalComments) * 100) },
+                mixed: { count: counts.mixed, percentage: 100 - Math.round((counts.positive / totalComments) * 100) - Math.round((counts.neutral / totalComments) * 100) - Math.round((counts.negative / totalComments) * 100) }
+            };
+        })()
     };
 
     // Single source of truth for sentiment themes data
@@ -93,37 +102,37 @@ const sentimentThemesShared = (() => {
         
         container.innerHTML = `
             <div style="max-width: 180px;">
-                <div class="d-flex justify-content-between align-items-center mb-2">
+                <div class="d-flex justify-content-between gap-1 align-items-center mb-2">
                     <div class="d-flex align-items-center">
                         <div class="sentiment-indicator sentiment-indicator-positive"></div>
-                        <span>Positive:</span>
+                        <span>Positive: </span>
                     </div>
                     <span class="fw-bold">${sentimentData.breakdown.positive.count.toLocaleString()} (${sentimentData.breakdown.positive.percentage}%)</span>
                 </div>
-                <div class="d-flex justify-content-between align-items-center mb-2">
+                <div class="d-flex justify-content-between gap-1 align-items-center mb-2">
                     <div class="d-flex align-items-center">
                         <div class="sentiment-indicator sentiment-indicator-neutral"></div>
-                        <span>Neutral:</span>
+                        <span>Neutral: </span>
                     </div>
                     <span class="fw-bold">${sentimentData.breakdown.neutral.count.toLocaleString()} (${sentimentData.breakdown.neutral.percentage}%)</span>
                 </div>
-                <div class="d-flex justify-content-between align-items-center${showMixed ? ' mb-2' : ''}">
+                <div class="d-flex justify-content-between gap-1 align-items-center${showMixed ? ' mb-2' : ''}">
                     <div class="d-flex align-items-center">
                         <div class="sentiment-indicator sentiment-indicator-negative"></div>
-                        <span>Negative:</span>
+                        <span>Negative: </span>
                     </div>
                     <span class="fw-bold">${sentimentData.breakdown.negative.count.toLocaleString()} (${sentimentData.breakdown.negative.percentage}%)</span>
                 </div>
                 ${showMixed ? `
-                <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex justify-content-between gap-1 align-items-center">
                     <div class="d-flex align-items-center">
                         <div class="sentiment-indicator sentiment-indicator-mixed"></div>
-                        <span>Mixed:</span>
+                        <span>Mixed: </span>
                     </div>
                     <span class="fw-bold">${sentimentData.breakdown.mixed.count.toLocaleString()} (${sentimentData.breakdown.mixed.percentage}%)</span>
                 </div>` : ''}
             </div>
-            
+
             <!--<div class="p-3 rounded-4 mt-auto sentiment-question-box">
                 <h6 class="fw-semibold fs-7 mb-1">Question text:</h6>
                 <p class="mb-0 fs-7">${sentimentData.questionText}</p>

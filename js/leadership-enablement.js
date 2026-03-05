@@ -103,8 +103,8 @@ let currentDimensionIndex = null;
 document.addEventListener('DOMContentLoaded', function() {
     // Set data date
     const options = { day: "2-digit", month: "short", year: "numeric" };
-    document.getElementById("dataDate").textContent =
-        "Data correct as of: " + new Date().toLocaleDateString("en-GB", options);
+    const dataDateEl = document.getElementById("dataDate");
+    if (dataDateEl) dataDateEl.textContent = "Data correct as of: " + new Date().toLocaleDateString("en-GB", options);
 
     // Render dimensions overview
     renderDimensionsOverview();

@@ -262,14 +262,15 @@ function createSentimentLegend(containerId) {
 function initializeCharts() {
     // Check which page we're on and initialize appropriate charts
     
-    // Sentiment Donut Chart (Overview Dashboard & Comments Analysis)
+    // Sentiment Donut Chart (Overview Dashboard) — order matches legend: Positive, Neutral, Negative, Mixed
     const sentimentDonut = document.getElementById('sentimentDonut');
-    if (sentimentDonut) {
+    if (sentimentDonut && typeof sentimentThemesShared !== 'undefined') {
+        const b = sentimentThemesShared.sentimentData.breakdown;
         createDonutChart('sentimentDonut', [
-            { value: 6943, color: '#28a745' }, // Positive
-            { value: 4876, color: '#dc3545' }, // Negative
-            { value: 3212, color: '#ffc107' }, // Neutral
-            { value: 1856, color: '#0075c9' }  // Mixed
+            { value: b.positive.count, color: '#28a745' },
+            { value: b.neutral.count, color: '#ffc107' },
+            { value: b.negative.count, color: '#dc3545' },
+            { value: b.mixed.count, color: '#0075c9' }
         ]);
     }
     
