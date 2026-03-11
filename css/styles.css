@@ -138,15 +138,15 @@ body {
 /* ==================== Custom Utilities ==================== */
 
 .bg-positive {
-    background-color: var(--color-positive);
+    background-color: var(--color-positive) !important;
 }
 
 .bg-neutral {
-    background-color: var(--color-neutral);
+    background-color: var(--color-neutral) !important;
 }
 
 .bg-negative {
-    background-color: var(--color-negative);
+    background-color: var(--color-negative) !important;
 }
 
 /* Custom font-size utilities extending Bootstrap's .fs-1 through .fs-6 */
@@ -373,7 +373,7 @@ body {
 .enps-container {
     display: flex;
     flex-direction: column;
-    /* padding: 1rem 0; */
+    width: 49%;
 }
 
 /* .enps-chart-wrapper {
@@ -452,7 +452,7 @@ body {
 .enps-formula {
     background: var(--accent-9043);
     border-radius: 8px;
-    padding: 1rem;
+    padding: 0.5rem 1rem;
     border: 1px solid #e2e8f0;
 }
 
@@ -514,22 +514,21 @@ body {
 }
 
 .enps-score {
-    list-style: none;
-    padding: 0;
-    margin: 0;
     border-top: 1px solid #e2e8f0;
 }
 
-.enps-score li {
+.enps-score tbody tr {
     background: #fafafa;
+}
+
+.enps-score tbody tr:last-child td {
     border-bottom: 1px solid #e2e8f0;
 }
 
-.enps-score li strong {
-    padding: 0.25rem 0.5rem;
+.enps-score td strong {
+    /* padding: 0.25rem 0.5rem;
     display: inline-block;
-    width: 130px;
-    margin-right: 0.5rem;
+    min-width: 130px; */
 }
 
 /* ==================== Flight Risk Dashboard ==================== */

@@ -262,8 +262,6 @@
                             </ul>
                         </div>
                      </div>
-
-                     
                  </div>
              </div>
             </div> 
@@ -306,7 +304,7 @@
 
                  <div class="flight-risk-content-grid">
                     <div>
-                        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-3">
+                        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
                             <div class="enps-container">
                                 <p class="m-0 text-muted">Current:</p>
                                 <div class="enps-chart-wrapper d-flex justify-content-center align-items-center gap-4 mb-3">
@@ -393,11 +391,16 @@
                                 </div>
                                 
                             </div>
-                            <ul class="enps-score mb-3 w-100">
+                            <div>
+                                <p class="m-0">The score is calculated by subtracting the percentage of detractors from the percentage of promoters. The higher the score, the more engaged and happier the employees are. It's a useful way to track staff satisfaction and engagement.</p>
+                                <p class="m-0">The score ranges from -100 to +100.</p>
+                                <p class="m-0">The higher the score, the more engaged and happier the employees are. It's a useful way to track staff satisfaction and engagement.</p>
+                            </div>
+                            <!-- <ul class="enps-score w-100">
                                 <li><strong class="text-white bg-positive">Promoters (9-10):</strong> They love working at the organisation and are likely to recommend it.</li>
                                 <li><strong class="bg-neutral">Passives (7-8):</strong> They are satisfied but not overly enthusiastic.</li>
                                 <li><strong class="text-white bg-negative">Detractors (0-6):</strong> They are unhappy and wouldn't recommend it.</li>
-                            </ul>
+                            </ul> -->
                         </div>
                     </div>
                     <div class="enps-description p-4 rounded-3 bg-light border">
@@ -408,12 +411,31 @@
                         <p class="fst-italic fw-semi">How likely are you to recommend your employer to other people, who currently do not work for the organisation?</p>
                         <p class="mb-1">
                             Based on their answers, employees are grouped into three categories:
-                        </p>                        
+                        </p>
+                        <table class="table table-bordered w-100 enps-score mb-0">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Category</th>
+                                    <th scope="col">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-white bg-positive"><strong>Promoters (9-10)</strong></td>
+                                    <td>They love working at the organisation and are likely to recommend it.</td>
+                                </tr>
+                                <tr>
+                                    <td class="bg-neutral"><strong>Passives (7-8)</strong></td>
+                                    <td>They are satisfied but not overly enthusiastic.</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-white bg-negative"><strong>Detractors (0-6)</strong></td>
+                                    <td>They are unhappy and wouldn't recommend it.</td>
+                                </tr>
+                            </tbody>
+                        </table>
                 
-                        <p class="m-0">The score is calculated by subtracting the percentage of detractors from the percentage of promoters. The higher the score, the more engaged and happier the employees are. It's a useful way to track staff satisfaction and engagement.</p>
-                        <p class="m-0">The score ranges from -100 to +100.</p>
-    
-                        <p class="m-0">The higher the score, the more engaged and happier the employees are. It's a useful way to track staff satisfaction and engagement.</p>
+                        
     
                     </div>
                  </div>
