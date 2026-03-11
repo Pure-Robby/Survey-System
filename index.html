@@ -165,214 +165,504 @@
 
         <div data-export-break></div>
 
-         <!--Flight Risk & eNPS section-->
+         
+
+        <!--Flight Risk & eNPS section-->
         <div class="row mb-5">
-           <div class="col-lg-6">
-            <!--Flight Risk-->
-            <div class="card-custom h-100">
-                <h5 class="card-header-custom">
-                    Flight Risk Distribution
-                    <i class="bx bx-info-circle text-muted ms-2" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" title="The Flight Risk Indicator is derived from respondents who answered 'yes' to both questions below. Employees who respond with 'yes' to both are much more likely to exit within the next 6 months." style="font-size: 1.1rem; cursor: help;"></i>
-                </h5>
-                <div class="flight-risk-dashboard">
-                    <!-- Flight Risk KPI Cards -->
-                    <div class="flight-risk-kpi-row mb-4">
-                        <div class="flight-risk-kpi-card">
-                            <div class="flight-risk-kpi-label">Current</div>
-                            <div class="flight-risk-kpi-value">27%</div>
-                            <div class="flight-risk-kpi-sublabel">High Flight Risk</div>
-                        </div>
-                        <div class="flight-risk-kpi-card">
-                            <div class="flight-risk-kpi-label">Previous</div>
-                            <div class="flight-risk-kpi-value text-muted">33%</div>
-                            <div class="flight-risk-kpi-sublabel">High Flight Risk</div>
-                        </div>
-                        <div class="flight-risk-kpi-card flight-risk-kpi-card--positive">
-                            <div class="flight-risk-kpi-label">Change</div>
-                            <div class="flight-risk-kpi-value">
-                                <i class='bx bx-trending-down'></i> 6%
-                            </div>
-                            <div class="flight-risk-kpi-sublabel">Improvement</div>
-                        </div>
-                    </div>
-                    <div class="flight-risk-item mb-3">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="flight-risk-question mb-0">At this moment, I am actively searching for another job.</div>
-                            <div class="flight-risk-legend">
-                                <div class="legend-item-dashboard"><span class="legend-color-dashboard" style="background-color: #28a745;"></span>No</div>
-                                <div class="legend-item-dashboard"><span class="legend-color-dashboard" style="background-color: #dc3545;"></span>Yes</div>
-                            </div>
-                        </div>
+            <div class="col-lg-12">
+             <!--Flight Risk-->
+             <div class="card-custom h-100">
+                 <h5 class="card-header-custom">
+                     Flight Risk Distribution
+                     <i class="bx bx-info-circle text-muted ms-2" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" title="The Flight Risk Indicator is derived from respondents who answered 'yes' to both questions below. Employees who respond with 'yes' to both are much more likely to exit within the next 6 months." style="font-size: 1.1rem; cursor: help;"></i>
+                 </h5>
+                 <div class="flight-risk-dashboard">
+                     <!-- Flight Risk KPI Cards -->
+                     <div class="flight-risk-kpi-row mb-4">
+                         <div class="flight-risk-kpi-card">
+                             <div class="flight-risk-kpi-label">Current</div>
+                             <div class="flight-risk-kpi-value">27%</div>
+                             <div class="flight-risk-kpi-sublabel">High Flight Risk</div>
+                         </div>
+                         <div class="flight-risk-kpi-card">
+                             <div class="flight-risk-kpi-label">Previous</div>
+                             <div class="flight-risk-kpi-value text-muted">33%</div>
+                             <div class="flight-risk-kpi-sublabel">High Flight Risk</div>
+                         </div>
+                         <div class="flight-risk-kpi-card flight-risk-kpi-card--positive">
+                             <div class="flight-risk-kpi-label">Change</div>
+                             <div class="flight-risk-kpi-value">
+                                 <i class='bx bx-trending-down'></i> 6%
+                             </div>
+                             <div class="flight-risk-kpi-sublabel">Improvement</div>
+                         </div>
+                     </div>
 
+                     <div class="flight-risk-content-grid">
+                        <div>
+                            <div class="flight-risk-item mb-3">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="flight-risk-question mb-0">At this moment, I am actively searching for another job.</div>
+                                    <div class="flight-risk-legend">
+                                        <div class="legend-item-dashboard"><span class="legend-color-dashboard" style="background-color: #28a745;"></span>No</div>
+                                        <div class="legend-item-dashboard"><span class="legend-color-dashboard" style="background-color: #dc3545;"></span>Yes</div>
+                                    </div>
+                                </div>
+        
+                                
+                                <p class="m-0 text-muted">Current:</p>
+                                <div class="stacked-bar-dashboard mb-1">
+                                    <div class="bar-segment-dashboard" style="width: 75%; background-color: #28a745;" title="No: 75%">
+                                        <span>75%</span>
+                                    </div>
+                                    <div class="bar-segment-dashboard" style="width: 25%; background-color: #dc3545;" title="Yes: 25%">
+                                        <span>25%</span>
+                                    </div>
+                                </div>
+                                <p class="m-0 text-muted">Previous:</p>
+                                <div class="stacked-bar-dashboard">
+                                    <div class="bar-segment-dashboard" style="width: 66.67%; background-color: #28a745;" title="No: 66%">
+                                        <span>66.67%</span>
+                                    </div>
+                                    <div class="bar-segment-dashboard" style="width: 33.33%; background-color: #dc3545;" title="Yes: 33%">
+                                        <span>33.33%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flight-risk-item mb-0">
+                                <div class="flight-risk-question mb-2">I am planning to quit my job within the next 3 months.</div>
+                                <p class="m-0 text-muted">Current:</p>
+                                <div class="stacked-bar-dashboard mb-1">
+                                    <div class="bar-segment-dashboard" style="width: 80%; background-color: #28a745;" title="No: 80%">
+                                        <span>80%</span>
+                                    </div>
+                                    <div class="bar-segment-dashboard" style="width: 20%; background-color: #dc3545;" title="Yes: 20%">
+                                        <span>20%</span>
+                                    </div>
+                                </div>
+                                <p class="m-0 text-muted">Previous:</p>
+                                <div class="stacked-bar-dashboard">
+                                    <div class="bar-segment-dashboard" style="width: 66.67%; background-color: #28a745;" title="No: 66%">
+                                        <span>66.67%</span>
+                                    </div>
+                                    <div class="bar-segment-dashboard" style="width: 33.33%; background-color: #dc3545;" title="Yes: 33%">
+                                        <span>33.33%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         
-                        <p class="m-0 text-muted">Current:</p>
-                        <div class="stacked-bar-dashboard mb-1">
-                            <div class="bar-segment-dashboard" style="width: 75%; background-color: #28a745;" title="No: 75%">
-                                <span>75%</span>
-                            </div>
-                            <div class="bar-segment-dashboard" style="width: 25%; background-color: #dc3545;" title="Yes: 25%">
-                                <span>25%</span>
-                            </div>
+                        <div class="flight-risk-description p-4 rounded-3 bg-light border">
+                            <h5>Flight Risk Indicator</h4>
+                            <p>The <strong>Flight Risk Indicator</strong> metric is derived from looking at the proportion of survey respondents who answered yes to both retention risk questions. Essentially, it shows you what proportion of the population are truly at risk of leaving the business imminently.</p>
+                            <p class="fw-bold mb-1">As a reminder the two questions are:</p>
+                            <ul>
+                                <li>At the moment, I am actively searching for another job</li>
+                                <li>I am planning to quit my job within the next 3 months</li>
+                            </ul>
                         </div>
-                        <p class="m-0 text-muted">Previous:</p>
-                        <div class="stacked-bar-dashboard">
-                            <div class="bar-segment-dashboard" style="width: 66.67%; background-color: #28a745;" title="No: 66%">
-                                <span>66.67%</span>
-                            </div>
-                            <div class="bar-segment-dashboard" style="width: 33.33%; background-color: #dc3545;" title="Yes: 33%">
-                                <span>33.33%</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flight-risk-item mb-0">
-                        <div class="flight-risk-question mb-2">I am planning to quit my job within the next 3 months.</div>
-                        <p class="m-0 text-muted">Current:</p>
-                        <div class="stacked-bar-dashboard mb-1">
-                            <div class="bar-segment-dashboard" style="width: 80%; background-color: #28a745;" title="No: 80%">
-                                <span>80%</span>
-                            </div>
-                            <div class="bar-segment-dashboard" style="width: 20%; background-color: #dc3545;" title="Yes: 20%">
-                                <span>20%</span>
-                            </div>
-                        </div>
-                        <p class="m-0 text-muted">Previous:</p>
-                        <div class="stacked-bar-dashboard">
-                            <div class="bar-segment-dashboard" style="width: 66.67%; background-color: #28a745;" title="No: 66%">
-                                <span>66.67%</span>
-                            </div>
-                            <div class="bar-segment-dashboard" style="width: 33.33%; background-color: #dc3545;" title="Yes: 33%">
-                                <span>33.33%</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
+                     </div>
+
+                     
+                 </div>
+             </div>
+            </div> 
             </div>
-           </div>    
-           <div class="col-lg-6">
-            <!--eNPS-->
-            <div class="card-custom h-100">
-                <h5 class="card-header-custom">
-                    eNPS Score
-                    <i class="bx bx-info-circle text-muted ms-2" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" title="Employee Net Promoter Score measures employee loyalty and likelihood to recommend your organization as a place to work." style="font-size: 1.1rem; cursor: help;"></i>
-                </h5>
+            <div class="row mb-5"> 
+            <div class="col-lg-12">
+             <!--eNPS-->
+             <div class="card-custom h-100">
+                 <div class="d-flex align-items-center justify-content-between mb-3 pb-2" style="border-bottom: 2px solid var(--color-light-grey);">
+                     <h5 class="card-header-custom mb-0 pb-0 border-bottom-0">
+                         eNPS Score
+                         <i class="bx bx-info-circle text-muted ms-2" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" title="Employee Net Promoter Score measures employee loyalty and likelihood to recommend your organization as a place to work." style="font-size: 1.1rem; cursor: help;"></i>
+                     </h5>
+                     <div class="d-flex align-items-center gap-2">
+                         <span class="badge text-bg-primary">SA benchmark: 40</span><span class="badge text-bg-primary">SA Finance Industry benchmark: 38</span>
+                     </div>
+                     
+                 </div>
+                 
+                 <!-- eNPS KPI Cards -->
+                 <div class="flight-risk-kpi-row mb-4">
+                     <div class="flight-risk-kpi-card">
+                         <div class="flight-risk-kpi-label">Current</div>
+                         <div class="flight-risk-kpi-value" style="color: var(--brand-primary);">17</div>
+                         <div class="flight-risk-kpi-sublabel">eNPS Score</div>
+                     </div>
+                     <div class="flight-risk-kpi-card">
+                         <div class="flight-risk-kpi-label">Previous</div>
+                         <div class="flight-risk-kpi-value text-muted">36.9</div>
+                         <div class="flight-risk-kpi-sublabel">eNPS Score</div>
+                     </div>
+                     <div class="flight-risk-kpi-card flight-risk-kpi-card--negative">
+                         <div class="flight-risk-kpi-label">Change</div>
+                         <div class="flight-risk-kpi-value">
+                             <i class='bx bx-trending-down'></i> 19.9
+                         </div>
+                         <div class="flight-risk-kpi-sublabel">Decline</div>
+                     </div>
+                 </div>
+
+                 <div class="flight-risk-content-grid">
+                    <div>
+                        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-3">
+                            <div class="enps-container">
+                                <p class="m-0 text-muted">Current:</p>
+                                <div class="enps-chart-wrapper d-flex justify-content-center align-items-center gap-4 mb-3">
+                                    <div class="enps-donut-wrap position-relative" style="width: 210px; height: 210px;">
+                                        <canvas id="enpsDonutCurrent" width="210" height="210"></canvas>
+                                        <div class="enps-center-text">
+                                            <p class="enps-center-label mb-1">eNPS Score</p>
+                                            <p class="enps-center-value mb-0" id="enpsScoreValue">17</p>
+                                        </div>
+                                    </div>
+                                    <div class="enps-legend p-0">                            
+                                        <div class="enps-legend-item">
+                                            <span class="enps-legend-dot promoters"></span>
+                                            <span>Promoters: <span class="fw-bold">51.5%</span></span>
+                                        </div>
+                                        
+                                        <div class="enps-legend-item">
+                                            <span class="enps-legend-dot passives"></span>
+                                            <span>Passives: <span class="fw-bold">14.0%</span></span>
+                                        </div>
+                                        <div class="enps-legend-item">
+                                            <span class="enps-legend-dot detractors"></span>
+                                            <span>Detractors: <span class="fw-bold">34.5%</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="enps-formula d-flex justify-content-center align-items-center gap-3">
+                                    <div class="enps-formula-label mb-0">eNPS Score</div>
+                                    <div class="enps-formula-calculation">
+                                        <span class="enps-formula-equals">=</span>
+                                        <div class="enps-formula-component promoters">
+                                            <div class="enps-formula-value">51.5%</div>
+                                            <div class="enps-formula-text">% Promoters</div>
+                                        </div>
+                                        <span class="enps-formula-operator">-</span>
+                                        <div class="enps-formula-component detractors">
+                                            <div class="enps-formula-value">34.5%</div>
+                                            <div class="enps-formula-text">% Detractors</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <div class="enps-container">
+                                <p class="m-0 text-muted">Previous:</p>
+                                <div class="enps-chart-wrapper d-flex justify-content-center align-items-center gap-4 mb-3">
+                                    <div class="enps-donut-wrap position-relative" style="width: 210px; height: 210px;">
+                                        <canvas id="enpsDonutPrevious" width="210" height="210"></canvas>
+                                        <div class="enps-center-text">
+                                            <p class="enps-center-label mb-1">eNPS Score</p>
+                                            <p class="enps-center-value mb-0" id="enpsScoreValue">36.9</p>
+                                        </div>
+                                    </div>
+                                    <div class="enps-legend p-0">                            
+                                        <div class="enps-legend-item">
+                                            <span class="enps-legend-dot promoters"></span>
+                                            <span>Promoters: <span class="fw-bold">61.45%</span></span>
+                                        </div>
+                                        
+                                        <div class="enps-legend-item">
+                                            <span class="enps-legend-dot passives"></span>
+                                            <span>Passives: <span class="fw-bold">14%</span></span>
+                                        </div>
+                                        <div class="enps-legend-item">
+                                            <span class="enps-legend-dot detractors"></span>
+                                            <span>Detractors: <span class="fw-bold">24.55%</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="enps-formula d-flex justify-content-center align-items-center gap-3">
+                                    <div class="enps-formula-label mb-0">eNPS Score</div>
+                                    <div class="enps-formula-calculation">
+                                        <span class="enps-formula-equals">=</span>
+                                        <div class="enps-formula-component promoters">
+                                            <div class="enps-formula-value">61.45%</div>
+                                            <div class="enps-formula-text">% Promoters</div>
+                                        </div>
+                                        <span class="enps-formula-operator">-</span>
+                                        <div class="enps-formula-component detractors">
+                                            <div class="enps-formula-value">24.55%</div>
+                                            <div class="enps-formula-text">% Detractors</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <ul class="enps-score mb-3 w-100">
+                                <li><strong class="text-white bg-positive">Promoters (9-10):</strong> They love working at the organisation and are likely to recommend it.</li>
+                                <li><strong class="bg-neutral">Passives (7-8):</strong> They are satisfied but not overly enthusiastic.</li>
+                                <li><strong class="text-white bg-negative">Detractors (0-6):</strong> They are unhappy and wouldn't recommend it.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="enps-description p-4 rounded-3 bg-light border">
+                        <h5>eNPS Score</h5>
+                        <p>
+                            <strong>eNPS</strong> stands for <strong>Employee Net Promoter Score</strong>. It's a simple way to measure how employees feel about working at the organisation. Just like how companies use a Net Promoter Score (NPS) to find out how likely customers are to recommend their products, eNPS asks employees a similar question:
+                        </p>
+                        <p class="fst-italic fw-semi">How likely are you to recommend your employer to other people, who currently do not work for the organisation?</p>
+                        <p class="mb-1">
+                            Based on their answers, employees are grouped into three categories:
+                        </p>                        
                 
-                <!-- eNPS KPI Cards -->
-                <div class="flight-risk-kpi-row mb-4">
-                    <div class="flight-risk-kpi-card">
-                        <div class="flight-risk-kpi-label">Current</div>
-                        <div class="flight-risk-kpi-value" style="color: var(--brand-primary);">17</div>
-                        <div class="flight-risk-kpi-sublabel">eNPS Score</div>
-                    </div>
-                    <div class="flight-risk-kpi-card">
-                        <div class="flight-risk-kpi-label">Previous</div>
-                        <div class="flight-risk-kpi-value text-muted">36.9</div>
-                        <div class="flight-risk-kpi-sublabel">eNPS Score</div>
-                    </div>
-                    <div class="flight-risk-kpi-card flight-risk-kpi-card--negative">
-                        <div class="flight-risk-kpi-label">Change</div>
-                        <div class="flight-risk-kpi-value">
-                            <i class='bx bx-trending-down'></i> 19.9
-                        </div>
-                        <div class="flight-risk-kpi-sublabel">Decline</div>
-                    </div>
-                </div>
-
-                <div class="d-flex justify-content-between align-items-center gap-3">
-                    <div class="enps-container">
-                        <p class="m-0 text-muted">Current:</p>
-                        <div class="enps-chart-wrapper d-flex justify-content-center align-items-center gap-4 mb-3">
-                            <div class="enps-donut-wrap position-relative" style="width: 210px; height: 210px;">
-                                <canvas id="enpsDonutCurrent" width="210" height="210"></canvas>
-                                <div class="enps-center-text">
-                                    <p class="enps-center-label mb-1">eNPS Score</p>
-                                    <p class="enps-center-value mb-0" id="enpsScoreValue">17</p>
-                                </div>
-                            </div>
-                            <div class="enps-legend p-0">                            
-                                <div class="enps-legend-item">
-                                    <span class="enps-legend-dot promoters"></span>
-                                    <span>Promoters: <span class="fw-bold">51.5%</span></span>
-                                </div>
-                                
-                                <div class="enps-legend-item">
-                                    <span class="enps-legend-dot passives"></span>
-                                    <span>Passives: <span class="fw-bold">14.0%</span></span>
-                                </div>
-                                <div class="enps-legend-item">
-                                    <span class="enps-legend-dot detractors"></span>
-                                    <span>Detractors: <span class="fw-bold">34.5%</span></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="enps-formula d-flex justify-content-center align-items-center gap-3">
-                            <div class="enps-formula-label mb-0">eNPS Score</div>
-                            <div class="enps-formula-calculation">
-                                <span class="enps-formula-equals">=</span>
-                                <div class="enps-formula-component promoters">
-                                    <div class="enps-formula-value">51.5%</div>
-                                    <div class="enps-formula-text">% Promoters</div>
-                                </div>
-                                <span class="enps-formula-operator">-</span>
-                                <div class="enps-formula-component detractors">
-                                    <div class="enps-formula-value">34.5%</div>
-                                    <div class="enps-formula-text">% Detractors</div>
-                                </div>
-                            </div>
-                        </div>
+                        <p class="m-0">The score is calculated by subtracting the percentage of detractors from the percentage of promoters. The higher the score, the more engaged and happier the employees are. It's a useful way to track staff satisfaction and engagement.</p>
+                        <p class="m-0">The score ranges from -100 to +100.</p>
     
-                        <!-- <img src="assets/enps-graphic.png" alt="eNPS Formula" class="mw-100"> -->
-                    </div>
-
-                    <div class="enps-container">
-                        <p class="m-0 text-muted">Previous:</p>
-                        <div class="enps-chart-wrapper d-flex justify-content-center align-items-center gap-4 mb-3">
-                            <div class="enps-donut-wrap position-relative" style="width: 210px; height: 210px;">
-                                <canvas id="enpsDonutPrevious" width="210" height="210"></canvas>
-                                <div class="enps-center-text">
-                                    <p class="enps-center-label mb-1">eNPS Score</p>
-                                    <p class="enps-center-value mb-0" id="enpsScoreValue">36.9</p>
-                                </div>
-                            </div>
-                            <div class="enps-legend p-0">                            
-                                <div class="enps-legend-item">
-                                    <span class="enps-legend-dot promoters"></span>
-                                    <span>Promoters: <span class="fw-bold">61.45%</span></span>
-                                </div>
-                                
-                                <div class="enps-legend-item">
-                                    <span class="enps-legend-dot passives"></span>
-                                    <span>Passives: <span class="fw-bold">14%</span></span>
-                                </div>
-                                <div class="enps-legend-item">
-                                    <span class="enps-legend-dot detractors"></span>
-                                    <span>Detractors: <span class="fw-bold">24.55%</span></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="enps-formula d-flex justify-content-center align-items-center gap-3">
-                            <div class="enps-formula-label mb-0">eNPS Score</div>
-                            <div class="enps-formula-calculation">
-                                <span class="enps-formula-equals">=</span>
-                                <div class="enps-formula-component promoters">
-                                    <div class="enps-formula-value">61.45%</div>
-                                    <div class="enps-formula-text">% Promoters</div>
-                                </div>
-                                <span class="enps-formula-operator">-</span>
-                                <div class="enps-formula-component detractors">
-                                    <div class="enps-formula-value">24.55%</div>
-                                    <div class="enps-formula-text">% Detractors</div>
-                                </div>
-                            </div>
-                        </div>
+                        <p class="m-0">The higher the score, the more engaged and happier the employees are. It's a useful way to track staff satisfaction and engagement.</p>
     
-                        <!-- <img src="assets/enps-graphic.png" alt="eNPS Formula" class="mw-100"> -->
                     </div>
+                 </div>
+             </div>
+            </div>  
+         </div>
 
-                </div>
-            </div>
-           </div>  
-        </div>
+        <!--Flight Risk & eNPS section-->
+        <div class="row mb-5 d-none">
+            <div class="col-lg-6">
+             <!--Flight Risk-->
+             <div class="card-custom h-100">
+                 <h5 class="card-header-custom">
+                     Flight Risk Distribution
+                     <i class="bx bx-info-circle text-muted ms-2" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" title="The Flight Risk Indicator is derived from respondents who answered 'yes' to both questions below. Employees who respond with 'yes' to both are much more likely to exit within the next 6 months." style="font-size: 1.1rem; cursor: help;"></i>
+                 </h5>
+                 <div class="flight-risk-dashboard">
+                     <!-- Flight Risk KPI Cards -->
+                     <div class="flight-risk-kpi-row mb-4">
+                         <div class="flight-risk-kpi-card">
+                             <div class="flight-risk-kpi-label">Current</div>
+                             <div class="flight-risk-kpi-value">27%</div>
+                             <div class="flight-risk-kpi-sublabel">High Flight Risk</div>
+                         </div>
+                         <div class="flight-risk-kpi-card">
+                             <div class="flight-risk-kpi-label">Previous</div>
+                             <div class="flight-risk-kpi-value text-muted">33%</div>
+                             <div class="flight-risk-kpi-sublabel">High Flight Risk</div>
+                         </div>
+                         <div class="flight-risk-kpi-card flight-risk-kpi-card--positive">
+                             <div class="flight-risk-kpi-label">Change</div>
+                             <div class="flight-risk-kpi-value">
+                                 <i class='bx bx-trending-down'></i> 6%
+                             </div>
+                             <div class="flight-risk-kpi-sublabel">Improvement</div>
+                         </div>
+                     </div>
+                     <div class="flight-risk-item mb-3">
+                         <div class="d-flex justify-content-between align-items-center">
+                             <div class="flight-risk-question mb-0">At this moment, I am actively searching for another job.</div>
+                             <div class="flight-risk-legend">
+                                 <div class="legend-item-dashboard"><span class="legend-color-dashboard" style="background-color: #28a745;"></span>No</div>
+                                 <div class="legend-item-dashboard"><span class="legend-color-dashboard" style="background-color: #dc3545;"></span>Yes</div>
+                             </div>
+                         </div>
+ 
+                         
+                         <p class="m-0 text-muted">Current:</p>
+                         <div class="stacked-bar-dashboard mb-1">
+                             <div class="bar-segment-dashboard" style="width: 75%; background-color: #28a745;" title="No: 75%">
+                                 <span>75%</span>
+                             </div>
+                             <div class="bar-segment-dashboard" style="width: 25%; background-color: #dc3545;" title="Yes: 25%">
+                                 <span>25%</span>
+                             </div>
+                         </div>
+                         <p class="m-0 text-muted">Previous:</p>
+                         <div class="stacked-bar-dashboard">
+                             <div class="bar-segment-dashboard" style="width: 66.67%; background-color: #28a745;" title="No: 66%">
+                                 <span>66.67%</span>
+                             </div>
+                             <div class="bar-segment-dashboard" style="width: 33.33%; background-color: #dc3545;" title="Yes: 33%">
+                                 <span>33.33%</span>
+                             </div>
+                         </div>
+                     </div>
+                     <div class="flight-risk-item mb-0">
+                         <div class="flight-risk-question mb-2">I am planning to quit my job within the next 3 months.</div>
+                         <p class="m-0 text-muted">Current:</p>
+                         <div class="stacked-bar-dashboard mb-1">
+                             <div class="bar-segment-dashboard" style="width: 80%; background-color: #28a745;" title="No: 80%">
+                                 <span>80%</span>
+                             </div>
+                             <div class="bar-segment-dashboard" style="width: 20%; background-color: #dc3545;" title="Yes: 20%">
+                                 <span>20%</span>
+                             </div>
+                         </div>
+                         <p class="m-0 text-muted">Previous:</p>
+                         <div class="stacked-bar-dashboard">
+                             <div class="bar-segment-dashboard" style="width: 66.67%; background-color: #28a745;" title="No: 66%">
+                                 <span>66.67%</span>
+                             </div>
+                             <div class="bar-segment-dashboard" style="width: 33.33%; background-color: #dc3545;" title="Yes: 33%">
+                                 <span>33.33%</span>
+                             </div>
+                         </div>
+                     </div>
+                     <hr class="my-3">
+                     <div class="flight-risk-description">
+                         <p>The <strong>Flight Risk Indicator</strong> metric is derived from looking at the proportion of survey respondents who answered yes to both retention risk questions. Essentially, it shows you what proportion of the population are truly at risk of leaving the business imminently.</p>
+                         <p class="fw-bold mb-1">As a reminder the two questions are:</p>
+                         <ul>
+                             <li>At the moment, I am actively searching for another job</li>
+                             <li>I am planning to quit my job within the next 3 months</li>
+                         </ul>
+                     </div>
+                 </div>
+             </div>
+            </div>    
+            <div class="col-lg-6">
+             <!--eNPS-->
+             <div class="card-custom h-100">
+                 <div class="d-flex align-items-center justify-content-between mb-3 pb-2" style="border-bottom: 2px solid var(--color-light-grey);">
+                     <h5 class="card-header-custom mb-0 pb-0 border-bottom-0">
+                         eNPS Score
+                         <i class="bx bx-info-circle text-muted ms-2" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" title="Employee Net Promoter Score measures employee loyalty and likelihood to recommend your organization as a place to work." style="font-size: 1.1rem; cursor: help;"></i>
+                     </h5>
+                     <div class="d-flex align-items-center gap-2">
+                         <span class="badge text-bg-primary">SA benchmark: 40</span><span class="badge text-bg-primary">SA Finance Industry benchmark: 38</span>
+                     </div>
+                     
+                 </div>
+                 
+                 <!-- eNPS KPI Cards -->
+                 <div class="flight-risk-kpi-row mb-4">
+                     <div class="flight-risk-kpi-card">
+                         <div class="flight-risk-kpi-label">Current</div>
+                         <div class="flight-risk-kpi-value" style="color: var(--brand-primary);">17</div>
+                         <div class="flight-risk-kpi-sublabel">eNPS Score</div>
+                     </div>
+                     <div class="flight-risk-kpi-card">
+                         <div class="flight-risk-kpi-label">Previous</div>
+                         <div class="flight-risk-kpi-value text-muted">36.9</div>
+                         <div class="flight-risk-kpi-sublabel">eNPS Score</div>
+                     </div>
+                     <div class="flight-risk-kpi-card flight-risk-kpi-card--negative">
+                         <div class="flight-risk-kpi-label">Change</div>
+                         <div class="flight-risk-kpi-value">
+                             <i class='bx bx-trending-down'></i> 19.9
+                         </div>
+                         <div class="flight-risk-kpi-sublabel">Decline</div>
+                     </div>
+                 </div>
+ 
+                 <div class="d-flex justify-content-between align-items-center gap-3 mb-3">
+                     <div class="enps-container">
+                         <p class="m-0 text-muted">Current:</p>
+                         <div class="enps-chart-wrapper d-flex justify-content-center align-items-center gap-4 mb-3">
+                             <div class="enps-donut-wrap position-relative" style="width: 210px; height: 210px;">
+                                 <canvas id="enpsDonutCurrent" width="210" height="210"></canvas>
+                                 <div class="enps-center-text">
+                                     <p class="enps-center-label mb-1">eNPS Score</p>
+                                     <p class="enps-center-value mb-0" id="enpsScoreValue">17</p>
+                                 </div>
+                             </div>
+                             <div class="enps-legend p-0">                            
+                                 <div class="enps-legend-item">
+                                     <span class="enps-legend-dot promoters"></span>
+                                     <span>Promoters: <span class="fw-bold">51.5%</span></span>
+                                 </div>
+                                 
+                                 <div class="enps-legend-item">
+                                     <span class="enps-legend-dot passives"></span>
+                                     <span>Passives: <span class="fw-bold">14.0%</span></span>
+                                 </div>
+                                 <div class="enps-legend-item">
+                                     <span class="enps-legend-dot detractors"></span>
+                                     <span>Detractors: <span class="fw-bold">34.5%</span></span>
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="enps-formula d-flex justify-content-center align-items-center gap-3">
+                             <div class="enps-formula-label mb-0">eNPS Score</div>
+                             <div class="enps-formula-calculation">
+                                 <span class="enps-formula-equals">=</span>
+                                 <div class="enps-formula-component promoters">
+                                     <div class="enps-formula-value">51.5%</div>
+                                     <div class="enps-formula-text">% Promoters</div>
+                                 </div>
+                                 <span class="enps-formula-operator">-</span>
+                                 <div class="enps-formula-component detractors">
+                                     <div class="enps-formula-value">34.5%</div>
+                                     <div class="enps-formula-text">% Detractors</div>
+                                 </div>
+                             </div>
+                         </div>
+     
+                         <!-- <img src="assets/enps-graphic.png" alt="eNPS Formula" class="mw-100"> -->
+                     </div>
+ 
+                     <div class="enps-container">
+                         <p class="m-0 text-muted">Previous:</p>
+                         <div class="enps-chart-wrapper d-flex justify-content-center align-items-center gap-4 mb-3">
+                             <div class="enps-donut-wrap position-relative" style="width: 210px; height: 210px;">
+                                 <canvas id="enpsDonutPrevious" width="210" height="210"></canvas>
+                                 <div class="enps-center-text">
+                                     <p class="enps-center-label mb-1">eNPS Score</p>
+                                     <p class="enps-center-value mb-0" id="enpsScoreValue">36.9</p>
+                                 </div>
+                             </div>
+                             <div class="enps-legend p-0">                            
+                                 <div class="enps-legend-item">
+                                     <span class="enps-legend-dot promoters"></span>
+                                     <span>Promoters: <span class="fw-bold">61.45%</span></span>
+                                 </div>
+                                 
+                                 <div class="enps-legend-item">
+                                     <span class="enps-legend-dot passives"></span>
+                                     <span>Passives: <span class="fw-bold">14%</span></span>
+                                 </div>
+                                 <div class="enps-legend-item">
+                                     <span class="enps-legend-dot detractors"></span>
+                                     <span>Detractors: <span class="fw-bold">24.55%</span></span>
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="enps-formula d-flex justify-content-center align-items-center gap-3">
+                             <div class="enps-formula-label mb-0">eNPS Score</div>
+                             <div class="enps-formula-calculation">
+                                 <span class="enps-formula-equals">=</span>
+                                 <div class="enps-formula-component promoters">
+                                     <div class="enps-formula-value">61.45%</div>
+                                     <div class="enps-formula-text">% Promoters</div>
+                                 </div>
+                                 <span class="enps-formula-operator">-</span>
+                                 <div class="enps-formula-component detractors">
+                                     <div class="enps-formula-value">24.55%</div>
+                                     <div class="enps-formula-text">% Detractors</div>
+                                 </div>
+                             </div>
+                         </div>
+     
+                         <!-- <img src="assets/enps-graphic.png" alt="eNPS Formula" class="mw-100"> -->
+                     </div>
+                 </div>
+                 <hr class="my-3">
+                 <div class="enps-description">
+                     <p>
+                         <strong>eNPS</strong> stands for <strong>Employee Net Promoter Score</strong>. It's a simple way to measure how employees feel about working at the organisation. Just like how companies use a Net Promoter Score (NPS) to find out how likely customers are to recommend their products, eNPS asks employees a similar question:
+                     </p>
+                     <p class="fst-italic fw-semi">How likely are you to recommend your employer to other people, who currently do not work for the organisation?</p>
+                     <p class="mb-1">
+                         Based on their answers, employees are grouped into three categories:
+                     </p>
+                     <ul class="enps-score mb-3">
+                         <li><strong class="text-white bg-positive">Promoters (9-10):</strong> They love working at the organisation and are likely to recommend it.</li>
+                         <li><strong class="bg-neutral">Passives (7-8):</strong> They are satisfied but not overly enthusiastic.</li>
+                         <li><strong class="text-white bg-negative">Detractors (0-6):</strong> They are unhappy and wouldn't recommend it.</li>
+                     </ul>
+             
+                     <p class="m-0">The score is calculated by subtracting the percentage of detractors from the percentage of promoters. The higher the score, the more engaged and happier the employees are. It's a useful way to track staff satisfaction and engagement.</p>
+                     <p class="m-0">The score ranges from -100 to +100.</p>
+ 
+                     <p class="m-0">The higher the score, the more engaged and happier the employees are. It's a useful way to track staff satisfaction and engagement.</p>
+ 
+                 </div>
+             </div>
+            </div>  
+         </div>
 
         <!-- Comments & Sentiment Section -->
         <div class="row mb-5 sentiment-section-row">
@@ -465,7 +755,7 @@
                 <div class="card-custom h-100">
                     <h5 class="card-header-custom d-flex align-items-center gap-2">
                         <i class='bx bx-trophy icon-success'></i>
-                        Top Performing Business Units
+                        Top 3 Business Units
                     </h5>
                     <div id="topPerformingUnits">
                         <!-- Will be populated by JavaScript -->
@@ -478,7 +768,7 @@
                 <div class="card-custom h-100">
                     <h5 class="card-header-custom d-flex align-items-center gap-2">
                         <i class='bx bx-error-circle icon-danger'></i>
-                        Units Requiring Attention
+                        Bottom 3 Business Units
                     </h5>
                     <div id="unitsNeedingAttention">
                         <!-- Will be populated by JavaScript -->

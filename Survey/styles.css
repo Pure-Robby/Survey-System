@@ -253,8 +253,7 @@ body {
     width: auto;
     height: auto;
     object-fit: contain;
-    padding: var(--spacing-sm);
-    border-radius: var(--border-radius-md);
+    padding: var(--spacing-sm) 0;
     flex-shrink: 0;
 }
 
