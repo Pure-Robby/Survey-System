@@ -12,12 +12,18 @@
 </head>
 <body>
     <!-- Header -->
-    <header class="header">
+    <!-- <header class="header">
         <div class="container">
             <div class="logo-container">
                 <img src="sanlam-logo.png" alt="Sanlam Logo" class="logo-image">
             </div>
             <p class="survey-subtitle">Your feedback helps us improve our workplace culture and operations.</p>
+        </div>
+    </header> -->
+    <header class="header">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h1 class="mb-0 fs-4">Sanlam Culture Survey 2026</h1>
+            <img src="sanlam-logo.png" alt="Sanlam Logo" class="logo-image">
         </div>
     </header>
 
@@ -92,11 +98,13 @@
 
     <!-- Survey Container -->
     <div class="survey-container">
+        
         <div class="container">
             <form id="cultureSurvey">
                 <!-- Landing Page -->
-                <div class="survey-page md-card md-elevation-8 active" id="landingPage">
-                    <div class="landing-content">
+                <div class="survey-page md-card md-elevation-8 p-0 active" id="landingPage">
+                    <img class="survey-banner" src="/assets/survey-banner.png" alt="Culture Survey 2026" />
+                    <div class="landing-content p-4">
                         <h2 class="landing-title">Welcome to the Sanlam Staff Culture Survey</h2>
                         
                         <div class="welcome-message">
@@ -160,7 +168,7 @@
                         </div>
                     </div>
 
-                    <div class="page-navigation">
+                    <div class="page-navigation p-4">
                         <button type="button" class="nav-button primary" id="startSurvey">
                             <span class="material-icons">play_arrow</span>
                             Start Survey

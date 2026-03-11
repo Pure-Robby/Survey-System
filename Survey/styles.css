@@ -143,6 +143,22 @@ body {
     flex-direction: column;
 }
 
+.justify-content-between {
+    justify-content: space-between !important;
+}
+
+.align-items-center {
+    align-items: center !important;
+}
+
+.fs-4 {
+    font-size: 1.5rem !important;
+}
+
+.mb-0 {
+    margin-bottom: 0 !important;
+}
+
 .mb-1 {
     margin-bottom: var(--spacing-xs);
 }
@@ -163,6 +179,18 @@ body {
     margin-bottom: var(--spacing-xl);
 }
 
+.p-0 {
+    padding: 0 !important;
+}
+
+.p-3 {
+    padding: var(--spacing-md);
+}
+
+.p-4 {
+    padding: var(--spacing-lg);
+}
+
 .text-start {
     text-align: left;
 }
@@ -178,6 +206,7 @@ body {
 .fw-normal {
     font-weight: 400;
 }
+
 .fw-bold {
     font-weight: 700;
 }
@@ -197,6 +226,20 @@ body {
     text-align: center;
     border-bottom: 1px solid #e9ecef;
 }
+
+/* Header */
+.header {
+    background: #FFF;
+    color: #333;
+    padding: var(--spacing-sm) 0;
+    text-align: center;
+    border-bottom: 1px solid #e9ecef;
+}
+
+    .header .container, .progress-info-container .container {
+        max-width: 800px;
+        margin: auto;
+    }
 
 .logo-container {
     display: flex;
@@ -374,6 +417,12 @@ body {
 }
 
 /* Landing Page Styles */
+ .survey-banner {
+    display: block;
+    margin: auto;
+    border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+  }
+
 .landing-content {
     max-width: 800px;
     margin: 0 auto;
@@ -402,8 +451,7 @@ body {
 
 .survey-info,
 .survey-dimensions,
-.confidentiality-notice,
-.getting-started {
+.confidentiality-notice {
     margin-bottom: var(--spacing-xl);
 }
 
@@ -451,12 +499,12 @@ body {
 }
 
 .landing-content .dimension-item span:not(.material-icons) {
-    font-weight: 600;
-    font-size: 16px;
+    font-weight: 500;
+    font-size: 18px;
     line-height: 1.2;
     color: #FFF;
     text-align: center;
-    width: 100px;
+    width: 115px;
 }
 
 .landing-content .dimension-item:hover {
@@ -467,43 +515,8 @@ body {
 
 .landing-content .dimension-item .material-icons {
     color: #FFF;
-    font-size: 1.5rem;
+    font-size: 2rem;
 }
-
-/* Branded accent colors for landing page dimension items */
-/* .landing-content .dimension-item:nth-child(1) {
-    border-left-color: var(--accent-burnt-pink);
-}
-
-.landing-content .dimension-item:nth-child(1) .material-icons {
-    color: var(--accent-burnt-pink);
-}
-
-.landing-content .dimension-item:nth-child(2) {
-    border-left-color: var(--accent-teal);
-}
-
-.landing-content .dimension-item:nth-child(2) .material-icons {
-    color: var(--accent-teal);
-}
-
-.landing-content .dimension-item:nth-child(3) {
-    border-left-color: var(--accent-apple-green);
-}
-
-.landing-content .dimension-item:nth-child(3) .material-icons {
-    color: var(--accent-apple-green);
-}
-
-.landing-content .dimension-item:nth-child(4) {
-    border-left-color: var(--accent-clay-orange);
-}
-
-.landing-content .dimension-item:nth-child(4) .material-icons {
-    color: var(--accent-clay-orange);
-} */
-
-
 
 .confidentiality-notice {
     background: #f8fffe;
@@ -523,10 +536,6 @@ body {
     line-height: 1.6;
 }
 
-/* .confidentiality-content strong {
-    color: var(--primary-dark);
-} */
-
 .getting-started {
     text-align: center;
     background: #fafffe;
@@ -538,7 +547,6 @@ body {
 .getting-started p {
     font-size: 1.125rem;
     line-height: 1.6;
-    margin-bottom: var(--spacing-md);
 }
 
 #startSurvey {
@@ -557,7 +565,7 @@ body {
     gap: var(--spacing-sm);
     transition: all 0.3s ease;
     box-shadow: var(--elevation-2);
-    margin: var(--spacing-lg) auto 0;
+    margin: auto;
 }
 
 #startSurvey:hover {
