@@ -1006,6 +1006,29 @@ function renderBusinessUnitComparison() {
     const container = document.getElementById('businessUnitTableBody');
     if (!container) return;
 
+    const isSimple = document.querySelector('[data-simple-bu-table]') !== null;
+    if (isSimple) {
+        container.innerHTML = sortedUnits.map(unit => {
+            const scoreClass = getScoreColorClass(unit.cultureIndex);
+            return `
+                <tr>
+                    <td class="fw-semibold">${unit.name}</td>
+                    <td class="text-center">
+                        <span class="badge business-unit-score-badge ${scoreClass}">${unit.cultureIndex}%</span>
+                    </td>
+                    <td class="text-center">${unit.responseRate}%</td>
+                    <td class="text-center">${unit.employeeCount.toLocaleString()}</td>
+                    <td class="text-center">
+                        <span class="badge badge-success badge-sm">${unit.keyStrength}</span>
+                    </td>
+                    <td class="text-center">
+                        <span class="badge badge-warning badge-sm">${unit.priorityArea}</span>
+                    </td>
+                </tr>`;
+        }).join('');
+        return;
+    }
+
     function buildDataRow(unit, cssClass, depthClass, parentKey, rank) {
         const scoreClass = getScoreColorClass(unit.cultureIndex);
         const hasChildren = unit.subUnits && unit.subUnits.length > 0;

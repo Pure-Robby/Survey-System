@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Unit Comparison - Sanlam 2026 Culture Measurement</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!-- Bootstrap 5.3 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Boxicons -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <div class="page-header">
+        <div class="container-fluid px-4">
+            <div class="row align-items-center">
+                <div class="col-md-10 d-flex align-items-center gap-5">
+                    <img src="assets/logo.png" alt="Logo" class="logo-height">
+                    <div>
+                        <h1 class="page-title mb-0">2026 Culture Measurement</h1>
+                        <p class="page-subtitle mb-0">Generate customised reports with organisation and demographic filters</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-2 text-end">
+                    <span class="text-muted me-3">Hi, Pure Survey</span>
+                    <a href="#" class="text-decoration-none">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav-tabs-custom" data-active-nav="bu-comparison"></div>
+
+    <!-- Main Content -->
+    <div class="container-fluid px-4 pb-5">
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card-custom">
+                    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+                        <h5 class="card-header-custom d-flex align-items-center gap-2 mb-0">
+                            <i class='bx bx-buildings icon-primary'></i>
+                            Business Unit Comparison
+                        </h5>
+                        <div class="bu-legend">
+                            <div class="bu-legend-item">
+                                <span class="bu-legend-dot bu-legend-green"></span>
+                                <span>&ge; 85%</span>
+                            </div>
+                            <div class="bu-legend-item">
+                                <span class="bu-legend-dot bu-legend-amber"></span>
+                                <span>80 &ndash; &lt; 85%</span>
+                            </div>
+                            <div class="bu-legend-item">
+                                <span class="bu-legend-dot bu-legend-red"></span>
+                                <span>&lt; 80%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-muted mb-3" style="font-size: 0.85rem;">Click on any business unit to drill down into its sub-units. The hierarchy supports multiple levels of depth.</p>
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0" id="buComparisonTable">
+                            <thead>
+                                <tr>
+                                    <th>Business Unit</th>
+                                    <th class="text-center">Culture Index</th>
+                                    <th class="text-center">Response Rate</th>
+                                    <th class="text-center">Respondent Count</th>
+                                    <th class="text-center">Key Strength</th>
+                                    <th class="text-center">Priority Area</th>
+                                </tr>
+                            </thead>
+                            <tbody id="buComparisonBody">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="page-footer text-center py-3 bg-white border-top">
+        <p class="mb-0 text-muted fs-7">Copyright &copy; Pure Survey (Pty) Ltd. Rights Reserved <span id="currentYear"></span>.</p>
+        <script>
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+        </script>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Shared Components -->
+    <script src="js/shared/navigation.js"></script>
+
+    <!-- Hierarchy Data -->
+    <script src="js/shared/hierarchy-data.js"></script>
+
+    <!-- Page Script -->
+    <script src="js/business-unit-comparison.js"></script>
+</body>
+</html>

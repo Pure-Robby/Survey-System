@@ -3181,21 +3181,53 @@ body {
     border-bottom: 2px solid var(--color-border-light);
 }
 
-/* Depth-level backgrounds & indentation */
-.bu-depth-1 td {
-    background: var(--color-bg-subtle);
+/* Depth-level backgrounds & indentation (supports up to 10 levels) */
+.bu-depth-1 td { background: var(--color-bg-subtle); }
+.bu-depth-1 td:first-child { padding-left: 32px; }
+
+.bu-depth-2 td { background: var(--color-bg-muted); }
+.bu-depth-2 td:first-child { padding-left: 56px; }
+
+.bu-depth-3 td { background: var(--color-bg-subtle); }
+.bu-depth-3 td:first-child { padding-left: 80px; }
+
+.bu-depth-4 td { background: var(--color-bg-muted); }
+.bu-depth-4 td:first-child { padding-left: 104px; }
+
+.bu-depth-5 td { background: var(--color-bg-subtle); }
+.bu-depth-5 td:first-child { padding-left: 128px; }
+
+.bu-depth-6 td { background: var(--color-bg-muted); }
+.bu-depth-6 td:first-child { padding-left: 152px; }
+
+.bu-depth-7 td { background: var(--color-bg-subtle); }
+.bu-depth-7 td:first-child { padding-left: 176px; }
+
+.bu-depth-8 td { background: var(--color-bg-muted); }
+.bu-depth-8 td:first-child { padding-left: 200px; }
+
+.bu-depth-9 td { background: var(--color-bg-subtle); }
+.bu-depth-9 td:first-child { padding-left: 224px; }
+
+/* "View Full Comparison" button on dashboard card */
+.bu-view-full-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 24px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-primary);
+    background: transparent;
+    border: 1px solid var(--color-primary);
+    border-radius: var(--radius-sm);
+    transition: all 0.2s ease;
+    text-decoration: none;
 }
 
-.bu-depth-1 td:first-child {
-    padding-left: 32px;
-}
-
-.bu-depth-2 td {
-    background: var(--color-bg-muted);
-}
-
-.bu-depth-2 td:first-child {
-    padding-left: 56px;
+.bu-view-full-btn:hover {
+    color: white;
+    background: var(--color-primary);
 }
 
 .bu-rank {
