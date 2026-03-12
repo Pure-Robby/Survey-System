@@ -391,12 +391,13 @@
     });
   }
 
-  function appendClearFiltersButton(container) {
+  function appendClearFiltersButton(container, appliedCount) {
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'filter-clear-btn btn btn-sm ms-2 no-export';
-    btn.innerHTML = '<i class="bx bx-x"></i> Clear filters';
-    btn.setAttribute('aria-label', 'Clear all filters');
+    const label = appliedCount === 1 ? 'Clear filter' : 'Clear filters';
+    btn.innerHTML = '<i class="bx bx-x"></i> ' + label;
+    btn.setAttribute('aria-label', appliedCount === 1 ? 'Clear filter' : 'Clear all filters');
     btn.addEventListener('click', () => reset());
     container.appendChild(btn);
   }
@@ -428,7 +429,7 @@
       // const singleFilterName = filterDisplayNames[singleKey] || singleKey;
       // indicator.textContent = `- ${singleFilterName}: ${singleLabel}`;
       indicator.textContent = `- ${singleLabel}`;
-      appendClearFiltersButton(indicator);
+      appendClearFiltersButton(indicator, 1);
       return;
     }
 
@@ -461,7 +462,7 @@
     } catch {
       // ignore if bootstrap isn't available on a given page
     }
-    appendClearFiltersButton(indicator);
+    appendClearFiltersButton(indicator, totalCount);
   }
 
   function reset() {

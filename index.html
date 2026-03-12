@@ -118,7 +118,7 @@
                 </div>
                 <div class="spacer-18"></div>
             </div>
-            <div class="score-card lever cursor-pointer" onclick="window.location.href='business-outcomes.html'">
+            <div class="score-card lever cursor-pointer" onclick="navigateToLever('business-outcomes.html')">
                 <h3>Business Outcomes</h3>
                 <div>
                     <div class="score-value" id="businessScore">83.3%</div>
@@ -127,7 +127,7 @@
                 </div>
                 <span class="dimension-click-hint justify-content-center text-white">Click to view details <i class="bx bx-chevron-right"></i></span>
             </div>
-            <div class="score-card lever cursor-pointer" onclick="window.location.href='shared-values.html'">
+            <div class="score-card lever cursor-pointer" onclick="navigateToLever('shared-values.html')">
                 <h3>Shared Values</h3>
                 <div>
                     <div class="score-value" id="valuesScore">66.7%</div>
@@ -136,7 +136,7 @@
                 </div>
                 <span class="dimension-click-hint justify-content-center text-white">Click to view details <i class="bx bx-chevron-right"></i></span>
             </div>
-            <div class="score-card lever cursor-pointer" onclick="window.location.href='employee-experience.html'">
+            <div class="score-card lever cursor-pointer" onclick="navigateToLever('employee-experience.html')">
                 <h3>Employee Experience</h3>
                 <div>
                     <div class="score-value" id="experienceScore">82.1%</div>
@@ -145,7 +145,7 @@
                 </div>
                 <span class="dimension-click-hint justify-content-center text-white">Click to view details <i class="bx bx-chevron-right"></i></span>
             </div>
-            <div class="score-card lever cursor-pointer" onclick="window.location.href='leadership-enablement.html'">
+            <div class="score-card lever cursor-pointer" onclick="navigateToLever('leadership-enablement.html')">
                 <h3>Leadership Enablement</h3>
                 <div>
                     <div class="score-value" id="leadershipScore">78.6%</div>
@@ -933,6 +933,14 @@
     <script src="js/shared/offcanvas.js"></script>
     <script src="js/shared/report-filters.js"></script>
     <script src="js/shared/filters-offcanvas.js"></script>
+    <script>
+      function navigateToLever(url) {
+        var applied = window.reportFilters && window.reportFilters.getAppliedFilters();
+        var hasFilters = applied && applied.totalCount > 0;
+        var sep = url.indexOf('?') !== -1 ? '&' : '?';
+        window.location.href = hasFilters ? url + sep + 'filtered=1' : url;
+      }
+    </script>
     <script src="js/dashboard.js"></script>
 
     <!-- your exporter -->

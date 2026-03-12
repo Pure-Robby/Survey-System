@@ -68,7 +68,12 @@
         <!-- Overall Score Summary -->
         <div class="row mb-4">
             <div class="col-12">
-                <div class="card-custom score-banner dark">
+                <div id="leverScoreBanner" class="card-custom score-banner dark"
+                    data-lever-name="Employee Experience"
+                    data-sanlam-score="81.5"
+                    data-filtered-score="82.1"
+                    data-next-url="leadership-enablement.html"
+                    data-next-label="Leadership Enablement">
                     <div class="d-flex align-items-center justify-content-start gap-5">
                         <div>
                             <h5 class="card-header-custom mb-2">Overall Employee Experience Score</h5>
@@ -82,7 +87,7 @@
                                 <i class='bx bx-arrow-back'></i> Go to Shared Values
                             </button>
                             <button class="btn-back" onclick="window.location.href='leadership-enablement.html'">
-                                Go to Leadership Enablement <i class='bx bx-arrow-back' style="transform: rotate(180deg);"></i> 
+                                Go to Leadership Enablement <i class='bx bx-arrow-back' style="transform: rotate(180deg);"></i>
                             </button>
                         </div>
                     </div>
@@ -148,7 +153,7 @@
     <!-- Shared Components -->
     <script src="js/shared/navigation.js"></script>
     <script src="js/shared/charts.js"></script>
-    
+    <script src="js/shared/lever-score-banner.js"></script>
     <!-- Page Scripts -->
     <script src="js/employee-experience.js"></script>
 </body>

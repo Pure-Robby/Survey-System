@@ -270,13 +270,20 @@ function renderDimensionsOverview() {
         dimensionCard.className = 'dimension-card';
         dimensionCard.onclick = () => showDimensionDetail(dimension.originalIndex);
         
+        const sanlamPct = dimension.sanlamScore != null ? dimension.sanlamScore : dimension.averageScore;
         dimensionCard.innerHTML = `
             <div class="dimension-card-header">
+                <div class="dimension-card-header-left">
                 <h4 class="dimension-name">${dimension.name}</h4>
-                <div class="dimension-score">${dimension.averageScore}%</div>
+                <p class="dimension-statements-count mb-0">${dimension.statements.length} Statement${dimension.statements.length !== 1 ? 's' : ''}</p>
+                </div>
+                <div class="dimension-score-col">
+                    <div class="dimension-score">${dimension.averageScore}%</div>
+                    <span class="lever-detail-sanlam" aria-label="Overall company score">Sanlam: ${sanlamPct}%</span>
+                </div>
             </div>
             <div class="dimension-card-body">
-                <p class="dimension-statements-count">${dimension.statements.length} Statement${dimension.statements.length !== 1 ? 's' : ''}</p>
+                
                 <div class="dimension-card-footer">
                     <span class="dimension-click-hint">Click to view details <i class='bx bx-chevron-right'></i></span>
                 </div>

@@ -37,10 +37,10 @@ const leverDetailsData = {
             name: "Business Outcomes",
             link: "business-outcomes.html",
             dimensions: [
-                { name: "Continuous Development", score: 85.0, statementCount: 3 },
-                { name: "Change Agility", score: 78.5, statementCount: 3 },
-                { name: "Productivity", score: 88.2, statementCount: 4 },
-                { name: "Customer Centricity", score: 81.8, statementCount: 5 }
+                { name: "Continuous Development", score: 85.0, statementCount: 3, sanlamScore: 84.2 },
+                { name: "Change Agility", score: 78.5, statementCount: 3, sanlamScore: 81.5 },
+                { name: "Productivity", score: 88.2, statementCount: 4, sanlamScore: 82.8 },
+                { name: "Customer Centricity", score: 81.8, statementCount: 5, sanlamScore: 82.1 }
             ]
         },
         {

@@ -820,13 +820,17 @@ function renderLeverDetailsOverview() {
         const dimensionListHTML = sortedDimensions.map((dimension, sortedIndex) => {
             // Find the original index of this dimension in the unsorted array
             const originalIndex = lever.dimensions.findIndex(d => d.name === dimension.name);
+            const sanlamPct = dimension.sanlamScore != null ? dimension.sanlamScore : dimension.score;
             return `
                 <li class="dimension-list-item dimension-list-item-clickable" onclick="window.location.href='${lever.link}?dimension=${originalIndex}'">
                     <div class="dimension-info">
                         <div class="dimension-name-text">${dimension.name}</div>
                         <div class="dimension-statements-badge">${dimension.statementCount} statement${dimension.statementCount !== 1 ? 's' : ''}</div>
                     </div>
-                    <div class="dimension-score-badge">${dimension.score}%</div>
+                    <div class="dimension-score-col">
+                        <div class="dimension-score-badge">${dimension.score}%</div>
+                        <span class="lever-detail-sanlam" aria-label="Overall company score">Sanlam: ${sanlamPct}%</span>
+                    </div>
                 </li>
             `;
         }).join('');
