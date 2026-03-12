@@ -108,16 +108,20 @@ function createEnpsDonutChart(elementId, data, centerLabel, centerValue, size = 
 }
 
 // ==================== Circular Progress ====================
-function createCircularProgress(elementId, percentage, color = '#28a745') {
+function createCircularProgress(elementId, percentage, color = '#28a745', nValue = null) {
     const element = document.getElementById(elementId);
     if (!element) return;
-    
+
     const size = 150;
     const strokeWidth = 10;
     const radius = (size - strokeWidth) / 2;
     const circumference = 2 * Math.PI * radius;
     const dashOffset = circumference * (1 - percentage / 100);
-    
+
+    const centerContent = nValue != null
+        ? `${Math.round(percentage)}%<span class="circular-progress-n">N=${nValue}</span>`
+        : `${Math.round(percentage)}%`;
+
     element.innerHTML = `
         <svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
             <circle
@@ -137,9 +141,8 @@ function createCircularProgress(elementId, percentage, color = '#28a745') {
             />
         </svg>
         <div class="circular-progress-text">
-            ${Math.round(percentage)}%            
+            ${centerContent}
         </div>
-        
     `;
 }
 
@@ -274,10 +277,10 @@ function initializeCharts() {
         ]);
     }
     
-    // Response Rate Circular Progress
+    // Response Rate Circular Progress (N value inside circle per design)
     const responseProgress = document.getElementById('responseProgress');
     if (responseProgress) {
-        createCircularProgress('responseProgress', 84, '#28a745');
+        createCircularProgress('responseProgress', 84, '#28a745', '21,564');
     }
     
     // Pulse Score Average Circular Progress (77% of 6 points = 4.61)

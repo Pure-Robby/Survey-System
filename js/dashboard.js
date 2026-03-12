@@ -11,6 +11,35 @@ const getLeverDetailsData = () => getMockData().leverDetailsData || { levers: []
 const getProgressTrackerData = () => getMockData().progressTrackerData || { company: {}, segments: [] };
 const getBusinessUnitData = () => getMockData().businessUnitData || [];
 
+// Overall (company-wide) scores for score card "Sanlam: X%" display (design-only POC)
+const OVERALL_COMPANY_SCORES = {
+    responseRate: 82.0,
+    cultureIndex: 82.0,
+    businessOutcomes: 83.3,
+    sharedValues: 66.7,
+    employeeExperience: 82.1,
+    leadershipEnablement: 78.6
+};
+
+function populateScoreCardCompanyScores() {
+    const responseRateEl = document.getElementById('responseRateCompany');
+    if (responseRateEl) {
+        const valueSpan = responseRateEl.querySelector('.score-card-company-value');
+        if (valueSpan) valueSpan.textContent = OVERALL_COMPANY_SCORES.responseRate + '%';
+    }
+    const pillIds = [
+        { id: 'overallScoreCompany', key: 'cultureIndex' },
+        { id: 'businessScoreCompany', key: 'businessOutcomes' },
+        { id: 'valuesScoreCompany', key: 'sharedValues' },
+        { id: 'experienceScoreCompany', key: 'employeeExperience' },
+        { id: 'leadershipScoreCompany', key: 'leadershipEnablement' }
+    ];
+    pillIds.forEach(({ id, key }) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = 'Sanlam: ' + OVERALL_COMPANY_SCORES[key] + '%';
+    });
+}
+
 // ==================== Get Today's Date ====================
 const options = { day: "2-digit", month: "short", year: "numeric" };
 const dataDateElement = document.getElementById("dataDate");
@@ -885,7 +914,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('topPerformingUnits')) {
         renderEnterpriseInsights();
     }
-    
+
+    // Populate score card company scores (Sanlam: X%) from single source of truth
+    if (document.getElementById('responseRateCompany') || document.getElementById('overallScoreCompany')) {
+        populateScoreCardCompanyScores();
+    }
+
     // Render Sentiment Themes if on dashboard page (using shared module)
     if (document.getElementById('positiveThemes') && document.getElementById('negativeThemes')) {
         if (typeof sentimentThemesShared !== 'undefined') {

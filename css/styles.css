@@ -393,6 +393,11 @@ body {
     flex-shrink: 0;
 }
 
+.enps-donut-wrap canvas {
+    position: relative;
+    z-index: 1;
+}
+
 .enps-legend {
     display: flex;
     flex-direction: column;
@@ -433,6 +438,7 @@ body {
     transform: translate(-50%, -50%);
     text-align: center;
     pointer-events: none;
+    z-index: 0;
 }
 
 .enps-center-label {
@@ -879,8 +885,75 @@ body {
     color: var(--color-text-muted);
 }
 
+/* Company score: Response Rate card (card 1) – visible only when filters applied */
+.score-card-company-response-rate {
+    display: none;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    text-align: center;
+    color: var(--color-text);
+}
 
+body.filters-applied .score-card-company-response-rate {
+    display: block;
+}
 
+.score-card-company-response-rate .score-card-company-value {
+    color: var(--brand-primary);
+    font-weight: 600;
+}
+
+/* Company score pill: Culture Index + 4 levers (cards 2–6) – visible only when filters applied */
+.score-card-company-pill {
+    display: none;
+    margin-top: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    opacity: 0.95;
+}
+
+body.filters-applied .score-card-company-pill {
+    display: block;
+}
+
+.score-card:nth-child(2) .score-card-company-pill {
+    color: var(--color-text-muted);
+    background: rgba(0, 0, 0, 0.06);
+}
+
+.score-card.lever .score-card-company-pill {
+    color: var(--white);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.filter-title-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Clear filters button beside heading when filters applied */
+.filter-clear-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+    background: rgba(255,255,255,0.7);
+    border-radius: 1rem;
+    padding: 0.25rem 0.75rem 0.25rem 0.5rem;
+}
+
+.filter-clear-btn:hover {
+    border-color: #ddd;
+    background: rgba(255,255,255,1);
+}
+
+.filter-clear-btn:hover i {
+    color: var(brand-primary);
+
+}
 
 .more-details {
     display: flex;
@@ -1241,9 +1314,20 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     font-size: var(--font-size-2xl);
     font-weight: 700;
     color: var(--color-text);
+    text-align: center;
+}
+
+.circular-progress-text .circular-progress-n {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    margin-top: 0.15rem;
 }
 
 /* ==================== Charts ==================== */
@@ -1263,12 +1347,14 @@ body {
     width: 250px;
     height: 250px;
     margin: 0 auto;
+    overflow: visible;
 }
 
 .donut-chart svg {
     transform: rotate(-90deg);
     width: 250px;
     height: 250px;
+    overflow: visible;
 }
 
 .donut-segment {
@@ -1307,6 +1393,7 @@ body {
     transform: translate(-50%, -50%);
     text-align: center;
     pointer-events: none;
+    z-index: 0;
 }
 
 .enps-donut-center-label {

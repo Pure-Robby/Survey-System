@@ -391,6 +391,16 @@
     });
   }
 
+  function appendClearFiltersButton(container) {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'filter-clear-btn btn btn-sm ms-2 no-export';
+    btn.innerHTML = '<i class="bx bx-x"></i> Clear filters';
+    btn.setAttribute('aria-label', 'Clear all filters');
+    btn.addEventListener('click', () => reset());
+    container.appendChild(btn);
+  }
+
   function updateTitleIndicator() {
     const h2 = getPrimaryPageH2();
     if (!h2) return;
@@ -403,17 +413,22 @@
     indicator.innerHTML = '';
 
     const { totalCount, perFilter } = computeAppliedSelections();
+
     if (totalCount === 0) {
+      document.body.classList.remove('filters-applied');
       indicator.textContent = '';
       return;
     }
+    document.body.classList.add('filters-applied');
 
     // Exactly 1 selection across all filters: show the single value next to title
     if (totalCount === 1) {
       const [singleKey, singleValues] = Object.entries(perFilter)[0];
       const singleLabel = singleValues[0];
-      const singleFilterName = filterDisplayNames[singleKey] || singleKey;
-      indicator.textContent = `- ${singleFilterName}: ${singleLabel}`;
+      // const singleFilterName = filterDisplayNames[singleKey] || singleKey;
+      // indicator.textContent = `- ${singleFilterName}: ${singleLabel}`;
+      indicator.textContent = `- ${singleLabel}`;
+      appendClearFiltersButton(indicator);
       return;
     }
 
@@ -446,6 +461,7 @@
     } catch {
       // ignore if bootstrap isn't available on a given page
     }
+    appendClearFiltersButton(indicator);
   }
 
   function reset() {
