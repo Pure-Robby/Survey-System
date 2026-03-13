@@ -427,20 +427,27 @@ function showDimensionDetail(dimensionIndex) {
         const statementScoreMarkup = filtersApplied
             ? `<span class="statement-score-sanlam">Sanlam: ${statementSanlamPct}%</span><span class="statement-score-filtered">Filtered: ${statementScore}%</span>`
             : `<span class="statement-score-filtered">${statementScore}%</span>`;
+        const showDualBar = filtersApplied && dimension.name !== 'Engagement';
+        const statementBarsHtml = showDualBar
+            ? `<div class="statement-bar-row">
+                    <span class="statement-bar-row-label">Sanlam: ${statementSanlamPct}%</span>
+                    ${createStatementScoringBar(statement)}
+                </div>
+                <div class="statement-bar-row">
+                    <span class="statement-bar-row-label">Filtered: ${statementScore}%</span>
+                    ${createStatementScoringBar(statement)}
+                </div>`
+            : `<div class="statement-bar-container">${createStatementScoringBar(statement)}</div>`;
         const statementDiv = document.createElement('div');
         statementDiv.className = 'statement-item';
         statementDiv.innerHTML = `
             <div class="statement-header">
                 <div class="d-flex justify-content-between align-items-baseline gap-3 statement-header-row">
                     <h6 class="statement-text flex-grow-1 mb-0">${statement.text}</h6>
-                    <div class="statement-scores">${statementScoreMarkup}</div>
+                    ${showDualBar ? '' : `<div class="statement-scores">${statementScoreMarkup}</div>`}
                 </div>
             </div>
-            <div class="statement-scoring">                
-                <div class="statement-bar-container">
-                    ${createStatementScoringBar(statement)}
-                </div>
-            </div>
+            <div class="statement-scoring">${statementBarsHtml}</div>
         `;
         container.appendChild(statementDiv);
     });

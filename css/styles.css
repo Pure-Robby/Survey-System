@@ -370,6 +370,19 @@ body {
     border-bottom: 2px solid var(--color-light-grey);
 }
 
+/* Shared grid for Strategic Recommendations and Key Metrics Summary */
+.dashboard-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+@media (max-width: 576px) {
+    .dashboard-summary-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* ==================== eNPS Dashboard ==================== */
 .enps-container {
     display: flex;
@@ -968,7 +981,7 @@ body.filters-applied .kpi-block--filtered {
 }
 
 .dimension-detail-name {
-    flex: 1 1 0%;
+    /* flex: 1 1 0%; */
     min-width: 0;
 }
 
@@ -977,7 +990,7 @@ body.filters-applied .kpi-block--filtered {
     align-items: center;
     gap: 1.5rem;
     flex-shrink: 0;
-    margin-left: auto;
+    margin-left: 3rem;
 }
 
 .dimension-detail-scores .dimension-detail-sanlam {
@@ -1427,6 +1440,17 @@ body.filters-applied .score-card-company-pill {
 .badge-primary {
     background-color: #cce3f4;
     color: #00528d;
+}
+
+.badge-neutral {
+    background-color: var(--color-light-grey, #e9ecef);
+    color: var(--color-text-secondary, #495057);
+    text-transform: none;
+}
+
+.badge-neutral::before {
+    content: none;
+    display: none;
 }
 
 /* ==================== Progress Bars ==================== */
@@ -2986,7 +3010,31 @@ body.filters-applied .lever-detail-sanlam {
 
 /* Statement Bar */
 .statement-bar-container {
-    margin-top: var(--spacing-sm);
+    /* margin-top: var(--spacing-sm); */
+}
+
+.statement-bar-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.statement-bar-row:last-child {
+    margin-bottom: 0;
+}
+
+.statement-bar-row-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--color-text);
+    min-width: 96px;
+    white-space: nowrap;
+}
+
+.statement-bar-row .statement-bar-track {
+    flex: 1;
+    height: 24px;
 }
 
 .statement-bar-track {
@@ -3584,14 +3632,14 @@ body.filters-applied .lever-detail-sanlam {
 
 .recommendation-card {
     padding: var(--spacing-md);
-    margin-bottom: var(--spacing-md);
     border: 1px solid var(--color-border-light);
     border-radius: var(--radius-sm);
 }
 
 .recommendation-priority-badge {
-    font-size: 11px;
+    font-size: 12px;
     color: white;
+    text-transform: capitalize;
 }
 
 .recommendation-priority-high {
@@ -3600,6 +3648,7 @@ body.filters-applied .lever-detail-sanlam {
 
 .recommendation-priority-medium {
     background-color: var(--color-warning);
+    color: var(--color-text)
 }
 
 .recommendation-description {

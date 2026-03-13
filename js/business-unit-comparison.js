@@ -83,11 +83,11 @@
             </td>
             <td class="text-center">${scores.responseRate}%</td>
             <td class="text-center">${scores.employeeCount.toLocaleString()}</td>
-            <td class="text-center">
-                <span class="badge badge-success badge-sm">${scores.keyStrength}</span>
+            <td>
+                <span class="badge badge-neutral badge-sm">${scores.keyStrength}</span>
             </td>
-            <td class="text-center">
-                <span class="badge badge-warning badge-sm">${scores.priorityArea}</span>
+            <td>
+                <span class="badge badge-neutral badge-sm">${scores.priorityArea}</span>
             </td>
         </tr>`;
 

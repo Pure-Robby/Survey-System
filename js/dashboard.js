@@ -1056,11 +1056,11 @@ function renderBusinessUnitComparison() {
                     </td>
                     <td class="text-center">${unit.responseRate}%</td>
                     <td class="text-center">${unit.employeeCount.toLocaleString()}</td>
-                    <td class="text-center">
-                        <span class="badge badge-success badge-sm">${unit.keyStrength}</span>
+                    <td>
+                        <span class="badge badge-neutral badge-sm">${unit.keyStrength}</span>
                     </td>
-                    <td class="text-center">
-                        <span class="badge badge-warning badge-sm">${unit.priorityArea}</span>
+                    <td>
+                        <span class="badge badge-neutral badge-sm">${unit.priorityArea}</span>
                     </td>
                 </tr>`;
         }).join('');
@@ -1082,11 +1082,11 @@ function renderBusinessUnitComparison() {
             </td>
             <td class="text-center">${unit.responseRate}%</td>
             <td class="text-center">${unit.employeeCount.toLocaleString()}</td>
-            <td class="text-center">
-                <span class="badge badge-success badge-sm">${unit.keyStrength}</span>
+            <td>
+                <span class="badge badge-neutral badge-sm">${unit.keyStrength}</span>
             </td>
-            <td class="text-center">
-                <span class="badge badge-warning badge-sm">${unit.priorityArea}</span>
+            <td>
+                <span class="badge badge-neutral badge-sm">${unit.priorityArea}</span>
             </td>`;
     }
 
@@ -1217,7 +1217,7 @@ function renderStrategicRecommendations() {
                 <div class="d-flex justify-content-between align-items-start mb-2">
                     <h6 class="mb-0 fw-semibold">${rec.title}</h6>
                     <span class="badge recommendation-priority-badge ${priorityClass}">
-                        ${rec.priority.toUpperCase()} PRIORITY
+                        ${rec.priority} priority
                     </span>
                 </div>
                 <p class="recommendation-description mb-0">${rec.description}</p>
@@ -1274,9 +1274,9 @@ function renderKeyMetricsSummary() {
     if (!container) return;
     
     container.innerHTML = `
-        <div class="row g-3">
+        
             ${metrics.map(metric => `
-                <div class="col-6">
+                
                     <div class="metric-summary-card metric-summary-card-${metric.type}">
                         <div class="d-flex align-items-start gap-2">
                             <i class='bx ${metric.icon} metric-summary-icon metric-summary-icon-${metric.type}'></i>
@@ -1289,9 +1289,9 @@ function renderKeyMetricsSummary() {
                             </div>
                         </div>
                     </div>
-                </div>
+                
             `).join('')}
-        </div>
+        
     `;
 }
 
