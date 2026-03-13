@@ -262,11 +262,11 @@ function showDimensionDetail(dimensionIndex) {
         const showDualBar = filtersApplied;
         const statementBarsHtml = showDualBar
             ? `<div class="statement-bar-row">
-                    <span class="statement-bar-row-label">Sanlam: ${statementSanlamPct}%</span>
+                    <span class="statement-bar-row-label">Sanlam: <span class="statement-bar-row-label-score">${statementSanlamPct}%</span></span>
                     ${createStatementScoringBar(statement)}
                 </div>
                 <div class="statement-bar-row">
-                    <span class="statement-bar-row-label">Filtered: ${statementScore}%</span>
+                    <span class="statement-bar-row-label">Filtered: <span class="statement-bar-row-label-score">${statementScore}%</span></span>
                     ${createStatementScoringBar(statement)}
                 </div>`
             : `<div class="statement-bar-container">${createStatementScoringBar(statement)}</div>`;

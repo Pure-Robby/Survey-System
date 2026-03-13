@@ -3025,11 +3025,20 @@ body.filters-applied .lever-detail-sanlam {
 }
 
 .statement-bar-row-label {
-    font-size: 0.8rem;
-    font-weight: 700;
+    font-size: 0.9rem;
+    font-weight: 500;
     color: var(--color-text);
     min-width: 96px;
     white-space: nowrap;
+    display: flex;
+    gap: 0.25rem;
+    align-items: center;
+}
+
+.statement-bar-row-label-score {
+    color: var(--brand-primary);
+    font-weight: 300;
+    font-size: 1.25rem;
 }
 
 .statement-bar-row .statement-bar-track {
