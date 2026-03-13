@@ -471,14 +471,18 @@
       updateFilterSummary(key, selectedFilters[key]);
     });
     updateTitleIndicator();
+    persistState();
   }
 
   function apply() {
     updateTitleIndicator();
+    persistState();
     if (typeof onApplyHook === 'function') {
       onApplyHook(getState());
     }
   }
+
+  const STORAGE_KEY = 'sanlamReportFiltersState';
 
   function getState() {
     const out = {};
@@ -488,12 +492,54 @@
     return out;
   }
 
+  function persistState() {
+    try {
+      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(getState()));
+    } catch (e) {
+      // ignore
+    }
+  }
+
+  function restoreState() {
+    try {
+      const raw = sessionStorage.getItem(STORAGE_KEY);
+      if (!raw) return false;
+      const state = JSON.parse(raw);
+      if (!state || typeof state !== 'object') return false;
+      let restored = false;
+      Object.keys(filterOptions).forEach((key) => {
+        const saved = state[key];
+        if (!Array.isArray(saved) || saved.length === 0) {
+          selectedFilters[key] = filterOptions[key].map((o) => o.value);
+          return;
+        }
+        const validValues = new Set(filterOptions[key].map((o) => o.value));
+        const filtered = saved.filter((v) => validValues.has(v));
+        if (filtered.length > 0) {
+          selectedFilters[key] = filtered;
+          restored = true;
+        } else {
+          selectedFilters[key] = filterOptions[key].map((o) => o.value);
+        }
+      });
+      return restored;
+    } catch (e) {
+      return false;
+    }
+  }
+
   function init({ onApply } = {}) {
     onApplyHook = typeof onApply === 'function' ? onApply : null;
 
     ensureFilterModal();
     const { filterModal, applyFilterModal, cancelFilterModal } = getModalEls();
     if (!filterModal || !applyFilterModal || !cancelFilterModal) return;
+
+    if (restoreState()) {
+      Object.keys(filterOptions).forEach((key) => {
+        updateFilterSummary(key, selectedFilters[key]);
+      });
+    }
 
     // One-time modal listeners
     if (!filterModal.dataset.wired) {

@@ -21,6 +21,10 @@
 
     const higher = filteredScore > sanlamScore;
     const arrowClass = higher ? 'bx-up-arrow-alt' : 'bx-down-arrow-alt';
+    const currentFile = window.location.pathname.split('/').pop() || 'index.html';
+    const navSelectHtml = typeof window.leverPageNav !== 'undefined'
+      ? window.leverPageNav.getSelectHtml(currentFile)
+      : '';
 
     banner.innerHTML = `
       <div class="score-banner-comparison">
@@ -38,9 +42,7 @@
             </span>
           </div>
         </div>
-        <a href="${escapeHtml(nextUrl)}${nextUrl.indexOf('?') !== -1 ? '&' : '?'}filtered=1" class="score-banner-cta btn-back">
-          Go to ${escapeHtml(nextLabel)} <i class="bx bx-right-arrow-alt"></i>
-        </a>
+        ${navSelectHtml}
       </div>
     `;
   }

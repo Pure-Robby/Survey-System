@@ -2,6 +2,7 @@
 :root {
     /* Brand Colors */
     --brand-primary: #0075c9;
+    --brand-primary-rgb: 0, 117, 201;
     --white: #ffffff;
     --brand-ink: #333e48;
 
@@ -832,8 +833,36 @@ body {
 
 .score-banner-comparison .score-banner-cta {
    margin-left: 50px;
-} 
+}
 
+/* Lever page nav dropdown – white outline and text on primary blue banner */
+.score-banner-lever-nav {
+    margin-left: 4rem;
+    padding: 0.5rem 2rem 0.5rem 0.75rem;
+    font-size: var(--font-size-base);
+    color: var(--white);
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23fff' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.5rem center;
+    background-size: 1rem;
+    min-width: 12rem;
+}
+
+.score-banner-lever-nav:hover,
+.score-banner-lever-nav:focus {
+    border-color: var(--white);
+    outline: none;
+}
+
+.score-banner-lever-nav option {
+    color: var(--color-text);
+    background-color: var(--white);
+}
 
 /* .score-banner-comparison .score-banner-cta.btn-back {
     color: var(--white);
@@ -883,6 +912,21 @@ body {
     font-size: 24px;
 }
 
+/* Dimension detail card: title and body are separate blocks so no negative margins needed */
+.card-custom.dimension-detail-card {
+    padding: 0;
+}
+
+.dimension-detail-title-wrap {
+    background: #fafafa;
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.dimension-detail-body {
+    padding: var(--spacing-lg);
+}
+
 #dimensionDetailTitle {
     display: flex;
     align-items: center;
@@ -890,16 +934,35 @@ body {
     font-size: 1.5rem;
 }
 
-#dimensionDetailTitle span {
-    font-size: 1.5rem;
-    font-weight: 400;
-    color: var(--white);
-    margin-left: var(--spacing-sm);
-    background: var(--color-primary);
-    padding: 0.25rem 0.5rem;
-    border-radius: var(--radius-sm);
+.dimension-detail-name {
+    flex: 1 1 0%;
+    min-width: 0;
 }
 
+.dimension-detail-scores {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-shrink: 0;
+    margin-left: auto;
+}
+
+.dimension-detail-scores .dimension-detail-sanlam {
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--color-text);
+    white-space: nowrap;
+}
+
+.dimension-detail-scores .dimension-detail-filtered {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--brand-primary);
+    background-color: rgba(var(--brand-primary-rgb), 0.1);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-md);
+    white-space: nowrap;
+}
 
 /* ==================== Results Summary ==================== */
 .results-summary {
@@ -2757,7 +2820,7 @@ body.filters-applied .lever-detail-sanlam {
     font-size: var(--font-size-lg);
     font-weight: 600;
     color: var(--color-text);
-    margin: 0;
+    margin-bottom: 0;
     flex: 1;
     line-height: 1.4;
 }
@@ -2822,12 +2885,43 @@ body.filters-applied .lever-detail-sanlam {
     margin-bottom: var(--spacing-md);
 }
 
+.statement-header-row {
+    flex-wrap: nowrap;
+}
+
 .statement-text {
     font-size: var(--font-size-xl);
     font-weight: 400;
     color: var(--color-text);
     margin: 0;
     line-height: 1.5;
+    min-width: 0;
+    flex: 1 1 0%;
+}
+
+/* Statement score badges – scoped to .statement-scores so they don’t inherit from .statement-header */
+.statement-scores {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-shrink: 0;
+}
+
+.statement-scores .statement-score-sanlam {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--color-text);
+    white-space: nowrap;
+}
+
+.statement-scores .statement-score-filtered {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--brand-primary);
+    background-color: rgba(var(--brand-primary-rgb), 0.1);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-md);
+    white-space: nowrap;
 }
 
 .statement-scoring {

@@ -240,10 +240,12 @@ function showDimensionDetail(dimensionIndex) {
     document.getElementById('statementsOverview').style.display = 'none';
     document.getElementById('dimensionDetail').style.display = 'block';
 
-    // Set dimension title with score
-    document.getElementById('dimensionDetailTitle').innerHTML = `
-        ${dimension.name} <span>${dimension.averageScore}%</span>
-    `;
+    const filtersApplied = document.body.classList.contains('filters-applied');
+    const dimensionSanlamPct = dimension.sanlamScore != null ? dimension.sanlamScore : dimension.averageScore;
+    const dimensionTitleScores = filtersApplied
+        ? `<span class="dimension-detail-sanlam">Sanlam: ${dimensionSanlamPct}%</span><span class="dimension-detail-filtered">Filtered: ${dimension.averageScore}%</span>`
+        : `<span class="dimension-detail-filtered">${dimension.averageScore}%</span>`;
+    document.getElementById('dimensionDetailTitle').innerHTML = `<h4 class="dimension-detail-name fw-bold mb-0">${dimension.name}</h4><span class="dimension-detail-scores">${dimensionTitleScores}</span>`;
 
     // Render statements
     const container = document.getElementById('statementsContainer');
@@ -309,13 +311,17 @@ function showDimensionDetail(dimensionIndex) {
 
     sortedStatements.forEach((statement, index) => {
         const statementScore = statement.stronglyAgree + statement.agree; // Positive percentage is the sum of SA and A
+        const statementSanlamPct = statement.sanlamScore != null ? statement.sanlamScore : (dimension.sanlamScore != null ? dimension.sanlamScore : statementScore);
+        const statementScoreMarkup = filtersApplied
+            ? `<span class="statement-score-sanlam">Sanlam: ${statementSanlamPct}%</span><span class="statement-score-filtered">Filtered: ${statementScore}%</span>`
+            : `<span class="statement-score-filtered">${statementScore}%</span>`;
         const statementDiv = document.createElement('div');
         statementDiv.className = 'statement-item';
         statementDiv.innerHTML = `
             <div class="statement-header">
-                <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 16px;">
-                    <h6 class="statement-text" style="flex: 1;">${statement.text}</h6>
-                    <span style="font-size: 1.25rem; font-weight: 500; background: var(--color-primary); color: white; padding: 0.25rem 0.5rem; border-radius: var(--radius-sm); white-space: nowrap;">${statementScore}%</span>
+                <div class="d-flex justify-content-between align-items-baseline gap-3 statement-header-row">
+                    <h6 class="statement-text flex-grow-1 mb-0">${statement.text}</h6>
+                    <div class="statement-scores">${statementScoreMarkup}</div>
                 </div>
             </div>
             <div class="statement-scoring">                
