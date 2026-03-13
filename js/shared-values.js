@@ -245,14 +245,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Toggle scale function
-function toggleScale() {
-    use5PointScale = !use5PointScale;
-    if (currentDimensionIndex !== null) {
-        showDimensionDetail(currentDimensionIndex);
-    }
-}
-
 // Render dimensions overview
 function renderDimensionsOverview() {
     const container = document.getElementById('dimensionsOverview');
@@ -363,10 +355,6 @@ function showDimensionDetail(dimensionIndex) {
         <div class="d-flex align-items-center justify-content-between mb-3">
             <h6 class="mb-0">Statements Distribution Breakdown</h6>
             <div class="d-flex align-items-center gap-3">
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="scaleToggle" ${use5PointScale ? 'checked' : ''} onchange="toggleScale()">
-                    <label class="form-check-label" for="scaleToggle">5-Point Scale</label>
-                </div>
                 ${legendHTML}
             </div>
         </div>
@@ -384,11 +372,11 @@ function showDimensionDetail(dimensionIndex) {
         const showDualBar = filtersApplied;
         const statementBarsHtml = showDualBar
             ? `<div class="statement-bar-row">
-                    <span class="statement-bar-row-label">Sanlam: ${statementSanlamPct}%</span>
+                    <span class="statement-bar-row-label">Sanlam: <span class="statement-bar-row-label-score">${statementSanlamPct}%</span></span>
                     ${createStatementScoringBar(statement)}
                 </div>
                 <div class="statement-bar-row">
-                    <span class="statement-bar-row-label">Filtered: ${statementScore}%</span>
+                    <span class="statement-bar-row-label">Filtered: <span class="statement-bar-row-label-score">${statementScore}%</span></span>
                     ${createStatementScoringBar(statement)}
                 </div>`
             : `<div class="statement-bar-container">${createStatementScoringBar(statement)}</div>`;
