@@ -357,10 +357,22 @@ function showDimensionDetail(dimensionIndex) {
     document.getElementById('dimensionDetail').style.display = 'block';
 
     const filtersApplied = document.body.classList.contains('filters-applied');
+    const isEngagementDimension = dimension.name === 'Engagement';
     const dimensionSanlamPct = dimension.sanlamScore != null ? dimension.sanlamScore : dimension.averageScore;
-    const dimensionTitleScores = filtersApplied
-        ? `<span class="dimension-detail-sanlam">Sanlam: ${dimensionSanlamPct}%</span><span class="dimension-detail-filtered">Filtered: ${dimension.averageScore}%</span>`
-        : `<span class="dimension-detail-filtered">${dimension.averageScore}%</span>`;
+    let dimensionTitleScores;
+    if (isEngagementDimension) {
+        const previousOverall = dimension.previousScore != null
+            ? dimension.previousScore
+            : Math.round(dimension.statements.reduce((sum, s) => sum + (s.previousScore != null ? s.previousScore : (s.stronglyAgree + s.agree)), 0) / dimension.statements.length);
+        const currentOverall = dimension.averageScore;
+        dimensionTitleScores = filtersApplied
+            ? `<span class="dimension-detail-sanlam">Filtered Previous: ${previousOverall}%</span><span class="dimension-detail-filtered">Filtered Current: ${currentOverall}%</span>`
+            : `<span class="dimension-detail-sanlam">Previous: ${previousOverall}%</span><span class="dimension-detail-filtered">Current: ${currentOverall}%</span>`;
+    } else {
+        dimensionTitleScores = filtersApplied
+            ? `<span class="dimension-detail-sanlam">Sanlam: ${dimensionSanlamPct}%</span><span class="dimension-detail-filtered">Filtered: ${dimension.averageScore}%</span>`
+            : `<span class="dimension-detail-filtered">${dimension.averageScore}%</span>`;
+    }
     document.getElementById('dimensionDetailTitle').innerHTML = `<h4 class="dimension-detail-name fw-bold mb-0">${dimension.name}</h4><span class="dimension-detail-scores">${dimensionTitleScores}</span>`;
 
     // Render statements
