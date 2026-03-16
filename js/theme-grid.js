@@ -304,10 +304,13 @@
         
         // Add event listeners
         const secondaryBtn = tile.querySelector('.secondary-themes-btn');
-        
-        tile.addEventListener('click', () => {
-            openThemeModal(theme, comments);
-        });
+        const modalDisabled = document.body.dataset.themeModalDisabled !== undefined;
+
+        if (!modalDisabled) {
+            tile.addEventListener('click', () => {
+                openThemeModal(theme, comments);
+            });
+        }
         
         secondaryBtn.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -348,8 +351,10 @@
         });
     }
 
-    // Open theme modal with details
+    // Open theme modal with details (disabled on pages with data-theme-modal-disabled on body)
     function openThemeModal(theme, allComments) {
+        if (document.body.dataset.themeModalDisabled !== undefined) return;
+
         currentTheme = theme;
         themeComments = allComments.filter(c => c.theme === theme.id);
         

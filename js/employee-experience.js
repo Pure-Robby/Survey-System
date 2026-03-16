@@ -10,6 +10,7 @@ const employeeExperienceData = {
             statements: [
                 {
                     text: "I am proud to work for this organisation",
+                    previousScore: 47,
                     stronglyAgree: 21,
                     agree: 31,
                     neutral: 20,
@@ -18,6 +19,7 @@ const employeeExperienceData = {
                 },
                 {
                     text: "I would recommend this organisation as a great place to work",
+                    previousScore: 45,
                     stronglyAgree: 20,
                     agree: 30,
                     neutral: 22,
@@ -26,6 +28,7 @@ const employeeExperienceData = {
                 },
                 {
                     text: "I feel motivated and engaged in my work",
+                    previousScore: 50,
                     stronglyAgree: 22,
                     agree: 32,
                     neutral: 18,
@@ -34,6 +37,7 @@ const employeeExperienceData = {
                 },
                 {
                     text: "I understand how my work contributes to the organisation's goals",
+                    previousScore: 52,
                     stronglyAgree: 22,
                     agree: 34,
                     neutral: 18,
@@ -42,6 +46,7 @@ const employeeExperienceData = {
                 },
                 {
                     text: "I feel valued and appreciated for my contributions",
+                    previousScore: 44,
                     stronglyAgree: 19,
                     agree: 29,
                     neutral: 24,
@@ -50,6 +55,7 @@ const employeeExperienceData = {
                 },
                 {
                     text: "My manager recognizes and appreciates my efforts",
+                    previousScore: 48,
                     stronglyAgree: 21,
                     agree: 31,
                     neutral: 20,
@@ -58,6 +64,7 @@ const employeeExperienceData = {
                 },
                 {
                     text: "I have the autonomy to make decisions in my role",
+                    previousScore: 46,
                     stronglyAgree: 20,
                     agree: 30,
                     neutral: 22,
@@ -66,6 +73,7 @@ const employeeExperienceData = {
                 },
                 {
                     text: "I feel a strong sense of belonging at this organisation",
+                    previousScore: 43,
                     stronglyAgree: 19,
                     agree: 29,
                     neutral: 24,
@@ -74,6 +82,7 @@ const employeeExperienceData = {
                 },
                 {
                     text: "The work I do makes a difference",
+                    previousScore: 50,
                     stronglyAgree: 22,
                     agree: 32,
                     neutral: 20,
@@ -82,6 +91,7 @@ const employeeExperienceData = {
                 },
                 {
                     text: "I am satisfied with my current role",
+                    previousScore: 47,
                     stronglyAgree: 20,
                     agree: 31,
                     neutral: 21,
@@ -90,6 +100,7 @@ const employeeExperienceData = {
                 },
                 {
                     text: "I see myself working here in two years time",
+                    previousScore: 42,
                     stronglyAgree: 19,
                     agree: 28,
                     neutral: 26,
@@ -98,6 +109,7 @@ const employeeExperienceData = {
                 },
                 {
                     text: "I am enthusiastic about the future direction of the organisation",
+                    previousScore: 45,
                     stronglyAgree: 20,
                     agree: 29,
                     neutral: 23,
@@ -409,13 +421,20 @@ function showDimensionDetail(dimensionIndex) {
     // Sort statements by score ascending (lowest/most concerning first)
     const sortedStatements = [...dimension.statements].sort((a, b) => (a.stronglyAgree + a.agree) - (b.stronglyAgree + b.agree));
 
+    const isEngagement = dimension.name === 'Engagement';
+
     sortedStatements.forEach((statement, index) => {
         const statementScore = statement.stronglyAgree + statement.agree; // Positive percentage is the sum of SA and A
         const statementSanlamPct = statement.sanlamScore != null ? statement.sanlamScore : (dimension.sanlamScore != null ? dimension.sanlamScore : statementScore);
-        const statementScoreMarkup = filtersApplied
-            ? `<span class="statement-score-sanlam">Sanlam: ${statementSanlamPct}%</span><span class="statement-score-filtered">Filtered: ${statementScore}%</span>`
-            : `<span class="statement-score-filtered">${statementScore}%</span>`;
-        const showDualBar = filtersApplied && dimension.name !== 'Engagement';
+        const previousPct = statement.previousScore != null ? statement.previousScore : statementScore;
+        const statementScoreMarkup = isEngagement
+            ? (filtersApplied
+                ? `<span class="statement-score-previous">Filtered Previous: ${previousPct}%</span><span class="statement-score-filtered">Filtered Current: ${statementScore}%</span>`
+                : `<span class="statement-score-previous">Previous: ${previousPct}%</span><span class="statement-score-filtered">Current: ${statementScore}%</span>`)
+            : (filtersApplied
+                ? `<span class="statement-score-sanlam">Sanlam: ${statementSanlamPct}%</span><span class="statement-score-filtered">Filtered: ${statementScore}%</span>`
+                : `<span class="statement-score-filtered">${statementScore}%</span>`);
+        const showDualBar = filtersApplied && !isEngagement;
         const statementBarsHtml = showDualBar
             ? `<div class="statement-bar-row">
                     <span class="statement-bar-row-label">Sanlam: <span class="statement-bar-row-label-score">${statementSanlamPct}%</span></span>
@@ -426,13 +445,14 @@ function showDimensionDetail(dimensionIndex) {
                     ${createStatementScoringBar(statement)}
                 </div>`
             : `<div class="statement-bar-container">${createStatementScoringBar(statement)}</div>`;
+        const showScoresInHeader = isEngagement || !showDualBar;
         const statementDiv = document.createElement('div');
         statementDiv.className = 'statement-item';
         statementDiv.innerHTML = `
             <div class="statement-header">
                 <div class="d-flex justify-content-between align-items-baseline gap-3 statement-header-row">
                     <h6 class="statement-text flex-grow-1 mb-0">${statement.text}</h6>
-                    ${showDualBar ? '' : `<div class="statement-scores">${statementScoreMarkup}</div>`}
+                    ${showScoresInHeader ? `<div class="statement-scores">${statementScoreMarkup}</div>` : ''}
                 </div>
             </div>
             <div class="statement-scoring">${statementBarsHtml}</div>
